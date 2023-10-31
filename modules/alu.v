@@ -6,5 +6,6 @@ module alu(
     output reg br_taken             // 分岐の有無
 );
 
-
+    assign alu_result=alucode==`ALU_ADD?op1+op2:0;
+    assign br_taken=alucode==`ALU_ADD?0:0;
 endmodule
