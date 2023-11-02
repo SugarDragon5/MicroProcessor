@@ -20,7 +20,7 @@ module cpu_tb;
         #10     sysclk     = 1'd0;
                 cpu_resetn    = 1'd0;
         #(CYCLE) cpu_resetn = 1'd1;
-        #1000 $finish;
+        #200000 $finish;
     end
 
 endmodule

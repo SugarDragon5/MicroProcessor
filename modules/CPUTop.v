@@ -6,6 +6,7 @@ module CPUTop (
     wire [31:0] pc,npc;
     PC PC1(
         .clk(clk),
+        .rst(rst),
         .npc(npc),
         .pc(pc)
     );

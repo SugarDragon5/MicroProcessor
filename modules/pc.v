@@ -1,11 +1,15 @@
 module PC (
-    clk,npc,pc
+    clk,rst,npc,pc
 );
-    input wire clk;
+    input wire clk,rst;
     input wire [31:0] npc;  //次クロックのプログラムカウンタ
     output reg [31:0] pc;   //現在のプログラムカウンタ
     always @(posedge clk) begin
-        pc <= npc;
+        if(rst)begin
+            pc<='h10000;
+        end else begin
+            pc<=npc;
+        end
     end
 endmodule
 

@@ -8,7 +8,7 @@ module RegisterFile (
     output reg [31:0] regdata1,
     output reg [31:0] regdata2
 );
-    reg [31:0] regfile [31:0];
+    reg [31:0][31:0] regfile=0;
     always @(posedge clk) begin
         if(reg_we) begin
             regfile[dstreg_num] <= write_value;
