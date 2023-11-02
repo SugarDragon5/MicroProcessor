@@ -30,7 +30,6 @@ module NPCGenerator (
         input [31:0] imm;
         input [31:0] reg1dat;
         input br_taken;
-        output [31:0] npc;
         if(alucode==`ALU_JALR)begin
             NPC=reg1dat+imm;
         end else if(br_taken)begin

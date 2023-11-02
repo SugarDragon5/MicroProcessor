@@ -9,11 +9,12 @@ module CPUTop (
         .npc(npc),
         .pc(pc)
     );
+    wire [31:0] regdata1,regdata2;
     NPCGenerator NPCGen1(
         .pc(pc),
         .alucode(alucode),
         .imm(imm),
-        .reg1dat(reg1dat),
+        .reg1dat(regdata1),
         .br_taken(br_taken),
         .npc(npc)
     );
@@ -21,11 +22,11 @@ module CPUTop (
     wire [31:0] iword;
     ROM rom1(
         .clk(clk),
-        .r_addr(pc[16:0]),
+        .r_addr(pc[16:3]),
         .r_data(iword)
     );
     //命令デコーダ
-    wire [4:0] srcreg1_num,srcreg2_num,destreg_num;
+    wire [4:0] srcreg1_num,srcreg2_num,dstreg_num;
     wire [31:0] imm;
     wire [5:0] alucode;
     wire [1:0] aluop1_type,aluop2_type;
@@ -34,7 +35,7 @@ module CPUTop (
         .ir(iword),
         .srcreg1_num(srcreg1_num),
         .srcreg2_num(srcreg2_num),
-        .destreg_num(destreg_num),
+        .dstreg_num(dstreg_num),
         .imm(imm),
         .alucode(alucode),
         .aluop1_type(aluop1_type),
@@ -46,12 +47,11 @@ module CPUTop (
     );
     //レジスタファイル
     wire [31:0] reg_write_value;
-    wire [31:0] regdata1,regdata2;
     RegisterFile register1(
         .clk(clk),
         .srcreg1_num(srcreg1_num),
         .srcreg2_num(srcreg2_num),
-        .destreg_num(destreg_num),
+        .dstreg_num(dstreg_num),
         .write_value(reg_write_value),
         .reg_we(reg_we),
         .regdata1(regdata1),
@@ -96,9 +96,9 @@ module CPUTop (
     RAM ram1(
         .clk(clk),
         .we(is_store),
-        .r_addr(mem_address),
+        .r_addr(mem_address[16:3]),
         .r_data(mem_load_value),
-        .w_addr(mem_address),
+        .w_addr(mem_address[16:3]),
         .w_data(mem_write_value)
     );
 endmodule
