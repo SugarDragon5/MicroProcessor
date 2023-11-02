@@ -21,7 +21,7 @@ module NPCGenerator (
     input wire [5:0] alucode;
     input wire [31:0] imm;
     input wire [31:0] reg1dat;
-    input wire [31:0] br_taken;
+    input wire br_taken;
     output wire [31:0] npc;
     
     function [31:0] NPC;
@@ -29,7 +29,7 @@ module NPCGenerator (
         input [5:0] alucode;
         input [31:0] imm;
         input [31:0] reg1dat;
-        input [31:0] br_taken;
+        input br_taken;
         if(alucode==`ALU_JALR)begin
             NPC=reg1dat+imm;
         end else if(br_taken)begin
