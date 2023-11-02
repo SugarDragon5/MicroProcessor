@@ -10,6 +10,9 @@ module CPUTop (
         .pc(pc)
     );
     wire [31:0] regdata1,regdata2;
+    wire [31:0] imm;
+    wire br_taken;
+    wire [5:0] alucode;
     NPCGenerator NPCGen1(
         .pc(pc),
         .alucode(alucode),
@@ -27,8 +30,6 @@ module CPUTop (
     );
     //命令デコーダ
     wire [4:0] srcreg1_num,srcreg2_num,dstreg_num;
-    wire [31:0] imm;
-    wire [5:0] alucode;
     wire [1:0] aluop1_type,aluop2_type;
     wire reg_we,is_load,is_store,is_halt;
     decoder decoder1(
@@ -71,7 +72,6 @@ module CPUTop (
     );
     //ALU
     wire [31:0] alu_result;
-    wire br_taken;
     alu alu1(
         .alucode(alucode),
         .op1(oprl),

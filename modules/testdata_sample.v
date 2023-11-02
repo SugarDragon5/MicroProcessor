@@ -1,0 +1,1 @@
+`define CODEHEX "hogehoge.hex"

@@ -5,3 +5,5 @@
 *.o
 *.out
 mk_config.inc
+testdata.v
+*.vcd
