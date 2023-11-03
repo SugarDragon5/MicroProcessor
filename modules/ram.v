@@ -6,9 +6,9 @@ module RAM(clk, we, r_addr, r_data, w_addr, w_data);
     output reg [31:0] r_data;
     reg [31:0] mem [24576];
 
-    initial begin
-        $readmemh(`DATAHEX, mem);
-    end
+//    initial begin
+//        $readmemh(`DATAHEX, mem);
+//    end
 
     always @(posedge clk) begin
         if(we) mem[w_addr] <= w_data;
