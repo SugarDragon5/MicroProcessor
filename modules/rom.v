@@ -3,7 +3,7 @@ module ROM(clk, r_addr, r_data);
     input clk;
     input  [13:0] r_addr;
     output reg [31:0] r_data;
-    reg [31:0] mem[16384];
+    reg [31:0] mem[24576];
 
     initial begin
         $readmemh(`CODEHEX, mem);

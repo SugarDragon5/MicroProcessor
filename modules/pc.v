@@ -6,7 +6,7 @@ module PC (
     output reg [31:0] pc;   //現在のプログラムカウンタ
     always @(posedge clk) begin
         if(rst)begin
-            pc<='h10000;
+            pc<='h8000;
         end else begin
             pc<=npc;
         end

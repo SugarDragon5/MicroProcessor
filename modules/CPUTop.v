@@ -26,7 +26,7 @@ module CPUTop (
     wire [31:0] iword;
     ROM rom1(
         .clk(clk),
-        .r_addr(pc[16:3]),
+        .r_addr(pc[15:2]),
         .r_data(iword)
     );
     //命令デコーダ
