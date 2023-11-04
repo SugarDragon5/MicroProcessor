@@ -1,7 +1,9 @@
 *.elf
-*.hex
-*.dump
+# *.hex
+# *.dump
 *.bin
 *.o
 *.out
 mk_config.inc
+testdata.v
+*.vcd
