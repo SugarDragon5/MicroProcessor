@@ -1,6 +1,6 @@
 *.elf
-*.hex
-*.dump
+# *.hex
+# *.dump
 *.bin
 *.o
 *.out
