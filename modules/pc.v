@@ -1,14 +1,3 @@
-module PC (
-    clk,npc,pc
-);
-    input wire clk;
-    input wire [31:0] npc;  //次クロックのプログラムカウンタ
-    output reg [31:0] pc;   //現在のプログラムカウンタ
-    always @(posedge clk) begin
-        pc <= npc;
-    end
-endmodule
-
 module NPCGenerator (
     pc,         //現在のプログラムカウンタ
     alucode,    //ALUコード

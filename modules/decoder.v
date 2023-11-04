@@ -1,9 +1,11 @@
 module decoder(
+    input wire clk,
+    input wire rst,                // 再計算信号
     input  wire [31:0]  ir,           // 機械語命令列
-    output wire  [4:0]	srcreg1_num,  // ソースレジスタ1番号
-    output wire  [4:0]	srcreg2_num,  // ソースレジスタ2番号
-    output wire  [4:0]	dstreg_num,   // デスティネーションレジスタ番号
-    output wire [31:0]	imm,          // 即値
+    output reg  [4:0]	srcreg1_num,  // ソースレジスタ1番号
+    output reg  [4:0]	srcreg2_num,  // ソースレジスタ2番号
+    output reg  [4:0]	dstreg_num,   // デスティネーションレジスタ番号
+    output reg [31:0]	imm,          // 即値
     output reg   [5:0]	alucode,      // ALUの演算種別
     output reg   [1:0]	aluop1_type,  // ALUの入力タイプ
     output reg   [1:0]	aluop2_type,  // ALUの入力タイプ
@@ -25,7 +27,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign srcreg1_num = decode_srcreg1_num(ir);
 
 //ソースレジスタ2
     function [4:0] decode_srcreg2_num;
@@ -39,7 +40,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign srcreg2_num = decode_srcreg2_num(ir);
 
 //デスティネーションレジスタ
     function [4:0] decode_dstreg_num;
@@ -52,7 +52,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign dstreg_num = decode_dstreg_num(ir);
 
 //即値
     function [31:0] decode_imm;
@@ -77,7 +76,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign imm = decode_imm(ir);
 
 //ALUの演算種別
     function [5:0] decode_alucode;
@@ -165,7 +163,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign alucode = decode_alucode(ir);
 
 //ALUの入力タイプ1
     function [1:0] decode_aluop1_type;
@@ -185,7 +182,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign aluop1_type = decode_aluop1_type(ir);
 
 //ALUの入力タイプ2
     function [1:0] decode_aluop2_type;
@@ -205,7 +201,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign aluop2_type = decode_aluop2_type(ir);
 
 //レジスタ書き込みの有無
     function decode_reg_we;
@@ -235,7 +230,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign reg_we = decode_reg_we(ir);
 
 //ロード命令判定フラグ
     function decode_is_load;
@@ -247,7 +241,6 @@ module decoder(
             endcase
         end
     endfunction
-    assign is_load = decode_is_load(ir);
 
 //ストア命令判定フラグ
     function decode_is_store;
@@ -259,6 +252,20 @@ module decoder(
             endcase
         end
     endfunction
-    assign is_store = decode_is_store(ir);
+
+    always @(posedge clk) begin
+        if(rst)begin            
+            srcreg1_num <= decode_srcreg1_num(ir);
+            srcreg2_num <= decode_srcreg2_num(ir);
+            dstreg_num <= decode_dstreg_num(ir);
+            imm <= decode_imm(ir);
+            alucode <= decode_alucode(ir);
+            aluop1_type <= decode_aluop1_type(ir);
+            aluop2_type <= decode_aluop2_type(ir);
+            reg_we <= decode_reg_we(ir);
+            is_load <= decode_is_load(ir);
+            is_store <= decode_is_store(ir);
+        end
+    end
 
 endmodule
