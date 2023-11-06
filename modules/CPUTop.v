@@ -98,10 +98,10 @@ module CPUTop (
         .mem_write_value(mem_write_value)
     );
     //RAM
-    reg we;
+    reg ram_we;
     RAM ram1(
         .clk(clk),
-        .we(we),
+        .we(ram_we),
         .r_addr(mem_address[15:2]),
         .r_data(mem_load_value),
         .w_addr(mem_address[15:2]),
@@ -132,11 +132,13 @@ module CPUTop (
                     //デコーダ・レジスタの値をもとに、ALUが演算を行う
                     stage <= `MA_STAGE;
                     alu_reset<=0;
+                    ram_we<=is_store;
                 end
                 //RAM書き込みクロック
                 `MA_STAGE:begin
-                    stage <= `RW_STAGE;
                     //次クロックにレジスタ書き込みを行うかを書き込む
+                    stage <= `RW_STAGE;
+                    ram_we<=0;
                     reg_we<=reg_we_state;
                 end
                 //レジスタ書き込みクロック

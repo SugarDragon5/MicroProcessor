@@ -8,9 +8,16 @@ module RegisterFile (
     output reg [31:0] regdata1,
     output reg [31:0] regdata2
 );
-    reg [31:0][31:0] regfile=0;
+    reg [31:0] regfile[31:0];
+    integer i;
+    initial begin
+        for(i=0;i<32;i++)begin
+            regfile[i]=0;
+        end
+    end
     always @(posedge clk) begin
-        if(reg_we) begin
+        if(reg_we&&dstreg_num) begin
+            //ゼロレジスタ以外への書き込み
             regfile[dstreg_num] <= write_value;
         end
     end
