@@ -107,9 +107,9 @@ module CPUTop (
     RAM ram1(
         .clk(clk),
         .we(ram_we),
-        .r_addr(mem_address[15:0]),
+        .r_addr(mem_address),
         .r_data(mem_load_value),
-        .w_addr(mem_address[15:0]),
+        .w_addr(mem_address),
         .w_data(mem_write_value),
         .write_mode(ram_write_size),
         .read_mode(ram_read_size),
