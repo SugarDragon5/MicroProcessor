@@ -68,6 +68,14 @@
 `define MA_STAGE 3'd3
 `define RW_STAGE 3'd4
 
+//RAM読み書きモード
+`define RAM_MODE_BYTE  2'd0
+`define RAM_MODE_HALF  2'd1
+`define RAM_MODE_WORD  2'd2
+`define RAM_MODE_NONE  2'd3
+`define RAM_MODE_UNSIGNED 1'd0
+`define RAM_MODE_SIGNED 1'd1
+
 // address for hardware counter
 `define HARDWARE_COUNTER_ADDR 32'hffffff00
 

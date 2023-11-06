@@ -12,7 +12,10 @@ module decoder(
     output reg	     	reg_we,       // レジスタ書き込みの有無
     output reg		is_load,      // ロード命令判定フラグ
     output reg		is_store,     // ストア命令判定フラグ
-    output reg          is_halt
+    output reg          is_halt,
+    output wire [1:0]    ram_read_size,
+    output wire [1:0]    ram_write_size,
+    output wire          ram_read_signed
 );
 
 //ソースレジスタ1
@@ -253,6 +256,49 @@ module decoder(
         end
     endfunction
 
+//RAM読み書き幅指定
+    function [1:0] calc_ram_read_size;
+        input [5:0] alu_code;
+        begin
+            case (alu_code)
+                `ALU_LB: calc_ram_read_size = `RAM_MODE_BYTE;
+                `ALU_LH: calc_ram_read_size = `RAM_MODE_HALF;
+                `ALU_LW: calc_ram_read_size = `RAM_MODE_WORD;
+                `ALU_LBU: calc_ram_read_size = `RAM_MODE_BYTE;
+                `ALU_LHU: calc_ram_read_size = `RAM_MODE_HALF;
+                default: calc_ram_read_size = `RAM_MODE_NONE;
+            endcase
+        end
+    endfunction
+
+    function calc_ram_read_signed;
+        input [5:0] alu_code;
+        begin
+            case (alu_code)
+                `ALU_LB: calc_ram_read_signed = 1'b1;
+                `ALU_LH: calc_ram_read_signed = 1'b1;
+                `ALU_LW: calc_ram_read_signed = 1'b1;
+                `ALU_LBU: calc_ram_read_signed = 1'b0;
+                `ALU_LHU: calc_ram_read_signed = 1'b0;
+                default: calc_ram_read_signed = 1'b0;
+            endcase
+        end
+    endfunction
+
+    function [1:0] calc_ram_write_size;
+        input [5:0] alu_code;
+        begin
+            case (alu_code)
+                `ALU_SB: calc_ram_write_size = `RAM_MODE_BYTE;
+                `ALU_SH: calc_ram_write_size = `RAM_MODE_HALF;
+                `ALU_SW: calc_ram_write_size = `RAM_MODE_WORD;
+                default: calc_ram_write_size = `RAM_MODE_NONE;
+            endcase
+        end
+    endfunction
+
+
+
     always @(posedge clk) begin
         if(rst)begin            
             srcreg1_num <= decode_srcreg1_num(ir);
@@ -267,5 +313,8 @@ module decoder(
             is_store <= decode_is_store(ir);
         end
     end
+    assign ram_read_size = calc_ram_read_size(alucode);
+    assign ram_read_signed = calc_ram_read_signed(alucode);
+    assign ram_write_size = calc_ram_write_size(alucode);
 
 endmodule

@@ -31,6 +31,8 @@ module CPUTop (
     wire [4:0] srcreg1_num,srcreg2_num,dstreg_num;
     wire [1:0] aluop1_type,aluop2_type;
     wire reg_we_state,is_load,is_store,is_halt;
+    wire [1:0] ram_read_size,ram_write_size;
+    wire ram_read_signed;
     decoder decoder1(
         .clk(clk),
         .rst(rst|decoder_reset),
@@ -45,7 +47,10 @@ module CPUTop (
         .reg_we(reg_we_state),
         .is_load(is_load),
         .is_store(is_store),
-        .is_halt(is_halt)
+        .is_halt(is_halt),
+        .ram_read_size(ram_read_size),
+        .ram_write_size(ram_write_size),
+        .ram_read_signed(ram_read_signed)
     );
     //レジスタファイル
     wire [31:0] reg_write_value;
@@ -102,10 +107,13 @@ module CPUTop (
     RAM ram1(
         .clk(clk),
         .we(ram_we),
-        .r_addr(mem_address[15:2]),
+        .r_addr(mem_address[15:0]),
         .r_data(mem_load_value),
-        .w_addr(mem_address[15:2]),
-        .w_data(mem_write_value)
+        .w_addr(mem_address[15:0]),
+        .w_data(mem_write_value),
+        .write_mode(ram_write_size),
+        .read_mode(ram_read_size),
+        .read_signed(ram_read_signed)
     );
 
     always @(posedge clk) begin
