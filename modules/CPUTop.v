@@ -1,3 +1,6 @@
+`include "define.v"
+`include "testdata.v"
+
 module CPUTop (
     input wire clk,
     input wire rst,
@@ -128,7 +131,7 @@ module CPUTop (
         .uart_wr_i(uart_we),
         .uart_dat_i(uart_IN_data),
         .sys_clk_i(clk),
-        .sys_rstn_i(rst_n)
+        .sys_rst_i(rst)
     );
 
     // Memory Accessステージに以下のような記述を追加
@@ -150,7 +153,7 @@ module CPUTop (
     always @(posedge clk) begin
         if(rst)begin
             stage<=`IF_STAGE;
-            pc<='h7FFC;
+            pc<='h0000;
         end else begin
             case(stage)
                 //命令フェッチクロック

@@ -7,3 +7,4 @@
 mk_config.inc
 testdata.v
 *.vcd
+obj_dir

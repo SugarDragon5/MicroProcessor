@@ -6,13 +6,13 @@ module uart(
    uart_wr_i,   // Raise to transmit byte
    uart_dat_i,  // 8-bit data
    sys_clk_i,   // System clock, 100 MHz
-   sys_rstn_i    // System reset
+   sys_rst_i    // System reset
 );
 
   input uart_wr_i;
   input [7:0] uart_dat_i;
   input sys_clk_i;
-  input sys_rstn_i;
+  input sys_rst_i;
 
   // output uart_busy;
   output uart_tx;
@@ -29,8 +29,8 @@ module uart(
   reg [28:0] d;
   wire [28:0] dInc = d[28] ? (115200) : (115200 - 100000000);
   wire [28:0] dNxt = d + dInc;
-  always @(posedge sys_clk_i or negedge sys_rstn_i) begin
-    if (!sys_rstn_i) begin
+  always @(posedge sys_clk_i or posedge sys_rst_i) begin
+    if (sys_rst_i) begin
         d <= 29'b0;
     end else begin
         d <= dNxt;
@@ -38,9 +38,9 @@ module uart(
   end
   wire ser_clk = ~d[28]; // this is the 115200 Hz clock
 
-  always @(posedge sys_clk_i or negedge sys_rstn_i)
+  always @(posedge sys_clk_i or posedge sys_rst_i)
   begin
-    if (!sys_rstn_i) begin
+    if (sys_rst_i) begin
       uart_tx <= 1;
       bitcount <= 0;
       shifter <= 0;
