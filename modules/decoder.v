@@ -66,8 +66,8 @@ module decoder(
                 `JAL: decode_imm = {{11{ir[31]}},ir[31], ir[19:12], ir[20], ir[30:21], 1'b0};
                 `JALR: decode_imm = {{20{ir[31]}},ir[31:20]};
                 `BRANCH: decode_imm = {{19{ir[31]}},ir[31], ir[7], ir[30:25], ir[11:8], 1'b0};
-                `LOAD: decode_imm = {ir[31:20]};
-                `STORE: decode_imm = {ir[31:25], ir[11:7]};
+                `LOAD: decode_imm = {{20{ir[31]}},ir[31:20]};
+                `STORE: decode_imm = {{20{ir[31]}},ir[31:25], ir[11:7]};
                 `OPIMM: begin
                     case(ir[14:12])
                         3'b001: decode_imm = ir[24:20];//SLLI

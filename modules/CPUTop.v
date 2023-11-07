@@ -141,9 +141,11 @@ module CPUTop (
 
 
     //for debug
-    always @(posedge uart_we) begin
-        $write("%c", uart_IN_data);  // シリアル通信モジュールへのストア命令実行時に送信データを表示
-    end
+    `ifdef COREMARK_UART_DEBUG
+        always @(posedge uart_we) begin
+            $write("%c", uart_IN_data);  // シリアル通信モジュールへのストア命令実行時に送信データを表示
+        end
+    `endif
 
     //Hardware Counter
     wire [31:0] hc_OUT_data;
