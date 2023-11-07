@@ -1,5 +1,5 @@
-//`include "define.v"
-//`include "testdata.v"
+`include "define.v"
+`include "testdata.v"
 
 module CPUTop (
     input wire clk,
@@ -207,7 +207,9 @@ module CPUTop (
                             else if(ram_write_size==`RAM_MODE_HALF)$write("; mem[0x%08x] <- 0x%04x",mem_address,mem_write_value[15:0]);
                             else if(ram_write_size==`RAM_MODE_WORD)$write("; mem[0x%08x] <- 0x%08x",mem_address,mem_write_value);
                         end else if(is_load)begin
-                            $write(";      0x%08x <- mem[0x%08x]",mem_load_value,mem_address);
+                            if(ram_read_size==`RAM_MODE_BYTE)$write(";            0x%02x <- mem[0x%08x]",mem_load_value[7:0],mem_address);
+                            if(ram_read_size==`RAM_MODE_HALF)$write(";          0x%04x <- mem[0x%08x]",mem_load_value[15:0],mem_address);
+                            if(ram_read_size==`RAM_MODE_WORD)$write(";      0x%08x <- mem[0x%08x]",mem_load_value,mem_address);
                         end
                         $write("\n");
                     `endif
