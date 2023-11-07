@@ -1,5 +1,5 @@
-`include "define.v"
-`include "testdata.v"
+//`include "define.v"
+//`include "testdata.v"
 
 module CPUTop (
     input wire clk,
@@ -139,6 +139,12 @@ module CPUTop (
     assign uart_we = ((mem_address == `UART_ADDR) && (is_store == `ENABLE)) ? 1'b1 : 1'b0;  // シリアル通信用アドレスへのストア命令実行時に送信開始信号をアサート
     assign uart_tx = uart_OUT_data;  // シリアル通信モジュールの出力はFPGA外部へと出力
 
+
+    //for debug
+    always @(posedge uart_we) begin
+        $write("%c", uart_IN_data);  // シリアル通信モジュールへのストア命令実行時に送信データを表示
+    end
+
     //Hardware Counter
     wire [31:0] hc_OUT_data;
 
@@ -153,7 +159,7 @@ module CPUTop (
     always @(posedge clk) begin
         if(rst)begin
             stage<=`IF_STAGE;
-            pc<='h0000;
+            pc<='h8000;
         end else begin
             case(stage)
                 //命令フェッチクロック
@@ -196,6 +202,13 @@ module CPUTop (
                         if(reg_we)begin
                             $write(" # x%02d = 0x%8x",dstreg_num,reg_write_value);
                         end else $write(" # (no destination)");
+                        if(is_store)begin
+                            if(ram_write_size==`RAM_MODE_BYTE)$write("; mem[0x%08x] <- 0x%02x",mem_address,mem_write_value[7:0]);
+                            else if(ram_write_size==`RAM_MODE_HALF)$write("; mem[0x%08x] <- 0x%04x",mem_address,mem_write_value[15:0]);
+                            else if(ram_write_size==`RAM_MODE_WORD)$write("; mem[0x%08x] <- 0x%08x",mem_address,mem_write_value);
+                        end else if(is_load)begin
+                            $write(";      0x%08x <- mem[0x%08x]",mem_load_value,mem_address);
+                        end
                         $write("\n");
                     `endif
                 end

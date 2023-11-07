@@ -7,7 +7,7 @@ module RAM(clk, we, r_addr, r_data, w_addr, w_data, write_mode, read_mode, read_
     input  [31:0] r_addr, w_addr;
     input  [31:0] w_data;
     output reg [31:0] r_data;
-    reg [31:0] mem [65536];
+    reg [31:0] mem [131072];
 
     integer i;
     initial begin

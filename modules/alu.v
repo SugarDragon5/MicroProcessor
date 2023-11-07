@@ -23,8 +23,8 @@ always @(posedge clk) begin
     if(rst)begin
         alu_result = alucode==`ALU_ADD ? op1+op2
             :alucode==`ALU_SUB ? op1-op2
-            :alucode==`ALU_SLT ? $signed(op1)<$signed(op2)
-            :alucode==`ALU_SLTU ? op1<op2
+            :alucode==`ALU_SLT ? ($signed(op1)<$signed(op2)?32'b1:32'b0)
+            :alucode==`ALU_SLTU ? (op1<op2?32'b1:32'b0)
             :alucode==`ALU_XOR ? op1^op2
             :alucode==`ALU_OR ? op1|op2
             :alucode==`ALU_AND ? op1&op2

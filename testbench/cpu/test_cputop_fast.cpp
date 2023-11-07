@@ -25,8 +25,8 @@ void uart_rx(unsigned int u) {
             c += u << b;
             ++b;
         } else {
-            std::putchar(c);
-            std::fflush(stdout);
+//            std::putchar(c);
+//            std::fflush(stdout);
             s = 0;
         }
     }
