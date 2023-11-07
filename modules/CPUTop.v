@@ -159,7 +159,7 @@ module CPUTop (
                     pc <= npc;
                     `ifdef COREMARK_TRACE
                         if(reg_we)begin
-                            $write(" # x%2d = 0x%8x",dstreg_num,reg_write_value);
+                            $write(" # x%02d = 0x%8x",dstreg_num,reg_write_value);
                         end else $write(" # (no destination)");
                         $write("\n");
                     `endif
