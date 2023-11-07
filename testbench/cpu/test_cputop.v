@@ -18,7 +18,6 @@ module cpu_tb;
         for(i=0;i<32;i++)begin
             $dumpvars(1,cpu0.register1.regfile[i]);
         end
-        $dumpvars(1,cpu0.ram1.mem[16401]);
     end
 
     initial begin

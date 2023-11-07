@@ -1,6 +1,7 @@
 module CPUTop (
     input wire clk,
-    input wire rst
+    input wire rst,
+    output wire uart_tx
 );
     //ステージ変数
     reg [3:0] stage;
@@ -97,7 +98,9 @@ module CPUTop (
         .regdata2(regdata2),
         .is_load(is_load),
         .is_store(is_store),
-        .mem_load_value(mem_load_value),
+        .mem_load_value(
+            (alucode==`ALU_LW&&mem_address==`HARDWARE_COUNTER_ADDR)?hc_OUT_data:mem_load_value
+        ),
         .reg_write_value(reg_write_value),
         .mem_address(mem_address),
         .mem_write_value(mem_write_value)
@@ -115,7 +118,35 @@ module CPUTop (
         .read_mode(ram_read_size),
         .read_signed(ram_read_signed)
     );
+    //UArt
+    wire [7:0] uart_IN_data;
+    wire uart_we;
+    wire uart_OUT_data;
 
+    uart uart0(
+        .uart_tx(uart_OUT_data),
+        .uart_wr_i(uart_we),
+        .uart_dat_i(uart_IN_data),
+        .sys_clk_i(clk),
+        .sys_rstn_i(rst_n)
+    );
+
+    // Memory Accessステージに以下のような記述を追加
+    assign uart_IN_data = mem_write_value[7:0];  // ストアするデータをモジュールへ入力
+    assign uart_we = ((mem_address == `UART_ADDR) && (is_store == `ENABLE)) ? 1'b1 : 1'b0;  // シリアル通信用アドレスへのストア命令実行時に送信開始信号をアサート
+    assign uart_tx = uart_OUT_data;  // シリアル通信モジュールの出力はFPGA外部へと出力
+
+    //Hardware Counter
+    wire [31:0] hc_OUT_data;
+
+    hardware_counter hardware_counter0(
+        .CLK_IP(clk),
+        .RST_IP(rst),
+        .COUNTER_OP(hc_OUT_data)
+    );
+
+
+    //ステージ遷移
     always @(posedge clk) begin
         if(rst)begin
             stage<=`IF_STAGE;
@@ -143,7 +174,8 @@ module CPUTop (
                     //デコーダ・レジスタの値をもとに、ALUが演算を行う
                     stage <= `MA_STAGE;
                     alu_reset<=0;
-                    ram_we<=is_store;
+                    if((mem_address == `UART_ADDR) && (is_store == `ENABLE))ram_we<=0;
+                    else ram_we<=is_store;
                 end
                 //RAM書き込みクロック
                 `MA_STAGE:begin
