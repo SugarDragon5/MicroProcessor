@@ -134,6 +134,9 @@ module CPUTop (
                     stage <= `EX_STAGE;
                     decoder_reset<=0;
                     alu_reset<=1;
+                    `ifdef COREMARK_TRACE
+                        $write("0x%4x: 0x%8x",pc[15:0],iword);
+                    `endif
                 end
                 //演算クロック
                 `EX_STAGE:begin
@@ -154,6 +157,12 @@ module CPUTop (
                     stage <= `IF_STAGE;
                     reg_we<=0;
                     pc <= npc;
+                    `ifdef COREMARK_TRACE
+                        if(reg_we)begin
+                            $write(" # x%2d = 0x%8x",dstreg_num,reg_write_value);
+                        end else $write(" # (no destination)");
+                        $write("\n");
+                    `endif
                 end
             endcase
         end
