@@ -25,8 +25,8 @@ void uart_rx(unsigned int u) {
             c += u << b;
             ++b;
         } else {
-//            std::putchar(c);
-//            std::fflush(stdout);
+            std::putchar(c);
+            std::fflush(stdout);
             s = 0;
         }
     }
@@ -37,13 +37,13 @@ int main() {
     VCPUTop top;
     top.clk = 0;
     top.eval();
-    top.rst = 1;
+    top.nrst = 0;
     top.eval();
     top.clk = 1;
     top.eval();
     top.clk = 0;
     top.eval();
-    top.rst = 0;
+    top.nrst = 1;
     top.eval();
 
     for( std::size_t cycle = 0; cycle < max_cycle; ++cycle ) {

@@ -3,9 +3,12 @@
 
 module CPUTop (
     input wire clk,
-    input wire rst,
+    input wire nrst,
     output wire uart_tx
 );
+    //リセット信号
+    wire rst;
+    assign rst = ~nrst;
     //ステージ変数
     reg [3:0] stage;
     //プログラムカウンタ変数
