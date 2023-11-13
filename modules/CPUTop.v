@@ -253,12 +253,12 @@ module CPUTop (
                 ram_read_size_EX<=ram_read_size_ID;
                 ram_write_size_EX<=ram_write_size_ID;
                 ram_read_signed_EX<=ram_read_signed_ID;
-                //RWステージ
-                pc_RW<=pc_EX;
-                reg_write_value_RW<=reg_write_value_EX;
-                dstreg_num_RW<=dstreg_num_EX;
-                reg_we_RW<=reg_we_EX;
             end
+            //RWステージ: 分岐の有無に無関係
+            pc_RW<=pc_EX;
+            reg_write_value_RW<=reg_write_value_EX;
+            dstreg_num_RW<=dstreg_num_EX;
+            reg_we_RW<=reg_we_EX;
         end
     end
 endmodule
