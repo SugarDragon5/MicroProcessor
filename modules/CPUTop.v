@@ -36,6 +36,13 @@ module CPUTop (
     wire [31:0] regdata1_ID,regdata2_ID;
     //オペランドスイッチャー
     wire [31:0] oprl_ID,oprr_ID;
+    //フォワーディング
+    wire is_reg1_fwd_ID,is_reg2_fwd_ID;
+    assign is_reg1_fwd_ID=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_EX);
+    assign is_reg2_fwd_ID=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_EX);
+    wire is_oprl_fwd_ID,is_oprr_fwd_ID;
+    assign is_oprl_fwd_ID=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
+    assign is_oprr_fwd_ID=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
 
 //EXステージ
     reg [31:0] pc_EX;
@@ -241,10 +248,14 @@ module CPUTop (
                 pc_EX<=pc_ID;
                 alucode_EX<=alucode_ID;
                 imm_EX<=imm_ID;
-                oprl_EX<=oprl_ID;
-                oprr_EX<=oprr_ID;
-                regdata1_EX<=regdata1_ID;
-                regdata2_EX<=regdata2_ID;
+                if(is_oprl_fwd_ID)oprl_EX<=reg_write_value_EX;
+                else oprl_EX<=oprl_ID;
+                if(is_oprr_fwd_ID)oprr_EX<=reg_write_value_EX;
+                else oprr_EX<=oprr_ID;
+                if(is_reg1_fwd_ID)regdata1_EX<=reg_write_value_EX;
+                else regdata1_EX<=regdata1_ID;
+                if(is_reg2_fwd_ID)regdata2_EX<=reg_write_value_EX;
+                else regdata2_EX<=regdata2_ID;
                 dstreg_num_EX<=dstreg_num_ID;
                 reg_we_EX<=reg_we_ID;
                 is_load_EX<=is_load_ID;
