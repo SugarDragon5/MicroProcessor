@@ -1,18 +1,16 @@
 module decoder(
-    input wire clk,
-    input wire rst,                // 再計算信号
     input  wire [31:0]  ir,           // 機械語命令列
-    output reg  [4:0]	srcreg1_num,  // ソースレジスタ1番号
-    output reg  [4:0]	srcreg2_num,  // ソースレジスタ2番号
-    output reg  [4:0]	dstreg_num,   // デスティネーションレジスタ番号
-    output reg [31:0]	imm,          // 即値
-    output reg   [5:0]	alucode,      // ALUの演算種別
-    output reg   [1:0]	aluop1_type,  // ALUの入力タイプ
-    output reg   [1:0]	aluop2_type,  // ALUの入力タイプ
-    output reg	     	reg_we,       // レジスタ書き込みの有無
-    output reg		is_load,      // ロード命令判定フラグ
-    output reg		is_store,     // ストア命令判定フラグ
-    output reg          is_halt,
+    output wire   [4:0]	srcreg1_num,  // ソースレジスタ1番号
+    output wire   [4:0]	srcreg2_num,  // ソースレジスタ2番号
+    output wire   [4:0]	dstreg_num,   // デスティネーションレジスタ番号
+    output wire  [31:0]	imm,          // 即値
+    output wire    [5:0]	alucode,      // ALUの演算種別
+    output wire    [1:0]	aluop1_type,  // ALUの入力タイプ
+    output wire    [1:0]	aluop2_type,  // ALUの入力タイプ
+    output wire 	     	reg_we,       // レジスタ書き込みの有無
+    output wire 		is_load,      // ロード命令判定フラグ
+    output wire 		is_store,     // ストア命令判定フラグ
+    output wire           is_halt,
     output wire [1:0]    ram_read_size,
     output wire [1:0]    ram_write_size,
     output wire          ram_read_signed
@@ -299,20 +297,16 @@ module decoder(
 
 
 
-    always @(posedge clk) begin
-        if(rst)begin            
-            srcreg1_num <= decode_srcreg1_num(ir);
-            srcreg2_num <= decode_srcreg2_num(ir);
-            dstreg_num <= decode_dstreg_num(ir);
-            imm <= decode_imm(ir);
-            alucode <= decode_alucode(ir);
-            aluop1_type <= decode_aluop1_type(ir);
-            aluop2_type <= decode_aluop2_type(ir);
-            reg_we <= decode_reg_we(ir);
-            is_load <= decode_is_load(ir);
-            is_store <= decode_is_store(ir);
-        end
-    end
+    assign srcreg1_num = decode_srcreg1_num(ir);
+    assign srcreg2_num = decode_srcreg2_num(ir);
+    assign dstreg_num = decode_dstreg_num(ir);
+    assign imm = decode_imm(ir);
+    assign alucode = decode_alucode(ir);
+    assign aluop1_type = decode_aluop1_type(ir);
+    assign aluop2_type = decode_aluop2_type(ir);
+    assign reg_we = decode_reg_we(ir);
+    assign is_load = decode_is_load(ir);
+    assign is_store = decode_is_store(ir);
     assign ram_read_size = calc_ram_read_size(alucode);
     assign ram_read_signed = calc_ram_read_signed(alucode);
     assign ram_write_size = calc_ram_write_size(alucode);
