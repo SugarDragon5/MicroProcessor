@@ -24,7 +24,7 @@ module CPUTop (
 //IDステージ
     reg [31:0] pc_ID;
     //デコーダ入出力
-    reg [31:0] iword_ID:
+    reg [31:0] iword_ID;
     wire [4:0] srcreg1_num_ID,srcreg2_num_ID,dstreg_num_ID;
     wire [31:0] imm_ID;
     wire [5:0] alucode_ID;
@@ -67,7 +67,7 @@ module CPUTop (
     wire ram_we_EX;
     wire [31:0] mem_address_EX,mem_write_value_EX;
     assign ram_we_EX=is_store_EX;
-    assign mem_address_EX=(is_store||is_load)?alu_result_EX:0;
+    assign mem_address_EX=(is_store_EX||is_load_EX)?alu_result_EX:0;
     assign mem_write_value_EX=is_store_EX?regdata2_EX:0;
     //RAM
     wire [31:0] mem_load_value_EX;  // negedge でRAMから受け取る
@@ -212,7 +212,6 @@ module CPUTop (
             pc_IF<='h8000;
             pc_ID<=0;
             pc_EX<=0;
-            pc_MA<=0;
             pc_RW<=0;
         end else begin
             if(br_taken_EX)begin
