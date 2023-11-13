@@ -1,18 +1,12 @@
 module NPCGenerator (
-    pc,         //現在のプログラムカウンタ
-    alucode,    //ALUコード
-    imm,        //即値
-    reg1dat,    //レジスタ1のデータ
-    br_taken,   //分岐の有無
-    npc         //次クロックのプログラムカウンタ
+    input wire [31:0] pc,  //現在のプログラムカウンタ
+    input wire [5:0] alucode,  //ALUコード
+    input wire [31:0] imm,  //即値
+    input wire [31:0] reg1dat,  //レジスタ1のデータ
+    input wire br_taken,  //分岐の有無
+    output wire [31:0] npc  //次クロックのプログラムカウンタ
 );
-    input wire [31:0] pc;
-    input wire [5:0] alucode;
-    input wire [31:0] imm;
-    input wire [31:0] reg1dat;
-    input wire br_taken;
-    output wire [31:0] npc;
-    
+
     function [31:0] NPC;
         input [31:0] pc;
         input [5:0] alucode;

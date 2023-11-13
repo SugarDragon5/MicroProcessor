@@ -29,6 +29,25 @@ module CPUTop (
     //オペランドスイッチャー
     wire [31:0] oprl_ID,oprr_ID;
 
+//EXステージ
+    reg [31:0] pc_EX;
+    //ALU入力 = posedgeでIDステージから受け取る
+    reg [5:0] alucode_EX;
+    reg [31:0] imm_EX;
+    reg [31:0] oprl_EX,oprr_EX;
+    //ALU出力
+    wire [31:0] alu_result_EX;
+    wire br_taken_EX;
+    //NPCGen入力
+    reg [31:0] regdata1_EX;
+    //NPCGen出力
+    wire [31:0] npc_EX;
+    //その他 ID-> EX で受け取るデータ
+    reg [4:0] dstreg_num_EX;
+    reg reg_we_EX,is_load_EX,is_store_EX,is_halt_EX;
+    reg [1:0] ram_read_size_EX,ram_write_size_EX;
+    reg ram_read_signed_EX;
+    reg [31:0] regdata2_EX;
 
     ROM rom1(
         .clk(clk),
@@ -74,22 +93,20 @@ module CPUTop (
         .oprl(oprl_ID),
         .oprr(oprr_ID)
     );
-    NPCGenerator NPCGen1(
-        .pc(pc),
-        .alucode(alucode),
-        .imm(imm),
-        .reg1dat(regdata1),
-        .br_taken(br_taken),
-        .npc(npc)
-    );
     alu alu1(
-        .clk(clk),
-        .rst(rst|alu_reset),
-        .alucode(alucode),
-        .op1(oprl),
-        .op2(oprr),
-        .alu_result(alu_result),
-        .br_taken(br_taken)
+        .alucode(alucode_EX),
+        .op1(oprl_EX),
+        .op2(oprr_EX),
+        .alu_result(alu_result_EX),
+        .br_taken(br_taken_EX)
+    );
+    NPCGenerator NPCGen1(
+        .pc(pc_EX),
+        .alucode(alucode_EX),
+        .imm(imm_EX),
+        .reg1dat(regdata1_EX),
+        .br_taken(br_taken_EX),
+        .npc(npc_EX)
     );
     //LSU
     wire [31:0] mem_load_value;
@@ -180,10 +197,23 @@ module CPUTop (
             if(分岐あり)begin
                 //分岐予測に失敗しているのでリセット
                 pc_EX<=0;
-                iword_EX<=0;
+                alucode_EX<=0;
             end else begin
                 pc_EX<=pc_ID;
-                iword_EX<=iword_ID;
+                alucode_EX<=alucode_ID;
+                imm_EX<=imm_ID;
+                oprl_EX<=oprl_ID;
+                oprr_EX<=oprr_ID;
+                regdata1_EX<=regdata1_ID;
+                regdata2_EX<=regdata2_ID;
+                dstreg_num_EX<=dstreg_num_ID;
+                reg_we_EX<=reg_we_ID;
+                is_load_EX<=is_load_ID;
+                is_store_EX<=is_store_ID;
+                is_halt_EX<=is_halt_ID;
+                ram_read_size_EX<=ram_read_size_ID;
+                ram_write_size_EX<=ram_write_size_ID;
+                ram_read_signed_EX<=ram_read_signed_ID;
             end
         end
         
