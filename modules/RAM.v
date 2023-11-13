@@ -14,7 +14,7 @@ module RAM(clk, we, r_addr, r_data, w_addr, w_data, write_mode, read_mode, read_
         $readmemh(`DATAHEX, mem);
     end
 
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         if(we)begin
             case(write_mode)
                 `RAM_MODE_BYTE:begin

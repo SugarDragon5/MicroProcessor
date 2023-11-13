@@ -63,10 +63,9 @@
 
 // パイプラインステージ
 `define IF_STAGE 3'd0
-`define RR_STAGE 3'd1
+`define ID_STAGE 3'd1
 `define EX_STAGE 3'd2
-`define MA_STAGE 3'd3
-`define RW_STAGE 3'd4
+`define RW_STAGE 3'd3
 
 //RAM読み書きモード
 `define RAM_MODE_BYTE  2'd0

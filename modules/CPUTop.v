@@ -9,6 +9,14 @@ module CPUTop (
     assign clk=sysclk;
     assign rst = ~nrst;
 
+//Hardware Counter
+    wire [31:0] hc_OUT_data;
+    hardware_counter hardware_counter0(
+        .CLK_IP(clk),
+        .RST_IP(rst),
+        .COUNTER_OP(hc_OUT_data)
+    );
+
 //IFステージ
     reg [31:0] pc_IF;
     reg [31:0] iword_IF;
@@ -48,6 +56,47 @@ module CPUTop (
     reg [1:0] ram_read_size_EX,ram_write_size_EX;
     reg ram_read_signed_EX;
     reg [31:0] regdata2_EX;
+    //LSU
+    wire ram_we_EX;
+    wire [31:0] mem_address_EX,mem_write_value_EX;
+    assign ram_we_EX=is_store_EX;
+    assign mem_address_EX=(is_store||is_load)?alu_result_EX:0;
+    assign mem_write_value_EX=is_store_EX?regdata2_EX:0;
+    //RAM
+    wire [31:0] mem_load_value_EX;  // negedge でRAMから受け取る
+    wire [31:0] reg_write_value;
+    //レジスタOutput
+    function [31:0] calc_reg_write_value(
+        input is_load,
+        input [5:0] alucode,
+        input [31:0] alu_result,
+        input [31:0] mem_address,
+        input [31:0] hc_data,
+        input [31:0] mem_load_value
+    );
+    begin
+        if(is_load)begin
+            if(alucode==`ALU_LW&&mem_address==`HARDWARE_COUNTER_ADDR)begin
+                calc_reg_write_value=hc_data;
+            end else begin
+                calc_reg_write_value=mem_load_value;
+            end
+        end else begin
+            calc_reg_write_value=alu_result;
+        end
+    end
+    endfunction
+    assign reg_write_value=calc_reg_write_value(
+        is_load_EX,
+        alucode_EX,
+        alu_result_EX,
+        mem_address_EX,
+        hc_OUT_data,
+        mem_load_value_EX
+    );
+    //TODO: フォワーディングの計算
+
+//RWステージ
 
     ROM rom1(
         .clk(clk),
@@ -108,35 +157,17 @@ module CPUTop (
         .br_taken(br_taken_EX),
         .npc(npc_EX)
     );
-    //LSU
-    wire [31:0] mem_load_value;
-    wire [31:0] mem_address,mem_write_value;
-    wire [31:0] hc_OUT_data;
-
-    LoadStoreUnit LSU1(
-        .alu_result(alu_result),
-        .regdata2(regdata2),
-        .is_load(is_load),
-        .is_store(is_store),
-        .mem_load_value(
-            (alucode==`ALU_LW&&mem_address==`HARDWARE_COUNTER_ADDR)?hc_OUT_data:mem_load_value
-        ),
-        .reg_write_value(reg_write_value),
-        .mem_address(mem_address),
-        .mem_write_value(mem_write_value)
-    );
     //RAM
-    reg ram_we;
     RAM ram1(
         .clk(clk),
-        .we(ram_we),
-        .r_addr(mem_address),
-        .r_data(mem_load_value),
-        .w_addr(mem_address),
-        .w_data(mem_write_value),
-        .write_mode(ram_write_size),
-        .read_mode(ram_read_size),
-        .read_signed(ram_read_signed)
+        .we(ram_we_EX),
+        .r_addr(mem_address_EX),
+        .r_data(mem_load_value_EX),
+        .w_addr(mem_address_EX),
+        .w_data(mem_write_value_EX),
+        .write_mode(ram_write_size_EX),
+        .read_mode(ram_read_size_EX),
+        .read_signed(ram_read_signed_EX)
     );
     //UArt
     wire [7:0] uart_IN_data;
@@ -152,8 +183,8 @@ module CPUTop (
     );
 
     // Memory Accessステージに以下のような記述を追加
-    assign uart_IN_data = mem_write_value[7:0];  // ストアするデータをモジュールへ入力
-    assign uart_we = ((mem_address == `UART_ADDR) && (is_store == `ENABLE)) ? 1'b1 : 1'b0;  // シリアル通信用アドレスへのストア命令実行時に送信開始信号をアサート
+    assign uart_IN_data = mem_write_value_EX[7:0];  // ストアするデータをモジュールへ入力
+    assign uart_we = ((mem_address_EX == `UART_ADDR) && (is_store_EX == `ENABLE)) ? 1'b1 : 1'b0;  // シリアル通信用アドレスへのストア命令実行時に送信開始信号をアサート
     assign uart_tx = uart_OUT_data;  // シリアル通信モジュールの出力はFPGA外部へと出力
 
     //for debug
@@ -163,13 +194,7 @@ module CPUTop (
         end
     `endif
 
-    //Hardware Counter
 
-    hardware_counter hardware_counter0(
-        .CLK_IP(clk),
-        .RST_IP(rst),
-        .COUNTER_OP(hc_OUT_data)
-    );
 
 
     //ステージ遷移
@@ -181,24 +206,36 @@ module CPUTop (
             pc_MA<=0;
             pc_RW<=0;
         end else begin
-            //IFステージ
-            if(分岐あり)pc_IF<=分岐先;
-            else pc_IF<=pc_IF+4;
-            //IDステージ
-            if(分岐あり)begin
-                //分岐予測に失敗しているのでリセット
+            if(br_taken_EX)begin
+                //分岐アリ = ID, EXをnopに、IFに分岐先を代入
+                //IFステージ
+                pc_IF<=npc_EX;
+                //IDステージ
                 pc_ID<=0;
                 iword_ID<=0;
+                //EXステージ
+                pc_EX<=0;
+                alucode_EX<=`ALU_NOP;
+                imm_EX<=0;
+                oprl_EX<=0;
+                oprr_EX<=0;
+                regdata1_EX<=0;
+                regdata2_EX<=0;
+                dstreg_num_EX<=0;
+                reg_we_EX<=`REG_NONE;
+                is_load_EX<=`DISABLE;
+                is_store_EX<=`DISABLE;
+                is_halt_EX<=`DISABLE;
+                ram_read_size_EX<=`RAM_MODE_NONE;
+                ram_write_size_EX<=`RAM_MODE_NONE;
+                ram_read_signed_EX<=`RAM_MODE_UNSIGNED;
             end else begin
+                //IFステージ
+                pc_IF<=pc_IF+4;
+                //IDステージ
                 pc_ID<=pc_IF;
                 iword_ID<=iword_IF;
-            end
-            //EXステージ
-            if(分岐あり)begin
-                //分岐予測に失敗しているのでリセット
-                pc_EX<=0;
-                alucode_EX<=0;
-            end else begin
+                //EXステージ
                 pc_EX<=pc_ID;
                 alucode_EX<=alucode_ID;
                 imm_EX<=imm_ID;
