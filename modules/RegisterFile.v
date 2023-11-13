@@ -15,7 +15,7 @@ module RegisterFile (
             regfile[i]=0;
         end
     end
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         if(reg_we&&dstreg_num) begin
             //ゼロレジスタ以外への書き込み
             regfile[dstreg_num] <= write_value;

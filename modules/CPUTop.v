@@ -64,7 +64,7 @@ module CPUTop (
     assign mem_write_value_EX=is_store_EX?regdata2_EX:0;
     //RAM
     wire [31:0] mem_load_value_EX;  // negedge でRAMから受け取る
-    wire [31:0] reg_write_value;
+    wire [31:0] reg_write_value_EX;
     //レジスタOutput
     function [31:0] calc_reg_write_value(
         input is_load,
@@ -86,7 +86,7 @@ module CPUTop (
         end
     end
     endfunction
-    assign reg_write_value=calc_reg_write_value(
+    assign reg_write_value_EX=calc_reg_write_value(
         is_load_EX,
         alucode_EX,
         alu_result_EX,
@@ -97,6 +97,11 @@ module CPUTop (
     //TODO: フォワーディングの計算
 
 //RWステージ
+    //レジスタ書き込みはnegedgeで行う
+    reg [31:0] pc_RW;
+    reg [31:0] reg_write_value_RW;
+    reg [4:0] dstreg_num_RW;
+    reg reg_we_RW;
 
     ROM rom1(
         .clk(clk),
@@ -128,9 +133,9 @@ module CPUTop (
         .regdata1(regdata1_ID),
         .regdata2(regdata2_ID),
         //書き込み : RWステージ
-        .dstreg_num(dstreg_num),
-        .write_value(reg_write_value),
-        .reg_we(reg_we)
+        .dstreg_num(dstreg_num_RW),
+        .write_value(reg_write_value_RW),
+        .reg_we(reg_we_RW)
     );
     OperandSwitcher ops1(
         .aluop1_type(aluop1_type_ID),
@@ -194,9 +199,6 @@ module CPUTop (
         end
     `endif
 
-
-
-
     //ステージ遷移
     always @(posedge clk) begin
         if(rst)begin
@@ -251,8 +253,12 @@ module CPUTop (
                 ram_read_size_EX<=ram_read_size_ID;
                 ram_write_size_EX<=ram_write_size_ID;
                 ram_read_signed_EX<=ram_read_signed_ID;
+                //RWステージ
+                pc_RW<=pc_EX;
+                reg_write_value_RW<=reg_write_value_EX;
+                dstreg_num_RW<=dstreg_num_EX;
+                reg_we_RW<=reg_we_EX;
             end
         end
-        
     end
 endmodule
