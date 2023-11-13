@@ -101,7 +101,6 @@ module CPUTop (
         hc_OUT_data,
         mem_load_value_EX
     );
-    //TODO: フォワーディングの計算
 
 //RWステージ
     //レジスタ書き込みはnegedgeで行う
@@ -124,7 +123,7 @@ module CPUTop (
         .alucode(alucode_ID),
         .aluop1_type(aluop1_type_ID),
         .aluop2_type(aluop2_type_ID),
-        .reg_we(reg_we_state_ID),
+        .reg_we(reg_we_ID),
         .is_load(is_load_ID),
         .is_store(is_store_ID),
         .is_halt(is_halt_ID),
