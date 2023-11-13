@@ -1,13 +1,12 @@
-`include "define.v"
-`include "testdata.v"
-
 module CPUTop (
-    input wire clk,
+    input wire sysclk,
     input wire nrst,
     output wire uart_tx
 );
     //リセット信号
+    wire clk;
     wire rst;
+    assign clk=sysclk;
     assign rst = ~nrst;
     //ステージ変数
     reg [3:0] stage;
@@ -99,6 +98,8 @@ module CPUTop (
     //LSU
     wire [31:0] mem_load_value;
     wire [31:0] mem_address,mem_write_value;
+    wire [31:0] hc_OUT_data;
+
     LoadStoreUnit LSU1(
         .alu_result(alu_result),
         .regdata2(regdata2),
@@ -151,7 +152,6 @@ module CPUTop (
     `endif
 
     //Hardware Counter
-    wire [31:0] hc_OUT_data;
 
     hardware_counter hardware_counter0(
         .CLK_IP(clk),

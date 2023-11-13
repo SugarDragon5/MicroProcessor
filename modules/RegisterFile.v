@@ -5,13 +5,13 @@ module RegisterFile (
     input wire [4:0] dstreg_num,  // デスティネーションレジスタ番号
     input wire [31:0] write_value,  // 書き込みデータ
     input wire reg_we,
-    output reg [31:0] regdata1,
-    output reg [31:0] regdata2
+    output [31:0] regdata1,
+    output [31:0] regdata2
 );
     reg [31:0] regfile[31:0];
     integer i;
     initial begin
-        for(i=0;i<32;i++)begin
+        for(i=0;i<32;i=i+1)begin
             regfile[i]=0;
         end
     end
