@@ -7,8 +7,8 @@ module cpu_tb;
     always #(CYCLE/2) sysclk = ~sysclk;
 
     CPUTop cpu0(
-       .clk(sysclk),
-       .rst(~cpu_resetn)
+       .sysclk(sysclk),
+       .nrst(cpu_resetn)
     );
     
     integer i;
