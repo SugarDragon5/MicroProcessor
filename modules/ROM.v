@@ -9,7 +9,7 @@ module ROM(clk, r_addr, r_data);
         $readmemh(`CODEHEX, mem);
     end
     
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         r_data <= mem[r_addr];
     end
 
