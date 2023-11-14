@@ -1,3 +1,6 @@
+`include "define.v"
+`include "testdata.v"
+
 module CPUTop (
     input wire sysclk,
     input wire nrst,

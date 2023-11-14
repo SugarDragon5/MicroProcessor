@@ -29,7 +29,7 @@ module uart(
   reg [28:0] d;
   wire [28:0] dInc = d[28] ? (115200) : (115200 - 80000000);
   wire [28:0] dNxt = d + dInc;
-  always @(posedge sys_clk_i or posedge sys_rst_i) begin
+  always @(negedge sys_clk_i or posedge sys_rst_i) begin
     if (sys_rst_i) begin
         d <= 29'b0;
     end else begin
@@ -38,7 +38,7 @@ module uart(
   end
   wire ser_clk = ~d[28]; // this is the 115200 Hz clock
 
-  always @(posedge sys_clk_i or posedge sys_rst_i)
+  always @(negedge sys_clk_i or posedge sys_rst_i)
   begin
     if (sys_rst_i) begin
       uart_tx <= 1;
