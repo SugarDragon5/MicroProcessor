@@ -35,6 +35,9 @@ module RAM(clk, we, r_addr, r_data, w_addr, w_data, write_mode, read_mode, read_
                 `RAM_MODE_WORD:begin
                     mem[w_addr[31:2]] <= w_data;
                 end
+                default:begin
+                    //Nothing to do
+                end
             endcase
         end else begin
             //読み出し
@@ -73,10 +76,16 @@ module RAM(clk, we, r_addr, r_data, w_addr, w_data, write_mode, read_mode, read_
                             if(read_signed)r_data <= {{16{mem[r_addr[31:2]][31]}},mem[r_addr[31:2]][31:16]};
                             else r_data <= {16'b0,mem[r_addr[31:2]][31:16]};
                         end
+                        default:begin
+                            //Nothing to do
+                        end
                     endcase
                 end
                 `RAM_MODE_WORD:begin
                     r_data <= mem[r_addr[31:2]];
+                end
+                default:begin
+                    //Nothing to do
                 end
             endcase
         end
