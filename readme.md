@@ -12,7 +12,45 @@
 ![V2アーキテクチャ](./fig/v2.png)
 #### パフォーマンス
 35MHzで動作。
+```
+// Simulation Result
+// TODO: FPGAで実行し、置換
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 615447789
+Total time (secs): 17
+Iterations/Sec   : 35
+Iterations       : 600
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0xbd59
+Correct operation validated. See readme.txt for run and reporting rules.
+```
 
 ## 歴代アーキテクチャ
 ### バージョン1: 5サイクル・非パイプライン
 ![V1アーキテクチャ](./fig/v1.png)
+### パフォーマンス
+```
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 1100031610
+Total time (secs): 13
+Iterations/Sec   : 23
+Iterations       : 300
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x5275
+Correct operation validated. See readme.txt for run and reporting rules.
+
+```
