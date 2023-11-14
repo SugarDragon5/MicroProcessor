@@ -1,6 +1,3 @@
-`include "define.v"
-`include "testdata.v"
-
 module CPUTop (
     input wire sysclk,
     input wire nrst,
@@ -22,7 +19,7 @@ module CPUTop (
 
 //IFステージ
     reg [31:0] pc_IF;
-    reg [31:0] iword_IF;
+    wire [31:0] iword_IF;
 
 //IDステージ
     reg [31:0] pc_ID;
@@ -41,11 +38,7 @@ module CPUTop (
     wire [31:0] oprl_ID,oprr_ID;
     //フォワーディング
     wire is_reg1_fwd_ID,is_reg2_fwd_ID;
-    assign is_reg1_fwd_ID=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_EX);
-    assign is_reg2_fwd_ID=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_EX);
     wire is_oprl_fwd_ID,is_oprr_fwd_ID;
-    assign is_oprl_fwd_ID=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
-    assign is_oprr_fwd_ID=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
 
 //EXステージ
     reg [31:0] pc_EX;
@@ -195,6 +188,12 @@ module CPUTop (
         .sys_clk_i(clk),
         .sys_rst_i(rst)
     );
+
+    //フォワーディング
+    assign is_reg1_fwd_ID=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_EX);
+    assign is_reg2_fwd_ID=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_EX);
+    assign is_oprl_fwd_ID=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
+    assign is_oprr_fwd_ID=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
 
     // Memory Accessステージに以下のような記述を追加
     assign uart_IN_data = mem_write_value_EX[7:0];  // ストアするデータをモジュールへ入力
