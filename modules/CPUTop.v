@@ -1,5 +1,5 @@
-`include "define.v"
-`include "testdata.v"
+//`include "define.v"
+//`include "testdata.v"
 
 module CPUTop (
     input wire sysclk,
@@ -141,7 +141,7 @@ module CPUTop (
     BTB btb1(
         .clk(clk),
         .PC(pc_IF),
-        .tag(tag_IF),
+        .tag(tag_predict_IF),
         .NPC_predict(npc_predict_IF),
         .we(br_taken_EX),
         .PC_actual(pc_EX),
@@ -363,10 +363,28 @@ module CPUTop (
             ram_read_signed_MA<=ram_read_signed_EX;
             regdata2_MA<=regdata2_EX;
             //RWステージ: 分岐の有無に無関係
-            pc_RW<=pc_EX;
+            pc_RW<=pc_MA;
             reg_write_value_RW<=reg_write_value_MA;
             dstreg_num_RW<=dstreg_num_MA;
             reg_we_RW<=reg_we_MA;
+
+            //for debug
+            `ifdef COREMARK_TRACE
+                $write("0x%4x: 0x%8x",pc_MA[15:0],alucode_MA);
+                if(reg_we_MA)begin
+                    $write(" # x%02d = 0x%8x",dstreg_num_MA,reg_write_value_MA);
+                end else $write(" # (no destination)");
+                if(is_store_MA)begin
+                    if(ram_write_size_MA==`RAM_MODE_BYTE)$write("; mem[0x%08x] <- 0x%02x",mem_address_MA,mem_write_value_MA[7:0]);
+                    else if(ram_write_size_MA==`RAM_MODE_HALF)$write("; mem[0x%08x] <- 0x%04x",mem_address_MA,mem_write_value_MA[15:0]);
+                    else if(ram_write_size_MA==`RAM_MODE_WORD)$write("; mem[0x%08x] <- 0x%08x",mem_address_MA,mem_write_value_MA);
+                end else if(is_load_MA)begin
+                    if(ram_read_size_MA==`RAM_MODE_BYTE)$write(";            0x%02x <- mem[0x%08x]",mem_load_value_MA[7:0],mem_address_MA);
+                    if(ram_read_size_MA==`RAM_MODE_HALF)$write(";          0x%04x <- mem[0x%08x]",mem_load_value_MA[15:0],mem_address_MA);
+                    if(ram_read_size_MA==`RAM_MODE_WORD)$write(";      0x%08x <- mem[0x%08x]",mem_load_value_MA,mem_address_MA);
+                end
+                $write("\n");
+            `endif
         end
     end
 endmodule
