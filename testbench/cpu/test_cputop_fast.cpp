@@ -3,7 +3,7 @@
 #include "VCPUTop.h"
 
 // Set the clock speed of your processor.
-static constexpr std::size_t clock_Hz = 35000000;
+static constexpr std::size_t clock_Hz = 5000000;
 // UART baudrate
 static constexpr std::size_t uart_Hz = 115200;
 // The number of CoreMark iterations is depend on clock speed.

@@ -1,3 +1,6 @@
+`include "define.v"
+`include "testdata.v"
+
 module CPUTop (
     input wire sysclk,
     input wire nrst,
@@ -83,6 +86,36 @@ module CPUTop (
     //RAM
     wire [31:0] mem_load_value_MA;  // negedge でRAMから受け取る
     wire [31:0] reg_write_value_MA;
+    //レジスタOutput
+    function [31:0] calc_reg_write_value(
+        input is_load,
+        input [5:0] alucode,
+        input [31:0] alu_result,
+        input [31:0] mem_address,
+        input [31:0] hc_data,
+        input [31:0] mem_load_value
+    );
+    begin
+        if(is_load)begin
+            if(alucode==`ALU_LW&&mem_address==`HARDWARE_COUNTER_ADDR)begin
+                calc_reg_write_value=hc_data;
+            end else begin
+                calc_reg_write_value=mem_load_value;
+            end
+        end else begin
+            calc_reg_write_value=alu_result;
+        end
+    end
+    endfunction
+    assign reg_write_value_MA=calc_reg_write_value(
+        is_load_MA,
+        alucode_MA,
+        alu_result_MA,
+        mem_address_MA,
+        hc_OUT_data,
+        mem_load_value_MA
+    );
+
 
 //RWステージ
     //レジスタ書き込みはnegedgeで行う
@@ -180,17 +213,17 @@ module CPUTop (
     //EX -> EX のフォワーディングを行うか
     assign is_reg1_fwd_EE=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_EX);
     assign is_reg2_fwd_EE=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_EX);
-    assign is_oprl_fwd_EE=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
-    assign is_oprr_fwd_EE=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
+    assign is_oprl_fwd_EE=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_EE);
+    assign is_oprr_fwd_EE=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_EE);
     //MA -> EX のフォワーディングを行うか
     assign is_reg1_fwd_ME=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_MA);
     assign is_reg2_fwd_ME=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_MA);
-    assign is_oprl_fwd_ME=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
-    assign is_oprr_fwd_ME=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
+    assign is_oprl_fwd_ME=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ME);
+    assign is_oprr_fwd_ME=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ME);
 
     // Memory Accessステージに以下のような記述を追加
-    assign uart_IN_data = mem_write_value_EX[7:0];  // ストアするデータをモジュールへ入力
-    assign uart_we = ((mem_address_EX == `UART_ADDR) && (is_store_EX == `ENABLE)) ? 1'b1 : 1'b0;  // シリアル通信用アドレスへのストア命令実行時に送信開始信号をアサート
+    assign uart_IN_data = mem_write_value_MA[7:0];  // ストアするデータをモジュールへ入力
+    assign uart_we = ((mem_address_MA == `UART_ADDR) && (is_store_MA == `ENABLE)) ? 1'b1 : 1'b0;  // シリアル通信用アドレスへのストア命令実行時に送信開始信号をアサート
     assign uart_tx = uart_OUT_data;  // シリアル通信モジュールの出力はFPGA外部へと出力
 
     //for debug
@@ -261,16 +294,16 @@ module CPUTop (
                 pc_EX<=pc_ID;
                 alucode_EX<=alucode_ID;
                 imm_EX<=imm_ID;
-                if(is_oprl_fwd_EE)oprl_EX<=reg_write_value_EX;
+                if(is_oprl_fwd_EE)oprl_EX<=alu_result_EX;
                 else if(is_oprl_fwd_ME)oprl_EX<=reg_write_value_MA;
                 else oprl_EX<=oprl_ID;
-                if(is_oprr_fwd_EE)oprr_EX<=reg_write_value_EX;
+                if(is_oprr_fwd_EE)oprr_EX<=alu_result_EX;
                 else if(is_oprr_fwd_ME)oprr_EX<=reg_write_value_MA;
                 else oprr_EX<=oprr_ID;
-                if(is_reg1_fwd_EE)regdata1_EX<=reg_write_value_EX;
+                if(is_reg1_fwd_EE)regdata1_EX<=alu_result_EX;
                 else if(is_reg1_fwd_ME)regdata1_EX<=reg_write_value_MA;
                 else regdata1_EX<=regdata1_ID;
-                if(is_reg2_fwd_EE)regdata2_EX<=reg_write_value_EX;
+                if(is_reg2_fwd_EE)regdata2_EX<=alu_result_EX;
                 else if(is_reg2_fwd_ME)regdata2_EX<=reg_write_value_MA;
                 else regdata2_EX<=regdata2_ID;
                 dstreg_num_EX<=dstreg_num_ID;
