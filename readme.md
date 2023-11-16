@@ -7,9 +7,23 @@
 #### パフォーマンス
 50MHzでのコンパイル結果
 ![V2.2コンパイル結果](./fig/v2.2_50MHz.png)
-50MHzでのシミュレーション結果
+50MHzでの実行結果
 ```
-//TODO
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 627609888
+Total time (secs): 12
+Iterations/Sec   : 50
+Iterations       : 600
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0xbd59
+Correct operation validated. See readme.txt for run and reporting rules.
 ```
 
 ## 歴代アーキテクチャ
