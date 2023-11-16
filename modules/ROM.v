@@ -3,13 +3,13 @@ module ROM(clk, r_addr, r_data);
     input clk;
     input  [13:0] r_addr;
     output reg [31:0] r_data;
-    reg [31:0] mem[32767:0];
+    (* ram_style = "block" *) reg [31:0] mem[0:32767];
 
     initial begin
         $readmemh(`CODEHEX, mem);
     end
     
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         r_data <= mem[r_addr];
     end
 
