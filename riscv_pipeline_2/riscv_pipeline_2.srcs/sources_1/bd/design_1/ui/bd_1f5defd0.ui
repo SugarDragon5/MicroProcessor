@@ -15,7 +15,7 @@ preplace netloc sysclk_1 1 0 1 10 -140n
 preplace netloc cpu_resetn_1 1 0 2 NJ -70 N
 preplace netloc CPUTop_0_uart_tx 1 2 1 N -80
 levelinfo -pg 1 -10 110 320 450
-pagesize -pg 1 -db -bbox -sgen -130 -310 580 140
+pagesize -pg 1 -db -bbox -sgen -140 -310 580 140
 "
 }
 0
