@@ -54,6 +54,7 @@ module CPUTop (
 
 //EXステージ
     reg [31:0] pc_EX;
+    reg [31:0] iword_EX;
     //ALU入力 = posedgeでIDステージから受け取る
     reg [5:0] alucode_EX;
     reg [31:0] imm_EX;
@@ -74,6 +75,7 @@ module CPUTop (
 
 //MAステージ
     reg [31:0] pc_MA;
+    reg [31:0] iword_MA;
     reg [5:0] alucode_MA;
     reg [31:0] alu_result_MA;
     //その他 EX-> MA で受け取るデータ
@@ -370,7 +372,7 @@ module CPUTop (
 
             //for debug
             `ifdef COREMARK_TRACE
-                $write("0x%4x: 0x%8x",pc_MA[15:0],alucode_MA);
+                $write("0x%4x: 0x%8x",pc_MA[15:0],iword_MA);
                 if(reg_we_MA)begin
                     $write(" # x%02d = 0x%8x",dstreg_num_MA,reg_write_value_MA);
                 end else $write(" # (no destination)");
