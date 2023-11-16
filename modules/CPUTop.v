@@ -23,6 +23,11 @@ module CPUTop (
 //IFステージ
     reg [31:0] pc_IF;
     wire [31:0] iword_IF;
+    //BTB出力
+    wire [5:0] tag_IF;
+    assign tag_IF=pc_IF[15:10];
+    wire [5:0] tag_predict_IF;
+    wire [31:0] npc_predict_IF;
 
 //IDステージ
     reg [31:0] pc_ID;
@@ -131,6 +136,16 @@ module CPUTop (
         .clk(clk),
         .r_addr(pc_IF[15:2]),
         .r_data(iword_IF)
+    );
+    //BTB: IFステージ
+    BTB btb1(
+        .clk(clk),
+        .PC(pc_IF),
+        .tag(tag_IF),
+        .NPC_predict(npc_predict_IF),
+        .we(br_taken_EX),
+        .PC_actual(pc_EX),
+        .NPC_actual(npc_EX)
     );
     //Decoder: IDステージ
     //posedgeでiwordが代入され、そのまま計算が走る
@@ -301,7 +316,11 @@ module CPUTop (
             end else begin
                 //ストールなし。ステージを進める
                 //IFステージ
-                pc_IF<=pc_IF+4;
+                if(tag_IF==tag_predict_IF)begin
+                    pc_IF<=npc_predict_IF;
+                end else begin
+                    pc_IF<=pc_IF+4;
+                end
                 //IDステージ
                 pc_ID<=pc_IF;
                 iword_ID<=iword_IF;
