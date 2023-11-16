@@ -37,8 +37,12 @@ module CPUTop (
     //オペランドスイッチャー
     wire [31:0] oprl_ID,oprr_ID;
     //フォワーディング
-    wire is_reg1_fwd_ID,is_reg2_fwd_ID;
-    wire is_oprl_fwd_ID,is_oprr_fwd_ID;
+    wire is_reg1_fwd_EE,is_reg2_fwd_EE; //EX -> EXのフォワーディング
+    wire is_oprl_fwd_EE,is_oprr_fwd_EE; //EX -> EXのフォワーディング
+    wire is_reg1_fwd_ME,is_reg2_fwd_ME; //MA -> EXのフォワーディング
+    wire is_oprl_fwd_ME,is_oprr_fwd_ME; //MA -> EXのフォワーディング
+    //ストール判定
+    wire is_stall_DE;
 
 //EXステージ
     reg [31:0] pc_EX;
@@ -58,45 +62,27 @@ module CPUTop (
     reg reg_we_EX,is_load_EX,is_store_EX,is_halt_EX;
     reg [1:0] ram_read_size_EX,ram_write_size_EX;
     reg ram_read_signed_EX;
-    reg [31:0] regdata2_EX;
+    reg [31:0] regdata2_EX;   
+
+//MAステージ
+    reg [31:0] pc_MA;
+    reg [5:0] alucode_MA;
+    reg [31:0] alu_result_MA;
+    //その他 EX-> MA で受け取るデータ
+    reg [4:0] dstreg_num_MA;
+    reg reg_we_MA,is_load_MA,is_store_MA,is_halt_MA;
+    reg [1:0] ram_read_size_MA,ram_write_size_MA;
+    reg ram_read_signed_MA;
+    reg [31:0] regdata2_MA;
     //LSU
-    wire ram_we_EX;
-    wire [31:0] mem_address_EX,mem_write_value_EX;
-    assign ram_we_EX=is_store_EX;
-    assign mem_address_EX=(is_store_EX||is_load_EX)?alu_result_EX:0;
-    assign mem_write_value_EX=is_store_EX?regdata2_EX:0;
+    wire ram_we_MA;
+    wire [31:0] mem_address_MA,mem_write_value_MA;
+    assign ram_we_MA=is_store_MA;
+    assign mem_address_MA=(is_store_MA||is_load_MA)?alu_result_MA:0;
+    assign mem_write_value_MA=is_store_MA?regdata2_MA:0;
     //RAM
-    wire [31:0] mem_load_value_EX;  // negedge でRAMから受け取る
-    wire [31:0] reg_write_value_EX;
-    //レジスタOutput
-    function [31:0] calc_reg_write_value(
-        input is_load,
-        input [5:0] alucode,
-        input [31:0] alu_result,
-        input [31:0] mem_address,
-        input [31:0] hc_data,
-        input [31:0] mem_load_value
-    );
-    begin
-        if(is_load)begin
-            if(alucode==`ALU_LW&&mem_address==`HARDWARE_COUNTER_ADDR)begin
-                calc_reg_write_value=hc_data;
-            end else begin
-                calc_reg_write_value=mem_load_value;
-            end
-        end else begin
-            calc_reg_write_value=alu_result;
-        end
-    end
-    endfunction
-    assign reg_write_value_EX=calc_reg_write_value(
-        is_load_EX,
-        alucode_EX,
-        alu_result_EX,
-        mem_address_EX,
-        hc_OUT_data,
-        mem_load_value_EX
-    );
+    wire [31:0] mem_load_value_MA;  // negedge でRAMから受け取る
+    wire [31:0] reg_write_value_MA;
 
 //RWステージ
     //レジスタ書き込みはnegedgeで行う
@@ -167,14 +153,14 @@ module CPUTop (
     //RAM
     RAM ram1(
         .clk(clk),
-        .we(ram_we_EX),
-        .r_addr(mem_address_EX),
-        .r_data(mem_load_value_EX),
-        .w_addr(mem_address_EX),
-        .w_data(mem_write_value_EX),
-        .write_mode(ram_write_size_EX),
-        .read_mode(ram_read_size_EX),
-        .read_signed(ram_read_signed_EX)
+        .we(ram_we_MA),
+        .r_addr(mem_address_MA),
+        .r_data(mem_load_value_MA),
+        .w_addr(mem_address_MA),
+        .w_data(mem_write_value_MA),
+        .write_mode(ram_write_size_MA),
+        .read_mode(ram_read_size_MA),
+        .read_signed(ram_read_signed_MA)
     );
     //UArt
     wire [7:0] uart_IN_data;
@@ -189,11 +175,18 @@ module CPUTop (
         .sys_rst_i(rst)
     );
 
-    //フォワーディング
-    assign is_reg1_fwd_ID=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_EX);
-    assign is_reg2_fwd_ID=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_EX);
-    assign is_oprl_fwd_ID=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
-    assign is_oprr_fwd_ID=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
+    //ID -> EX でMA待ちストールを行うか
+    assign is_stall_DE=(is_load_EX&&(srcreg1_num_ID==dstreg_num_EX||srcreg2_num_ID==dstreg_num_EX));
+    //EX -> EX のフォワーディングを行うか
+    assign is_reg1_fwd_EE=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_EX);
+    assign is_reg2_fwd_EE=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_EX);
+    assign is_oprl_fwd_EE=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
+    assign is_oprr_fwd_EE=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
+    //MA -> EX のフォワーディングを行うか
+    assign is_reg1_fwd_ME=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_MA);
+    assign is_reg2_fwd_ME=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_MA);
+    assign is_oprl_fwd_ME=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ID);
+    assign is_oprr_fwd_ME=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ID);
 
     // Memory Accessステージに以下のような記述を追加
     assign uart_IN_data = mem_write_value_EX[7:0];  // ストアするデータをモジュールへ入力
@@ -215,8 +208,8 @@ module CPUTop (
             pc_EX<=0;
             pc_RW<=0;
         end else begin
-            if(br_taken_EX)begin
-                //分岐アリ = ID, EXをnopに、IFに分岐先を代入
+            if(br_taken_EX&&npc_EX!=pc_ID)begin
+                //分岐予測失敗 = ID, EXをnopに、IFに分岐先を代入
                 //IFステージ
                 pc_IF<=npc_EX;
                 //IDステージ
@@ -238,7 +231,27 @@ module CPUTop (
                 ram_read_size_EX<=`RAM_MODE_NONE;
                 ram_write_size_EX<=`RAM_MODE_NONE;
                 ram_read_signed_EX<=`RAM_MODE_UNSIGNED;
+            end else if(is_stall_DE)begin
+                //メモリ待ちストール
+                //IF, IDステージは変えない
+                //EXステージ: nopに
+                pc_EX<=0;
+                alucode_EX<=`ALU_NOP;
+                imm_EX<=0;
+                oprl_EX<=0;
+                oprr_EX<=0;
+                regdata1_EX<=0;
+                regdata2_EX<=0;
+                dstreg_num_EX<=0;
+                reg_we_EX<=`REG_NONE;
+                is_load_EX<=`DISABLE;
+                is_store_EX<=`DISABLE;
+                is_halt_EX<=`DISABLE;
+                ram_read_size_EX<=`RAM_MODE_NONE;
+                ram_write_size_EX<=`RAM_MODE_NONE;
+                ram_read_signed_EX<=`RAM_MODE_UNSIGNED;
             end else begin
+                //ストールなし。ステージを進める
                 //IFステージ
                 pc_IF<=pc_IF+4;
                 //IDステージ
@@ -248,13 +261,17 @@ module CPUTop (
                 pc_EX<=pc_ID;
                 alucode_EX<=alucode_ID;
                 imm_EX<=imm_ID;
-                if(is_oprl_fwd_ID)oprl_EX<=reg_write_value_EX;
+                if(is_oprl_fwd_EE)oprl_EX<=reg_write_value_EX;
+                else if(is_oprl_fwd_ME)oprl_EX<=reg_write_value_MA;
                 else oprl_EX<=oprl_ID;
-                if(is_oprr_fwd_ID)oprr_EX<=reg_write_value_EX;
+                if(is_oprr_fwd_EE)oprr_EX<=reg_write_value_EX;
+                else if(is_oprr_fwd_ME)oprr_EX<=reg_write_value_MA;
                 else oprr_EX<=oprr_ID;
-                if(is_reg1_fwd_ID)regdata1_EX<=reg_write_value_EX;
+                if(is_reg1_fwd_EE)regdata1_EX<=reg_write_value_EX;
+                else if(is_reg1_fwd_ME)regdata1_EX<=reg_write_value_MA;
                 else regdata1_EX<=regdata1_ID;
-                if(is_reg2_fwd_ID)regdata2_EX<=reg_write_value_EX;
+                if(is_reg2_fwd_EE)regdata2_EX<=reg_write_value_EX;
+                else if(is_reg2_fwd_ME)regdata2_EX<=reg_write_value_MA;
                 else regdata2_EX<=regdata2_ID;
                 dstreg_num_EX<=dstreg_num_ID;
                 reg_we_EX<=reg_we_ID;
@@ -265,11 +282,24 @@ module CPUTop (
                 ram_write_size_EX<=ram_write_size_ID;
                 ram_read_signed_EX<=ram_read_signed_ID;
             end
+            //MAステージ: 分岐の有無に無関係
+            pc_MA<=pc_EX;
+            alucode_MA<=alucode_EX;
+            alu_result_MA<=alu_result_EX;
+            dstreg_num_MA<=dstreg_num_EX;
+            reg_we_MA<=reg_we_EX;
+            is_load_MA<=is_load_EX;
+            is_store_MA<=is_store_EX;
+            is_halt_MA<=is_halt_EX;
+            ram_read_size_MA<=ram_read_size_EX;
+            ram_write_size_MA<=ram_write_size_EX;
+            ram_read_signed_MA<=ram_read_signed_EX;
+            regdata2_MA<=regdata2_EX;
             //RWステージ: 分岐の有無に無関係
             pc_RW<=pc_EX;
-            reg_write_value_RW<=reg_write_value_EX;
-            dstreg_num_RW<=dstreg_num_EX;
-            reg_we_RW<=reg_we_EX;
+            reg_write_value_RW<=reg_write_value_MA;
+            dstreg_num_RW<=dstreg_num_MA;
+            reg_we_RW<=reg_we_MA;
         end
     end
 endmodule
