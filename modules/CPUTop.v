@@ -273,7 +273,7 @@ module CPUTop (
             pc_EX<=0;
             pc_RW<=0;
         end else begin
-            if(br_taken_EX&&npc_EX!=pc_ID)begin
+            if(npc_EX!=pc_ID)begin
                 //分岐予測失敗 = ID, EXをnopに、IFに分岐先を代入
                 //IFステージ
                 pc_IF<=npc_EX;
