@@ -55,22 +55,22 @@
         "inst_hier_path": "clk_wiz_0",
         "parameters": {
           "CLKOUT1_JITTER": {
-            "value": "631.442"
+            "value": "253.453"
           },
           "CLKOUT1_PHASE_ERROR": {
-            "value": "346.848"
+            "value": "293.793"
           },
           "CLKOUT1_REQUESTED_OUT_FREQ": {
-            "value": "5"
+            "value": "70"
           },
           "CLK_IN1_BOARD_INTERFACE": {
             "value": "sys_clock"
           },
           "MMCM_CLKFBOUT_MULT_F": {
-            "value": "32.000"
+            "value": "49.875"
           },
           "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "128.000"
+            "value": "14.250"
           },
           "MMCM_DIVCLK_DIVIDE": {
             "value": "5"
@@ -98,7 +98,7 @@
             "direction": "I",
             "parameters": {
               "FREQ_HZ": {
-                "value": "5000000",
+                "value": "70000000",
                 "value_src": "ip_prop"
               },
               "PHASE": {
