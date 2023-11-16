@@ -1,6 +1,3 @@
-`include "define.v"
-`include "testdata.v"
-
 module CPUTop (
     input wire sysclk,
     input wire nrst,
@@ -124,11 +121,16 @@ module CPUTop (
     reg [4:0] dstreg_num_RW;
     reg reg_we_RW;
 
+//モジュールインスタンス
+    //ROM: IFステージ
+    //posedgeでaddrが代入され、negedgeでdataをfetch
     ROM rom1(
         .clk(clk),
         .r_addr(pc_IF[15:2]),
         .r_data(iword_IF)
     );
+    //Decoder: IDステージ
+    //posedgeでiwordが代入され、そのまま計算が走る
     decoder decoder1(
         .ir(iword_ID),
         .srcreg1_num(srcreg1_num_ID),
@@ -146,6 +148,9 @@ module CPUTop (
         .ram_write_size(ram_write_size_ID),
         .ram_read_signed(ram_read_signed_ID)
     );
+    //RegisterFile: IDステージ, RWステージ
+    //読み込みはリアルタイム。posedge→Decoder→RF
+    //書き込みはnegedgeで行う。
     RegisterFile register1(
         .clk(clk),
         //読み込み : IDステージ
@@ -158,6 +163,8 @@ module CPUTop (
         .write_value(reg_write_value_RW),
         .reg_we(reg_we_RW)
     );
+    //OPSwitcher: IDステージ
+    //Decoderで計算したデータを入力
     OperandSwitcher ops1(
         .aluop1_type(aluop1_type_ID),
         .aluop2_type(aluop2_type_ID),
@@ -168,6 +175,8 @@ module CPUTop (
         .oprl(oprl_ID),
         .oprr(oprr_ID)
     );
+    //ALU: EXステージ
+    //posedgeでデータ入力→計算
     alu alu1(
         .alucode(alucode_EX),
         .op1(oprl_EX),
@@ -175,6 +184,8 @@ module CPUTop (
         .alu_result(alu_result_EX),
         .br_taken(br_taken_EX)
     );
+    //NPCGenerator: EXステージ
+    //decoder, aluの計算結果から分岐先を計算
     NPCGenerator NPCGen1(
         .pc(pc_EX),
         .alucode(alucode_EX),
@@ -183,7 +194,8 @@ module CPUTop (
         .br_taken(br_taken_EX),
         .npc(npc_EX)
     );
-    //RAM
+    //RAM: MAステージ
+    //posedgeでinputをうけ、negedgeでデータ入出力
     RAM ram1(
         .clk(clk),
         .we(ram_we_MA),
