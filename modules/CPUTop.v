@@ -24,9 +24,6 @@ module CPUTop (
     reg [31:0] pc_IF;
     wire [31:0] iword_IF;
     //BTB出力
-    wire [5:0] tag_IF;
-    assign tag_IF=pc_IF[15:10];
-    wire [5:0] tag_predict_IF;
     wire [31:0] npc_predict_IF;
 
 //IDステージ
@@ -142,12 +139,12 @@ module CPUTop (
     //BTB: IFステージ
     BTB btb1(
         .clk(clk),
-        .PC(pc_IF),
-        .tag(tag_predict_IF),
+        .rst(rst),
+        .PC(pc_IF[15:0]),
         .NPC_predict(npc_predict_IF),
         .we(br_taken_EX),
-        .PC_actual(pc_EX),
-        .NPC_actual(npc_EX)
+        .PC_actual(pc_EX[15:0]),
+        .NPC_actual(npc_EX[15:0])
     );
     //Decoder: IDステージ
     //posedgeでiwordが代入され、そのまま計算が走る
@@ -269,11 +266,12 @@ module CPUTop (
     always @(posedge clk) begin
         if(rst)begin
             pc_IF<='h8000;
-            pc_ID<=0;
-            pc_EX<=0;
-            pc_RW<=0;
+            pc_ID<='h7FFC;
+            pc_EX<='h7FF8;
+            pc_MA<='h0000;
+            pc_RW<='h0000;
         end else begin
-            if(npc_EX!=pc_ID)begin
+            if(pc_EX!=0 && pc_ID!=0 && npc_EX!=pc_ID)begin
                 //分岐予測失敗 = ID, EXをnopに、IFに分岐先を代入
                 //IFステージ
                 pc_IF<=npc_EX;
@@ -318,16 +316,13 @@ module CPUTop (
             end else begin
                 //ストールなし。ステージを進める
                 //IFステージ
-                if(tag_IF==tag_predict_IF)begin
-                    pc_IF<=npc_predict_IF;
-                end else begin
-                    pc_IF<=pc_IF+4;
-                end
+                pc_IF<=npc_predict_IF;
                 //IDステージ
                 pc_ID<=pc_IF;
                 iword_ID<=iword_IF;
                 //EXステージ
                 pc_EX<=pc_ID;
+                iword_EX<=iword_ID;
                 alucode_EX<=alucode_ID;
                 imm_EX<=imm_ID;
                 if(is_oprl_fwd_EE)oprl_EX<=alu_result_EX;
@@ -353,6 +348,7 @@ module CPUTop (
             end
             //MAステージ: 分岐の有無に無関係
             pc_MA<=pc_EX;
+            iword_MA<=iword_EX;
             alucode_MA<=alucode_EX;
             alu_result_MA<=alu_result_EX;
             dstreg_num_MA<=dstreg_num_EX;
