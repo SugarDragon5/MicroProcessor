@@ -1,5 +1,5 @@
-//`include "define.v"
-//`include "testdata.v"
+`include "define.v"
+`include "testdata.v"
 
 module CPUTop (
     input wire sysclk,
@@ -136,8 +136,8 @@ module CPUTop (
         .r_addr(pc_IF[15:2]),
         .r_data(iword_IF)
     );
-    //BTB: IFステージ
-    BTB btb1(
+    //Predictor: IFステージ
+    Predictor predictor1(
         .clk(clk),
         .rst(rst),
         .PC(pc_IF[15:0]),

@@ -1,4 +1,4 @@
-module BTB (
+module Predictor (
     input wire clk,
     input wire rst,
     //write
