@@ -1,5 +1,28 @@
 # 後期実験「マイクロプロセッサの設計と実装」
 ## アーキテクチャ
+### バージョン3.0: 分岐予測付き5サイクル・パイプライン
+#### 更新内容
+- 簡易なBranch Target Bufferを実装。PCの上6bitをtag, 下10-2=8bitをindexとするキャッシュを作成し、ヒットしたらNPCに採用
+#### パフォーマンス
+70MHzで動作すると仮定したときのシミュレーション結果。
+```
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 991732333
+Total time (secs): 14
+Iterations/Sec   : 78
+Iterations       : 1100
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x33ff
+Correct operation validated. See readme.txt for run and reporting rules.
+```
+
 ### バージョン2.2: 5サイクル・パイプライン
 #### 更新内容
 - EX　→　EX + MA　に変更
