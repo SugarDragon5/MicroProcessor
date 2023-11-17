@@ -44,7 +44,7 @@ Correct operation validated. See readme.txt for run and reporting rules.
 ~~100MHzで35MHzで動作？~~ →もっと小さい。10MHzくらい？
 とりあえず5MHz。
 ```
-// Simulation Result
+// Simulation Result(35MHz)
 // TODO: FPGAで実行し、置換
 2K performance run parameters for coremark.
 CoreMark Size    : 666
