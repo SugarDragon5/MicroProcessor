@@ -1,5 +1,5 @@
-`include "define.v"
-`include "testdata.v"
+//`include "define.v"
+//`include "testdata.v"
 
 module CPUTop (
     input wire sysclk,
@@ -37,6 +37,7 @@ module CPUTop (
     wire reg_we_ID,is_load_ID,is_store_ID,is_halt_ID;
     wire [1:0] ram_read_size_ID,ram_write_size_ID;
     wire ram_read_signed_ID;
+    wire is_multiclock_ID;
     //レジスタ読み込み
     wire [31:0] regdata1_ID,regdata2_ID;
     //オペランドスイッチャー
@@ -69,6 +70,9 @@ module CPUTop (
     reg [1:0] ram_read_size_EX,ram_write_size_EX;
     reg ram_read_signed_EX;
     reg [31:0] regdata2_EX;   
+    //マルチクロック命令
+    reg is_multiclock_EX;
+    wire done_multiplier_EX;
 
 //MAステージ
     reg [31:0] pc_MA;
@@ -161,6 +165,7 @@ module CPUTop (
         .is_load(is_load_ID),
         .is_store(is_store_ID),
         .is_halt(is_halt_ID),
+        .is_multiclock(is_multiclock_ID),
         .ram_read_size(ram_read_size_ID),
         .ram_write_size(ram_write_size_ID),
         .ram_read_signed(ram_read_signed_ID)
@@ -201,6 +206,17 @@ module CPUTop (
         .alu_result(alu_result_EX),
         .br_taken(br_taken_EX)
     );
+
+    //multiplier: EXステージ
+    //乗算器
+    multiplier multiplier1(
+        .alucode(alucode_EX),
+        .op1(oprl_EX),
+        .op2(oprl_EX),
+        .result(multi_result_EX),
+        .done(done_multiplier_EX)
+    );
+
     //NPCGenerator: EXステージ
     //decoder, aluの計算結果から分岐先を計算
     NPCGenerator NPCGen1(
@@ -285,6 +301,7 @@ module CPUTop (
                 iword_ID<=0;
                 //EXステージ
                 pc_EX<=0;
+                iword_EX<=0;
                 alucode_EX<=`ALU_NOP;
                 imm_EX<=0;
                 oprl_EX<=0;
@@ -308,6 +325,7 @@ module CPUTop (
                 //IF, IDステージは変えない
                 //EXステージ: nopに
                 pc_EX<=0;
+                iword_EX<=0;
                 alucode_EX<=`ALU_NOP;
                 imm_EX<=0;
                 oprl_EX<=0;
@@ -322,8 +340,43 @@ module CPUTop (
                 ram_read_size_EX<=`RAM_MODE_NONE;
                 ram_write_size_EX<=`RAM_MODE_NONE;
                 ram_read_signed_EX<=`RAM_MODE_UNSIGNED;
+            end else if(is_multiclock_EX)begin
+                //マルチクロック命令実行中
+                if(done_multiplier_EX)begin
+                    //IFステージ
+                    pc_IF<=npc_predict_IF;
+                    //IDステージ
+                    pc_ID<=pc_IF;
+                    iword_ID<=iword_IF;
+                    //EXステージ
+                    pc_EX<=pc_ID;
+                    iword_EX<=iword_ID;
+                    alucode_EX<=alucode_ID;
+                    imm_EX<=imm_ID;
+                    if(is_oprl_fwd_EE)oprl_EX<=multi_result_EX;
+                    else if(is_oprl_fwd_ME)oprl_EX<=reg_write_value_MA;
+                    else oprl_EX<=oprl_ID;
+                    if(is_oprr_fwd_EE)oprr_EX<=multi_result_EX;
+                    else if(is_oprr_fwd_ME)oprr_EX<=reg_write_value_MA;
+                    else oprr_EX<=oprr_ID;
+                    if(is_reg1_fwd_EE)regdata1_EX<=multi_result_EX;
+                    else if(is_reg1_fwd_ME)regdata1_EX<=reg_write_value_MA;
+                    else regdata1_EX<=regdata1_ID;
+                    if(is_reg2_fwd_EE)regdata2_EX<=multi_result_EX;
+                    else if(is_reg2_fwd_ME)regdata2_EX<=reg_write_value_MA;
+                    else regdata2_EX<=regdata2_ID;
+                    dstreg_num_EX<=dstreg_num_ID;
+                    reg_we_EX<=reg_we_ID;
+                    is_load_EX<=is_load_ID;
+                    is_store_EX<=is_store_ID;
+                    is_halt_EX<=is_halt_ID;
+                    ram_read_size_EX<=ram_read_size_ID;
+                    ram_write_size_EX<=ram_write_size_ID;
+                    ram_read_signed_EX<=ram_read_signed_ID;
+                    is_multiclock_EX<=is_multiclock_ID;
+                end
             end else begin
-                //ストールなし。ステージを進める
+                //ストールなし・通常命令。ステージを進める
                 //IFステージ
                 pc_IF<=npc_predict_IF;
                 //IDステージ
@@ -354,21 +407,57 @@ module CPUTop (
                 ram_read_size_EX<=ram_read_size_ID;
                 ram_write_size_EX<=ram_write_size_ID;
                 ram_read_signed_EX<=ram_read_signed_ID;
+                is_multiclock_EX<=is_multiclock_ID;
             end
             //MAステージ: 分岐の有無に無関係
-            pc_MA<=pc_EX;
-            iword_MA<=iword_EX;
-            alucode_MA<=alucode_EX;
-            alu_result_MA<=alu_result_EX;
-            dstreg_num_MA<=dstreg_num_EX;
-            reg_we_MA<=reg_we_EX;
-            is_load_MA<=is_load_EX;
-            is_store_MA<=is_store_EX;
-            is_halt_MA<=is_halt_EX;
-            ram_read_size_MA<=ram_read_size_EX;
-            ram_write_size_MA<=ram_write_size_EX;
-            ram_read_signed_MA<=ram_read_signed_EX;
-            regdata2_MA<=regdata2_EX;
+            if(is_multiclock_EX)begin
+                if(!done_multiplier_EX)begin
+                    //計算中 = ストールさせる
+                    pc_MA<=0;
+                    iword_MA<=0;
+                    alucode_MA<=`ALU_NOP;
+                    alu_result_MA<=0;
+                    dstreg_num_MA<=0;
+                    reg_we_MA<=`REG_NONE;
+                    is_load_MA<=`DISABLE;
+                    is_store_MA<=`DISABLE;
+                    is_halt_MA<=`DISABLE;
+                    ram_read_size_MA<=`RAM_MODE_NONE;
+                    ram_write_size_MA<=`RAM_MODE_NONE;
+                    ram_read_signed_MA<=`RAM_MODE_UNSIGNED;
+                    regdata2_MA<=0;
+                end else begin
+                    //計算終了 = 乗算器の結果を代入
+                    pc_MA<=pc_EX;
+                    iword_MA<=iword_EX;
+                    alucode_MA<=alucode_EX;
+                    alu_result_MA<=multi_result_EX;
+                    dstreg_num_MA<=dstreg_num_EX;
+                    reg_we_MA<=reg_we_EX;
+                    is_load_MA<=is_load_EX;
+                    is_store_MA<=is_store_EX;
+                    is_halt_MA<=is_halt_EX;
+                    ram_read_size_MA<=ram_read_size_EX;
+                    ram_write_size_MA<=ram_write_size_EX;
+                    ram_read_signed_MA<=ram_read_signed_EX;
+                    regdata2_MA<=regdata2_EX;
+                end
+            end else begin
+                //通常命令
+                pc_MA<=pc_EX;
+                iword_MA<=iword_EX;
+                alucode_MA<=alucode_EX;
+                alu_result_MA<=alu_result_EX;
+                dstreg_num_MA<=dstreg_num_EX;
+                reg_we_MA<=reg_we_EX;
+                is_load_MA<=is_load_EX;
+                is_store_MA<=is_store_EX;
+                is_halt_MA<=is_halt_EX;
+                ram_read_size_MA<=ram_read_size_EX;
+                ram_write_size_MA<=ram_write_size_EX;
+                ram_read_signed_MA<=ram_read_signed_EX;
+                regdata2_MA<=regdata2_EX;
+            end
             //RWステージ: 分岐の有無に無関係
             pc_RW<=pc_MA;
             reg_write_value_RW<=reg_write_value_MA;
@@ -394,4 +483,5 @@ module CPUTop (
             `endif
         end
     end
+
 endmodule

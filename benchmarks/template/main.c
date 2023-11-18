@@ -1,6 +1,9 @@
 int main(){
-  int a=1;
-  int b=2;
-  int c=a+b;
-  return 0;
+  int x=0;
+  for(int i=0;i<100;i++){
+    for(int j=0;j<100;j++){
+      x+=i*j;
+    }
+  }
+  return x;
 }
