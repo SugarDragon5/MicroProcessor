@@ -336,7 +336,7 @@ module decoder(
 
     function calc_multiclock;
         input [31:0] ir;
-        calc_multiclock=(ir[31:25]=='b0000001);
+        calc_multiclock=(ir[31:25]=='b0000001&&ir[6:0]==`OP);
     endfunction
 
 

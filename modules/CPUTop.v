@@ -72,6 +72,7 @@ module CPUTop (
     reg [31:0] regdata2_EX;   
     //マルチクロック命令
     reg is_multiclock_EX;
+    reg is_multiplier_input_EX;
     wire done_multiplier_EX;
 
 //MAステージ
@@ -207,9 +208,11 @@ module CPUTop (
         .br_taken(br_taken_EX)
     );
 
-    //multiplier: EXステージ
-    //乗算器
-    multiplier multiplier1(
+    //multiclockalu: EXステージ
+    //乗除算器
+    multiclockalu multiclockalu1(
+        .clk(clk),
+        .is_multiclock_input(is_multiplier_input_EX),
         .alucode(alucode_EX),
         .op1(oprl_EX),
         .op2(oprl_EX),
@@ -342,6 +345,7 @@ module CPUTop (
                 ram_read_signed_EX<=`RAM_MODE_UNSIGNED;
             end else if(is_multiclock_EX)begin
                 //マルチクロック命令実行中
+                is_multiplier_input_EX<=0;
                 if(done_multiplier_EX)begin
                     //IFステージ
                     pc_IF<=npc_predict_IF;
@@ -408,6 +412,11 @@ module CPUTop (
                 ram_write_size_EX<=ram_write_size_ID;
                 ram_read_signed_EX<=ram_read_signed_ID;
                 is_multiclock_EX<=is_multiclock_ID;
+                if(is_multiclock_ID)begin
+                    is_multiplier_input_EX<=1;
+                end else begin
+                    is_multiplier_input_EX<=0;
+                end
             end
             //MAステージ: 分岐の有無に無関係
             if(is_multiclock_EX)begin
