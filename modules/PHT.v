@@ -2,7 +2,6 @@ module PHT (
     input wire clk,
     input wire rst,
     //write
-    input wire we,
     input wire [15:0] PC_actual,
     input wire is_taken_actual,
     //read
@@ -72,8 +71,6 @@ module PHT (
     assign w_data_next=calc_next_state(w_data_current, is_taken_actual);
 
     always @(negedge clk) begin
-        if(we)begin
-            mem[w_addr] <= w_data_next;
-        end
+        mem[w_addr] <= w_data_next;
     end
 endmodule

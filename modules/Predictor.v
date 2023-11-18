@@ -2,7 +2,6 @@ module Predictor (
     input wire clk,
     input wire rst,
     //write
-    input wire we,
     input wire [15:0] PC_actual,
     input wire [15:0] NPC_actual,
     input wire is_taken_actual,
@@ -14,7 +13,7 @@ module Predictor (
     BTB btb1(
         .clk(clk),
         .rst(rst),
-        .we(we),
+        .we(is_taken_actual),
         .PC_actual(PC_actual),
         .NPC_actual(NPC_actual),
         .PC(PC),
@@ -25,7 +24,6 @@ module Predictor (
     PHT pht1(
         .clk(clk),
         .rst(rst),
-        .we(we),
         .PC_actual(PC_actual),
         .is_taken_actual(is_taken_actual),
         .PC(PC),

@@ -19,7 +19,10 @@ module cpu_tb;
             $dumpvars(1,cpu0.register1.regfile[i]);
         end
         for(i=0;i<256;i++)begin
-            $dumpvars(1,cpu0.btb1.mem[i]);
+            $dumpvars(1,cpu0.predictor1.btb1.mem[i]);
+        end
+        for(i=0;i<256;i++)begin
+            $dumpvars(1,cpu0.predictor1.pht1.mem[i]);
         end
     end
 

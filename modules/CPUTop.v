@@ -141,8 +141,7 @@ module CPUTop (
         .clk(clk),
         .rst(rst),
         .PC(pc_IF[15:0]),
-        .NPC_predict(npc_predict_IF[15:0]),
-        .we(br_taken_EX),
+        .NPC_predict(npc_predict_IF),
         .PC_actual(pc_EX[15:0]),
         .NPC_actual(npc_EX[15:0]),
         .is_taken_actual(br_taken_EX)
