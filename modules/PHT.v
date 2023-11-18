@@ -70,7 +70,7 @@ module PHT (
     endfunction
     assign w_data_next=calc_next_state(w_data_current, is_taken_actual);
 
-    always @(negedge clk) begin
+    always @(posedge clk) begin
         mem[w_addr] <= w_data_next;
     end
 endmodule
