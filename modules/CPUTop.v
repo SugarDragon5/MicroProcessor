@@ -141,10 +141,11 @@ module CPUTop (
         .clk(clk),
         .rst(rst),
         .PC(pc_IF[15:0]),
-        .NPC_predict(npc_predict_IF),
+        .NPC_predict(npc_predict_IF[15:0]),
         .we(br_taken_EX),
         .PC_actual(pc_EX[15:0]),
-        .NPC_actual(npc_EX[15:0])
+        .NPC_actual(npc_EX[15:0]),
+        .is_taken_actual(br_taken_EX)
     );
     //Decoder: IDステージ
     //posedgeでiwordが代入され、そのまま計算が走る
@@ -261,7 +262,12 @@ module CPUTop (
             $write("%c", uart_IN_data);  // シリアル通信モジュールへのストア命令実行時に送信データを表示
         end
     `endif
-
+    `ifdef DEBUG_BRANCH_PREDICT
+        integer prediction_miss;
+        initial begin
+            prediction_miss=0;
+        end
+    `endif
     //ステージ遷移
     always @(posedge clk) begin
         if(rst)begin
@@ -294,6 +300,10 @@ module CPUTop (
                 ram_read_size_EX<=`RAM_MODE_NONE;
                 ram_write_size_EX<=`RAM_MODE_NONE;
                 ram_read_signed_EX<=`RAM_MODE_UNSIGNED;
+                `ifdef DEBUG_BRANCH_PREDICT
+                    prediction_miss=prediction_miss+1;
+                    $display("prediction miss %d / total clk %d",prediction_miss,hc_OUT_data);
+                `endif
             end else if(is_stall_DE)begin
                 //メモリ待ちストール
                 //IF, IDステージは変えない

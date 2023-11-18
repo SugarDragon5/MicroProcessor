@@ -80,3 +80,9 @@
 
 // address for UART
 `define UART_ADDR 32'hf6fff070
+
+// PHT State
+`define PHT_NOT_TAKEN_STRONG 2'd00
+`define PHT_NOT_TAKEN_WEAK   2'd01
+`define PHT_TAKEN_WEAK       2'd10
+`define PHT_TAKEN_STRONG     2'd11
