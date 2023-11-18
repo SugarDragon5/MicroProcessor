@@ -3107,9 +3107,9 @@ prog.elf:     ファイル形式 elf32-littleriscv
     af3c:	00008067          	ret
 
 0000af40 <time_in_secs>:
-    af40:	051105b7          	lui	a1,0x5110
+    af40:	047875b7          	lui	a1,0x4787
     af44:	ff010113          	add	sp,sp,-16
-    af48:	f4058593          	add	a1,a1,-192 # 510ff40 <stack_top+0x50eff40>
+    af48:	8c058593          	add	a1,a1,-1856 # 47868c0 <stack_top+0x47668c0>
     af4c:	00112623          	sw	ra,12(sp)
     af50:	421010ef          	jal	cb70 <__hidden___udivsi3>
     af54:	00c12083          	lw	ra,12(sp)
@@ -44453,21 +44453,25 @@ prog.elf:     ファイル形式 elf32-littleriscv
     3f80:	009f c004 d303      	.insn	6, 0xd303c004009f
     3f86:	007a0f03          	lb	t5,7(s4)
     3f8a:	26a8                	.insn	2, 0x26a8
-    3f8c:	400c                	.insn	2, 0x400c
-    3f8e:	a80510ff 00a81b26 	.insn	12, 0x03d3049f00a81b26a80510ff
-    3f96:	03d3049f 
-    3f9a:	03e0                	.insn	2, 0x03e0
+    3f8c:	c00c                	.insn	2, 0xc00c
+    3f8e:	7868                	.insn	2, 0x7868
+    3f90:	a804                	.insn	2, 0xa804
+    3f92:	1b26                	.insn	2, 0x1b26
+    3f94:	00a8                	.insn	2, 0x00a8
+    3f96:	049f 03d3 03e0      	.insn	6, 0x03e003d3049f
     3f9c:	a316                	.insn	2, 0xa316
     3f9e:	2d0aa503          	lw	a0,720(s5)
     3fa2:	26a8                	.insn	2, 0x26a8
     3fa4:	00a8                	.insn	2, 0x00a8
     3fa6:	26a8                	.insn	2, 0x26a8
-    3fa8:	400c                	.insn	2, 0x400c
-    3faa:	a80510ff 00a81b26 	.insn	12, 0xa804009f00a81b26a80510ff
-    3fb2:	a804009f 
-    3fb6:	0e03bc03          	.insn	4, 0x0e03bc03
-    3fba:	01078403          	lb	s0,16(a5)
-    3fbe:	0600                	.insn	2, 0x0600
+    3fa8:	c00c                	.insn	2, 0xc00c
+    3faa:	7868                	.insn	2, 0x7868
+    3fac:	a804                	.insn	2, 0xa804
+    3fae:	1b26                	.insn	2, 0x1b26
+    3fb0:	00a8                	.insn	2, 0x00a8
+    3fb2:	009f a804 bc03      	.insn	6, 0xbc03a804009f
+    3fb8:	84030e03          	lb	t3,-1984(t1)
+    3fbc:	06000107          	.insn	4, 0x06000107
     3fc0:	01078803          	lb	a6,16(a5)
     3fc4:	0600                	.insn	2, 0x0600
     3fc6:	9f1c                	.insn	2, 0x9f1c
