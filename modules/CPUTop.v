@@ -1,5 +1,5 @@
-//`include "define.v"
-//`include "testdata.v"
+`include "define.v"
+`include "testdata.v"
 
 module CPUTop (
     input wire sysclk,
@@ -74,6 +74,7 @@ module CPUTop (
     reg is_multiclock_EX;
     reg is_multiplier_input_EX;
     wire done_multiplier_EX;
+    wire [31:0] multi_result_EX;
 
 //MAステージ
     reg [31:0] pc_MA;
@@ -215,7 +216,7 @@ module CPUTop (
         .is_multiclock_input(is_multiplier_input_EX),
         .alucode(alucode_EX),
         .op1(oprl_EX),
-        .op2(oprl_EX),
+        .op2(oprr_EX),
         .result(multi_result_EX),
         .done(done_multiplier_EX)
     );
@@ -475,20 +476,22 @@ module CPUTop (
 
             //for debug
             `ifdef COREMARK_TRACE
-                $write("0x%4x: 0x%8x",pc_MA[15:0],iword_MA);
-                if(reg_we_MA)begin
-                    $write(" # x%02d = 0x%8x",dstreg_num_MA,reg_write_value_MA);
-                end else $write(" # (no destination)");
-                if(is_store_MA)begin
-                    if(ram_write_size_MA==`RAM_MODE_BYTE)$write("; mem[0x%08x] <- 0x%02x",mem_address_MA,mem_write_value_MA[7:0]);
-                    else if(ram_write_size_MA==`RAM_MODE_HALF)$write("; mem[0x%08x] <- 0x%04x",mem_address_MA,mem_write_value_MA[15:0]);
-                    else if(ram_write_size_MA==`RAM_MODE_WORD)$write("; mem[0x%08x] <- 0x%08x",mem_address_MA,mem_write_value_MA);
-                end else if(is_load_MA)begin
-                    if(ram_read_size_MA==`RAM_MODE_BYTE)$write(";            0x%02x <- mem[0x%08x]",mem_load_value_MA[7:0],mem_address_MA);
-                    if(ram_read_size_MA==`RAM_MODE_HALF)$write(";          0x%04x <- mem[0x%08x]",mem_load_value_MA[15:0],mem_address_MA);
-                    if(ram_read_size_MA==`RAM_MODE_WORD)$write(";      0x%08x <- mem[0x%08x]",mem_load_value_MA,mem_address_MA);
+                if(pc_MA[15:0])begin
+                    $write("0x%4x: 0x%8x",pc_MA[15:0],iword_MA);
+                    if(reg_we_MA)begin
+                        $write(" # x%02d = 0x%8x",dstreg_num_MA,reg_write_value_MA);
+                    end else $write(" # (no destination)");
+                    if(is_store_MA)begin
+                        if(ram_write_size_MA==`RAM_MODE_BYTE)$write("; mem[0x%08x] <- 0x%02x",mem_address_MA,mem_write_value_MA[7:0]);
+                        else if(ram_write_size_MA==`RAM_MODE_HALF)$write("; mem[0x%08x] <- 0x%04x",mem_address_MA,mem_write_value_MA[15:0]);
+                        else if(ram_write_size_MA==`RAM_MODE_WORD)$write("; mem[0x%08x] <- 0x%08x",mem_address_MA,mem_write_value_MA);
+                    end else if(is_load_MA)begin
+                        if(ram_read_size_MA==`RAM_MODE_BYTE)$write(";            0x%02x <- mem[0x%08x]",mem_load_value_MA[7:0],mem_address_MA);
+                        if(ram_read_size_MA==`RAM_MODE_HALF)$write(";          0x%04x <- mem[0x%08x]",mem_load_value_MA[15:0],mem_address_MA);
+                        if(ram_read_size_MA==`RAM_MODE_WORD)$write(";      0x%08x <- mem[0x%08x]",mem_load_value_MA,mem_address_MA);
+                    end
+                    $write("\n");
                 end
-                $write("\n");
             `endif
         end
     end
