@@ -57,7 +57,7 @@ module multiclockalu (
         end else begin
             is_working[0]<=0;
         end
-        for(i=0;i<5;i++)begin
+        for(i=0;i<5;i=i+1)begin
             is_working[i+1]<=is_working[i];
             pipereg[i+1]<=pipereg[i];
         end

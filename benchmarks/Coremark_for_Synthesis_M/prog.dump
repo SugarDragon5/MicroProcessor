@@ -2910,8 +2910,8 @@ prog.elf:     ファイル形式 elf32-littleriscv
     ac28:	00008067          	ret
 
 0000ac2c <time_in_secs>:
-    ac2c:	047877b7          	lui	a5,0x4787
-    ac30:	8c078793          	add	a5,a5,-1856 # 47868c0 <stack_top+0x47668c0>
+    ac2c:	004c57b7          	lui	a5,0x4c5
+    ac30:	b4078793          	add	a5,a5,-1216 # 4c4b40 <stack_top+0x4a4b40>
     ac34:	02f55533          	divu	a0,a0,a5
     ac38:	00008067          	ret
 
@@ -42970,8 +42970,8 @@ prog.elf:     ファイル形式 elf32-littleriscv
     3edc:	03cc                	.insn	2, 0x03cc
     3ede:	a8007a0f          	.insn	4, 0xa8007a0f
     3ee2:	0c26                	.insn	2, 0x0c26
-    3ee4:	68c0                	.insn	2, 0x68c0
-    3ee6:	0478                	.insn	2, 0x0478
+    3ee4:	4b40                	.insn	2, 0x4b40
+    3ee6:	004c                	.insn	2, 0x004c
     3ee8:	26a8                	.insn	2, 0x26a8
     3eea:	9f00a81b          	.insn	4, 0x9f00a81b
     3eee:	cc04                	.insn	2, 0xcc04
@@ -42981,8 +42981,8 @@ prog.elf:     ファイル形式 elf32-littleriscv
     3efa:	a826                	.insn	2, 0xa826
     3efc:	a800                	.insn	2, 0xa800
     3efe:	0c26                	.insn	2, 0x0c26
-    3f00:	68c0                	.insn	2, 0x68c0
-    3f02:	0478                	.insn	2, 0x0478
+    3f00:	4b40                	.insn	2, 0x4b40
+    3f02:	004c                	.insn	2, 0x004c
     3f04:	26a8                	.insn	2, 0x26a8
     3f06:	9f00a81b          	.insn	4, 0x9f00a81b
     3f0a:	0400                	.insn	2, 0x0400
