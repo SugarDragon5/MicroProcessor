@@ -146,6 +146,75 @@ initial begin
     #10;is_multiclock_input<=1'b0;
     #300;`test("MULHSU Test2 [neg * pos (large)]", 32'hffffffff);
 
+    //MULHU Test1
+    alucode<=`ALU_MULHU;
+    op1<=32'h00003141;
+    op2<=32'h00005926;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #300;`test("MULHU Test1 [small case]", 32'h00000000);
+
+    //MULHU Test2
+    //dec: 53024283244601010
+    //hex: 0x00bc614dff439eb2
+    //bin: 0000000010111100011000010100110111111111010000111001111010110010
+    alucode<=`ALU_MULHU;
+    op1<=12345678;
+    op2<=4294967295;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #300;`test("MULHU Test2 [pos * pos (large)]", 32'h00bc614d);
+    
+    
+    //DIV Test1
+    alucode<=`ALU_DIV;
+    op1<=32'h00003141;
+    op2<=32'h00005926;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #100;`test("DIV Test1 [small case]", 32'h00000000);
+
+    //DIV Test2
+    alucode<=`ALU_DIV;
+    op1<=32'h27182818;
+    op2<=32'h00001234;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #100;`test("DIV Test2 [large case]", 32'h000225cd);
+    
+    //DIV Test3
+    alucode<=`ALU_DIV;
+    op1<=-20;
+    op2<=7;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #100;`test("DIV Test3 [neg / pos (small)]", -2);
+
+    //DIV Test4
+    alucode<=`ALU_DIV;
+    op1<=10;
+    op2<=0;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #100;`test("DIV Test4 [div by zero]", -1);
+
+    //DIVU Test1
+    alucode<=`ALU_DIVU;
+    op1<=32'h00003141;
+    op2<=32'h00005926;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #100;`test("DIVU Test1 [small case]", 32'h00000000);
+
+    //DIVU Test2
+    alucode<=`ALU_DIVU;
+    op1<=4294967295;
+    op2<=1234;
+    is_multiclock_input<=1'b1;
+    #10;is_multiclock_input<=1'b0;
+    #100;`test("DIVU Test2 [large case]", 32'h000351bcc);
+
+
     $display("All tests passed!");
     $finish(2);
 end

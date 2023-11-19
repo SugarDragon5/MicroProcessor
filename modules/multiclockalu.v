@@ -16,12 +16,42 @@ module multiclockalu (
             case(alucode)
                 `ALU_MUL: pipereg[0]<=op1*op2;
                 `ALU_MULH: pipereg[0]<=$signed(op1)*$signed(op2);
-                `ALU_MULHSU: pipereg[0]<=$signed(op1)*$signed(op2);
+                `ALU_MULHSU: pipereg[0]<=$signed(op1)*$signed({1'b0,op2});
                 `ALU_MULHU: pipereg[0]<=op1*op2;
-                `ALU_DIV: pipereg[0]<=$signed(op1)/$signed(op2);
-                `ALU_DIVU: pipereg[0]<=op1/op2;
-                `ALU_REM: pipereg[0]<=$signed(op1)%$signed(op2);
-                `ALU_REMU: pipereg[0]<=op1%op2;
+                `ALU_DIV:
+                begin
+                    if(op2==32'h00000000)begin
+                        pipereg[0]<=32'hffffffff;
+                    end else if(op1==32'h80000000 && op2==32'hffffffff)begin
+                        pipereg[0]<=32'h80000000;
+                    end else begin
+                        pipereg[0]<=$signed(op1)/$signed(op2);
+                    end
+                end
+                `ALU_DIVU: 
+                begin
+                    case(op2)
+                        32'h00000000: pipereg[0]<=32'hffffffff;
+                        default: pipereg[0]<=op1/op2;
+                    endcase
+                end
+                `ALU_REM:
+                begin
+                    if(op2==32'h00000000)begin
+                        pipereg[0]<=op1;
+                    end else if(op1==32'h80000000 && op2==32'hffffffff)begin
+                        pipereg[0]<=0;
+                    end else begin
+                        pipereg[0]<=$signed(op1)%$signed(op2);
+                    end
+                end
+                `ALU_REMU:
+                begin
+                    case(op2)
+                        32'h00000000: pipereg[0]<=op1;
+                        default: pipereg[0]<=op1%op2;
+                    endcase
+                end
                 default: pipereg[0]<=0;
             endcase
         end else begin
