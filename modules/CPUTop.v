@@ -23,6 +23,8 @@ module CPUTop (
 //IFステージ
     reg [31:0] pc_IF;
     wire [31:0] iword_IF;
+    //BTB出力
+    wire [31:0] npc_predict_IF;
 
 //IDステージ
     reg [31:0] pc_ID;
@@ -49,6 +51,7 @@ module CPUTop (
 
 //EXステージ
     reg [31:0] pc_EX;
+    reg [31:0] iword_EX;
     //ALU入力 = posedgeでIDステージから受け取る
     reg [5:0] alucode_EX;
     reg [31:0] imm_EX;
@@ -69,6 +72,7 @@ module CPUTop (
 
 //MAステージ
     reg [31:0] pc_MA;
+    reg [31:0] iword_MA;
     reg [5:0] alucode_MA;
     reg [31:0] alu_result_MA;
     //その他 EX-> MA で受け取るデータ
@@ -131,6 +135,16 @@ module CPUTop (
         .clk(clk),
         .r_addr(pc_IF[15:2]),
         .r_data(iword_IF)
+    );
+    //Predictor: IFステージ
+    Predictor predictor1(
+        .clk(clk),
+        .rst(rst),
+        .PC(pc_IF[15:0]),
+        .NPC_predict(npc_predict_IF),
+        .PC_actual(pc_EX[15:0]),
+        .NPC_actual(npc_EX[15:0]),
+        .is_taken_actual(br_taken_EX)
     );
     //Decoder: IDステージ
     //posedgeでiwordが代入され、そのまま計算が走る
@@ -247,16 +261,22 @@ module CPUTop (
             $write("%c", uart_IN_data);  // シリアル通信モジュールへのストア命令実行時に送信データを表示
         end
     `endif
-
+    `ifdef DEBUG_BRANCH_PREDICT
+        integer prediction_miss;
+        initial begin
+            prediction_miss=0;
+        end
+    `endif
     //ステージ遷移
     always @(posedge clk) begin
         if(rst)begin
             pc_IF<='h8000;
-            pc_ID<=0;
-            pc_EX<=0;
-            pc_RW<=0;
+            pc_ID<='h7FFC;
+            pc_EX<='h7FF8;
+            pc_MA<='h0000;
+            pc_RW<='h0000;
         end else begin
-            if(br_taken_EX&&npc_EX!=pc_ID)begin
+            if(pc_EX!=0 && pc_ID!=0 && npc_EX!=pc_ID)begin
                 //分岐予測失敗 = ID, EXをnopに、IFに分岐先を代入
                 //IFステージ
                 pc_IF<=npc_EX;
@@ -279,6 +299,10 @@ module CPUTop (
                 ram_read_size_EX<=`RAM_MODE_NONE;
                 ram_write_size_EX<=`RAM_MODE_NONE;
                 ram_read_signed_EX<=`RAM_MODE_UNSIGNED;
+                `ifdef DEBUG_BRANCH_PREDICT
+                    prediction_miss=prediction_miss+1;
+                    $display("prediction miss %d / total clk %d",prediction_miss,hc_OUT_data);
+                `endif
             end else if(is_stall_DE)begin
                 //メモリ待ちストール
                 //IF, IDステージは変えない
@@ -301,12 +325,13 @@ module CPUTop (
             end else begin
                 //ストールなし。ステージを進める
                 //IFステージ
-                pc_IF<=pc_IF+4;
+                pc_IF<=npc_predict_IF;
                 //IDステージ
                 pc_ID<=pc_IF;
                 iword_ID<=iword_IF;
                 //EXステージ
                 pc_EX<=pc_ID;
+                iword_EX<=iword_ID;
                 alucode_EX<=alucode_ID;
                 imm_EX<=imm_ID;
                 if(is_oprl_fwd_EE)oprl_EX<=alu_result_EX;
@@ -332,6 +357,7 @@ module CPUTop (
             end
             //MAステージ: 分岐の有無に無関係
             pc_MA<=pc_EX;
+            iword_MA<=iword_EX;
             alucode_MA<=alucode_EX;
             alu_result_MA<=alu_result_EX;
             dstreg_num_MA<=dstreg_num_EX;
@@ -344,10 +370,28 @@ module CPUTop (
             ram_read_signed_MA<=ram_read_signed_EX;
             regdata2_MA<=regdata2_EX;
             //RWステージ: 分岐の有無に無関係
-            pc_RW<=pc_EX;
+            pc_RW<=pc_MA;
             reg_write_value_RW<=reg_write_value_MA;
             dstreg_num_RW<=dstreg_num_MA;
             reg_we_RW<=reg_we_MA;
+
+            //for debug
+            `ifdef COREMARK_TRACE
+                $write("0x%4x: 0x%8x",pc_MA[15:0],iword_MA);
+                if(reg_we_MA)begin
+                    $write(" # x%02d = 0x%8x",dstreg_num_MA,reg_write_value_MA);
+                end else $write(" # (no destination)");
+                if(is_store_MA)begin
+                    if(ram_write_size_MA==`RAM_MODE_BYTE)$write("; mem[0x%08x] <- 0x%02x",mem_address_MA,mem_write_value_MA[7:0]);
+                    else if(ram_write_size_MA==`RAM_MODE_HALF)$write("; mem[0x%08x] <- 0x%04x",mem_address_MA,mem_write_value_MA[15:0]);
+                    else if(ram_write_size_MA==`RAM_MODE_WORD)$write("; mem[0x%08x] <- 0x%08x",mem_address_MA,mem_write_value_MA);
+                end else if(is_load_MA)begin
+                    if(ram_read_size_MA==`RAM_MODE_BYTE)$write(";            0x%02x <- mem[0x%08x]",mem_load_value_MA[7:0],mem_address_MA);
+                    if(ram_read_size_MA==`RAM_MODE_HALF)$write(";          0x%04x <- mem[0x%08x]",mem_load_value_MA[15:0],mem_address_MA);
+                    if(ram_read_size_MA==`RAM_MODE_WORD)$write(";      0x%08x <- mem[0x%08x]",mem_load_value_MA,mem_address_MA);
+                end
+                $write("\n");
+            `endif
         end
     end
 endmodule
