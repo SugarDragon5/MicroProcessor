@@ -367,7 +367,13 @@ module CPUTop (
                 ram_read_signed_EX<=ram_read_signed_ID;
                 npc_default_EX<=npc_default_ID;
                 npc_branch_EX<=npc_branch_ID;
-                npc_jalr_EX<=npc_jalr_ID;
+                if(is_reg1_fwd_EE)begin
+                    npc_jalr_EX<=alu_result_EX+imm_ID;
+                end else if(is_reg1_fwd_ME)begin
+                    npc_jalr_EX<=reg_write_value_MA+imm_ID;
+                end else begin
+                    npc_jalr_EX<=npc_jalr_ID;
+                end
             end
             //MAステージ: 分岐の有無に無関係
             pc_MA<=pc_EX;
