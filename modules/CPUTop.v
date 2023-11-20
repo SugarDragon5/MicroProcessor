@@ -48,6 +48,13 @@ module CPUTop (
     wire is_oprl_fwd_ME,is_oprr_fwd_ME; //MA -> EXのフォワーディング
     //ストール判定
     wire is_stall_DE;
+    //NPC候補
+    wire [31:0] npc_default_ID;
+    wire [31:0] npc_branch_ID;
+    wire [31:0] npc_jalr_ID;
+    assign npc_default_ID=pc_ID+4;
+    assign npc_branch_ID=pc_ID+imm_ID;
+    assign npc_jalr_ID=regdata1_ID+imm_ID;
 
 //EXステージ
     reg [31:0] pc_EX;
@@ -60,7 +67,9 @@ module CPUTop (
     wire [31:0] alu_result_EX;
     wire br_taken_EX;
     //NPCGen入力
-    reg [31:0] regdata1_EX;
+    reg [31:0] npc_default_EX;
+    reg [31:0] npc_branch_EX;
+    reg [31:0] npc_jalr_EX;
     //NPCGen出力
     wire [31:0] npc_EX;
     //その他 ID-> EX で受け取るデータ
@@ -68,8 +77,9 @@ module CPUTop (
     reg reg_we_EX,is_load_EX,is_store_EX,is_halt_EX;
     reg [1:0] ram_read_size_EX,ram_write_size_EX;
     reg ram_read_signed_EX;
+    reg [31:0] regdata1_EX;
     reg [31:0] regdata2_EX;   
-
+    
 //MAステージ
     reg [31:0] pc_MA;
     reg [31:0] iword_MA;
@@ -206,8 +216,9 @@ module CPUTop (
     NPCGenerator NPCGen1(
         .pc(pc_EX),
         .alucode(alucode_EX),
-        .imm(imm_EX),
-        .reg1dat(regdata1_EX),
+        .npc_default(npc_default_EX),
+        .npc_branch(npc_branch_EX),
+        .npc_jalr(npc_jalr_EX),
         .br_taken(br_taken_EX),
         .npc(npc_EX)
     );
@@ -354,6 +365,9 @@ module CPUTop (
                 ram_read_size_EX<=ram_read_size_ID;
                 ram_write_size_EX<=ram_write_size_ID;
                 ram_read_signed_EX<=ram_read_signed_ID;
+                npc_default_EX<=npc_default_ID;
+                npc_branch_EX<=npc_branch_ID;
+                npc_jalr_EX<=npc_jalr_ID;
             end
             //MAステージ: 分岐の有無に無関係
             pc_MA<=pc_EX;

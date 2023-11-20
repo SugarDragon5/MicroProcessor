@@ -55,25 +55,55 @@
         "inst_hier_path": "clk_wiz_0",
         "parameters": {
           "CLKOUT1_JITTER": {
-            "value": "253.453"
+            "value": "140.709"
           },
           "CLKOUT1_PHASE_ERROR": {
-            "value": "293.793"
+            "value": "105.461"
+          },
+          "CLKOUT1_REQUESTED_DUTY_CYCLE": {
+            "value": "40"
           },
           "CLKOUT1_REQUESTED_OUT_FREQ": {
-            "value": "70"
+            "value": "90"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "140.709"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "105.461"
+          },
+          "CLKOUT2_REQUESTED_OUT_FREQ": {
+            "value": "90"
+          },
+          "CLKOUT2_REQUESTED_PHASE": {
+            "value": "90"
+          },
+          "CLKOUT2_USED": {
+            "value": "false"
           },
           "CLK_IN1_BOARD_INTERFACE": {
             "value": "sys_clock"
           },
           "MMCM_CLKFBOUT_MULT_F": {
-            "value": "49.875"
+            "value": "9.000"
           },
           "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "14.250"
+            "value": "10.000"
+          },
+          "MMCM_CLKOUT0_DUTY_CYCLE": {
+            "value": "0.400"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "1"
+          },
+          "MMCM_CLKOUT1_PHASE": {
+            "value": "90.000"
           },
           "MMCM_DIVCLK_DIVIDE": {
-            "value": "5"
+            "value": "1"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "1"
           },
           "USE_LOCKED": {
             "value": "false"
@@ -98,7 +128,7 @@
             "direction": "I",
             "parameters": {
               "FREQ_HZ": {
-                "value": "70000000",
+                "value": "90000000",
                 "value_src": "ip_prop"
               },
               "PHASE": {
