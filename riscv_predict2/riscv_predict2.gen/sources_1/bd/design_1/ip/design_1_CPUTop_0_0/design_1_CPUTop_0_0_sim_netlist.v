@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Sat Nov 18 16:00:12 2023
+// Date        : Mon Nov 20 13:29:34 2023
 // Host        : DJ00001 running 64-bit Ubuntu 20.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/denjo/b3exp/riscv_predict2/riscv_predict2.gen/sources_1/bd/design_1/ip/design_1_CPUTop_0_0/design_1_CPUTop_0_0_sim_netlist.v
@@ -27230,7 +27230,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h08F2C238B08E28238A08E24238908E202388C238B08E2C238A08E28238908E24),
     .INIT_55(256'h238A08E28238908E24238804E31C0CD3C23CB0CE3823CA0CE3423C90CE30338C),
     .INIT_56(256'h32CBEFBAEB6DB2E000334F08F2C338E08F28338D08F24338C0CE30023CB08E2C),
-    .INIT_57(256'h02013C0000310E05400C08033080C32CBEFBAEB6DB2E00C32CBEFBAEB6DB2E00),
+    .INIT_57(256'h02013C0000310E05400C08013080C32CBEFBAEB6DB2E00C32CBEFBAEB6DB2E00),
     .INIT_58(256'h7DF3BFFBDBCCCB79731C261CCC0CB76D75D3B3F6CDEE6D860261CA308C3030F0),
     .INIT_59(256'h0088A889EB9E78EC01B37B9B61809970B801FBADBBEF15AC5EE6D86016C2F7EF),
     .INIT_5A(256'h32280FA508078F8008202229083A9A638C30CBE8D30730F404C001820E882012),
@@ -27654,7 +27654,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h000000000000000000000000000000000000C000000000000000000000000000),
     .INIT_55(256'h000000000000000000000000030C000000000000000000000000000000000000),
     .INIT_56(256'h0000000000000003000000000000000000000000000000000000000000000000),
-    .INIT_57(256'h00A44C40C00BFC0C0C00012E0000000000000000000030000000000000000030),
+    .INIT_57(256'h00A44C40C00BFC0C0C00010E0000000000000000000030000000000000000030),
     .INIT_58(256'h041048300C000C0C0701000E840030000410460C103304105303E0000104F034),
     .INIT_59(256'h01FFC000000104110B040CC204140070FC000030C71C42C10330400500C2F000),
     .INIT_5A(256'h270C00FFFB0FC0003D33222CC8C6C7178133CC07CF00C43608C000C000C5214C),
@@ -27866,7 +27866,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h0000000000000000000000000000000000004000000000000000000000000000),
     .INIT_55(256'h0000000000000000000000000304000000000000000000000000000000000000),
     .INIT_56(256'h8000000000000003000000000000000000000000000000000000000000000000),
-    .INIT_57(256'h04400C08000001515800001C0CC0C80000000000000030C80000000000000030),
+    .INIT_57(256'h04400C08000001515800003C0CC0C80000000000000030C80000000000000030),
     .INIT_58(256'h000000300C000C0C0300000D8C0030000000000C003304000101D0000000D030),
     .INIT_59(256'h010015540000000003000CC30C000070FC000030C30C00C02330410020C1F000),
     .INIT_5A(256'h2108FFAAA802C0203020132C8042C32300F0C850CF1003335EC0008005CE3008),
@@ -28078,7 +28078,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h0020000800020000800020000800020000800008000200008000200008000200),
     .INIT_55(256'h0080002000080002000080002300002000080002000080002000080002000080),
     .INIT_56(256'hC000000000000003000080002000080002000080002000080002000008000200),
-    .INIT_57(256'h08A00C8C800000000C00020C2CC0CC0000000000000030CC0000000000000030),
+    .INIT_57(256'h08A00C8C800000000C00022C2CC0CC0000000000000030CC0000000000000030),
     .INIT_58(256'h000002300C008C0C030020AC440030000000008C013B0820020AC80000A0E030),
     .INIT_59(256'h000000000000000083004EC000004230FC000030C30C20C013B0410010E8F000),
     .INIT_5A(256'h010000000303C0303412211C8C42CF1380B3CC00E72001310FC000C000471000),
@@ -29052,7 +29052,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'hA288A8A22A288A8A22A288A8A22A288A8A22A8A22A288A8A22A288A8A22A288A),
     .INIT_55(256'h8A22A288A8A22A288A8A22A28088A288A8A22A288A8A22A288A8A22A288A8A22),
     .INIT_56(256'h0000000000000000028A22A288A8A22A288A8A22A288A8A22A288AA8A22A288A),
-    .INIT_57(256'h2E0E4835950D5450500002020000000000000000000000000000000000000000),
+    .INIT_57(256'h2E0E4835950D5450500002000000000000000000000000000000000000000000),
     .INIT_58(256'h0000C0300822603000212823444010010000C00C002408080382242044960111),
     .INIT_59(256'hA05555000040003003000D020200E0C1840008C3083000C02240C18028021001),
     .INIT_5A(256'h569400540406C000092226608882082580820802582002125E41109100896760),
@@ -29264,7 +29264,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h8ACEA2B3A8ACEA2B3A8ACEA2B3A8ACEA2B3ACAB3A8ACEA2B3A8ACEA2B3A8ACEA),
     .INIT_55(256'h2B3A8ACEA2B3A8ACEA2B3A8AC1EC8ACEA2B3A8ACEA2B3A8ACEA2B3A8ACEA2B3A),
     .INIT_56(256'h5145145145145154022B3A8ACEA2B3A8ACEA2B3A8ACEA2B3A8ACEA22B3A8ACEA),
-    .INIT_57(256'h738F1C30001D5555500004430440451451451451451540451451451451451540),
+    .INIT_57(256'h738F1C30001D5555500004410440451451451451451540451451451451451540),
     .INIT_58(256'h000080013CCC000000303C2000004000000080004130000C03C2012100010040),
     .INIT_59(256'hF05555540000002000104C000300F0800020088208200004130000C03C020000),
     .INIT_5A(256'h10125555540304414C733330CCD30C30C0C30D500C3003435C00080005DC3331),
@@ -29688,7 +29688,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'hBFCFFFF3FFFCFFFF3FFFCFFFF3FFFCFFFF3FBBF3FFFCFFFF3FFFCFFFF3FFFCFF),
     .INIT_55(256'hFF3FFFCFFFF3FFFCFFFF3FFECFF8AB8ABFF3EFFCFBFF3EFFCFBFF3EFFCFBFF3B),
     .INIT_56(256'h0C30C30C30C30C0002AE2AFFCFBFF3EFFCFBFF3EFFCFBFF3EFFCEEEBF3FFFCFF),
-    .INIT_57(256'h3FBF0CB43E8C0000008800202CC0C0C30C30C30C30C000C0C30C30C30C30C000),
+    .INIT_57(256'h3FBF0CB43E8C0000008800222CC0C0C30C30C30C30C000C0C30C30C30C30C000),
     .INIT_58(256'h3CF33FAF7ED512B22CBBAC0200AB0BCF3CF333EFFCB0ACBE3AC030E800830203),
     .INIT_59(256'hF0000002F3CF3CCCF3FC202B2F8EF00ABFFABBBEFBEF3BFFCB7ACBE3AC4ECBCF),
     .INIT_5A(256'h00C20000000FF3300C3BBFF2EEC3ECB0E8FB2C020CBA23030452A92020CD3F3C),
@@ -29900,7 +29900,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h0A8A80AA00A8A80AA00A8A80AA00A8A82A2880AA20A8A00AA20A8A00AA20A8A0),
     .INIT_55(256'h282A02280282A02280282A0A2BA8028882A2802A882A2802A882A2802A880AA0),
     .INIT_56(256'h288288288288288000282A0A2A028AA0A2A028AA0A2A028AA0A2A0028AA02280),
-    .INIT_57(256'h0040004440008AAA000A02832000028828828828828800028828828828828800),
+    .INIT_57(256'h0040004440008AAA000A02812000028828828828828800028828828828828800),
     .INIT_58(256'hA08AA4208615D68CA1882A2DCC68288288288100009DA28202A2C420287271B0),
     .INIT_59(256'hA00000020020022006032768A080A8BBE203080280280100298A28200A88AA08),
     .INIT_5A(256'h000088882003A2000C33333CCCEB8F31E8CB6E09EDB223BB0457810410CD3002),
@@ -39858,66 +39858,65 @@ module design_1_CPUTop_0_0_uart
   wire \bitcount[2]_i_1_n_0 ;
   wire \bitcount[3]_i_1_n_0 ;
   wire [3:0]bitcount_reg;
-  wire \d[13]_i_2_n_0 ;
-  wire \d[13]_i_3_n_0 ;
-  wire \d[13]_i_4_n_0 ;
-  wire \d[17]_i_2_n_0 ;
-  wire \d[21]_i_2_n_0 ;
-  wire \d[21]_i_3_n_0 ;
-  wire \d[25]_i_2_n_0 ;
-  wire \d[25]_i_3_n_0 ;
-  wire \d[5]_i_2_n_0 ;
-  wire \d[5]_i_3_n_0 ;
-  wire \d[9]_i_2_n_0 ;
-  wire \d[9]_i_3_n_0 ;
-  wire \d[9]_i_4_n_0 ;
-  wire \d_reg[13]_i_1_n_0 ;
-  wire \d_reg[13]_i_1_n_1 ;
-  wire \d_reg[13]_i_1_n_2 ;
-  wire \d_reg[13]_i_1_n_3 ;
-  wire \d_reg[13]_i_1_n_4 ;
-  wire \d_reg[13]_i_1_n_5 ;
-  wire \d_reg[13]_i_1_n_6 ;
-  wire \d_reg[13]_i_1_n_7 ;
-  wire \d_reg[17]_i_1_n_0 ;
-  wire \d_reg[17]_i_1_n_1 ;
-  wire \d_reg[17]_i_1_n_2 ;
-  wire \d_reg[17]_i_1_n_3 ;
-  wire \d_reg[17]_i_1_n_4 ;
-  wire \d_reg[17]_i_1_n_5 ;
-  wire \d_reg[17]_i_1_n_6 ;
-  wire \d_reg[17]_i_1_n_7 ;
-  wire \d_reg[21]_i_1_n_0 ;
-  wire \d_reg[21]_i_1_n_1 ;
-  wire \d_reg[21]_i_1_n_2 ;
-  wire \d_reg[21]_i_1_n_3 ;
-  wire \d_reg[21]_i_1_n_4 ;
-  wire \d_reg[21]_i_1_n_5 ;
-  wire \d_reg[21]_i_1_n_6 ;
-  wire \d_reg[21]_i_1_n_7 ;
-  wire \d_reg[25]_i_1_n_1 ;
-  wire \d_reg[25]_i_1_n_2 ;
-  wire \d_reg[25]_i_1_n_3 ;
-  wire \d_reg[25]_i_1_n_4 ;
-  wire \d_reg[25]_i_1_n_5 ;
-  wire \d_reg[25]_i_1_n_6 ;
-  wire \d_reg[25]_i_1_n_7 ;
-  wire \d_reg[5]_i_1_n_0 ;
-  wire \d_reg[5]_i_1_n_1 ;
-  wire \d_reg[5]_i_1_n_2 ;
-  wire \d_reg[5]_i_1_n_3 ;
-  wire \d_reg[5]_i_1_n_4 ;
-  wire \d_reg[5]_i_1_n_5 ;
-  wire \d_reg[5]_i_1_n_6 ;
-  wire \d_reg[5]_i_1_n_7 ;
-  wire \d_reg[9]_i_1_n_0 ;
-  wire \d_reg[9]_i_1_n_1 ;
-  wire \d_reg[9]_i_1_n_2 ;
-  wire \d_reg[9]_i_1_n_3 ;
-  wire \d_reg[9]_i_1_n_4 ;
-  wire \d_reg[9]_i_1_n_5 ;
-  wire \d_reg[9]_i_1_n_6 ;
-  wire \d_reg[9]_i_1_n_7 ;
+  wire \d[10]_i_2_n_0 ;
+  wire \d[10]_i_3_n_0 ;
+  wire \d[14]_i_2_n_0 ;
+  wire \d[14]_i_3_n_0 ;
+  wire \d[14]_i_4_n_0 ;
+  wire \d[18]_i_2_n_0 ;
+  wire \d[18]_i_3_n_0 ;
+  wire \d[22]_i_2_n_0 ;
+  wire \d[22]_i_3_n_0 ;
+  wire \d[22]_i_4_n_0 ;
+  wire \d[22]_i_5_n_0 ;
+  wire \d[26]_i_2_n_0 ;
+  wire \d[6]_i_2_n_0 ;
+  wire \d[6]_i_3_n_0 ;
+  wire \d_reg[10]_i_1_n_0 ;
+  wire \d_reg[10]_i_1_n_1 ;
+  wire \d_reg[10]_i_1_n_2 ;
+  wire \d_reg[10]_i_1_n_3 ;
+  wire \d_reg[10]_i_1_n_4 ;
+  wire \d_reg[10]_i_1_n_5 ;
+  wire \d_reg[10]_i_1_n_6 ;
+  wire \d_reg[10]_i_1_n_7 ;
+  wire \d_reg[14]_i_1_n_0 ;
+  wire \d_reg[14]_i_1_n_1 ;
+  wire \d_reg[14]_i_1_n_2 ;
+  wire \d_reg[14]_i_1_n_3 ;
+  wire \d_reg[14]_i_1_n_4 ;
+  wire \d_reg[14]_i_1_n_5 ;
+  wire \d_reg[14]_i_1_n_6 ;
+  wire \d_reg[14]_i_1_n_7 ;
+  wire \d_reg[18]_i_1_n_0 ;
+  wire \d_reg[18]_i_1_n_1 ;
+  wire \d_reg[18]_i_1_n_2 ;
+  wire \d_reg[18]_i_1_n_3 ;
+  wire \d_reg[18]_i_1_n_4 ;
+  wire \d_reg[18]_i_1_n_5 ;
+  wire \d_reg[18]_i_1_n_6 ;
+  wire \d_reg[18]_i_1_n_7 ;
+  wire \d_reg[22]_i_1_n_0 ;
+  wire \d_reg[22]_i_1_n_1 ;
+  wire \d_reg[22]_i_1_n_2 ;
+  wire \d_reg[22]_i_1_n_3 ;
+  wire \d_reg[22]_i_1_n_4 ;
+  wire \d_reg[22]_i_1_n_5 ;
+  wire \d_reg[22]_i_1_n_6 ;
+  wire \d_reg[22]_i_1_n_7 ;
+  wire \d_reg[26]_i_1_n_2 ;
+  wire \d_reg[26]_i_1_n_3 ;
+  wire \d_reg[26]_i_1_n_5 ;
+  wire \d_reg[26]_i_1_n_6 ;
+  wire \d_reg[26]_i_1_n_7 ;
+  wire \d_reg[6]_i_1_n_0 ;
+  wire \d_reg[6]_i_1_n_1 ;
+  wire \d_reg[6]_i_1_n_2 ;
+  wire \d_reg[6]_i_1_n_3 ;
+  wire \d_reg[6]_i_1_n_4 ;
+  wire \d_reg[6]_i_1_n_5 ;
+  wire \d_reg[6]_i_1_n_6 ;
+  wire \d_reg[6]_i_1_n_7 ;
   wire \d_reg_n_0_[10] ;
   wire \d_reg_n_0_[11] ;
   wire \d_reg_n_0_[12] ;
@@ -39936,7 +39935,6 @@ module design_1_CPUTop_0_0_uart
   wire \d_reg_n_0_[25] ;
   wire \d_reg_n_0_[26] ;
   wire \d_reg_n_0_[27] ;
-  wire \d_reg_n_0_[5] ;
   wire \d_reg_n_0_[6] ;
   wire \d_reg_n_0_[7] ;
   wire \d_reg_n_0_[8] ;
@@ -39968,7 +39966,8 @@ module design_1_CPUTop_0_0_uart
   wire uart_tx0;
   wire uart_tx_i_1_n_0;
   wire uart_we__23;
-  wire [3:3]\NLW_d_reg[25]_i_1_CO_UNCONNECTED ;
+  wire [3:2]\NLW_d_reg[26]_i_1_CO_UNCONNECTED ;
+  wire [3:3]\NLW_d_reg[26]_i_1_O_UNCONNECTED ;
 
   LUT2 #(
     .INIT(4'hB)) 
@@ -40036,97 +40035,110 @@ module design_1_CPUTop_0_0_uart
         .CLR(rst),
         .D(\bitcount[3]_i_1_n_0 ),
         .Q(bitcount_reg[3]));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \d[10]_i_2 
+       (.I0(p_0_in),
+        .I1(\d_reg_n_0_[13] ),
+        .O(\d[10]_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \d[10]_i_3 
+       (.I0(p_0_in),
+        .I1(\d_reg_n_0_[10] ),
+        .O(\d[10]_i_3_n_0 ));
   LUT1 #(
     .INIT(2'h1)) 
-    \d[13]_i_2 
+    \d[14]_i_2 
        (.I0(\d_reg_n_0_[16] ),
-        .O(\d[13]_i_2_n_0 ));
+        .O(\d[14]_i_2_n_0 ));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \d[14]_i_3 
+       (.I0(\d_reg_n_0_[15] ),
+        .O(\d[14]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
-    \d[13]_i_3 
+    \d[14]_i_4 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[15] ),
-        .O(\d[13]_i_3_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \d[13]_i_4 
-       (.I0(\d_reg_n_0_[14] ),
-        .O(\d[13]_i_4_n_0 ));
+        .I1(\d_reg_n_0_[14] ),
+        .O(\d[14]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[17]_i_2 
+    \d[18]_i_2 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[19] ),
-        .O(\d[17]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[20] ),
+        .O(\d[18]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[21]_i_2 
+    \d[18]_i_3 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[24] ),
-        .O(\d[21]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[18] ),
+        .O(\d[18]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[21]_i_3 
-       (.I0(p_0_in),
-        .I1(\d_reg_n_0_[23] ),
-        .O(\d[21]_i_3_n_0 ));
-  LUT2 #(
-    .INIT(4'h9)) 
-    \d[25]_i_2 
-       (.I0(p_0_in),
-        .I1(\d_reg_n_0_[27] ),
-        .O(\d[25]_i_2_n_0 ));
-  LUT2 #(
-    .INIT(4'h9)) 
-    \d[25]_i_3 
+    \d[22]_i_2 
        (.I0(p_0_in),
         .I1(\d_reg_n_0_[25] ),
-        .O(\d[25]_i_3_n_0 ));
+        .O(\d[22]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[5]_i_2 
+    \d[22]_i_3 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[8] ),
-        .O(\d[5]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[24] ),
+        .O(\d[22]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[5]_i_3 
+    \d[22]_i_4 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[6] ),
-        .O(\d[5]_i_3_n_0 ));
+        .I1(\d_reg_n_0_[23] ),
+        .O(\d[22]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[9]_i_2 
+    \d[22]_i_5 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[12] ),
-        .O(\d[9]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[22] ),
+        .O(\d[22]_i_5_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[9]_i_3 
+    \d[26]_i_2 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[11] ),
-        .O(\d[9]_i_3_n_0 ));
+        .I1(\d_reg_n_0_[27] ),
+        .O(\d[26]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
-    \d[9]_i_4 
+    \d[6]_i_2 
        (.I0(p_0_in),
         .I1(\d_reg_n_0_[9] ),
-        .O(\d[9]_i_4_n_0 ));
+        .O(\d[6]_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \d[6]_i_3 
+       (.I0(p_0_in),
+        .I1(\d_reg_n_0_[7] ),
+        .O(\d[6]_i_3_n_0 ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[10] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_6 ),
+        .D(\d_reg[10]_i_1_n_7 ),
         .Q(\d_reg_n_0_[10] ));
+  CARRY4 \d_reg[10]_i_1 
+       (.CI(\d_reg[6]_i_1_n_0 ),
+        .CO({\d_reg[10]_i_1_n_0 ,\d_reg[10]_i_1_n_1 ,\d_reg[10]_i_1_n_2 ,\d_reg[10]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({\d_reg_n_0_[13] ,1'b0,1'b0,\d_reg_n_0_[10] }),
+        .O({\d_reg[10]_i_1_n_4 ,\d_reg[10]_i_1_n_5 ,\d_reg[10]_i_1_n_6 ,\d_reg[10]_i_1_n_7 }),
+        .S({\d[10]_i_2_n_0 ,\d_reg_n_0_[12] ,\d_reg_n_0_[11] ,\d[10]_i_3_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[11] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_5 ),
+        .D(\d_reg[10]_i_1_n_6 ),
         .Q(\d_reg_n_0_[11] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40134,7 +40146,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_4 ),
+        .D(\d_reg[10]_i_1_n_5 ),
         .Q(\d_reg_n_0_[12] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40142,30 +40154,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_7 ),
+        .D(\d_reg[10]_i_1_n_4 ),
         .Q(\d_reg_n_0_[13] ));
-  CARRY4 \d_reg[13]_i_1 
-       (.CI(\d_reg[9]_i_1_n_0 ),
-        .CO({\d_reg[13]_i_1_n_0 ,\d_reg[13]_i_1_n_1 ,\d_reg[13]_i_1_n_2 ,\d_reg[13]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b1,p_0_in,1'b1,1'b0}),
-        .O({\d_reg[13]_i_1_n_4 ,\d_reg[13]_i_1_n_5 ,\d_reg[13]_i_1_n_6 ,\d_reg[13]_i_1_n_7 }),
-        .S({\d[13]_i_2_n_0 ,\d[13]_i_3_n_0 ,\d[13]_i_4_n_0 ,\d_reg_n_0_[13] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[14] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_6 ),
+        .D(\d_reg[14]_i_1_n_7 ),
         .Q(\d_reg_n_0_[14] ));
+  CARRY4 \d_reg[14]_i_1 
+       (.CI(\d_reg[10]_i_1_n_0 ),
+        .CO({\d_reg[14]_i_1_n_0 ,\d_reg[14]_i_1_n_1 ,\d_reg[14]_i_1_n_2 ,\d_reg[14]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b1,1'b1,p_0_in}),
+        .O({\d_reg[14]_i_1_n_4 ,\d_reg[14]_i_1_n_5 ,\d_reg[14]_i_1_n_6 ,\d_reg[14]_i_1_n_7 }),
+        .S({\d_reg_n_0_[17] ,\d[14]_i_2_n_0 ,\d[14]_i_3_n_0 ,\d[14]_i_4_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[15] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_5 ),
+        .D(\d_reg[14]_i_1_n_6 ),
         .Q(\d_reg_n_0_[15] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40173,7 +40185,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_4 ),
+        .D(\d_reg[14]_i_1_n_5 ),
         .Q(\d_reg_n_0_[16] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40181,30 +40193,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_7 ),
+        .D(\d_reg[14]_i_1_n_4 ),
         .Q(\d_reg_n_0_[17] ));
-  CARRY4 \d_reg[17]_i_1 
-       (.CI(\d_reg[13]_i_1_n_0 ),
-        .CO({\d_reg[17]_i_1_n_0 ,\d_reg[17]_i_1_n_1 ,\d_reg[17]_i_1_n_2 ,\d_reg[17]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,\d_reg_n_0_[19] ,1'b0,1'b0}),
-        .O({\d_reg[17]_i_1_n_4 ,\d_reg[17]_i_1_n_5 ,\d_reg[17]_i_1_n_6 ,\d_reg[17]_i_1_n_7 }),
-        .S({\d_reg_n_0_[20] ,\d[17]_i_2_n_0 ,\d_reg_n_0_[18] ,\d_reg_n_0_[17] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[18] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_6 ),
+        .D(\d_reg[18]_i_1_n_7 ),
         .Q(\d_reg_n_0_[18] ));
+  CARRY4 \d_reg[18]_i_1 
+       (.CI(\d_reg[14]_i_1_n_0 ),
+        .CO({\d_reg[18]_i_1_n_0 ,\d_reg[18]_i_1_n_1 ,\d_reg[18]_i_1_n_2 ,\d_reg[18]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,\d_reg_n_0_[20] ,1'b0,\d_reg_n_0_[18] }),
+        .O({\d_reg[18]_i_1_n_4 ,\d_reg[18]_i_1_n_5 ,\d_reg[18]_i_1_n_6 ,\d_reg[18]_i_1_n_7 }),
+        .S({\d_reg_n_0_[21] ,\d[18]_i_2_n_0 ,\d_reg_n_0_[19] ,\d[18]_i_3_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[19] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_5 ),
+        .D(\d_reg[18]_i_1_n_6 ),
         .Q(\d_reg_n_0_[19] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40212,7 +40224,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_4 ),
+        .D(\d_reg[18]_i_1_n_5 ),
         .Q(\d_reg_n_0_[20] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40220,30 +40232,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_7 ),
+        .D(\d_reg[18]_i_1_n_4 ),
         .Q(\d_reg_n_0_[21] ));
-  CARRY4 \d_reg[21]_i_1 
-       (.CI(\d_reg[17]_i_1_n_0 ),
-        .CO({\d_reg[21]_i_1_n_0 ,\d_reg[21]_i_1_n_1 ,\d_reg[21]_i_1_n_2 ,\d_reg[21]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\d_reg_n_0_[24] ,\d_reg_n_0_[23] ,1'b0,1'b0}),
-        .O({\d_reg[21]_i_1_n_4 ,\d_reg[21]_i_1_n_5 ,\d_reg[21]_i_1_n_6 ,\d_reg[21]_i_1_n_7 }),
-        .S({\d[21]_i_2_n_0 ,\d[21]_i_3_n_0 ,\d_reg_n_0_[22] ,\d_reg_n_0_[21] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[22] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_6 ),
+        .D(\d_reg[22]_i_1_n_7 ),
         .Q(\d_reg_n_0_[22] ));
+  CARRY4 \d_reg[22]_i_1 
+       (.CI(\d_reg[18]_i_1_n_0 ),
+        .CO({\d_reg[22]_i_1_n_0 ,\d_reg[22]_i_1_n_1 ,\d_reg[22]_i_1_n_2 ,\d_reg[22]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({\d_reg_n_0_[25] ,\d_reg_n_0_[24] ,\d_reg_n_0_[23] ,\d_reg_n_0_[22] }),
+        .O({\d_reg[22]_i_1_n_4 ,\d_reg[22]_i_1_n_5 ,\d_reg[22]_i_1_n_6 ,\d_reg[22]_i_1_n_7 }),
+        .S({\d[22]_i_2_n_0 ,\d[22]_i_3_n_0 ,\d[22]_i_4_n_0 ,\d[22]_i_5_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[23] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_5 ),
+        .D(\d_reg[22]_i_1_n_6 ),
         .Q(\d_reg_n_0_[23] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40251,7 +40263,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_4 ),
+        .D(\d_reg[22]_i_1_n_5 ),
         .Q(\d_reg_n_0_[24] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40259,30 +40271,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_7 ),
+        .D(\d_reg[22]_i_1_n_4 ),
         .Q(\d_reg_n_0_[25] ));
-  CARRY4 \d_reg[25]_i_1 
-       (.CI(\d_reg[21]_i_1_n_0 ),
-        .CO({\NLW_d_reg[25]_i_1_CO_UNCONNECTED [3],\d_reg[25]_i_1_n_1 ,\d_reg[25]_i_1_n_2 ,\d_reg[25]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,\d_reg_n_0_[27] ,1'b0,\d_reg_n_0_[25] }),
-        .O({\d_reg[25]_i_1_n_4 ,\d_reg[25]_i_1_n_5 ,\d_reg[25]_i_1_n_6 ,\d_reg[25]_i_1_n_7 }),
-        .S({1'b1,\d[25]_i_2_n_0 ,\d_reg_n_0_[26] ,\d[25]_i_3_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[26] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_6 ),
+        .D(\d_reg[26]_i_1_n_7 ),
         .Q(\d_reg_n_0_[26] ));
+  CARRY4 \d_reg[26]_i_1 
+       (.CI(\d_reg[22]_i_1_n_0 ),
+        .CO({\NLW_d_reg[26]_i_1_CO_UNCONNECTED [3:2],\d_reg[26]_i_1_n_2 ,\d_reg[26]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,\d_reg_n_0_[27] ,1'b0}),
+        .O({\NLW_d_reg[26]_i_1_O_UNCONNECTED [3],\d_reg[26]_i_1_n_5 ,\d_reg[26]_i_1_n_6 ,\d_reg[26]_i_1_n_7 }),
+        .S({1'b0,1'b1,\d[26]_i_2_n_0 ,\d_reg_n_0_[26] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[27] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_5 ),
+        .D(\d_reg[26]_i_1_n_6 ),
         .Q(\d_reg_n_0_[27] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40290,38 +40302,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_4 ),
+        .D(\d_reg[26]_i_1_n_5 ),
         .Q(p_0_in));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \d_reg[5] 
-       (.C(sysclk),
-        .CE(1'b1),
-        .CLR(rst),
-        .D(\d_reg[5]_i_1_n_7 ),
-        .Q(\d_reg_n_0_[5] ));
-  CARRY4 \d_reg[5]_i_1 
-       (.CI(1'b0),
-        .CO({\d_reg[5]_i_1_n_0 ,\d_reg[5]_i_1_n_1 ,\d_reg[5]_i_1_n_2 ,\d_reg[5]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\d_reg_n_0_[8] ,1'b0,\d_reg_n_0_[6] ,1'b0}),
-        .O({\d_reg[5]_i_1_n_4 ,\d_reg[5]_i_1_n_5 ,\d_reg[5]_i_1_n_6 ,\d_reg[5]_i_1_n_7 }),
-        .S({\d[5]_i_2_n_0 ,\d_reg_n_0_[7] ,\d[5]_i_3_n_0 ,\d_reg_n_0_[5] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[6] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[5]_i_1_n_6 ),
+        .D(\d_reg[6]_i_1_n_7 ),
         .Q(\d_reg_n_0_[6] ));
+  CARRY4 \d_reg[6]_i_1 
+       (.CI(1'b0),
+        .CO({\d_reg[6]_i_1_n_0 ,\d_reg[6]_i_1_n_1 ,\d_reg[6]_i_1_n_2 ,\d_reg[6]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({p_0_in,1'b0,\d_reg_n_0_[7] ,1'b0}),
+        .O({\d_reg[6]_i_1_n_4 ,\d_reg[6]_i_1_n_5 ,\d_reg[6]_i_1_n_6 ,\d_reg[6]_i_1_n_7 }),
+        .S({\d[6]_i_2_n_0 ,\d_reg_n_0_[8] ,\d[6]_i_3_n_0 ,\d_reg_n_0_[6] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[7] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[5]_i_1_n_5 ),
+        .D(\d_reg[6]_i_1_n_6 ),
         .Q(\d_reg_n_0_[7] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40329,7 +40333,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[5]_i_1_n_4 ),
+        .D(\d_reg[6]_i_1_n_5 ),
         .Q(\d_reg_n_0_[8] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40337,15 +40341,8 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_7 ),
+        .D(\d_reg[6]_i_1_n_4 ),
         .Q(\d_reg_n_0_[9] ));
-  CARRY4 \d_reg[9]_i_1 
-       (.CI(\d_reg[5]_i_1_n_0 ),
-        .CO({\d_reg[9]_i_1_n_0 ,\d_reg[9]_i_1_n_1 ,\d_reg[9]_i_1_n_2 ,\d_reg[9]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\d_reg_n_0_[12] ,\d_reg_n_0_[11] ,1'b0,p_0_in}),
-        .O({\d_reg[9]_i_1_n_4 ,\d_reg[9]_i_1_n_5 ,\d_reg[9]_i_1_n_6 ,\d_reg[9]_i_1_n_7 }),
-        .S({\d[9]_i_2_n_0 ,\d[9]_i_3_n_0 ,\d_reg_n_0_[10] ,\d[9]_i_4_n_0 }));
   LUT6 #(
     .INIT(64'h5555555400000000)) 
     \shifter[0]_i_1 

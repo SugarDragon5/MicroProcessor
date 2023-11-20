@@ -5,7 +5,7 @@
 
 # Coremark specific definition
 ITERATIONS = 0
-CLOCKS_PER_SEC = 75000000
+CLOCKS_PER_SEC = 70000000
 FLAGS_STR = ""
 
 
