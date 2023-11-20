@@ -29,12 +29,6 @@ module alu(
         :alucode==`ALU_SRA ? SRA2(SRA1(op1,op2[4:0]))
         :alucode==`ALU_JAL ? op2+4
         :alucode==`ALU_JALR ? op2+4
-        :alucode==`ALU_BEQ ? 0
-        :alucode==`ALU_BNE ? 0
-        :alucode==`ALU_BLT ? 0
-        :alucode==`ALU_BGE ? 0
-        :alucode==`ALU_BGEU ? 0
-        :alucode==`ALU_BLTU ? 0
         :alucode==`ALU_LB ? op1+op2
         :alucode==`ALU_LH ? op1+op2
         :alucode==`ALU_LW ? op1+op2
@@ -45,17 +39,8 @@ module alu(
         :alucode==`ALU_SW ? op1+op2
         :alucode==`ALU_LUI ? op2
         :0;
-    assign br_taken= alucode==`ALU_ADD ? `DISABLE
-        :alucode==`ALU_SUB ? `DISABLE
-        :alucode==`ALU_SLT ? `DISABLE
-        :alucode==`ALU_SLTU ? `DISABLE
-        :alucode==`ALU_XOR ? `DISABLE
-        :alucode==`ALU_OR ? `DISABLE
-        :alucode==`ALU_AND ? `DISABLE
-        :alucode==`ALU_SLL ? `DISABLE
-        :alucode==`ALU_SRL ? `DISABLE
-        :alucode==`ALU_SRA ? `DISABLE
-        :alucode==`ALU_JAL ? `ENABLE
+        
+    assign br_taken= alucode==`ALU_JAL ? `ENABLE
         :alucode==`ALU_JALR ? `ENABLE
         :alucode==`ALU_BEQ ? (op1==op2)
         :alucode==`ALU_BNE ? (op1!=op2)
@@ -63,14 +48,6 @@ module alu(
         :alucode==`ALU_BLTU ? (op1<op2)
         :alucode==`ALU_BGE ? ($signed(op1)>=$signed(op2))
         :alucode==`ALU_BGEU ? (op1>=op2)
-        :alucode==`ALU_LB ? `DISABLE
-        :alucode==`ALU_LH ? `DISABLE
-        :alucode==`ALU_LW ? `DISABLE
-        :alucode==`ALU_LBU ? `DISABLE
-        :alucode==`ALU_LHU ? `DISABLE
-        :alucode==`ALU_SB ? `DISABLE
-        :alucode==`ALU_SH ? `DISABLE
-        :alucode==`ALU_SW ? `DISABLE
-        :alucode==`ALU_LUI ? `DISABLE:0;
+        :`DISABLE;
 
 endmodule

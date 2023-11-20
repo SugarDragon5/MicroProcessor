@@ -1,5 +1,29 @@
 # 後期実験「マイクロプロセッサの設計と実装」
 ## アーキテクチャ
+### バージョン3.1: BTB+PHT付き5サイクル・パイプライン
+#### 更新内容
+- 分岐予測にPattern History Tableを実装。サイズ256の2ビットカウンタ予測器
+#### パフォーマンス
+70MHzで動作すると仮定したときのシミュレーション結果。
+```
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 944239053
+Total time (secs): 13
+Iterations/Sec   : 84
+Iterations       : 1100
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x33ff
+Correct operation validated. See readme.txt for run and reporting rules.
+```
+
+## 歴代アーキテクチャ
 ### バージョン3.0: 分岐予測付き5サイクル・パイプライン
 #### 更新内容
 - 簡易なBranch Target Bufferを実装。PCの上6bitをtag, 下10-2=8bitをindexとするキャッシュを作成し、ヒットしたらNPCに採用
@@ -49,7 +73,6 @@ seedcrc          : 0xe9f5
 Correct operation validated. See readme.txt for run and reporting rules.
 ```
 
-## 歴代アーキテクチャ
 ### バージョン2.1
 分散RAM→Block RAM
 

@@ -24,15 +24,18 @@ module BTB (
     assign tag_input=PC[15:10];
     assign tag_mem=r_data[19:14];
     assign NPC_predict=(r_valid&&tag_input==tag_mem)?{r_data[13:0], 2'b00}:PC+4;
-    always @(negedge clk) begin
+    always @(posedge clk) begin
         if(we) begin
             mem[w_addr] <= {PC_actual[15:10], NPC_actual[15:2]};
+        end
+    end
+    always @(posedge clk) begin
+        if(rst)begin
+            mem_valid<=0;
+        end else if(we) begin
             mem_valid[w_addr] <= 1;
         end
     end
-    always @(posedge rst) begin
-        mem_valid <= 0;
-    end        
     assign r_data = mem[r_addr];
     assign r_valid = mem_valid[r_addr];
 endmodule
