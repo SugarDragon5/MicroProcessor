@@ -11,7 +11,6 @@ module decoder(
     output wire is_load,      // ロード命令判定フラグ
     output wire is_store,     // ストア命令判定フラグ
     output wire is_halt,
-    output wire is_multiclock,  //マルチクロック命令判定フラグ
     output wire [1:0] ram_read_size,
     output wire [1:0] ram_write_size,
     output wire ram_read_signed
@@ -142,60 +141,22 @@ module decoder(
                             case (ir[31:25])
                                 7'b0000000: decode_alucode = `ALU_ADD;
                                 7'b0100000: decode_alucode = `ALU_SUB;
-                                7'b0000001: decode_alucode = `ALU_MUL;
                                 default: decode_alucode = `ALU_NOP;
                             endcase
                         end
-                        3'b001: begin
-                            case(ir[31:25])
-                                7'b0000000: decode_alucode = `ALU_SLL;
-                                7'b0000001: decode_alucode = `ALU_MULH;
-                                default: decode_alucode = `ALU_NOP;
-                            endcase
-                        end
-                        3'b010: begin
-                            case(ir[31:25])
-                                7'b0000000: decode_alucode = `ALU_SLT;
-                                7'b0000001: decode_alucode = `ALU_MULHSU;
-                                default: decode_alucode = `ALU_NOP;
-                            endcase
-                        end
-                        3'b011: begin
-                            case(ir[31:25])
-                                7'b0000000: decode_alucode = `ALU_SLTU;
-                                7'b0000001: decode_alucode = `ALU_MULHU;
-                                default: decode_alucode = `ALU_NOP;
-                            endcase
-                        end
-                        3'b100: begin
-                            case(ir[31:25])
-                                7'b0000000: decode_alucode = `ALU_XOR;
-                                7'b0000001: decode_alucode = `ALU_DIV;
-                                default: decode_alucode = `ALU_NOP;
-                            endcase
-                        end
+                        3'b001: decode_alucode = `ALU_SLL;
+                        3'b010: decode_alucode = `ALU_SLT;
+                        3'b011: decode_alucode = `ALU_SLTU;
+                        3'b100: decode_alucode = `ALU_XOR;
                         3'b101: begin
                             case (ir[31:25])
                                 7'b0000000: decode_alucode = `ALU_SRL;
                                 7'b0100000: decode_alucode = `ALU_SRA;
-                                7'b0000001: decode_alucode = `ALU_DIVU;
                                 default: decode_alucode = `ALU_NOP;
                             endcase
                         end
-                        3'b110: begin
-                            case (ir[31:25])
-                                7'b0000000: decode_alucode = `ALU_OR;
-                                7'b0000001: decode_alucode = `ALU_REM;
-                                default: decode_alucode = `ALU_NOP;
-                            endcase
-                        end
-                        3'b111: begin
-                            case (ir[31:25])
-                                7'b0000000: decode_alucode = `ALU_AND;
-                                7'b0000001: decode_alucode = `ALU_REMU;
-                                default: decode_alucode = `ALU_NOP;
-                            endcase
-                        end
+                        3'b110: decode_alucode = `ALU_OR;
+                        3'b111: decode_alucode = `ALU_AND;
                         default: decode_alucode = `ALU_NOP;
                     endcase
                 end
@@ -334,11 +295,6 @@ module decoder(
         end
     endfunction
 
-    function calc_multiclock;
-        input [31:0] ir;
-        calc_multiclock=(ir[31:25]=='b0000001&&ir[6:0]==`OP);
-    endfunction
-
 
 
     assign srcreg1_num = decode_srcreg1_num(ir);
@@ -351,7 +307,6 @@ module decoder(
     assign reg_we = decode_reg_we(ir);
     assign is_load = decode_is_load(ir);
     assign is_store = decode_is_store(ir);
-    assign is_multiclock = calc_multiclock(ir);
     assign ram_read_size = calc_ram_read_size(alucode);
     assign ram_read_signed = calc_ram_read_signed(alucode);
     assign ram_write_size = calc_ram_write_size(alucode);

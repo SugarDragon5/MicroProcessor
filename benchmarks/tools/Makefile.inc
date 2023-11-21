@@ -23,7 +23,7 @@ CFLAGS = \
 	-nodefaultlibs \
 	-nostartfiles \
 	-mstrict-align \
-	-march=rv32im \
+	-march=rv32i \
 
 ASFLAGS = \
   -march=rv32i \

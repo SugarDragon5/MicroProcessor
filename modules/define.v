@@ -53,14 +53,6 @@
 `define ALU_SLL   6'd24
 `define ALU_SRL   6'd25
 `define ALU_SRA   6'd26
-`define ALU_MUL   6'd27
-`define ALU_MULH  6'd28
-`define ALU_MULHSU 6'd29
-`define ALU_MULHU 6'd30
-`define ALU_DIV   6'd31
-`define ALU_DIVU  6'd32
-`define ALU_REM   6'd33
-`define ALU_REMU  6'd34
 `define ALU_NOP   6'd63
 
 // ALU入力タイプ
