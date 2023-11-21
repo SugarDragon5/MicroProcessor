@@ -18,14 +18,24 @@ module RAM(clk, we, r_addr, r_data, w_addr, w_data, write_mode, read_mode, read_
         $readmemh(`DATAHEX, mem);
     end
 
-    always @(negedge clk) begin
+    reg [31:0] r_addr_reg;
+    reg [1:0] write_mode_reg, read_mode_reg;
+    reg read_signed_reg;
+    always @(posedge clk) begin
+        r_addr_reg <= r_addr;
+        write_mode_reg <= write_mode;
+        read_mode_reg <= read_mode;
+        read_signed_reg <= read_signed;
+    end
+
+    always @(posedge clk) begin
         if(we_byte[0])mem[w_addr[31:2]][7:0] <= w_data_gen[7:0];
         if(we_byte[1])mem[w_addr[31:2]][15:8] <= w_data_gen[15:8];
         if(we_byte[2])mem[w_addr[31:2]][23:16] <= w_data_gen[23:16];
         if(we_byte[3])mem[w_addr[31:2]][31:24] <= w_data_gen[31:24];
     end
 
-    always @(negedge clk) begin
+    always @(posedge clk) begin
         //読み出し
         r_data_raw <= mem[r_addr[31:2]];
     end
@@ -89,7 +99,7 @@ module RAM(clk, we, r_addr, r_data, w_addr, w_data, write_mode, read_mode, read_
         endcase
     end        
     endfunction
-    assign r_data = calc_r_data(r_data_raw, r_addr, read_mode, read_signed);
+    assign r_data = calc_r_data(r_data_raw, r_addr_reg, read_mode_reg, read_signed_reg);
 
     //書き込みデータの処理
     function [3:0] calc_we;
