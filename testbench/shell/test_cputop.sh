@@ -4,6 +4,6 @@
 
 rm "cpu.out"
 echo "Compiling"
-iverilog -g2009 -o cpu.out ../../modules/testdata.v ../../modules/define.v ../../modules/hardware_counter.v ../../modules/uart.v ../../modules/BTB.v ../../modules/PHT.v ../../modules/Predictor.v ../../modules/alu.v ../../modules/decoder.v ../../modules/OperandSwitcher.v ../../modules/NPCGenerator.v ../../modules/RAM.v ../../modules/RegisterFile.v ../../modules/ROM.v  ../../modules/CPUTop.v ../cpu/test_cputop.v
+iverilog -g2009 -o cpu.out ../../modules/testdata.v ../../modules/define.v ../../modules/hardware_counter.v ../../modules/uart.v ../../modules/BTB.v ../../modules/PHT.v ../../modules/Predictor.v ../../modules/alu.v ../../modules/multiclockalu.v ../../modules/decoder.v ../../modules/OperandSwitcher.v ../../modules/NPCGenerator.v ../../modules/RAM.v ../../modules/RegisterFile.v ../../modules/ROM.v  ../../modules/CPUTop.v ../cpu/test_cputop.v
 echo "Running"
 ./cpu.out
