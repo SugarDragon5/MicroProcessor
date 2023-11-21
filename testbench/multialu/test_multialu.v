@@ -17,16 +17,17 @@
 module tb_multiclockalu;
 reg clk;
 
-reg is_multiclock_input;
+reg rst;
 reg [5:0] alucode;
 reg [31:0] op1;
 reg [31:0] op2;
 wire [31:0] result;
 wire done;
+reg [31:0] ans;
 
 multiclockalu multiclockalu1(
     .clk(clk),
-    .is_multiclock_input(is_multiclock_input),
+    .rst(rst),
     .alucode(alucode),
     .op1(op1),
     .op2(op2),
@@ -41,9 +42,6 @@ integer i;
 initial begin
     $dumpfile("tb_multiclockalu.vcd");
     $dumpvars(0, tb_multiclockalu);
-    for(i=0;i<5;i++)begin
-        $dumpvars(1, multiclockalu1.pipereg[i]);
-    end
 end
 
 initial begin
@@ -52,17 +50,17 @@ initial begin
     alucode<=`ALU_MUL;
     op1<=32'h00003141;
     op2<=32'h00005926;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MUL Test1 [small case]", 32'h1126e8a6);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MUL Test1 [small case]", 32'h1126e8a6);
 
     //MUL Test2
     alucode<=`ALU_MUL;
     op1<=32'h27182818;
     op2<=32'h45904523;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MUL Test2 [large case]", 32'he09bf348);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MUL Test2 [large case]", 32'he09bf348);
     
 
     //MUL Test4
@@ -74,33 +72,33 @@ initial begin
     alucode<=`ALU_MUL;
     op1<=12345678;
     op2<=-9876543;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MUL Test3 [pos * neg (large)]", 32'h598535ce);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MUL Test3 [pos * neg (large)]", 32'h598535ce);
 
     //MULH Test1
     alucode<=`ALU_MULH;
     op1<=32'h00003141;
     op2<=32'h00005926;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULH Test1 [small case]", 32'h00000000);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULH Test1 [small case]", 32'h00000000);
     
     //MULH Test2
     alucode<=`ALU_MULH;
     op1<=32'h27182818;  //d655894552 <2147483647 -> positive
     op2<=32'h45904523;  //d1167082787 <2147483647 -> positive
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULH Test2 [pos * pos]", 32'h0a9f8af3);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULH Test2 [pos * pos]", 32'h0a9f8af3);
 
     //MULH Test3
     alucode<=`ALU_MULH;
     op1<=-4;
     op2<=7;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULH Test3 [neg * pos (small)]", 32'hffffffff);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULH Test3 [neg * pos (small)]", 32'hffffffff);
 
     //MULH Test4
     //a: 12345678, b: -9876543
@@ -111,17 +109,17 @@ initial begin
     alucode<=`ALU_MULH;
     op1<=12345678;
     op2<=-9876543;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULH Test4 [pos * neg (large)]", 32'hffff911a);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULH Test4 [pos * neg (large)]", 32'hffff911a);
 
     //MULHSU Test1
     alucode<=`ALU_MULHSU;
     op1<=32'h00003141;
     op2<=32'h00005926;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULHSU Test1 [small case]", 32'h00000000);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULHSU Test1 [small case]", 32'h00000000);
 
     //MULHSU Test2
     //dec: 53024283244601010
@@ -130,9 +128,9 @@ initial begin
     alucode<=`ALU_MULHSU;
     op1<=12345678;
     op2<=4294967295;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULHSU Test2 [pos * pos (large)]", 32'h00bc614d);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULHSU Test2 [pos * pos (large)]", 32'h00bc614d);
 
     //MULHSU Test2
     //a: 4294967295(->-1), b: 12345678
@@ -142,17 +140,17 @@ initial begin
     alucode<=`ALU_MULHSU;
     op1<=-1;
     op2<=1234578;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULHSU Test2 [neg * pos (large)]", 32'hffffffff);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULHSU Test2 [neg * pos (large)]", 32'hffffffff);
 
     //MULHU Test1
     alucode<=`ALU_MULHU;
     op1<=32'h00003141;
     op2<=32'h00005926;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULHU Test1 [small case]", 32'h00000000);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULHU Test1 [small case]", 32'h00000000);
 
     //MULHU Test2
     //dec: 53024283244601010
@@ -161,58 +159,120 @@ initial begin
     alucode<=`ALU_MULHU;
     op1<=12345678;
     op2<=4294967295;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #300;`test("MULHU Test2 [pos * pos (large)]", 32'h00bc614d);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("MULHU Test2 [pos * pos (large)]", 32'h00bc614d);
     
     
     //DIV Test1
     alucode<=`ALU_DIV;
     op1<=32'h00003141;
     op2<=32'h00005926;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #100;`test("DIV Test1 [small case]", 32'h00000000);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("DIV Test1 [small case]", 32'h00000000);
 
     //DIV Test2
     alucode<=`ALU_DIV;
     op1<=32'h27182818;
     op2<=32'h00001234;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #100;`test("DIV Test2 [large case]", 32'h000225cd);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("DIV Test2 [large case]", 32'h000225cd);
     
     //DIV Test3
     alucode<=`ALU_DIV;
     op1<=-20;
     op2<=7;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #100;`test("DIV Test3 [neg / pos (small)]", -2);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("DIV Test3 [neg / pos (small)]", -2);
 
     //DIV Test4
     alucode<=`ALU_DIV;
     op1<=10;
     op2<=0;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #100;`test("DIV Test4 [div by zero]", -1);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("DIV Test4 [div by zero]", -1);
 
     //DIVU Test1
     alucode<=`ALU_DIVU;
     op1<=32'h00003141;
     op2<=32'h00005926;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #100;`test("DIVU Test1 [small case]", 32'h00000000);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("DIVU Test1 [small case]", 32'h00000000);
 
     //DIVU Test2
     alucode<=`ALU_DIVU;
     op1<=4294967295;
     op2<=1234;
-    is_multiclock_input<=1'b1;
-    #10;is_multiclock_input<=1'b0;
-    #100;`test("DIVU Test2 [large case]", 32'h000351bcc);
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("DIVU Test2 [large case]", 32'h000351bcc);
+
+    //REM Test1
+    alucode<=`ALU_REM;
+    op1<=32'h00003141;
+    op2<=32'h00005926;
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("REM Test1 [small case]", 32'h00003141);
+
+    //REM Test2
+    alucode<=`ALU_REM;
+    op1<=32'h27182818;
+    op2<=32'h00001234;
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    ans<=$signed(op1)%$signed(op2);
+    #500;`test("REM Test2 [large case]", ans);
+
+    //REM Test3
+    alucode<=`ALU_REM;
+    op1<=-20;
+    op2<=7;
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    ans<=$signed(op1)%$signed(op2);
+    #500;`test("REM Test3 [neg / pos (small)]", ans);
+
+    //REM Test4
+    alucode<=`ALU_REM;
+    op1<=-32;
+    op2<=-7;
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    ans<=$signed(op1)%$signed(op2);
+    #500;`test("REM Test4 [neg / neg (small)]", ans);
+
+    //REM Test5
+    alucode<=`ALU_REM;
+    op1<=10;
+    op2<=0;
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    #500;`test("REM Test5 [rem by zero]", op1);
+
+    //REMU Test1
+    alucode<=`ALU_REMU;
+    op1<=32'h00003141;
+    op2<=32'h00005926;
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    ans<=op1%op2;
+    #500;`test("REMU Test1 [small case]", ans);
+    
+    //REMU Test2
+    alucode<=`ALU_REMU;
+    op1<=4294967295;
+    op2<=1234;
+    rst<=1'b1;
+    #10;rst<=1'b0;
+    ans<=op1%op2;
+    #500;`test("REMU Test2 [large case]", ans);
+
 
 
     $display("All tests passed!");
