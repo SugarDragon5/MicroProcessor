@@ -1,5 +1,28 @@
 # 後期実験「マイクロプロセッサの設計と実装」
 ## アーキテクチャ
+### バージョン3.1.1: 
+#### 更新内容
+- ALU, NPC計算の並列化によるEXステージクリティカルパス改善
+- クロックのDuty Cycleを5:5 -> 4:6に変更し、negedgeを長くすることで、RAM書き込みに十分な時間を確保
+#### パフォーマンス
+90MHzでのコンパイル・シミュレーションに成功。CoreMarkスコア105。
+```
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 1716798772
+Total time (secs): 19
+Iterations/Sec   : 105
+Iterations       : 2000
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x4983
+Correct operation validated. See readme.txt for run and reporting rules.
+```
 ### バージョン3.1: BTB+PHT付き5サイクル・パイプライン
 #### 更新内容
 - 分岐予測にPattern History Tableを実装。サイズ256の2ビットカウンタ予測器
@@ -90,7 +113,7 @@ Correct operation validated. See readme.txt for run and reporting rules.
 ~~100MHzで35MHzで動作？~~ →もっと小さい。10MHzくらい？
 とりあえず5MHz。
 ```
-// Simulation Result
+// Simulation Result(35MHz)
 // TODO: FPGAで実行し、置換
 2K performance run parameters for coremark.
 CoreMark Size    : 666

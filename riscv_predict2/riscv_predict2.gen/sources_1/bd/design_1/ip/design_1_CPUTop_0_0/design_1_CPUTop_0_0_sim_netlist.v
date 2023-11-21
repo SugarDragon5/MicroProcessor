@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Sat Nov 18 16:00:12 2023
+// Date        : Mon Nov 20 22:56:09 2023
 // Host        : DJ00001 running 64-bit Ubuntu 20.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/denjo/b3exp/riscv_predict2/riscv_predict2.gen/sources_1/bd/design_1/ip/design_1_CPUTop_0_0/design_1_CPUTop_0_0_sim_netlist.v
@@ -157,17 +157,17 @@ module design_1_CPUTop_0_0_BTB
     \pc_EX_reg[8]_6 ,
     \pc_EX_reg[8]_7 ,
     \pc_EX_reg[8]_8 ,
+    \alucode_EX_reg[2] ,
     \alucode_EX_reg[1] ,
-    \pc_IF_reg[9] ,
-    \pc_IF_reg[9]_0 ,
-    \pc_IF_reg[9]_1 ,
-    \pc_IF_reg[9]_2 ,
-    \pc_IF_reg[9]_3 ,
-    \pc_IF_reg[9]_4 ,
-    \pc_IF_reg[9]_5 ,
-    \pc_IF_reg[9]_6 ,
+    \npc_jalr_EX_reg[7] ,
+    \npc_jalr_EX_reg[6] ,
+    \npc_jalr_EX_reg[5] ,
+    \npc_jalr_EX_reg[4] ,
+    \npc_jalr_EX_reg[3] ,
+    \npc_jalr_EX_reg[3]_0 ,
+    \npc_jalr_EX_reg[2] ,
+    \npc_jalr_EX_reg[2]_0 ,
     CO,
-    \oprr_EX_reg[30]_3 ,
     \mem_valid_reg[255]_0 ,
     sysclk,
     \mem_valid_reg[254]_0 ,
@@ -443,7 +443,7 @@ module design_1_CPUTop_0_0_BTB
     \pc_IF_reg[6] ,
     \pc_IF_reg[7] ,
     \pc_IF_reg[8] ,
-    \pc_IF_reg[9]_7 ,
+    \pc_IF_reg[9] ,
     \pc_IF_reg[10] ,
     \pc_IF_reg[11] ,
     \pc_IF_reg[12] ,
@@ -577,17 +577,17 @@ module design_1_CPUTop_0_0_BTB
   output \pc_EX_reg[8]_6 ;
   output \pc_EX_reg[8]_7 ;
   output \pc_EX_reg[8]_8 ;
+  output \alucode_EX_reg[2] ;
   output \alucode_EX_reg[1] ;
-  output \pc_IF_reg[9] ;
-  output \pc_IF_reg[9]_0 ;
-  output \pc_IF_reg[9]_1 ;
-  output \pc_IF_reg[9]_2 ;
-  output \pc_IF_reg[9]_3 ;
-  output \pc_IF_reg[9]_4 ;
-  output \pc_IF_reg[9]_5 ;
-  output \pc_IF_reg[9]_6 ;
+  output \npc_jalr_EX_reg[7] ;
+  output \npc_jalr_EX_reg[6] ;
+  output \npc_jalr_EX_reg[5] ;
+  output \npc_jalr_EX_reg[4] ;
+  output \npc_jalr_EX_reg[3] ;
+  output \npc_jalr_EX_reg[3]_0 ;
+  output \npc_jalr_EX_reg[2] ;
+  output \npc_jalr_EX_reg[2]_0 ;
   output [0:0]CO;
-  output [0:0]\oprr_EX_reg[30]_3 ;
   input \mem_valid_reg[255]_0 ;
   input sysclk;
   input \mem_valid_reg[254]_0 ;
@@ -863,7 +863,7 @@ module design_1_CPUTop_0_0_BTB
   input \pc_IF_reg[6] ;
   input \pc_IF_reg[7] ;
   input \pc_IF_reg[8] ;
-  input \pc_IF_reg[9]_7 ;
+  input \pc_IF_reg[9] ;
   input \pc_IF_reg[10] ;
   input \pc_IF_reg[11] ;
   input \pc_IF_reg[12] ;
@@ -903,23 +903,26 @@ module design_1_CPUTop_0_0_BTB
   wire NPC_predict0_carry_n_3;
   wire [15:0]Q;
   wire \alucode_EX_reg[1] ;
+  wire \alucode_EX_reg[2] ;
   wire [31:0]br_taken6_carry__2;
   wire [31:0]br_taken6_carry__2_0;
   wire is_taken_predict;
-  wire mem_reg_0_63_0_2_i_12_n_0;
   wire mem_reg_0_63_0_2_i_12_n_1;
   wire mem_reg_0_63_0_2_i_12_n_2;
   wire mem_reg_0_63_0_2_i_12_n_3;
-  wire mem_reg_0_63_0_2_i_13_n_0;
+  wire mem_reg_0_63_0_2_i_13_n_2;
+  wire mem_reg_0_63_0_2_i_13_n_3;
   wire mem_reg_0_63_0_2_i_14_n_0;
+  wire mem_reg_0_63_0_2_i_14_n_1;
+  wire mem_reg_0_63_0_2_i_14_n_2;
+  wire mem_reg_0_63_0_2_i_14_n_3;
   wire mem_reg_0_63_0_2_i_15_n_0;
-  wire mem_reg_0_63_0_2_i_16_n_2;
-  wire mem_reg_0_63_0_2_i_16_n_3;
+  wire mem_reg_0_63_0_2_i_16_n_0;
   wire mem_reg_0_63_0_2_i_17_n_0;
-  wire mem_reg_0_63_0_2_i_17_n_1;
-  wire mem_reg_0_63_0_2_i_17_n_2;
-  wire mem_reg_0_63_0_2_i_17_n_3;
   wire mem_reg_0_63_0_2_i_18_n_0;
+  wire mem_reg_0_63_0_2_i_18_n_1;
+  wire mem_reg_0_63_0_2_i_18_n_2;
+  wire mem_reg_0_63_0_2_i_18_n_3;
   wire mem_reg_0_63_0_2_i_19_n_0;
   wire mem_reg_0_63_0_2_i_20_n_0;
   wire mem_reg_0_63_0_2_i_21_n_0;
@@ -932,12 +935,12 @@ module design_1_CPUTop_0_0_BTB
   wire mem_reg_0_63_0_2_i_25_n_0;
   wire mem_reg_0_63_0_2_i_26_n_0;
   wire mem_reg_0_63_0_2_i_27_n_0;
+  wire mem_reg_0_63_0_2_i_27_n_1;
+  wire mem_reg_0_63_0_2_i_27_n_2;
+  wire mem_reg_0_63_0_2_i_27_n_3;
   wire mem_reg_0_63_0_2_i_28_n_0;
   wire mem_reg_0_63_0_2_i_29_n_0;
   wire mem_reg_0_63_0_2_i_30_n_0;
-  wire mem_reg_0_63_0_2_i_30_n_1;
-  wire mem_reg_0_63_0_2_i_30_n_2;
-  wire mem_reg_0_63_0_2_i_30_n_3;
   wire mem_reg_0_63_0_2_i_31_n_0;
   wire mem_reg_0_63_0_2_i_32_n_0;
   wire mem_reg_0_63_0_2_i_33_n_0;
@@ -946,8 +949,7 @@ module design_1_CPUTop_0_0_BTB
   wire mem_reg_0_63_0_2_i_36_n_0;
   wire mem_reg_0_63_0_2_i_37_n_0;
   wire mem_reg_0_63_0_2_i_38_n_0;
-  wire mem_reg_0_63_0_2_i_9_n_2;
-  wire mem_reg_0_63_0_2_i_9_n_3;
+  wire mem_reg_0_63_0_2_i_39_n_0;
   wire [255:0]mem_valid;
   wire \mem_valid_reg[0]_0 ;
   wire \mem_valid_reg[100]_0 ;
@@ -1206,6 +1208,14 @@ module design_1_CPUTop_0_0_BTB
   wire \mem_valid_reg[99]_0 ;
   wire \mem_valid_reg[9]_0 ;
   wire [13:0]npc_EX;
+  wire \npc_jalr_EX_reg[2] ;
+  wire \npc_jalr_EX_reg[2]_0 ;
+  wire \npc_jalr_EX_reg[3] ;
+  wire \npc_jalr_EX_reg[3]_0 ;
+  wire \npc_jalr_EX_reg[4] ;
+  wire \npc_jalr_EX_reg[5] ;
+  wire \npc_jalr_EX_reg[6] ;
+  wire \npc_jalr_EX_reg[7] ;
   wire nrst;
   wire nrst_0;
   wire [3:0]\oprl_EX_reg[30] ;
@@ -1213,7 +1223,6 @@ module design_1_CPUTop_0_0_BTB
   wire [3:0]\oprr_EX_reg[30]_0 ;
   wire [3:0]\oprr_EX_reg[30]_1 ;
   wire [3:0]\oprr_EX_reg[30]_2 ;
-  wire [0:0]\oprr_EX_reg[30]_3 ;
   wire \pc_EX_reg[2] ;
   wire \pc_EX_reg[2]_0 ;
   wire \pc_EX_reg[2]_1 ;
@@ -1386,14 +1395,6 @@ module design_1_CPUTop_0_0_BTB
   wire \pc_IF_reg[7] ;
   wire \pc_IF_reg[8] ;
   wire \pc_IF_reg[9] ;
-  wire \pc_IF_reg[9]_0 ;
-  wire \pc_IF_reg[9]_1 ;
-  wire \pc_IF_reg[9]_2 ;
-  wire \pc_IF_reg[9]_3 ;
-  wire \pc_IF_reg[9]_4 ;
-  wire \pc_IF_reg[9]_5 ;
-  wire \pc_IF_reg[9]_6 ;
-  wire \pc_IF_reg[9]_7 ;
   wire sysclk;
   wire sysclk_0;
   wire sysclk_1;
@@ -1479,14 +1480,14 @@ module design_1_CPUTop_0_0_BTB
   wire [3:2]NLW_NPC_predict0_carry__2_CO_UNCONNECTED;
   wire [3:3]NLW_NPC_predict0_carry__2_O_UNCONNECTED;
   wire NLW_mem_reg_0_63_0_2_DOD_UNCONNECTED;
+  wire [3:3]NLW_mem_reg_0_63_0_2_i_12_CO_UNCONNECTED;
   wire [3:0]NLW_mem_reg_0_63_0_2_i_12_O_UNCONNECTED;
-  wire [3:3]NLW_mem_reg_0_63_0_2_i_16_CO_UNCONNECTED;
-  wire [3:0]NLW_mem_reg_0_63_0_2_i_16_O_UNCONNECTED;
-  wire [3:0]NLW_mem_reg_0_63_0_2_i_17_O_UNCONNECTED;
+  wire [3:3]NLW_mem_reg_0_63_0_2_i_13_CO_UNCONNECTED;
+  wire [3:0]NLW_mem_reg_0_63_0_2_i_13_O_UNCONNECTED;
+  wire [3:0]NLW_mem_reg_0_63_0_2_i_14_O_UNCONNECTED;
+  wire [3:0]NLW_mem_reg_0_63_0_2_i_18_O_UNCONNECTED;
   wire [3:0]NLW_mem_reg_0_63_0_2_i_22_O_UNCONNECTED;
-  wire [3:0]NLW_mem_reg_0_63_0_2_i_30_O_UNCONNECTED;
-  wire [3:3]NLW_mem_reg_0_63_0_2_i_9_CO_UNCONNECTED;
-  wire [3:0]NLW_mem_reg_0_63_0_2_i_9_O_UNCONNECTED;
+  wire [3:0]NLW_mem_reg_0_63_0_2_i_27_O_UNCONNECTED;
   wire NLW_mem_reg_0_63_12_14_DOD_UNCONNECTED;
   wire NLW_mem_reg_0_63_15_17_DOD_UNCONNECTED;
   wire NLW_mem_reg_0_63_18_18_SPO_UNCONNECTED;
@@ -1773,256 +1774,263 @@ module design_1_CPUTop_0_0_BTB
         .WCLK(sysclk),
         .WE(\/pc_IF[15]_i_14 ));
   CARRY4 mem_reg_0_63_0_2_i_12
-       (.CI(mem_reg_0_63_0_2_i_17_n_0),
-        .CO({mem_reg_0_63_0_2_i_12_n_0,mem_reg_0_63_0_2_i_12_n_1,mem_reg_0_63_0_2_i_12_n_2,mem_reg_0_63_0_2_i_12_n_3}),
+       (.CI(mem_reg_0_63_0_2_i_14_n_0),
+        .CO({NLW_mem_reg_0_63_0_2_i_12_CO_UNCONNECTED[3],mem_reg_0_63_0_2_i_12_n_1,mem_reg_0_63_0_2_i_12_n_2,mem_reg_0_63_0_2_i_12_n_3}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(NLW_mem_reg_0_63_0_2_i_12_O_UNCONNECTED[3:0]),
-        .S({mem_reg_0_63_0_2_i_18_n_0,mem_reg_0_63_0_2_i_19_n_0,mem_reg_0_63_0_2_i_20_n_0,mem_reg_0_63_0_2_i_21_n_0}));
+        .S({1'b0,mem_reg_0_63_0_2_i_15_n_0,mem_reg_0_63_0_2_i_16_n_0,mem_reg_0_63_0_2_i_17_n_0}));
+  CARRY4 mem_reg_0_63_0_2_i_13
+       (.CI(mem_reg_0_63_0_2_i_18_n_0),
+        .CO({NLW_mem_reg_0_63_0_2_i_13_CO_UNCONNECTED[3],CO,mem_reg_0_63_0_2_i_13_n_2,mem_reg_0_63_0_2_i_13_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b1,1'b1,1'b1}),
+        .O(NLW_mem_reg_0_63_0_2_i_13_O_UNCONNECTED[3:0]),
+        .S({1'b0,mem_reg_0_63_0_2_i_19_n_0,mem_reg_0_63_0_2_i_20_n_0,mem_reg_0_63_0_2_i_21_n_0}));
+  CARRY4 mem_reg_0_63_0_2_i_14
+       (.CI(mem_reg_0_63_0_2_i_22_n_0),
+        .CO({mem_reg_0_63_0_2_i_14_n_0,mem_reg_0_63_0_2_i_14_n_1,mem_reg_0_63_0_2_i_14_n_2,mem_reg_0_63_0_2_i_14_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_mem_reg_0_63_0_2_i_14_O_UNCONNECTED[3:0]),
+        .S({mem_reg_0_63_0_2_i_23_n_0,mem_reg_0_63_0_2_i_24_n_0,mem_reg_0_63_0_2_i_25_n_0,mem_reg_0_63_0_2_i_26_n_0}));
   LUT4 #(
     .INIT(16'h9009)) 
-    mem_reg_0_63_0_2_i_13
+    mem_reg_0_63_0_2_i_15
        (.I0(br_taken6_carry__2[30]),
         .I1(br_taken6_carry__2_0[30]),
         .I2(br_taken6_carry__2[31]),
         .I3(br_taken6_carry__2_0[31]),
-        .O(mem_reg_0_63_0_2_i_13_n_0));
+        .O(mem_reg_0_63_0_2_i_15_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_14
+    mem_reg_0_63_0_2_i_16
        (.I0(br_taken6_carry__2[27]),
         .I1(br_taken6_carry__2_0[27]),
         .I2(br_taken6_carry__2_0[29]),
         .I3(br_taken6_carry__2[29]),
         .I4(br_taken6_carry__2_0[28]),
         .I5(br_taken6_carry__2[28]),
-        .O(mem_reg_0_63_0_2_i_14_n_0));
+        .O(mem_reg_0_63_0_2_i_16_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_15
+    mem_reg_0_63_0_2_i_17
        (.I0(br_taken6_carry__2[24]),
         .I1(br_taken6_carry__2_0[24]),
         .I2(br_taken6_carry__2_0[26]),
         .I3(br_taken6_carry__2[26]),
         .I4(br_taken6_carry__2_0[25]),
         .I5(br_taken6_carry__2[25]),
-        .O(mem_reg_0_63_0_2_i_15_n_0));
-  CARRY4 mem_reg_0_63_0_2_i_16
-       (.CI(mem_reg_0_63_0_2_i_22_n_0),
-        .CO({NLW_mem_reg_0_63_0_2_i_16_CO_UNCONNECTED[3],\oprr_EX_reg[30]_3 ,mem_reg_0_63_0_2_i_16_n_2,mem_reg_0_63_0_2_i_16_n_3}),
+        .O(mem_reg_0_63_0_2_i_17_n_0));
+  CARRY4 mem_reg_0_63_0_2_i_18
+       (.CI(mem_reg_0_63_0_2_i_27_n_0),
+        .CO({mem_reg_0_63_0_2_i_18_n_0,mem_reg_0_63_0_2_i_18_n_1,mem_reg_0_63_0_2_i_18_n_2,mem_reg_0_63_0_2_i_18_n_3}),
         .CYINIT(1'b0),
-        .DI({1'b0,1'b1,1'b1,1'b1}),
-        .O(NLW_mem_reg_0_63_0_2_i_16_O_UNCONNECTED[3:0]),
-        .S({1'b0,mem_reg_0_63_0_2_i_23_n_0,mem_reg_0_63_0_2_i_24_n_0,mem_reg_0_63_0_2_i_25_n_0}));
-  CARRY4 mem_reg_0_63_0_2_i_17
-       (.CI(1'b0),
-        .CO({mem_reg_0_63_0_2_i_17_n_0,mem_reg_0_63_0_2_i_17_n_1,mem_reg_0_63_0_2_i_17_n_2,mem_reg_0_63_0_2_i_17_n_3}),
-        .CYINIT(1'b1),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(NLW_mem_reg_0_63_0_2_i_17_O_UNCONNECTED[3:0]),
-        .S({mem_reg_0_63_0_2_i_26_n_0,mem_reg_0_63_0_2_i_27_n_0,mem_reg_0_63_0_2_i_28_n_0,mem_reg_0_63_0_2_i_29_n_0}));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_18
-       (.I0(br_taken6_carry__2[21]),
-        .I1(br_taken6_carry__2_0[21]),
-        .I2(br_taken6_carry__2_0[23]),
-        .I3(br_taken6_carry__2[23]),
-        .I4(br_taken6_carry__2_0[22]),
-        .I5(br_taken6_carry__2[22]),
-        .O(mem_reg_0_63_0_2_i_18_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
+        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .O(NLW_mem_reg_0_63_0_2_i_18_O_UNCONNECTED[3:0]),
+        .S({mem_reg_0_63_0_2_i_28_n_0,mem_reg_0_63_0_2_i_29_n_0,mem_reg_0_63_0_2_i_30_n_0,mem_reg_0_63_0_2_i_31_n_0}));
+  LUT4 #(
+    .INIT(16'h9009)) 
     mem_reg_0_63_0_2_i_19
-       (.I0(br_taken6_carry__2[18]),
-        .I1(br_taken6_carry__2_0[18]),
-        .I2(br_taken6_carry__2_0[20]),
-        .I3(br_taken6_carry__2[20]),
-        .I4(br_taken6_carry__2_0[19]),
-        .I5(br_taken6_carry__2[19]),
+       (.I0(br_taken6_carry__2[30]),
+        .I1(br_taken6_carry__2_0[30]),
+        .I2(br_taken6_carry__2[31]),
+        .I3(br_taken6_carry__2_0[31]),
         .O(mem_reg_0_63_0_2_i_19_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     mem_reg_0_63_0_2_i_20
-       (.I0(br_taken6_carry__2[15]),
-        .I1(br_taken6_carry__2_0[15]),
-        .I2(br_taken6_carry__2_0[17]),
-        .I3(br_taken6_carry__2[17]),
-        .I4(br_taken6_carry__2_0[16]),
-        .I5(br_taken6_carry__2[16]),
-        .O(mem_reg_0_63_0_2_i_20_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_21
-       (.I0(br_taken6_carry__2[12]),
-        .I1(br_taken6_carry__2_0[12]),
-        .I2(br_taken6_carry__2_0[14]),
-        .I3(br_taken6_carry__2[14]),
-        .I4(br_taken6_carry__2_0[13]),
-        .I5(br_taken6_carry__2[13]),
-        .O(mem_reg_0_63_0_2_i_21_n_0));
-  CARRY4 mem_reg_0_63_0_2_i_22
-       (.CI(mem_reg_0_63_0_2_i_30_n_0),
-        .CO({mem_reg_0_63_0_2_i_22_n_0,mem_reg_0_63_0_2_i_22_n_1,mem_reg_0_63_0_2_i_22_n_2,mem_reg_0_63_0_2_i_22_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_mem_reg_0_63_0_2_i_22_O_UNCONNECTED[3:0]),
-        .S({mem_reg_0_63_0_2_i_31_n_0,mem_reg_0_63_0_2_i_32_n_0,mem_reg_0_63_0_2_i_33_n_0,mem_reg_0_63_0_2_i_34_n_0}));
-  LUT4 #(
-    .INIT(16'h9009)) 
-    mem_reg_0_63_0_2_i_23
-       (.I0(br_taken6_carry__2[30]),
-        .I1(br_taken6_carry__2_0[30]),
-        .I2(br_taken6_carry__2[31]),
-        .I3(br_taken6_carry__2_0[31]),
-        .O(mem_reg_0_63_0_2_i_23_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_24
        (.I0(br_taken6_carry__2[27]),
         .I1(br_taken6_carry__2_0[27]),
         .I2(br_taken6_carry__2_0[29]),
         .I3(br_taken6_carry__2[29]),
         .I4(br_taken6_carry__2_0[28]),
         .I5(br_taken6_carry__2[28]),
-        .O(mem_reg_0_63_0_2_i_24_n_0));
+        .O(mem_reg_0_63_0_2_i_20_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_25
+    mem_reg_0_63_0_2_i_21
        (.I0(br_taken6_carry__2[24]),
         .I1(br_taken6_carry__2_0[24]),
         .I2(br_taken6_carry__2_0[26]),
         .I3(br_taken6_carry__2[26]),
         .I4(br_taken6_carry__2_0[25]),
         .I5(br_taken6_carry__2[25]),
-        .O(mem_reg_0_63_0_2_i_25_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_26
-       (.I0(br_taken6_carry__2[9]),
-        .I1(br_taken6_carry__2_0[9]),
-        .I2(br_taken6_carry__2_0[11]),
-        .I3(br_taken6_carry__2[11]),
-        .I4(br_taken6_carry__2_0[10]),
-        .I5(br_taken6_carry__2[10]),
-        .O(mem_reg_0_63_0_2_i_26_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_27
-       (.I0(br_taken6_carry__2[6]),
-        .I1(br_taken6_carry__2_0[6]),
-        .I2(br_taken6_carry__2_0[8]),
-        .I3(br_taken6_carry__2[8]),
-        .I4(br_taken6_carry__2_0[7]),
-        .I5(br_taken6_carry__2[7]),
-        .O(mem_reg_0_63_0_2_i_27_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_28
-       (.I0(br_taken6_carry__2[3]),
-        .I1(br_taken6_carry__2_0[3]),
-        .I2(br_taken6_carry__2_0[5]),
-        .I3(br_taken6_carry__2[5]),
-        .I4(br_taken6_carry__2_0[4]),
-        .I5(br_taken6_carry__2[4]),
-        .O(mem_reg_0_63_0_2_i_28_n_0));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_29
-       (.I0(br_taken6_carry__2[0]),
-        .I1(br_taken6_carry__2_0[0]),
-        .I2(br_taken6_carry__2_0[2]),
-        .I3(br_taken6_carry__2[2]),
-        .I4(br_taken6_carry__2_0[1]),
-        .I5(br_taken6_carry__2[1]),
-        .O(mem_reg_0_63_0_2_i_29_n_0));
-  CARRY4 mem_reg_0_63_0_2_i_30
+        .O(mem_reg_0_63_0_2_i_21_n_0));
+  CARRY4 mem_reg_0_63_0_2_i_22
        (.CI(1'b0),
-        .CO({mem_reg_0_63_0_2_i_30_n_0,mem_reg_0_63_0_2_i_30_n_1,mem_reg_0_63_0_2_i_30_n_2,mem_reg_0_63_0_2_i_30_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b1,1'b1,1'b1,1'b1}),
-        .O(NLW_mem_reg_0_63_0_2_i_30_O_UNCONNECTED[3:0]),
-        .S({mem_reg_0_63_0_2_i_35_n_0,mem_reg_0_63_0_2_i_36_n_0,mem_reg_0_63_0_2_i_37_n_0,mem_reg_0_63_0_2_i_38_n_0}));
+        .CO({mem_reg_0_63_0_2_i_22_n_0,mem_reg_0_63_0_2_i_22_n_1,mem_reg_0_63_0_2_i_22_n_2,mem_reg_0_63_0_2_i_22_n_3}),
+        .CYINIT(1'b1),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_mem_reg_0_63_0_2_i_22_O_UNCONNECTED[3:0]),
+        .S({mem_reg_0_63_0_2_i_32_n_0,mem_reg_0_63_0_2_i_33_n_0,mem_reg_0_63_0_2_i_34_n_0,mem_reg_0_63_0_2_i_35_n_0}));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_31
+    mem_reg_0_63_0_2_i_23
        (.I0(br_taken6_carry__2[21]),
         .I1(br_taken6_carry__2_0[21]),
         .I2(br_taken6_carry__2_0[23]),
         .I3(br_taken6_carry__2[23]),
         .I4(br_taken6_carry__2_0[22]),
         .I5(br_taken6_carry__2[22]),
-        .O(mem_reg_0_63_0_2_i_31_n_0));
+        .O(mem_reg_0_63_0_2_i_23_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_32
+    mem_reg_0_63_0_2_i_24
        (.I0(br_taken6_carry__2[18]),
         .I1(br_taken6_carry__2_0[18]),
         .I2(br_taken6_carry__2_0[20]),
         .I3(br_taken6_carry__2[20]),
         .I4(br_taken6_carry__2_0[19]),
         .I5(br_taken6_carry__2[19]),
-        .O(mem_reg_0_63_0_2_i_32_n_0));
+        .O(mem_reg_0_63_0_2_i_24_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_33
+    mem_reg_0_63_0_2_i_25
        (.I0(br_taken6_carry__2[15]),
         .I1(br_taken6_carry__2_0[15]),
         .I2(br_taken6_carry__2_0[17]),
         .I3(br_taken6_carry__2[17]),
         .I4(br_taken6_carry__2_0[16]),
         .I5(br_taken6_carry__2[16]),
-        .O(mem_reg_0_63_0_2_i_33_n_0));
+        .O(mem_reg_0_63_0_2_i_25_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_34
+    mem_reg_0_63_0_2_i_26
        (.I0(br_taken6_carry__2[12]),
         .I1(br_taken6_carry__2_0[12]),
         .I2(br_taken6_carry__2_0[14]),
         .I3(br_taken6_carry__2[14]),
         .I4(br_taken6_carry__2_0[13]),
         .I5(br_taken6_carry__2[13]),
-        .O(mem_reg_0_63_0_2_i_34_n_0));
+        .O(mem_reg_0_63_0_2_i_26_n_0));
+  CARRY4 mem_reg_0_63_0_2_i_27
+       (.CI(1'b0),
+        .CO({mem_reg_0_63_0_2_i_27_n_0,mem_reg_0_63_0_2_i_27_n_1,mem_reg_0_63_0_2_i_27_n_2,mem_reg_0_63_0_2_i_27_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b1,1'b1,1'b1,1'b1}),
+        .O(NLW_mem_reg_0_63_0_2_i_27_O_UNCONNECTED[3:0]),
+        .S({mem_reg_0_63_0_2_i_36_n_0,mem_reg_0_63_0_2_i_37_n_0,mem_reg_0_63_0_2_i_38_n_0,mem_reg_0_63_0_2_i_39_n_0}));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_35
+    mem_reg_0_63_0_2_i_28
+       (.I0(br_taken6_carry__2[21]),
+        .I1(br_taken6_carry__2_0[21]),
+        .I2(br_taken6_carry__2_0[23]),
+        .I3(br_taken6_carry__2[23]),
+        .I4(br_taken6_carry__2_0[22]),
+        .I5(br_taken6_carry__2[22]),
+        .O(mem_reg_0_63_0_2_i_28_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_29
+       (.I0(br_taken6_carry__2[18]),
+        .I1(br_taken6_carry__2_0[18]),
+        .I2(br_taken6_carry__2_0[20]),
+        .I3(br_taken6_carry__2[20]),
+        .I4(br_taken6_carry__2_0[19]),
+        .I5(br_taken6_carry__2[19]),
+        .O(mem_reg_0_63_0_2_i_29_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_30
+       (.I0(br_taken6_carry__2[15]),
+        .I1(br_taken6_carry__2_0[15]),
+        .I2(br_taken6_carry__2_0[17]),
+        .I3(br_taken6_carry__2[17]),
+        .I4(br_taken6_carry__2_0[16]),
+        .I5(br_taken6_carry__2[16]),
+        .O(mem_reg_0_63_0_2_i_30_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_31
+       (.I0(br_taken6_carry__2[12]),
+        .I1(br_taken6_carry__2_0[12]),
+        .I2(br_taken6_carry__2_0[14]),
+        .I3(br_taken6_carry__2[14]),
+        .I4(br_taken6_carry__2_0[13]),
+        .I5(br_taken6_carry__2[13]),
+        .O(mem_reg_0_63_0_2_i_31_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_32
        (.I0(br_taken6_carry__2[9]),
         .I1(br_taken6_carry__2_0[9]),
         .I2(br_taken6_carry__2_0[11]),
         .I3(br_taken6_carry__2[11]),
         .I4(br_taken6_carry__2_0[10]),
         .I5(br_taken6_carry__2[10]),
-        .O(mem_reg_0_63_0_2_i_35_n_0));
+        .O(mem_reg_0_63_0_2_i_32_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_36
+    mem_reg_0_63_0_2_i_33
        (.I0(br_taken6_carry__2[6]),
         .I1(br_taken6_carry__2_0[6]),
         .I2(br_taken6_carry__2_0[8]),
         .I3(br_taken6_carry__2[8]),
         .I4(br_taken6_carry__2_0[7]),
         .I5(br_taken6_carry__2[7]),
-        .O(mem_reg_0_63_0_2_i_36_n_0));
+        .O(mem_reg_0_63_0_2_i_33_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_37
+    mem_reg_0_63_0_2_i_34
        (.I0(br_taken6_carry__2[3]),
         .I1(br_taken6_carry__2_0[3]),
         .I2(br_taken6_carry__2_0[5]),
         .I3(br_taken6_carry__2[5]),
         .I4(br_taken6_carry__2_0[4]),
         .I5(br_taken6_carry__2[4]),
-        .O(mem_reg_0_63_0_2_i_37_n_0));
+        .O(mem_reg_0_63_0_2_i_34_n_0));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
-    mem_reg_0_63_0_2_i_38
+    mem_reg_0_63_0_2_i_35
        (.I0(br_taken6_carry__2[0]),
         .I1(br_taken6_carry__2_0[0]),
         .I2(br_taken6_carry__2_0[2]),
         .I3(br_taken6_carry__2[2]),
         .I4(br_taken6_carry__2_0[1]),
         .I5(br_taken6_carry__2[1]),
+        .O(mem_reg_0_63_0_2_i_35_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_36
+       (.I0(br_taken6_carry__2[9]),
+        .I1(br_taken6_carry__2_0[9]),
+        .I2(br_taken6_carry__2_0[11]),
+        .I3(br_taken6_carry__2[11]),
+        .I4(br_taken6_carry__2_0[10]),
+        .I5(br_taken6_carry__2[10]),
+        .O(mem_reg_0_63_0_2_i_36_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_37
+       (.I0(br_taken6_carry__2[6]),
+        .I1(br_taken6_carry__2_0[6]),
+        .I2(br_taken6_carry__2_0[8]),
+        .I3(br_taken6_carry__2[8]),
+        .I4(br_taken6_carry__2_0[7]),
+        .I5(br_taken6_carry__2[7]),
+        .O(mem_reg_0_63_0_2_i_37_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_38
+       (.I0(br_taken6_carry__2[3]),
+        .I1(br_taken6_carry__2_0[3]),
+        .I2(br_taken6_carry__2_0[5]),
+        .I3(br_taken6_carry__2[5]),
+        .I4(br_taken6_carry__2_0[4]),
+        .I5(br_taken6_carry__2[4]),
         .O(mem_reg_0_63_0_2_i_38_n_0));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    mem_reg_0_63_0_2_i_39
+       (.I0(br_taken6_carry__2[0]),
+        .I1(br_taken6_carry__2_0[0]),
+        .I2(br_taken6_carry__2_0[2]),
+        .I3(br_taken6_carry__2[2]),
+        .I4(br_taken6_carry__2_0[1]),
+        .I5(br_taken6_carry__2[1]),
+        .O(mem_reg_0_63_0_2_i_39_n_0));
   LUT6 #(
     .INIT(64'h0000000000000002)) 
     mem_reg_0_63_0_2_i_5
@@ -2033,13 +2041,13 @@ module design_1_CPUTop_0_0_BTB
         .I4(\pc_IF_reg[31] [2]),
         .I5(\pc_IF_reg[31] [3]),
         .O(\alucode_EX_reg[1] ));
-  CARRY4 mem_reg_0_63_0_2_i_9
-       (.CI(mem_reg_0_63_0_2_i_12_n_0),
-        .CO({NLW_mem_reg_0_63_0_2_i_9_CO_UNCONNECTED[3],CO,mem_reg_0_63_0_2_i_9_n_2,mem_reg_0_63_0_2_i_9_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(NLW_mem_reg_0_63_0_2_i_9_O_UNCONNECTED[3:0]),
-        .S({1'b0,mem_reg_0_63_0_2_i_13_n_0,mem_reg_0_63_0_2_i_14_n_0,mem_reg_0_63_0_2_i_15_n_0}));
+  LUT3 #(
+    .INIT(8'h40)) 
+    mem_reg_0_63_0_2_i_8
+       (.I0(\pc_IF_reg[31] [2]),
+        .I1(\pc_IF_reg[31] [1]),
+        .I2(mem_reg_0_63_0_2_i_12_n_1),
+        .O(\alucode_EX_reg[2] ));
   (* METHODOLOGY_DRC_VIOS = "" *) 
   (* RTL_RAM_BITS = "5120" *) 
   (* RTL_RAM_NAME = "inst/predictor1/btb1/mem" *) 
@@ -2800,7 +2808,7 @@ module design_1_CPUTop_0_0_BTB
         .DOD(NLW_mem_reg_64_127_9_11_DOD_UNCONNECTED),
         .WCLK(sysclk),
         .WE(\/pc_IF[15]_i_14_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[111]_i_2 
@@ -2809,7 +2817,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[9]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \mem_valid[127]_i_2 
@@ -2818,7 +2826,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[9]_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[143]_i_2 
@@ -2827,7 +2835,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [6]),
         .I3(\/pc_IF[15]_i_14_0 [7]),
         .O(\pc_EX_reg[6]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[159]_i_2 
@@ -2836,7 +2844,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [5]),
         .I3(\/pc_IF[15]_i_14_0 [4]),
         .O(\pc_EX_reg[8]_3 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     \mem_valid[15]_i_2 
@@ -2845,7 +2853,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[8] ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[175]_i_2 
@@ -2854,7 +2862,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[8]_4 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \mem_valid[191]_i_2 
@@ -2863,7 +2871,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[8]_5 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
     .INIT(16'hEFFF)) 
     \mem_valid[207]_i_2 
@@ -2872,7 +2880,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [6]),
         .I3(\/pc_IF[15]_i_14_0 [7]),
         .O(\pc_EX_reg[6] ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'hF7FF)) 
     \mem_valid[223]_i_2 
@@ -2881,7 +2889,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [5]),
         .I3(\/pc_IF[15]_i_14_0 [4]),
         .O(\pc_EX_reg[8]_6 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'hF7FF)) 
     \mem_valid[239]_i_2 
@@ -2890,7 +2898,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[8]_7 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     \mem_valid[240]_i_2 
@@ -2899,7 +2907,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[4] ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[241]_i_2 
@@ -2908,7 +2916,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [1]),
         .I3(\/pc_IF[15]_i_14_0 [0]),
         .O(\pc_EX_reg[4]_2 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[242]_i_2 
@@ -2917,7 +2925,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[4]_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'hEFFF)) 
     \mem_valid[243]_i_2 
@@ -2926,7 +2934,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[4]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[244]_i_2 
@@ -2935,7 +2943,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [3]),
         .I3(\/pc_IF[15]_i_14_0 [2]),
         .O(\pc_EX_reg[2]_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[245]_i_2 
@@ -2944,7 +2952,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [1]),
         .I3(\/pc_IF[15]_i_14_0 [0]),
         .O(\pc_EX_reg[5] ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[246]_i_2 
@@ -2953,7 +2961,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[5]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \mem_valid[247]_i_2 
@@ -2962,7 +2970,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[5]_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[248]_i_2 
@@ -2971,7 +2979,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [2]),
         .I3(\/pc_IF[15]_i_14_0 [3]),
         .O(\pc_EX_reg[2]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[249]_i_2 
@@ -2980,7 +2988,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [1]),
         .I3(\/pc_IF[15]_i_14_0 [0]),
         .O(\pc_EX_reg[4]_3 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[250]_i_2 
@@ -2989,7 +2997,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[4]_4 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \mem_valid[251]_i_2 
@@ -2998,7 +3006,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[4]_5 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'hEFFF)) 
     \mem_valid[252]_i_2 
@@ -3007,7 +3015,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [2]),
         .I3(\/pc_IF[15]_i_14_0 [3]),
         .O(\pc_EX_reg[2] ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
     .INIT(16'hF7FF)) 
     \mem_valid[253]_i_2 
@@ -3016,7 +3024,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [1]),
         .I3(\/pc_IF[15]_i_14_0 [0]),
         .O(\pc_EX_reg[4]_6 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'hF7FF)) 
     \mem_valid[254]_i_2 
@@ -3025,7 +3033,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[4]_7 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \mem_valid[255]_i_2 
@@ -3034,7 +3042,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[8]_8 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \mem_valid[255]_i_3 
@@ -3043,7 +3051,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [0]),
         .I3(\/pc_IF[15]_i_14_0 [1]),
         .O(\pc_EX_reg[4]_8 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[31]_i_2 
@@ -3052,7 +3060,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [5]),
         .I3(\/pc_IF[15]_i_14_0 [4]),
         .O(\pc_EX_reg[8]_2 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[47]_i_2 
@@ -3061,7 +3069,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[8]_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'hEFFF)) 
     \mem_valid[63]_i_2 
@@ -3070,7 +3078,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [4]),
         .I3(\/pc_IF[15]_i_14_0 [5]),
         .O(\pc_EX_reg[8]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'hFEFF)) 
     \mem_valid[79]_i_2 
@@ -3079,7 +3087,7 @@ module design_1_CPUTop_0_0_BTB
         .I2(\/pc_IF[15]_i_14_0 [7]),
         .I3(\/pc_IF[15]_i_14_0 [6]),
         .O(\pc_EX_reg[6]_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \mem_valid[95]_i_2 
@@ -5430,7 +5438,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[2]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9]_5 ));
+        .O(\npc_jalr_EX_reg[2] ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[2]_rep_i_1__0 
@@ -5440,7 +5448,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[2]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9]_6 ));
+        .O(\npc_jalr_EX_reg[2]_0 ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[3]_i_1 
@@ -5460,7 +5468,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[3]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9]_3 ));
+        .O(\npc_jalr_EX_reg[3] ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[3]_rep_i_1__0 
@@ -5470,7 +5478,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[3]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9]_4 ));
+        .O(\npc_jalr_EX_reg[3]_0 ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[4]_i_1 
@@ -5490,7 +5498,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[4]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9]_2 ));
+        .O(\npc_jalr_EX_reg[4] ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[5]_i_1 
@@ -5510,7 +5518,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[5]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9]_1 ));
+        .O(\npc_jalr_EX_reg[5] ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[6]_i_1 
@@ -5530,7 +5538,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[6]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9]_0 ));
+        .O(\npc_jalr_EX_reg[6] ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[7]_i_1 
@@ -5550,7 +5558,7 @@ module design_1_CPUTop_0_0_BTB
         .I3(is_taken_predict),
         .I4(NPC_predict0[7]),
         .I5(pc_IF1),
-        .O(\pc_IF_reg[9] ));
+        .O(\npc_jalr_EX_reg[7] ));
   LUT6 #(
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[8]_i_1 
@@ -5565,7 +5573,7 @@ module design_1_CPUTop_0_0_BTB
     .INIT(64'hAAAAAAAACFFFC000)) 
     \pc_IF[9]_i_1 
        (.I0(npc_EX[7]),
-        .I1(\pc_IF_reg[9]_7 ),
+        .I1(\pc_IF_reg[9] ),
         .I2(\pc_IF[15]_i_3_n_0 ),
         .I3(is_taken_predict),
         .I4(NPC_predict0[9]),
@@ -5839,110 +5847,39 @@ module design_1_CPUTop_0_0_CPUTop
   input nrst;
   input sysclk;
 
-  wire NPC0_carry__6_i_1_n_0;
-  wire NPC0_carry__6_i_2_n_0;
-  wire NPC0_carry__6_i_3_n_0;
-  wire NPC0_carry__6_i_4_n_0;
-  wire NPCGen1_n_0;
-  wire NPCGen1_n_1;
-  wire NPCGen1_n_10;
-  wire NPCGen1_n_11;
-  wire NPCGen1_n_12;
-  wire NPCGen1_n_13;
-  wire NPCGen1_n_14;
-  wire NPCGen1_n_15;
-  wire NPCGen1_n_16;
-  wire NPCGen1_n_17;
-  wire NPCGen1_n_18;
-  wire NPCGen1_n_19;
-  wire NPCGen1_n_2;
-  wire NPCGen1_n_3;
-  wire NPCGen1_n_36;
-  wire NPCGen1_n_37;
-  wire NPCGen1_n_38;
-  wire NPCGen1_n_39;
-  wire NPCGen1_n_4;
-  wire NPCGen1_n_40;
-  wire NPCGen1_n_41;
-  wire NPCGen1_n_42;
-  wire NPCGen1_n_5;
-  wire NPCGen1_n_6;
-  wire NPCGen1_n_7;
-  wire NPCGen1_n_8;
-  wire NPCGen1_n_9;
   wire alu1_n_0;
   wire alu1_n_1;
   wire alu1_n_10;
-  wire alu1_n_100;
-  wire alu1_n_101;
-  wire alu1_n_102;
-  wire alu1_n_103;
-  wire alu1_n_104;
-  wire alu1_n_105;
-  wire alu1_n_106;
-  wire alu1_n_107;
-  wire alu1_n_108;
-  wire alu1_n_109;
   wire alu1_n_11;
-  wire alu1_n_110;
-  wire alu1_n_111;
-  wire alu1_n_112;
-  wire alu1_n_113;
-  wire alu1_n_114;
-  wire alu1_n_115;
-  wire alu1_n_116;
-  wire alu1_n_117;
-  wire alu1_n_118;
-  wire alu1_n_119;
   wire alu1_n_12;
-  wire alu1_n_120;
-  wire alu1_n_121;
-  wire alu1_n_122;
-  wire alu1_n_123;
-  wire alu1_n_124;
-  wire alu1_n_125;
-  wire alu1_n_126;
-  wire alu1_n_127;
-  wire alu1_n_128;
-  wire alu1_n_129;
   wire alu1_n_13;
-  wire alu1_n_130;
-  wire alu1_n_131;
-  wire alu1_n_132;
-  wire alu1_n_133;
-  wire alu1_n_134;
-  wire alu1_n_135;
-  wire alu1_n_136;
-  wire alu1_n_137;
-  wire alu1_n_138;
-  wire alu1_n_139;
   wire alu1_n_14;
-  wire alu1_n_140;
-  wire alu1_n_141;
-  wire alu1_n_142;
-  wire alu1_n_143;
-  wire alu1_n_144;
-  wire alu1_n_145;
-  wire alu1_n_146;
-  wire alu1_n_147;
-  wire alu1_n_148;
-  wire alu1_n_149;
   wire alu1_n_15;
-  wire alu1_n_150;
-  wire alu1_n_151;
-  wire alu1_n_152;
-  wire alu1_n_153;
-  wire alu1_n_154;
-  wire alu1_n_155;
-  wire alu1_n_156;
-  wire alu1_n_157;
-  wire alu1_n_158;
-  wire alu1_n_159;
   wire alu1_n_16;
-  wire alu1_n_160;
   wire alu1_n_17;
+  wire alu1_n_172;
+  wire alu1_n_173;
+  wire alu1_n_174;
+  wire alu1_n_175;
+  wire alu1_n_176;
+  wire alu1_n_177;
+  wire alu1_n_178;
+  wire alu1_n_179;
   wire alu1_n_18;
+  wire alu1_n_180;
+  wire alu1_n_181;
+  wire alu1_n_182;
+  wire alu1_n_183;
+  wire alu1_n_184;
+  wire alu1_n_185;
+  wire alu1_n_186;
+  wire alu1_n_187;
+  wire alu1_n_188;
+  wire alu1_n_189;
   wire alu1_n_19;
+  wire alu1_n_190;
+  wire alu1_n_191;
+  wire alu1_n_192;
   wire alu1_n_193;
   wire alu1_n_194;
   wire alu1_n_195;
@@ -6204,29 +6141,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire alu1_n_425;
   wire alu1_n_426;
   wire alu1_n_427;
-  wire alu1_n_428;
-  wire alu1_n_429;
   wire alu1_n_43;
-  wire alu1_n_430;
-  wire alu1_n_431;
-  wire alu1_n_432;
-  wire alu1_n_433;
-  wire alu1_n_434;
-  wire alu1_n_435;
-  wire alu1_n_436;
-  wire alu1_n_437;
-  wire alu1_n_438;
-  wire alu1_n_439;
   wire alu1_n_44;
-  wire alu1_n_440;
-  wire alu1_n_441;
-  wire alu1_n_442;
-  wire alu1_n_443;
-  wire alu1_n_444;
-  wire alu1_n_445;
-  wire alu1_n_446;
-  wire alu1_n_447;
-  wire alu1_n_448;
   wire alu1_n_45;
   wire alu1_n_46;
   wire alu1_n_47;
@@ -6238,23 +6154,17 @@ module design_1_CPUTop_0_0_CPUTop
   wire alu1_n_52;
   wire alu1_n_53;
   wire alu1_n_54;
-  wire alu1_n_55;
-  wire alu1_n_56;
-  wire alu1_n_57;
-  wire alu1_n_58;
-  wire alu1_n_59;
   wire alu1_n_6;
-  wire alu1_n_60;
-  wire alu1_n_61;
-  wire alu1_n_62;
-  wire alu1_n_63;
-  wire alu1_n_64;
   wire alu1_n_7;
+  wire alu1_n_71;
+  wire alu1_n_72;
+  wire alu1_n_73;
+  wire alu1_n_74;
+  wire alu1_n_75;
+  wire alu1_n_76;
+  wire alu1_n_77;
   wire alu1_n_8;
   wire alu1_n_9;
-  wire alu1_n_97;
-  wire alu1_n_98;
-  wire alu1_n_99;
   wire [31:0]alu_result;
   wire alu_result1_carry__6_i_1_n_0;
   wire alu_result1_carry__6_i_2_n_0;
@@ -6262,6 +6172,14 @@ module design_1_CPUTop_0_0_CPUTop
   wire alu_result1_carry__6_i_4_n_0;
   wire \alu_result_MA[0]_i_10_n_0 ;
   wire \alu_result_MA[0]_i_11_n_0 ;
+  wire \alu_result_MA[0]_i_12_n_0 ;
+  wire \alu_result_MA[0]_i_13_n_0 ;
+  wire \alu_result_MA[0]_i_14_n_0 ;
+  wire \alu_result_MA[0]_i_15_n_0 ;
+  wire \alu_result_MA[0]_i_16_n_0 ;
+  wire \alu_result_MA[0]_i_17_n_0 ;
+  wire \alu_result_MA[0]_i_18_n_0 ;
+  wire \alu_result_MA[0]_i_19_n_0 ;
   wire \alu_result_MA[0]_i_2_n_0 ;
   wire \alu_result_MA[0]_i_5_n_0 ;
   wire \alu_result_MA[0]_i_9_n_0 ;
@@ -6269,8 +6187,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[10]_i_11_n_0 ;
   wire \alu_result_MA[10]_i_12_n_0 ;
   wire \alu_result_MA[10]_i_13_n_0 ;
-  wire \alu_result_MA[10]_i_2_n_0 ;
-  wire \alu_result_MA[10]_i_6_n_0 ;
+  wire \alu_result_MA[10]_i_3_n_0 ;
+  wire \alu_result_MA[10]_i_5_n_0 ;
   wire \alu_result_MA[10]_i_7_n_0 ;
   wire \alu_result_MA[10]_i_8_n_0 ;
   wire \alu_result_MA[10]_i_9_n_0 ;
@@ -6278,26 +6196,26 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[11]_i_11_n_0 ;
   wire \alu_result_MA[11]_i_12_n_0 ;
   wire \alu_result_MA[11]_i_13_n_0 ;
-  wire \alu_result_MA[11]_i_2_n_0 ;
-  wire \alu_result_MA[11]_i_6_n_0 ;
+  wire \alu_result_MA[11]_i_3_n_0 ;
+  wire \alu_result_MA[11]_i_5_n_0 ;
   wire \alu_result_MA[11]_i_7_n_0 ;
   wire \alu_result_MA[11]_i_8_n_0 ;
   wire \alu_result_MA[11]_i_9_n_0 ;
   wire \alu_result_MA[12]_i_10_n_0 ;
+  wire \alu_result_MA[12]_i_11_n_0 ;
   wire \alu_result_MA[12]_i_12_n_0 ;
   wire \alu_result_MA[12]_i_13_n_0 ;
   wire \alu_result_MA[12]_i_14_n_0 ;
-  wire \alu_result_MA[12]_i_2_n_0 ;
-  wire \alu_result_MA[12]_i_6_n_0 ;
-  wire \alu_result_MA[12]_i_7_n_0 ;
+  wire \alu_result_MA[12]_i_3_n_0 ;
+  wire \alu_result_MA[12]_i_5_n_0 ;
   wire \alu_result_MA[12]_i_8_n_0 ;
   wire \alu_result_MA[12]_i_9_n_0 ;
   wire \alu_result_MA[13]_i_10_n_0 ;
   wire \alu_result_MA[13]_i_11_n_0 ;
   wire \alu_result_MA[13]_i_12_n_0 ;
   wire \alu_result_MA[13]_i_13_n_0 ;
-  wire \alu_result_MA[13]_i_2_n_0 ;
-  wire \alu_result_MA[13]_i_6_n_0 ;
+  wire \alu_result_MA[13]_i_3_n_0 ;
+  wire \alu_result_MA[13]_i_5_n_0 ;
   wire \alu_result_MA[13]_i_7_n_0 ;
   wire \alu_result_MA[13]_i_8_n_0 ;
   wire \alu_result_MA[13]_i_9_n_0 ;
@@ -6305,8 +6223,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[14]_i_11_n_0 ;
   wire \alu_result_MA[14]_i_12_n_0 ;
   wire \alu_result_MA[14]_i_13_n_0 ;
-  wire \alu_result_MA[14]_i_2_n_0 ;
-  wire \alu_result_MA[14]_i_6_n_0 ;
+  wire \alu_result_MA[14]_i_3_n_0 ;
+  wire \alu_result_MA[14]_i_5_n_0 ;
   wire \alu_result_MA[14]_i_7_n_0 ;
   wire \alu_result_MA[14]_i_8_n_0 ;
   wire \alu_result_MA[14]_i_9_n_0 ;
@@ -6314,19 +6232,19 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[15]_i_11_n_0 ;
   wire \alu_result_MA[15]_i_12_n_0 ;
   wire \alu_result_MA[15]_i_13_n_0 ;
-  wire \alu_result_MA[15]_i_2_n_0 ;
-  wire \alu_result_MA[15]_i_6_n_0 ;
+  wire \alu_result_MA[15]_i_3_n_0 ;
+  wire \alu_result_MA[15]_i_5_n_0 ;
   wire \alu_result_MA[15]_i_7_n_0 ;
   wire \alu_result_MA[15]_i_8_n_0 ;
   wire \alu_result_MA[15]_i_9_n_0 ;
   wire \alu_result_MA[16]_i_10_n_0 ;
+  wire \alu_result_MA[16]_i_11_n_0 ;
   wire \alu_result_MA[16]_i_12_n_0 ;
   wire \alu_result_MA[16]_i_13_n_0 ;
   wire \alu_result_MA[16]_i_14_n_0 ;
   wire \alu_result_MA[16]_i_15_n_0 ;
-  wire \alu_result_MA[16]_i_2_n_0 ;
-  wire \alu_result_MA[16]_i_6_n_0 ;
-  wire \alu_result_MA[16]_i_7_n_0 ;
+  wire \alu_result_MA[16]_i_3_n_0 ;
+  wire \alu_result_MA[16]_i_5_n_0 ;
   wire \alu_result_MA[16]_i_8_n_0 ;
   wire \alu_result_MA[16]_i_9_n_0 ;
   wire \alu_result_MA[17]_i_10_n_0 ;
@@ -6334,8 +6252,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[17]_i_12_n_0 ;
   wire \alu_result_MA[17]_i_13_n_0 ;
   wire \alu_result_MA[17]_i_14_n_0 ;
-  wire \alu_result_MA[17]_i_2_n_0 ;
-  wire \alu_result_MA[17]_i_6_n_0 ;
+  wire \alu_result_MA[17]_i_3_n_0 ;
+  wire \alu_result_MA[17]_i_5_n_0 ;
   wire \alu_result_MA[17]_i_7_n_0 ;
   wire \alu_result_MA[17]_i_8_n_0 ;
   wire \alu_result_MA[17]_i_9_n_0 ;
@@ -6344,8 +6262,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[18]_i_12_n_0 ;
   wire \alu_result_MA[18]_i_13_n_0 ;
   wire \alu_result_MA[18]_i_14_n_0 ;
-  wire \alu_result_MA[18]_i_2_n_0 ;
-  wire \alu_result_MA[18]_i_6_n_0 ;
+  wire \alu_result_MA[18]_i_3_n_0 ;
+  wire \alu_result_MA[18]_i_5_n_0 ;
   wire \alu_result_MA[18]_i_7_n_0 ;
   wire \alu_result_MA[18]_i_8_n_0 ;
   wire \alu_result_MA[18]_i_9_n_0 ;
@@ -6355,24 +6273,22 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[19]_i_13_n_0 ;
   wire \alu_result_MA[19]_i_14_n_0 ;
   wire \alu_result_MA[19]_i_15_n_0 ;
-  wire \alu_result_MA[19]_i_2_n_0 ;
-  wire \alu_result_MA[19]_i_6_n_0 ;
+  wire \alu_result_MA[19]_i_3_n_0 ;
+  wire \alu_result_MA[19]_i_5_n_0 ;
   wire \alu_result_MA[19]_i_7_n_0 ;
   wire \alu_result_MA[19]_i_8_n_0 ;
   wire \alu_result_MA[19]_i_9_n_0 ;
-  wire \alu_result_MA[1]_i_2_n_0 ;
-  wire \alu_result_MA[1]_i_6_n_0 ;
+  wire \alu_result_MA[1]_i_3_n_0 ;
+  wire \alu_result_MA[1]_i_5_n_0 ;
   wire \alu_result_MA[1]_i_7_n_0 ;
-  wire \alu_result_MA[1]_i_8_n_0 ;
-  wire \alu_result_MA[1]_i_9_n_0 ;
   wire \alu_result_MA[20]_i_10_n_0 ;
+  wire \alu_result_MA[20]_i_11_n_0 ;
   wire \alu_result_MA[20]_i_12_n_0 ;
   wire \alu_result_MA[20]_i_13_n_0 ;
   wire \alu_result_MA[20]_i_14_n_0 ;
   wire \alu_result_MA[20]_i_15_n_0 ;
-  wire \alu_result_MA[20]_i_2_n_0 ;
-  wire \alu_result_MA[20]_i_6_n_0 ;
-  wire \alu_result_MA[20]_i_7_n_0 ;
+  wire \alu_result_MA[20]_i_3_n_0 ;
+  wire \alu_result_MA[20]_i_5_n_0 ;
   wire \alu_result_MA[20]_i_8_n_0 ;
   wire \alu_result_MA[20]_i_9_n_0 ;
   wire \alu_result_MA[21]_i_10_n_0 ;
@@ -6380,8 +6296,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[21]_i_12_n_0 ;
   wire \alu_result_MA[21]_i_13_n_0 ;
   wire \alu_result_MA[21]_i_14_n_0 ;
-  wire \alu_result_MA[21]_i_2_n_0 ;
-  wire \alu_result_MA[21]_i_6_n_0 ;
+  wire \alu_result_MA[21]_i_3_n_0 ;
+  wire \alu_result_MA[21]_i_5_n_0 ;
   wire \alu_result_MA[21]_i_7_n_0 ;
   wire \alu_result_MA[21]_i_8_n_0 ;
   wire \alu_result_MA[21]_i_9_n_0 ;
@@ -6390,8 +6306,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[22]_i_12_n_0 ;
   wire \alu_result_MA[22]_i_13_n_0 ;
   wire \alu_result_MA[22]_i_14_n_0 ;
-  wire \alu_result_MA[22]_i_2_n_0 ;
-  wire \alu_result_MA[22]_i_6_n_0 ;
+  wire \alu_result_MA[22]_i_3_n_0 ;
+  wire \alu_result_MA[22]_i_5_n_0 ;
   wire \alu_result_MA[22]_i_7_n_0 ;
   wire \alu_result_MA[22]_i_8_n_0 ;
   wire \alu_result_MA[22]_i_9_n_0 ;
@@ -6399,26 +6315,26 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[23]_i_11_n_0 ;
   wire \alu_result_MA[23]_i_12_n_0 ;
   wire \alu_result_MA[23]_i_13_n_0 ;
-  wire \alu_result_MA[23]_i_2_n_0 ;
-  wire \alu_result_MA[23]_i_6_n_0 ;
+  wire \alu_result_MA[23]_i_3_n_0 ;
+  wire \alu_result_MA[23]_i_5_n_0 ;
   wire \alu_result_MA[23]_i_7_n_0 ;
   wire \alu_result_MA[23]_i_8_n_0 ;
   wire \alu_result_MA[23]_i_9_n_0 ;
   wire \alu_result_MA[24]_i_10_n_0 ;
+  wire \alu_result_MA[24]_i_11_n_0 ;
   wire \alu_result_MA[24]_i_12_n_0 ;
   wire \alu_result_MA[24]_i_13_n_0 ;
   wire \alu_result_MA[24]_i_14_n_0 ;
-  wire \alu_result_MA[24]_i_2_n_0 ;
-  wire \alu_result_MA[24]_i_6_n_0 ;
-  wire \alu_result_MA[24]_i_7_n_0 ;
+  wire \alu_result_MA[24]_i_3_n_0 ;
+  wire \alu_result_MA[24]_i_5_n_0 ;
   wire \alu_result_MA[24]_i_8_n_0 ;
   wire \alu_result_MA[24]_i_9_n_0 ;
   wire \alu_result_MA[25]_i_10_n_0 ;
   wire \alu_result_MA[25]_i_11_n_0 ;
   wire \alu_result_MA[25]_i_12_n_0 ;
   wire \alu_result_MA[25]_i_13_n_0 ;
-  wire \alu_result_MA[25]_i_2_n_0 ;
-  wire \alu_result_MA[25]_i_6_n_0 ;
+  wire \alu_result_MA[25]_i_3_n_0 ;
+  wire \alu_result_MA[25]_i_5_n_0 ;
   wire \alu_result_MA[25]_i_7_n_0 ;
   wire \alu_result_MA[25]_i_8_n_0 ;
   wire \alu_result_MA[25]_i_9_n_0 ;
@@ -6426,8 +6342,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[26]_i_11_n_0 ;
   wire \alu_result_MA[26]_i_12_n_0 ;
   wire \alu_result_MA[26]_i_13_n_0 ;
-  wire \alu_result_MA[26]_i_2_n_0 ;
-  wire \alu_result_MA[26]_i_6_n_0 ;
+  wire \alu_result_MA[26]_i_3_n_0 ;
+  wire \alu_result_MA[26]_i_5_n_0 ;
   wire \alu_result_MA[26]_i_7_n_0 ;
   wire \alu_result_MA[26]_i_8_n_0 ;
   wire \alu_result_MA[26]_i_9_n_0 ;
@@ -6436,42 +6352,44 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[27]_i_12_n_0 ;
   wire \alu_result_MA[27]_i_13_n_0 ;
   wire \alu_result_MA[27]_i_14_n_0 ;
-  wire \alu_result_MA[27]_i_2_n_0 ;
-  wire \alu_result_MA[27]_i_6_n_0 ;
+  wire \alu_result_MA[27]_i_3_n_0 ;
+  wire \alu_result_MA[27]_i_5_n_0 ;
   wire \alu_result_MA[27]_i_7_n_0 ;
   wire \alu_result_MA[27]_i_8_n_0 ;
   wire \alu_result_MA[27]_i_9_n_0 ;
   wire \alu_result_MA[28]_i_10_n_0 ;
+  wire \alu_result_MA[28]_i_11_n_0 ;
   wire \alu_result_MA[28]_i_12_n_0 ;
   wire \alu_result_MA[28]_i_13_n_0 ;
   wire \alu_result_MA[28]_i_14_n_0 ;
-  wire \alu_result_MA[28]_i_2_n_0 ;
-  wire \alu_result_MA[28]_i_6_n_0 ;
-  wire \alu_result_MA[28]_i_7_n_0 ;
+  wire \alu_result_MA[28]_i_3_n_0 ;
+  wire \alu_result_MA[28]_i_5_n_0 ;
   wire \alu_result_MA[28]_i_8_n_0 ;
   wire \alu_result_MA[28]_i_9_n_0 ;
   wire \alu_result_MA[29]_i_10_n_0 ;
   wire \alu_result_MA[29]_i_11_n_0 ;
-  wire \alu_result_MA[29]_i_2_n_0 ;
-  wire \alu_result_MA[29]_i_6_n_0 ;
+  wire \alu_result_MA[29]_i_3_n_0 ;
+  wire \alu_result_MA[29]_i_5_n_0 ;
   wire \alu_result_MA[29]_i_7_n_0 ;
   wire \alu_result_MA[29]_i_8_n_0 ;
   wire \alu_result_MA[29]_i_9_n_0 ;
   wire \alu_result_MA[2]_i_10_n_0 ;
-  wire \alu_result_MA[2]_i_11_n_0 ;
-  wire \alu_result_MA[2]_i_2_n_0 ;
-  wire \alu_result_MA[2]_i_6_n_0 ;
+  wire \alu_result_MA[2]_i_3_n_0 ;
+  wire \alu_result_MA[2]_i_5_n_0 ;
   wire \alu_result_MA[2]_i_7_n_0 ;
   wire \alu_result_MA[2]_i_8_n_0 ;
   wire \alu_result_MA[2]_i_9_n_0 ;
   wire \alu_result_MA[30]_i_10_n_0 ;
   wire \alu_result_MA[30]_i_11_n_0 ;
-  wire \alu_result_MA[30]_i_2_n_0 ;
-  wire \alu_result_MA[30]_i_6_n_0 ;
+  wire \alu_result_MA[30]_i_12_n_0 ;
+  wire \alu_result_MA[30]_i_13_n_0 ;
+  wire \alu_result_MA[30]_i_14_n_0 ;
+  wire \alu_result_MA[30]_i_1_n_0 ;
+  wire \alu_result_MA[30]_i_4_n_0 ;
+  wire \alu_result_MA[30]_i_5_n_0 ;
   wire \alu_result_MA[30]_i_7_n_0 ;
-  wire \alu_result_MA[30]_i_8_n_0 ;
-  wire \alu_result_MA[30]_i_9_n_0 ;
   wire \alu_result_MA[31]_i_10_n_0 ;
+  wire \alu_result_MA[31]_i_11_n_0 ;
   wire \alu_result_MA[31]_i_12_n_0 ;
   wire \alu_result_MA[31]_i_13_n_0 ;
   wire \alu_result_MA[31]_i_14_n_0 ;
@@ -6480,96 +6398,90 @@ module design_1_CPUTop_0_0_CPUTop
   wire \alu_result_MA[31]_i_17_n_0 ;
   wire \alu_result_MA[31]_i_18_n_0 ;
   wire \alu_result_MA[31]_i_19_n_0 ;
+  wire \alu_result_MA[31]_i_20_n_0 ;
   wire \alu_result_MA[31]_i_2_n_0 ;
-  wire \alu_result_MA[31]_i_6_n_0 ;
   wire \alu_result_MA[31]_i_7_n_0 ;
   wire \alu_result_MA[31]_i_8_n_0 ;
-  wire \alu_result_MA[31]_i_9_n_0 ;
   wire \alu_result_MA[3]_i_10_n_0 ;
-  wire \alu_result_MA[3]_i_11_n_0 ;
-  wire \alu_result_MA[3]_i_2_n_0 ;
-  wire \alu_result_MA[3]_i_6_n_0 ;
+  wire \alu_result_MA[3]_i_3_n_0 ;
+  wire \alu_result_MA[3]_i_5_n_0 ;
   wire \alu_result_MA[3]_i_7_n_0 ;
   wire \alu_result_MA[3]_i_8_n_0 ;
   wire \alu_result_MA[3]_i_9_n_0 ;
   wire \alu_result_MA[4]_i_10_n_0 ;
+  wire \alu_result_MA[4]_i_11_n_0 ;
   wire \alu_result_MA[4]_i_12_n_0 ;
-  wire \alu_result_MA[4]_i_13_n_0 ;
-  wire \alu_result_MA[4]_i_2_n_0 ;
-  wire \alu_result_MA[4]_i_6_n_0 ;
-  wire \alu_result_MA[4]_i_7_n_0 ;
+  wire \alu_result_MA[4]_i_3_n_0 ;
+  wire \alu_result_MA[4]_i_5_n_0 ;
   wire \alu_result_MA[4]_i_8_n_0 ;
   wire \alu_result_MA[4]_i_9_n_0 ;
   wire \alu_result_MA[5]_i_10_n_0 ;
-  wire \alu_result_MA[5]_i_11_n_0 ;
-  wire \alu_result_MA[5]_i_2_n_0 ;
-  wire \alu_result_MA[5]_i_6_n_0 ;
+  wire \alu_result_MA[5]_i_3_n_0 ;
+  wire \alu_result_MA[5]_i_5_n_0 ;
   wire \alu_result_MA[5]_i_7_n_0 ;
   wire \alu_result_MA[5]_i_8_n_0 ;
   wire \alu_result_MA[5]_i_9_n_0 ;
   wire \alu_result_MA[6]_i_10_n_0 ;
-  wire \alu_result_MA[6]_i_11_n_0 ;
-  wire \alu_result_MA[6]_i_2_n_0 ;
-  wire \alu_result_MA[6]_i_6_n_0 ;
+  wire \alu_result_MA[6]_i_3_n_0 ;
+  wire \alu_result_MA[6]_i_5_n_0 ;
   wire \alu_result_MA[6]_i_7_n_0 ;
   wire \alu_result_MA[6]_i_8_n_0 ;
   wire \alu_result_MA[6]_i_9_n_0 ;
   wire \alu_result_MA[7]_i_10_n_0 ;
   wire \alu_result_MA[7]_i_11_n_0 ;
-  wire \alu_result_MA[7]_i_12_n_0 ;
-  wire \alu_result_MA[7]_i_2_n_0 ;
-  wire \alu_result_MA[7]_i_6_n_0 ;
+  wire \alu_result_MA[7]_i_3_n_0 ;
+  wire \alu_result_MA[7]_i_5_n_0 ;
   wire \alu_result_MA[7]_i_7_n_0 ;
   wire \alu_result_MA[7]_i_8_n_0 ;
   wire \alu_result_MA[7]_i_9_n_0 ;
   wire \alu_result_MA[8]_i_10_n_0 ;
+  wire \alu_result_MA[8]_i_11_n_0 ;
   wire \alu_result_MA[8]_i_12_n_0 ;
   wire \alu_result_MA[8]_i_13_n_0 ;
   wire \alu_result_MA[8]_i_14_n_0 ;
-  wire \alu_result_MA[8]_i_2_n_0 ;
-  wire \alu_result_MA[8]_i_6_n_0 ;
-  wire \alu_result_MA[8]_i_7_n_0 ;
+  wire \alu_result_MA[8]_i_3_n_0 ;
+  wire \alu_result_MA[8]_i_5_n_0 ;
   wire \alu_result_MA[8]_i_8_n_0 ;
   wire \alu_result_MA[8]_i_9_n_0 ;
   wire \alu_result_MA[9]_i_10_n_0 ;
   wire \alu_result_MA[9]_i_11_n_0 ;
   wire \alu_result_MA[9]_i_12_n_0 ;
   wire \alu_result_MA[9]_i_13_n_0 ;
-  wire \alu_result_MA[9]_i_2_n_0 ;
-  wire \alu_result_MA[9]_i_6_n_0 ;
+  wire \alu_result_MA[9]_i_3_n_0 ;
+  wire \alu_result_MA[9]_i_5_n_0 ;
   wire \alu_result_MA[9]_i_7_n_0 ;
   wire \alu_result_MA[9]_i_8_n_0 ;
   wire \alu_result_MA[9]_i_9_n_0 ;
-  wire \alu_result_MA_reg[12]_i_11_n_0 ;
-  wire \alu_result_MA_reg[12]_i_11_n_1 ;
-  wire \alu_result_MA_reg[12]_i_11_n_2 ;
-  wire \alu_result_MA_reg[12]_i_11_n_3 ;
-  wire \alu_result_MA_reg[16]_i_11_n_0 ;
-  wire \alu_result_MA_reg[16]_i_11_n_1 ;
-  wire \alu_result_MA_reg[16]_i_11_n_2 ;
-  wire \alu_result_MA_reg[16]_i_11_n_3 ;
-  wire \alu_result_MA_reg[20]_i_11_n_0 ;
-  wire \alu_result_MA_reg[20]_i_11_n_1 ;
-  wire \alu_result_MA_reg[20]_i_11_n_2 ;
-  wire \alu_result_MA_reg[20]_i_11_n_3 ;
-  wire \alu_result_MA_reg[24]_i_11_n_0 ;
-  wire \alu_result_MA_reg[24]_i_11_n_1 ;
-  wire \alu_result_MA_reg[24]_i_11_n_2 ;
-  wire \alu_result_MA_reg[24]_i_11_n_3 ;
-  wire \alu_result_MA_reg[28]_i_11_n_0 ;
-  wire \alu_result_MA_reg[28]_i_11_n_1 ;
-  wire \alu_result_MA_reg[28]_i_11_n_2 ;
-  wire \alu_result_MA_reg[28]_i_11_n_3 ;
-  wire \alu_result_MA_reg[31]_i_11_n_2 ;
-  wire \alu_result_MA_reg[31]_i_11_n_3 ;
-  wire \alu_result_MA_reg[4]_i_11_n_0 ;
-  wire \alu_result_MA_reg[4]_i_11_n_1 ;
-  wire \alu_result_MA_reg[4]_i_11_n_2 ;
-  wire \alu_result_MA_reg[4]_i_11_n_3 ;
-  wire \alu_result_MA_reg[8]_i_11_n_0 ;
-  wire \alu_result_MA_reg[8]_i_11_n_1 ;
-  wire \alu_result_MA_reg[8]_i_11_n_2 ;
-  wire \alu_result_MA_reg[8]_i_11_n_3 ;
+  wire \alu_result_MA_reg[12]_i_6_n_0 ;
+  wire \alu_result_MA_reg[12]_i_6_n_1 ;
+  wire \alu_result_MA_reg[12]_i_6_n_2 ;
+  wire \alu_result_MA_reg[12]_i_6_n_3 ;
+  wire \alu_result_MA_reg[16]_i_6_n_0 ;
+  wire \alu_result_MA_reg[16]_i_6_n_1 ;
+  wire \alu_result_MA_reg[16]_i_6_n_2 ;
+  wire \alu_result_MA_reg[16]_i_6_n_3 ;
+  wire \alu_result_MA_reg[20]_i_6_n_0 ;
+  wire \alu_result_MA_reg[20]_i_6_n_1 ;
+  wire \alu_result_MA_reg[20]_i_6_n_2 ;
+  wire \alu_result_MA_reg[20]_i_6_n_3 ;
+  wire \alu_result_MA_reg[24]_i_6_n_0 ;
+  wire \alu_result_MA_reg[24]_i_6_n_1 ;
+  wire \alu_result_MA_reg[24]_i_6_n_2 ;
+  wire \alu_result_MA_reg[24]_i_6_n_3 ;
+  wire \alu_result_MA_reg[28]_i_6_n_0 ;
+  wire \alu_result_MA_reg[28]_i_6_n_1 ;
+  wire \alu_result_MA_reg[28]_i_6_n_2 ;
+  wire \alu_result_MA_reg[28]_i_6_n_3 ;
+  wire \alu_result_MA_reg[30]_i_8_n_2 ;
+  wire \alu_result_MA_reg[30]_i_8_n_3 ;
+  wire \alu_result_MA_reg[4]_i_6_n_0 ;
+  wire \alu_result_MA_reg[4]_i_6_n_1 ;
+  wire \alu_result_MA_reg[4]_i_6_n_2 ;
+  wire \alu_result_MA_reg[4]_i_6_n_3 ;
+  wire \alu_result_MA_reg[8]_i_6_n_0 ;
+  wire \alu_result_MA_reg[8]_i_6_n_1 ;
+  wire \alu_result_MA_reg[8]_i_6_n_2 ;
+  wire \alu_result_MA_reg[8]_i_6_n_3 ;
   wire [5:0]alucode;
   wire \alucode_EX[0]_i_2_n_0 ;
   wire \alucode_EX[0]_i_3_n_0 ;
@@ -6615,6 +6527,7 @@ module design_1_CPUTop_0_0_CPUTop
   wire calc_reg_write_value21_in;
   wire [31:0]calc_reg_write_value_return;
   wire [31:1]data10;
+  wire [31:31]data7;
   wire [0:0]data9;
   wire [4:0]dstreg_num_EX;
   wire [4:0]dstreg_num_ID;
@@ -6624,15 +6537,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire \dstreg_num_RW_reg_n_0_[2] ;
   wire \dstreg_num_RW_reg_n_0_[3] ;
   wire \dstreg_num_RW_reg_n_0_[4] ;
-  wire [31:0]imm_EX;
-  wire \imm_EX[10]_i_2_n_0 ;
-  wire \imm_EX[10]_i_3_n_0 ;
-  wire \imm_EX[10]_i_4_n_0 ;
-  wire \imm_EX[11]_i_2_n_0 ;
-  wire \imm_EX[31]_i_2_n_0 ;
-  wire \imm_EX[31]_i_3_n_0 ;
-  wire \imm_EX[31]_i_4_n_0 ;
-  wire [31:0]imm_ID;
+  wire [30:0]imm_ID;
+  wire [31:31]imm_ID__0;
   wire is_load;
   wire is_load_EX;
   wire is_load_EX_i_10_n_0;
@@ -6655,8 +6561,8 @@ module design_1_CPUTop_0_0_CPUTop
   wire is_load_EX_i_8_n_0;
   wire is_load_EX_i_9_n_0;
   wire is_load_ID;
-  wire is_oprl_fwd_EE__0;
-  wire is_oprl_fwd_ME__0;
+  wire is_oprl_fwd_EE__1;
+  wire is_oprl_fwd_ME__1;
   wire is_oprr_fwd_EE__0;
   wire is_oprr_fwd_ME__0;
   wire is_reg1_fwd_EE0__3;
@@ -6705,18 +6611,189 @@ module design_1_CPUTop_0_0_CPUTop
   wire [255:0]mem_valid;
   wire [15:2]npc_EX;
   wire [1:0]npc_EX__0;
+  wire [31:0]npc_branch_EX;
+  wire [31:0]npc_branch_ID;
+  wire npc_branch_ID_carry__0_i_1_n_0;
+  wire npc_branch_ID_carry__0_i_2_n_0;
+  wire npc_branch_ID_carry__0_i_3_n_0;
+  wire npc_branch_ID_carry__0_i_4_n_0;
+  wire npc_branch_ID_carry__0_i_9_n_0;
+  wire npc_branch_ID_carry__0_n_0;
+  wire npc_branch_ID_carry__0_n_1;
+  wire npc_branch_ID_carry__0_n_2;
+  wire npc_branch_ID_carry__0_n_3;
+  wire npc_branch_ID_carry__1_i_1_n_0;
+  wire npc_branch_ID_carry__1_i_2_n_0;
+  wire npc_branch_ID_carry__1_i_3_n_0;
+  wire npc_branch_ID_carry__1_i_4_n_0;
+  wire npc_branch_ID_carry__1_i_9_n_0;
+  wire npc_branch_ID_carry__1_n_0;
+  wire npc_branch_ID_carry__1_n_1;
+  wire npc_branch_ID_carry__1_n_2;
+  wire npc_branch_ID_carry__1_n_3;
+  wire npc_branch_ID_carry__2_i_1_n_0;
+  wire npc_branch_ID_carry__2_i_2_n_0;
+  wire npc_branch_ID_carry__2_i_3_n_0;
+  wire npc_branch_ID_carry__2_i_4_n_0;
+  wire npc_branch_ID_carry__2_i_5_n_0;
+  wire npc_branch_ID_carry__2_i_6_n_0;
+  wire npc_branch_ID_carry__2_i_7_n_0;
+  wire npc_branch_ID_carry__2_n_0;
+  wire npc_branch_ID_carry__2_n_1;
+  wire npc_branch_ID_carry__2_n_2;
+  wire npc_branch_ID_carry__2_n_3;
+  wire npc_branch_ID_carry__3_i_1_n_0;
+  wire npc_branch_ID_carry__3_i_2_n_0;
+  wire npc_branch_ID_carry__3_i_3_n_0;
+  wire npc_branch_ID_carry__3_i_4_n_0;
+  wire npc_branch_ID_carry__3_n_0;
+  wire npc_branch_ID_carry__3_n_1;
+  wire npc_branch_ID_carry__3_n_2;
+  wire npc_branch_ID_carry__3_n_3;
+  wire npc_branch_ID_carry__4_i_1_n_0;
+  wire npc_branch_ID_carry__4_i_2_n_0;
+  wire npc_branch_ID_carry__4_i_3_n_0;
+  wire npc_branch_ID_carry__4_i_4_n_0;
+  wire npc_branch_ID_carry__4_n_0;
+  wire npc_branch_ID_carry__4_n_1;
+  wire npc_branch_ID_carry__4_n_2;
+  wire npc_branch_ID_carry__4_n_3;
+  wire npc_branch_ID_carry__5_i_1_n_0;
+  wire npc_branch_ID_carry__5_i_2_n_0;
+  wire npc_branch_ID_carry__5_i_3_n_0;
+  wire npc_branch_ID_carry__5_i_4_n_0;
+  wire npc_branch_ID_carry__5_n_0;
+  wire npc_branch_ID_carry__5_n_1;
+  wire npc_branch_ID_carry__5_n_2;
+  wire npc_branch_ID_carry__5_n_3;
+  wire npc_branch_ID_carry__6_i_1_n_0;
+  wire npc_branch_ID_carry__6_i_2_n_0;
+  wire npc_branch_ID_carry__6_i_3_n_0;
+  wire npc_branch_ID_carry__6_i_4_n_0;
+  wire npc_branch_ID_carry__6_n_1;
+  wire npc_branch_ID_carry__6_n_2;
+  wire npc_branch_ID_carry__6_n_3;
+  wire npc_branch_ID_carry_i_10_n_0;
+  wire npc_branch_ID_carry_i_1_n_0;
+  wire npc_branch_ID_carry_i_2_n_0;
+  wire npc_branch_ID_carry_i_3_n_0;
+  wire npc_branch_ID_carry_i_4_n_0;
+  wire npc_branch_ID_carry_i_9_n_0;
+  wire npc_branch_ID_carry_n_0;
+  wire npc_branch_ID_carry_n_1;
+  wire npc_branch_ID_carry_n_2;
+  wire npc_branch_ID_carry_n_3;
+  wire npc_default_EX;
+  wire \npc_default_EX[4]_i_2_n_0 ;
+  wire \npc_default_EX_reg[12]_i_1_n_0 ;
+  wire \npc_default_EX_reg[12]_i_1_n_1 ;
+  wire \npc_default_EX_reg[12]_i_1_n_2 ;
+  wire \npc_default_EX_reg[12]_i_1_n_3 ;
+  wire \npc_default_EX_reg[16]_i_1_n_0 ;
+  wire \npc_default_EX_reg[16]_i_1_n_1 ;
+  wire \npc_default_EX_reg[16]_i_1_n_2 ;
+  wire \npc_default_EX_reg[16]_i_1_n_3 ;
+  wire \npc_default_EX_reg[20]_i_1_n_0 ;
+  wire \npc_default_EX_reg[20]_i_1_n_1 ;
+  wire \npc_default_EX_reg[20]_i_1_n_2 ;
+  wire \npc_default_EX_reg[20]_i_1_n_3 ;
+  wire \npc_default_EX_reg[24]_i_1_n_0 ;
+  wire \npc_default_EX_reg[24]_i_1_n_1 ;
+  wire \npc_default_EX_reg[24]_i_1_n_2 ;
+  wire \npc_default_EX_reg[24]_i_1_n_3 ;
+  wire \npc_default_EX_reg[28]_i_1_n_0 ;
+  wire \npc_default_EX_reg[28]_i_1_n_1 ;
+  wire \npc_default_EX_reg[28]_i_1_n_2 ;
+  wire \npc_default_EX_reg[28]_i_1_n_3 ;
+  wire \npc_default_EX_reg[31]_i_2_n_2 ;
+  wire \npc_default_EX_reg[31]_i_2_n_3 ;
+  wire \npc_default_EX_reg[4]_i_1_n_0 ;
+  wire \npc_default_EX_reg[4]_i_1_n_1 ;
+  wire \npc_default_EX_reg[4]_i_1_n_2 ;
+  wire \npc_default_EX_reg[4]_i_1_n_3 ;
+  wire \npc_default_EX_reg[8]_i_1_n_0 ;
+  wire \npc_default_EX_reg[8]_i_1_n_1 ;
+  wire \npc_default_EX_reg[8]_i_1_n_2 ;
+  wire \npc_default_EX_reg[8]_i_1_n_3 ;
+  wire \npc_default_EX_reg_n_0_[0] ;
+  wire \npc_default_EX_reg_n_0_[10] ;
+  wire \npc_default_EX_reg_n_0_[11] ;
+  wire \npc_default_EX_reg_n_0_[12] ;
+  wire \npc_default_EX_reg_n_0_[13] ;
+  wire \npc_default_EX_reg_n_0_[14] ;
+  wire \npc_default_EX_reg_n_0_[15] ;
+  wire \npc_default_EX_reg_n_0_[16] ;
+  wire \npc_default_EX_reg_n_0_[17] ;
+  wire \npc_default_EX_reg_n_0_[18] ;
+  wire \npc_default_EX_reg_n_0_[19] ;
+  wire \npc_default_EX_reg_n_0_[1] ;
+  wire \npc_default_EX_reg_n_0_[20] ;
+  wire \npc_default_EX_reg_n_0_[21] ;
+  wire \npc_default_EX_reg_n_0_[22] ;
+  wire \npc_default_EX_reg_n_0_[23] ;
+  wire \npc_default_EX_reg_n_0_[24] ;
+  wire \npc_default_EX_reg_n_0_[25] ;
+  wire \npc_default_EX_reg_n_0_[26] ;
+  wire \npc_default_EX_reg_n_0_[27] ;
+  wire \npc_default_EX_reg_n_0_[28] ;
+  wire \npc_default_EX_reg_n_0_[29] ;
+  wire \npc_default_EX_reg_n_0_[2] ;
+  wire \npc_default_EX_reg_n_0_[30] ;
+  wire \npc_default_EX_reg_n_0_[31] ;
+  wire \npc_default_EX_reg_n_0_[3] ;
+  wire \npc_default_EX_reg_n_0_[4] ;
+  wire \npc_default_EX_reg_n_0_[5] ;
+  wire \npc_default_EX_reg_n_0_[6] ;
+  wire \npc_default_EX_reg_n_0_[7] ;
+  wire \npc_default_EX_reg_n_0_[8] ;
+  wire \npc_default_EX_reg_n_0_[9] ;
+  wire [31:1]npc_default_ID;
+  wire [31:0]npc_jalr_EX;
+  wire [31:0]npc_jalr_ID;
+  wire npc_jalr_ID_carry__0_n_0;
+  wire npc_jalr_ID_carry__0_n_1;
+  wire npc_jalr_ID_carry__0_n_2;
+  wire npc_jalr_ID_carry__0_n_3;
+  wire npc_jalr_ID_carry__1_n_0;
+  wire npc_jalr_ID_carry__1_n_1;
+  wire npc_jalr_ID_carry__1_n_2;
+  wire npc_jalr_ID_carry__1_n_3;
+  wire npc_jalr_ID_carry__2_n_0;
+  wire npc_jalr_ID_carry__2_n_1;
+  wire npc_jalr_ID_carry__2_n_2;
+  wire npc_jalr_ID_carry__2_n_3;
+  wire npc_jalr_ID_carry__3_n_0;
+  wire npc_jalr_ID_carry__3_n_1;
+  wire npc_jalr_ID_carry__3_n_2;
+  wire npc_jalr_ID_carry__3_n_3;
+  wire npc_jalr_ID_carry__4_n_0;
+  wire npc_jalr_ID_carry__4_n_1;
+  wire npc_jalr_ID_carry__4_n_2;
+  wire npc_jalr_ID_carry__4_n_3;
+  wire npc_jalr_ID_carry__5_n_0;
+  wire npc_jalr_ID_carry__5_n_1;
+  wire npc_jalr_ID_carry__5_n_2;
+  wire npc_jalr_ID_carry__5_n_3;
+  wire npc_jalr_ID_carry__6_n_1;
+  wire npc_jalr_ID_carry__6_n_2;
+  wire npc_jalr_ID_carry__6_n_3;
+  wire npc_jalr_ID_carry_n_0;
+  wire npc_jalr_ID_carry_n_1;
+  wire npc_jalr_ID_carry_n_2;
+  wire npc_jalr_ID_carry_n_3;
   wire nrst;
   wire [31:0]oprl_EX;
+  wire \oprl_EX[31]_i_10_n_0 ;
+  wire \oprl_EX[31]_i_8_n_0 ;
   wire [31:0]oprl_ID;
   wire [31:0]oprr_EX;
   wire [31:0]oprr_ID;
   wire [31:0]p_0_in1_in;
   wire [31:0]p_0_in1_in_0;
+  wire [30:1]p_0_out;
   wire [15:0]p_1_in;
+  wire p_3_in;
   wire p_4_in;
-  wire p_5_in;
-  wire p_6_in;
-  wire p_7_in;
   wire \pc_EX[10]_i_1_n_0 ;
   wire \pc_EX[11]_i_1_n_0 ;
   wire \pc_EX[12]_i_1_n_0 ;
@@ -6891,14 +6968,44 @@ module design_1_CPUTop_0_0_CPUTop
   wire \reg_write_value_RW[31]_i_7_n_0 ;
   wire \reg_write_value_RW[31]_i_8_n_0 ;
   wire \reg_write_value_RW[31]_i_9_n_0 ;
-  wire [31:0]regdata1_EX;
-  wire \regdata1_EX[31]_i_5_n_0 ;
-  wire [31:0]regdata1_ID;
+  wire [30:0]regdata1_ID;
   wire [31:0]regdata2_EX;
   wire \regdata2_EX[31]_i_6_n_0 ;
   wire [31:0]regdata2_ID;
   wire [31:0]regdata2_MA;
-  wire register1_n_138;
+  wire register1_n_141;
+  wire register1_n_142;
+  wire register1_n_143;
+  wire register1_n_144;
+  wire register1_n_145;
+  wire register1_n_146;
+  wire register1_n_147;
+  wire register1_n_148;
+  wire register1_n_149;
+  wire register1_n_150;
+  wire register1_n_151;
+  wire register1_n_152;
+  wire register1_n_153;
+  wire register1_n_154;
+  wire register1_n_155;
+  wire register1_n_156;
+  wire register1_n_157;
+  wire register1_n_158;
+  wire register1_n_159;
+  wire register1_n_160;
+  wire register1_n_161;
+  wire register1_n_162;
+  wire register1_n_163;
+  wire register1_n_164;
+  wire register1_n_165;
+  wire register1_n_166;
+  wire register1_n_167;
+  wire register1_n_168;
+  wire register1_n_169;
+  wire register1_n_73;
+  wire register1_n_74;
+  wire register1_n_75;
+  wire register1_n_76;
   wire rst;
   wire [4:0]srcreg1_num_ID;
   wire [4:0]srcreg2_num_ID;
@@ -6907,544 +7014,473 @@ module design_1_CPUTop_0_0_CPUTop
   wire uart0_n_3;
   wire uart_tx;
   wire [31:0]write_value;
-  wire [3:2]\NLW_alu_result_MA_reg[31]_i_11_CO_UNCONNECTED ;
-  wire [3:3]\NLW_alu_result_MA_reg[31]_i_11_O_UNCONNECTED ;
+  wire [3:2]\NLW_alu_result_MA_reg[30]_i_8_CO_UNCONNECTED ;
+  wire [3:3]\NLW_alu_result_MA_reg[30]_i_8_O_UNCONNECTED ;
+  wire [3:3]NLW_npc_branch_ID_carry__6_CO_UNCONNECTED;
+  wire [3:2]\NLW_npc_default_EX_reg[31]_i_2_CO_UNCONNECTED ;
+  wire [3:3]\NLW_npc_default_EX_reg[31]_i_2_O_UNCONNECTED ;
+  wire [3:3]NLW_npc_jalr_ID_carry__6_CO_UNCONNECTED;
   wire [3:0]NLW_pc_IF2_carry_O_UNCONNECTED;
   wire [3:0]NLW_pc_IF2_carry__0_O_UNCONNECTED;
   wire [3:3]NLW_pc_IF2_carry__1_CO_UNCONNECTED;
   wire [3:0]NLW_pc_IF2_carry__1_O_UNCONNECTED;
 
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__6_i_1
-       (.I0(regdata1_EX[31]),
-        .I1(imm_EX[31]),
-        .O(NPC0_carry__6_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__6_i_2
-       (.I0(regdata1_EX[30]),
-        .I1(imm_EX[30]),
-        .O(NPC0_carry__6_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__6_i_3
-       (.I0(regdata1_EX[29]),
-        .I1(imm_EX[29]),
-        .O(NPC0_carry__6_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__6_i_4
-       (.I0(regdata1_EX[28]),
-        .I1(imm_EX[28]),
-        .O(NPC0_carry__6_i_4_n_0));
-  design_1_CPUTop_0_0_NPCGenerator NPCGen1
-       (.D({NPCGen1_n_0,NPCGen1_n_1,NPCGen1_n_2,NPCGen1_n_3,NPCGen1_n_4,NPCGen1_n_5,NPCGen1_n_6,NPCGen1_n_7,NPCGen1_n_8,NPCGen1_n_9,NPCGen1_n_10,NPCGen1_n_11,NPCGen1_n_12,NPCGen1_n_13,NPCGen1_n_14,NPCGen1_n_15}),
-        .NPC0_carry__5_0(imm_EX[27:0]),
-        .Q({\pc_EX_reg_n_0_[30] ,\pc_EX_reg_n_0_[29] ,\pc_EX_reg_n_0_[28] ,\pc_EX_reg_n_0_[27] ,\pc_EX_reg_n_0_[26] ,\pc_EX_reg_n_0_[25] ,\pc_EX_reg_n_0_[24] ,\pc_EX_reg_n_0_[23] ,\pc_EX_reg_n_0_[22] ,\pc_EX_reg_n_0_[21] ,\pc_EX_reg_n_0_[20] ,\pc_EX_reg_n_0_[19] ,\pc_EX_reg_n_0_[18] ,\pc_EX_reg_n_0_[17] ,\pc_EX_reg_n_0_[16] ,\pc_EX_reg_n_0_[15] ,\pc_EX_reg_n_0_[14] ,\pc_EX_reg_n_0_[13] ,\pc_EX_reg_n_0_[12] ,\pc_EX_reg_n_0_[11] ,\pc_EX_reg_n_0_[10] ,\pc_EX_reg_n_0_[9] ,\pc_EX_reg_n_0_[8] ,\pc_EX_reg_n_0_[7] ,\pc_EX_reg_n_0_[6] ,\pc_EX_reg_n_0_[5] ,\pc_EX_reg_n_0_[4] ,\pc_EX_reg_n_0_[3] ,\pc_EX_reg_n_0_[2] ,\pc_EX_reg_n_0_[1] ,\pc_EX_reg_n_0_[0] }),
-        .S({NPC0_carry__6_i_1_n_0,NPC0_carry__6_i_2_n_0,NPC0_carry__6_i_3_n_0,NPC0_carry__6_i_4_n_0}),
-        .mem_reg_0_63_0_2_i_3_0({alu1_n_105,alu1_n_106,alu1_n_107,alu1_n_108}),
-        .mem_reg_0_63_6_8_i_1_0({alu1_n_109,alu1_n_110,alu1_n_111,alu1_n_112}),
-        .mem_reg_0_63_9_11_i_2_0({alu1_n_113,alu1_n_114,alu1_n_115,alu1_n_116}),
-        .npc_EX(npc_EX),
-        .\pc_ID_reg[21] ({NPCGen1_n_36,NPCGen1_n_37,NPCGen1_n_38,NPCGen1_n_39}),
-        .\pc_ID_reg[30] ({NPCGen1_n_40,NPCGen1_n_41,NPCGen1_n_42}),
-        .\pc_ID_reg[9] ({NPCGen1_n_16,NPCGen1_n_17,NPCGen1_n_18,NPCGen1_n_19}),
-        .pc_IF1(pc_IF1),
-        .pc_IF2_carry__1(pc_ID),
-        .\pc_IF[0]_i_2_0 ({alu1_n_101,alu1_n_102,alu1_n_103,alu1_n_104}),
-        .\pc_IF_reg[19] ({alu1_n_117,alu1_n_118,alu1_n_119,alu1_n_120}),
-        .\pc_IF_reg[23] ({alu1_n_121,alu1_n_122,alu1_n_123,alu1_n_124}),
-        .\pc_IF_reg[27] ({alu1_n_125,alu1_n_126,alu1_n_127,alu1_n_128}),
-        .\pc_IF_reg[31] ({alu1_n_97,alu1_n_98,alu1_n_99,alu1_n_100}),
-        .\pc_IF_reg[31]_0 (predictor1_n_329),
-        .regdata1_EX(regdata1_EX[30:0]),
-        .\regdata1_EX_reg[3] (npc_EX__0));
   design_1_CPUTop_0_0_alu alu1
-       (.CO(predictor1_n_338),
-        .D({alu1_n_33,alu1_n_34,alu1_n_35,alu1_n_36,alu1_n_37,alu1_n_38,alu1_n_39,alu1_n_40,alu1_n_41,alu1_n_42,alu1_n_43,alu1_n_44,alu1_n_45,alu1_n_46,alu1_n_47,alu1_n_48,alu1_n_49,alu1_n_50,alu1_n_51,alu1_n_52,alu1_n_53,alu1_n_54,alu1_n_55,alu1_n_56,alu1_n_57,alu1_n_58,alu1_n_59,alu1_n_60,alu1_n_61,alu1_n_62,alu1_n_63,alu1_n_64}),
+       (.CO(predictor1_n_339),
+        .D({alu1_n_0,alu1_n_1,alu1_n_2,alu1_n_3,alu1_n_4,alu1_n_5,alu1_n_6,alu1_n_7,alu1_n_8,alu1_n_9,alu1_n_10,alu1_n_11,alu1_n_12,alu1_n_13,alu1_n_14,alu1_n_15}),
         .DI({predictor1_n_307,predictor1_n_308,predictor1_n_309,predictor1_n_310}),
-        .\NPC0_inferred__0/i__carry__6 ({\pc_EX_reg_n_0_[31] ,\pc_EX_reg_n_0_[30] ,\pc_EX_reg_n_0_[29] ,\pc_EX_reg_n_0_[28] ,\pc_EX_reg_n_0_[27] ,\pc_EX_reg_n_0_[26] ,\pc_EX_reg_n_0_[25] ,\pc_EX_reg_n_0_[24] ,\pc_EX_reg_n_0_[23] ,\pc_EX_reg_n_0_[22] ,\pc_EX_reg_n_0_[21] ,\pc_EX_reg_n_0_[20] ,\pc_EX_reg_n_0_[19] ,\pc_EX_reg_n_0_[18] ,\pc_EX_reg_n_0_[17] ,\pc_EX_reg_n_0_[16] ,\pc_EX_reg_n_0_[15] ,\pc_EX_reg_n_0_[14] ,\pc_EX_reg_n_0_[13] ,\pc_EX_reg_n_0_[12] ,\pc_EX_reg_n_0_[11] ,\pc_EX_reg_n_0_[10] ,\pc_EX_reg_n_0_[9] ,\pc_EX_reg_n_0_[8] ,\pc_EX_reg_n_0_[7] ,\pc_EX_reg_n_0_[6] ,\pc_EX_reg_n_0_[5] ,\pc_EX_reg_n_0_[4] ,\pc_EX_reg_n_0_[3] ,\pc_EX_reg_n_0_[2] ,\pc_EX_reg_n_0_[1] ,\pc_EX_reg_n_0_[0] }),
-        .\NPC0_inferred__0/i__carry__6_0 (imm_EX),
         .Q(oprl_EX),
         .S({alu_result1_carry__6_i_1_n_0,alu_result1_carry__6_i_2_n_0,alu_result1_carry__6_i_3_n_0,alu_result1_carry__6_i_4_n_0}),
         .alu_result0_carry__6_0(oprr_EX),
         .\alu_result_MA[0]_i_8_0 ({predictor1_n_275,predictor1_n_276,predictor1_n_277,predictor1_n_278}),
-        .\alu_result_MA[10]_i_3_0 (\alu_result_MA[11]_i_8_n_0 ),
-        .\alu_result_MA[11]_i_3_0 (\alu_result_MA[12]_i_8_n_0 ),
-        .\alu_result_MA[13]_i_3_0 (\alu_result_MA[13]_i_8_n_0 ),
-        .\alu_result_MA[13]_i_3_1 (\alu_result_MA[14]_i_8_n_0 ),
-        .\alu_result_MA[15]_i_3_0 (\alu_result_MA[15]_i_8_n_0 ),
-        .\alu_result_MA[16]_i_3_0 (\alu_result_MA[16]_i_8_n_0 ),
-        .\alu_result_MA[17]_i_3_0 (\alu_result_MA[17]_i_8_n_0 ),
-        .\alu_result_MA[18]_i_3_0 (\alu_result_MA[18]_i_8_n_0 ),
-        .\alu_result_MA[19]_i_3_0 (\alu_result_MA[19]_i_8_n_0 ),
-        .\alu_result_MA[1]_i_3_0 (\alu_result_MA[2]_i_8_n_0 ),
-        .\alu_result_MA[1]_i_3_1 (\alu_result_MA[1]_i_8_n_0 ),
-        .\alu_result_MA[20]_i_3_0 (\alu_result_MA[20]_i_8_n_0 ),
-        .\alu_result_MA[21]_i_3_0 (\alu_result_MA[21]_i_8_n_0 ),
-        .\alu_result_MA[22]_i_3_0 (\alu_result_MA[22]_i_8_n_0 ),
-        .\alu_result_MA[23]_i_3_0 (\alu_result_MA[23]_i_8_n_0 ),
-        .\alu_result_MA[24]_i_3_0 (\alu_result_MA[24]_i_8_n_0 ),
-        .\alu_result_MA[25]_i_3_0 (\alu_result_MA[25]_i_8_n_0 ),
-        .\alu_result_MA[26]_i_3_0 (\alu_result_MA[26]_i_8_n_0 ),
-        .\alu_result_MA[27]_i_3_0 (\alu_result_MA[27]_i_8_n_0 ),
-        .\alu_result_MA[28]_i_3_0 (\alu_result_MA[28]_i_8_n_0 ),
-        .\alu_result_MA[29]_i_3_0 (\alu_result_MA[29]_i_8_n_0 ),
-        .\alu_result_MA[2]_i_3_0 (\alu_result_MA[3]_i_8_n_0 ),
-        .\alu_result_MA[30]_i_3_0 (\alu_result_MA[30]_i_8_n_0 ),
-        .\alu_result_MA[3]_i_3_0 (\alu_result_MA[4]_i_8_n_0 ),
-        .\alu_result_MA[5]_i_3_0 (\alu_result_MA[5]_i_8_n_0 ),
-        .\alu_result_MA[5]_i_3_1 (\alu_result_MA[6]_i_8_n_0 ),
-        .\alu_result_MA[6]_i_3_0 (\alu_result_MA[7]_i_8_n_0 ),
-        .\alu_result_MA[7]_i_3_0 (\alu_result_MA[8]_i_8_n_0 ),
-        .\alu_result_MA[8]_i_3_0 (\alu_result_MA[9]_i_8_n_0 ),
-        .\alu_result_MA[9]_i_3_0 (\alu_result_MA[10]_i_8_n_0 ),
+        .\alu_result_MA[10]_i_4_0 (\alu_result_MA[11]_i_8_n_0 ),
+        .\alu_result_MA[11]_i_4_0 (\alu_result_MA[12]_i_9_n_0 ),
+        .\alu_result_MA[13]_i_4_0 (\alu_result_MA[13]_i_8_n_0 ),
+        .\alu_result_MA[13]_i_4_1 (\alu_result_MA[14]_i_8_n_0 ),
+        .\alu_result_MA[15]_i_4_0 (\alu_result_MA[15]_i_8_n_0 ),
+        .\alu_result_MA[16]_i_4_0 (\alu_result_MA[16]_i_9_n_0 ),
+        .\alu_result_MA[17]_i_4_0 (\alu_result_MA[17]_i_8_n_0 ),
+        .\alu_result_MA[18]_i_4_0 (\alu_result_MA[18]_i_8_n_0 ),
+        .\alu_result_MA[19]_i_4_0 (\alu_result_MA[19]_i_8_n_0 ),
+        .\alu_result_MA[1]_i_4_0 (\alu_result_MA[2]_i_8_n_0 ),
+        .\alu_result_MA[1]_i_4_1 (\alu_result_MA[0]_i_9_n_0 ),
+        .\alu_result_MA[20]_i_4_0 (\alu_result_MA[20]_i_9_n_0 ),
+        .\alu_result_MA[21]_i_4_0 (\alu_result_MA[21]_i_8_n_0 ),
+        .\alu_result_MA[22]_i_4_0 (\alu_result_MA[22]_i_8_n_0 ),
+        .\alu_result_MA[23]_i_4_0 (\alu_result_MA[23]_i_8_n_0 ),
+        .\alu_result_MA[24]_i_4_0 (\alu_result_MA[24]_i_9_n_0 ),
+        .\alu_result_MA[25]_i_4_0 (\alu_result_MA[25]_i_8_n_0 ),
+        .\alu_result_MA[26]_i_4_0 (\alu_result_MA[26]_i_8_n_0 ),
+        .\alu_result_MA[27]_i_4_0 (\alu_result_MA[27]_i_8_n_0 ),
+        .\alu_result_MA[28]_i_4_0 (\alu_result_MA[28]_i_9_n_0 ),
+        .\alu_result_MA[29]_i_4_0 (\alu_result_MA[29]_i_8_n_0 ),
+        .\alu_result_MA[2]_i_4_0 (\alu_result_MA[3]_i_8_n_0 ),
+        .\alu_result_MA[30]_i_6_0 (\alu_result_MA[30]_i_11_n_0 ),
+        .\alu_result_MA[3]_i_4_0 (\alu_result_MA[4]_i_10_n_0 ),
+        .\alu_result_MA[5]_i_4_0 (\alu_result_MA[5]_i_8_n_0 ),
+        .\alu_result_MA[5]_i_4_1 (\alu_result_MA[6]_i_8_n_0 ),
+        .\alu_result_MA[6]_i_4_0 (\alu_result_MA[7]_i_8_n_0 ),
+        .\alu_result_MA[7]_i_4_0 (\alu_result_MA[8]_i_9_n_0 ),
+        .\alu_result_MA[8]_i_4_0 (\alu_result_MA[9]_i_8_n_0 ),
+        .\alu_result_MA[9]_i_4_0 (\alu_result_MA[10]_i_8_n_0 ),
         .\alu_result_MA_reg[0] (\alu_result_MA[0]_i_2_n_0 ),
-        .\alu_result_MA_reg[10] (\alu_result_MA[10]_i_2_n_0 ),
-        .\alu_result_MA_reg[10]_0 (\alu_result_MA[10]_i_7_n_0 ),
-        .\alu_result_MA_reg[10]_1 (\alu_result_MA[10]_i_6_n_0 ),
-        .\alu_result_MA_reg[11] (\alu_result_MA[11]_i_2_n_0 ),
-        .\alu_result_MA_reg[11]_0 (\alu_result_MA[11]_i_7_n_0 ),
-        .\alu_result_MA_reg[11]_1 (\alu_result_MA[11]_i_6_n_0 ),
-        .\alu_result_MA_reg[12] (\alu_result_MA[12]_i_2_n_0 ),
-        .\alu_result_MA_reg[12]_0 (\alu_result_MA[12]_i_7_n_0 ),
-        .\alu_result_MA_reg[12]_1 (\alu_result_MA[12]_i_6_n_0 ),
-        .\alu_result_MA_reg[13] (\alu_result_MA[13]_i_2_n_0 ),
-        .\alu_result_MA_reg[13]_0 (\alu_result_MA[13]_i_7_n_0 ),
-        .\alu_result_MA_reg[13]_1 (\alu_result_MA[13]_i_6_n_0 ),
-        .\alu_result_MA_reg[14] (\alu_result_MA[14]_i_2_n_0 ),
-        .\alu_result_MA_reg[14]_0 (\alu_result_MA[14]_i_7_n_0 ),
-        .\alu_result_MA_reg[14]_1 (\alu_result_MA[14]_i_6_n_0 ),
-        .\alu_result_MA_reg[15] (\alu_result_MA[15]_i_2_n_0 ),
-        .\alu_result_MA_reg[15]_0 (\alu_result_MA[15]_i_7_n_0 ),
-        .\alu_result_MA_reg[15]_1 (\alu_result_MA[15]_i_6_n_0 ),
-        .\alu_result_MA_reg[16] (\alu_result_MA[16]_i_2_n_0 ),
-        .\alu_result_MA_reg[16]_0 (\alu_result_MA[16]_i_7_n_0 ),
-        .\alu_result_MA_reg[16]_1 (\alu_result_MA[16]_i_6_n_0 ),
-        .\alu_result_MA_reg[17] (\alu_result_MA[17]_i_2_n_0 ),
-        .\alu_result_MA_reg[17]_0 (\alu_result_MA[17]_i_7_n_0 ),
-        .\alu_result_MA_reg[17]_1 (\alu_result_MA[17]_i_6_n_0 ),
-        .\alu_result_MA_reg[18] (\alu_result_MA[18]_i_2_n_0 ),
-        .\alu_result_MA_reg[18]_0 (\alu_result_MA[18]_i_7_n_0 ),
-        .\alu_result_MA_reg[18]_1 (\alu_result_MA[18]_i_6_n_0 ),
-        .\alu_result_MA_reg[19] (\alu_result_MA[19]_i_2_n_0 ),
-        .\alu_result_MA_reg[19]_0 (\alu_result_MA[19]_i_7_n_0 ),
-        .\alu_result_MA_reg[19]_1 (\alu_result_MA[19]_i_6_n_0 ),
-        .\alu_result_MA_reg[1] (\alu_result_MA[1]_i_2_n_0 ),
-        .\alu_result_MA_reg[1]_0 (\alu_result_MA[1]_i_7_n_0 ),
-        .\alu_result_MA_reg[1]_1 (\alu_result_MA[1]_i_6_n_0 ),
-        .\alu_result_MA_reg[20] (\alu_result_MA[20]_i_2_n_0 ),
-        .\alu_result_MA_reg[20]_0 (\alu_result_MA[20]_i_7_n_0 ),
-        .\alu_result_MA_reg[20]_1 (\alu_result_MA[20]_i_6_n_0 ),
-        .\alu_result_MA_reg[21] (\alu_result_MA[21]_i_2_n_0 ),
-        .\alu_result_MA_reg[21]_0 (\alu_result_MA[21]_i_7_n_0 ),
-        .\alu_result_MA_reg[21]_1 (\alu_result_MA[21]_i_6_n_0 ),
-        .\alu_result_MA_reg[22] (\alu_result_MA[22]_i_2_n_0 ),
-        .\alu_result_MA_reg[22]_0 (\alu_result_MA[22]_i_7_n_0 ),
-        .\alu_result_MA_reg[22]_1 (\alu_result_MA[22]_i_6_n_0 ),
-        .\alu_result_MA_reg[23] (\alu_result_MA[23]_i_2_n_0 ),
-        .\alu_result_MA_reg[23]_0 (\alu_result_MA[23]_i_7_n_0 ),
-        .\alu_result_MA_reg[23]_1 (\alu_result_MA[23]_i_6_n_0 ),
-        .\alu_result_MA_reg[24] (\alu_result_MA[24]_i_2_n_0 ),
-        .\alu_result_MA_reg[24]_0 (\alu_result_MA[24]_i_7_n_0 ),
-        .\alu_result_MA_reg[24]_1 (\alu_result_MA[24]_i_6_n_0 ),
-        .\alu_result_MA_reg[25] (\alu_result_MA[25]_i_2_n_0 ),
-        .\alu_result_MA_reg[25]_0 (\alu_result_MA[25]_i_7_n_0 ),
-        .\alu_result_MA_reg[25]_1 (\alu_result_MA[25]_i_6_n_0 ),
-        .\alu_result_MA_reg[26] (\alu_result_MA[26]_i_2_n_0 ),
-        .\alu_result_MA_reg[26]_0 (\alu_result_MA[26]_i_7_n_0 ),
-        .\alu_result_MA_reg[26]_1 (\alu_result_MA[26]_i_6_n_0 ),
-        .\alu_result_MA_reg[27] (\alu_result_MA[27]_i_2_n_0 ),
-        .\alu_result_MA_reg[27]_0 (\alu_result_MA[27]_i_7_n_0 ),
-        .\alu_result_MA_reg[27]_1 (\alu_result_MA[27]_i_6_n_0 ),
-        .\alu_result_MA_reg[28] (\alu_result_MA[28]_i_2_n_0 ),
-        .\alu_result_MA_reg[28]_0 (\alu_result_MA[28]_i_7_n_0 ),
-        .\alu_result_MA_reg[28]_1 (\alu_result_MA[28]_i_6_n_0 ),
-        .\alu_result_MA_reg[29] (\alu_result_MA[29]_i_2_n_0 ),
-        .\alu_result_MA_reg[29]_0 (\alu_result_MA[29]_i_7_n_0 ),
-        .\alu_result_MA_reg[29]_1 (\alu_result_MA[29]_i_6_n_0 ),
-        .\alu_result_MA_reg[2] (\alu_result_MA[2]_i_2_n_0 ),
-        .\alu_result_MA_reg[2]_0 (\alu_result_MA[2]_i_7_n_0 ),
-        .\alu_result_MA_reg[2]_1 (\alu_result_MA[2]_i_6_n_0 ),
-        .\alu_result_MA_reg[30] (\alu_result_MA[30]_i_2_n_0 ),
-        .\alu_result_MA_reg[30]_0 (\alu_result_MA[30]_i_7_n_0 ),
-        .\alu_result_MA_reg[30]_1 (\alu_result_MA[30]_i_6_n_0 ),
+        .\alu_result_MA_reg[10] (\alu_result_MA[10]_i_3_n_0 ),
+        .\alu_result_MA_reg[11] (\alu_result_MA[11]_i_3_n_0 ),
+        .\alu_result_MA_reg[12] (\alu_result_MA[12]_i_3_n_0 ),
+        .\alu_result_MA_reg[13] (\alu_result_MA[13]_i_3_n_0 ),
+        .\alu_result_MA_reg[14] (\alu_result_MA[14]_i_3_n_0 ),
+        .\alu_result_MA_reg[15] (\alu_result_MA[15]_i_3_n_0 ),
+        .\alu_result_MA_reg[16] (\alu_result_MA[16]_i_3_n_0 ),
+        .\alu_result_MA_reg[17] (\alu_result_MA[17]_i_3_n_0 ),
+        .\alu_result_MA_reg[18] (\alu_result_MA[18]_i_3_n_0 ),
+        .\alu_result_MA_reg[19] (\alu_result_MA[19]_i_3_n_0 ),
+        .\alu_result_MA_reg[1] (\alu_result_MA[1]_i_3_n_0 ),
+        .\alu_result_MA_reg[20] (\alu_result_MA[20]_i_3_n_0 ),
+        .\alu_result_MA_reg[21] (\alu_result_MA[21]_i_3_n_0 ),
+        .\alu_result_MA_reg[22] (\alu_result_MA[22]_i_3_n_0 ),
+        .\alu_result_MA_reg[23] (\alu_result_MA[23]_i_3_n_0 ),
+        .\alu_result_MA_reg[24] (\alu_result_MA[24]_i_3_n_0 ),
+        .\alu_result_MA_reg[25] (\alu_result_MA[25]_i_3_n_0 ),
+        .\alu_result_MA_reg[26] (\alu_result_MA[26]_i_3_n_0 ),
+        .\alu_result_MA_reg[27] (\alu_result_MA[27]_i_3_n_0 ),
+        .\alu_result_MA_reg[28] (\alu_result_MA[28]_i_3_n_0 ),
+        .\alu_result_MA_reg[29] (\alu_result_MA[29]_i_3_n_0 ),
+        .\alu_result_MA_reg[2] (\alu_result_MA[2]_i_3_n_0 ),
+        .\alu_result_MA_reg[30] (\alu_result_MA[30]_i_4_n_0 ),
+        .\alu_result_MA_reg[30]_0 (\alu_result_MA[30]_i_5_n_0 ),
         .\alu_result_MA_reg[31] ({\alucode_EX_reg_n_0_[5] ,\alucode_EX_reg_n_0_[4] ,\alucode_EX_reg_n_0_[3] ,\alucode_EX_reg_n_0_[2] ,\alucode_EX_reg_n_0_[1] ,\alucode_EX_reg_n_0_[0] }),
         .\alu_result_MA_reg[31]_0 (\alu_result_MA[31]_i_2_n_0 ),
         .\alu_result_MA_reg[31]_1 (\alu_result_MA[31]_i_7_n_0 ),
-        .\alu_result_MA_reg[31]_2 (\alu_result_MA[31]_i_6_n_0 ),
-        .\alu_result_MA_reg[3] (\alu_result_MA[3]_i_2_n_0 ),
-        .\alu_result_MA_reg[3]_0 (\alu_result_MA[3]_i_7_n_0 ),
-        .\alu_result_MA_reg[3]_1 (\alu_result_MA[3]_i_6_n_0 ),
-        .\alu_result_MA_reg[4] (\alu_result_MA[4]_i_2_n_0 ),
-        .\alu_result_MA_reg[4]_0 (\alu_result_MA[4]_i_7_n_0 ),
-        .\alu_result_MA_reg[4]_1 (\alu_result_MA[4]_i_6_n_0 ),
-        .\alu_result_MA_reg[5] (\alu_result_MA[5]_i_2_n_0 ),
-        .\alu_result_MA_reg[5]_0 (\alu_result_MA[5]_i_7_n_0 ),
-        .\alu_result_MA_reg[5]_1 (\alu_result_MA[5]_i_6_n_0 ),
-        .\alu_result_MA_reg[6] (\alu_result_MA[6]_i_2_n_0 ),
-        .\alu_result_MA_reg[6]_0 (\alu_result_MA[6]_i_7_n_0 ),
-        .\alu_result_MA_reg[6]_1 (\alu_result_MA[6]_i_6_n_0 ),
-        .\alu_result_MA_reg[7] (\alu_result_MA[7]_i_2_n_0 ),
-        .\alu_result_MA_reg[7]_0 (\alu_result_MA[7]_i_7_n_0 ),
-        .\alu_result_MA_reg[7]_1 (\alu_result_MA[7]_i_6_n_0 ),
-        .\alu_result_MA_reg[8] (\alu_result_MA[8]_i_2_n_0 ),
-        .\alu_result_MA_reg[8]_0 (\alu_result_MA[8]_i_7_n_0 ),
-        .\alu_result_MA_reg[8]_1 (\alu_result_MA[8]_i_6_n_0 ),
-        .\alu_result_MA_reg[9] (\alu_result_MA[9]_i_2_n_0 ),
-        .\alu_result_MA_reg[9]_0 (\alu_result_MA[9]_i_7_n_0 ),
-        .\alu_result_MA_reg[9]_1 (\alu_result_MA[9]_i_6_n_0 ),
-        .\alucode_EX_reg[3] (alu1_n_0),
-        .\alucode_EX_reg[4] (p_0_in1_in_0),
-        .\alucode_EX_reg[4]_0 ({alu1_n_129,alu1_n_130,alu1_n_131,alu1_n_132,alu1_n_133,alu1_n_134,alu1_n_135,alu1_n_136,alu1_n_137,alu1_n_138,alu1_n_139,alu1_n_140,alu1_n_141,alu1_n_142,alu1_n_143,alu1_n_144,alu1_n_145,alu1_n_146,alu1_n_147,alu1_n_148,alu1_n_149,alu1_n_150,alu1_n_151,alu1_n_152,alu1_n_153,alu1_n_154,alu1_n_155,alu1_n_156,alu1_n_157,alu1_n_158,alu1_n_159,alu1_n_160}),
+        .\alu_result_MA_reg[31]_i_3_0 (\alu_result_MA[31]_i_8_n_0 ),
+        .\alu_result_MA_reg[3] (\alu_result_MA[3]_i_3_n_0 ),
+        .\alu_result_MA_reg[4] (\alu_result_MA[4]_i_3_n_0 ),
+        .\alu_result_MA_reg[5] (\alu_result_MA[5]_i_3_n_0 ),
+        .\alu_result_MA_reg[6] (\alu_result_MA[6]_i_3_n_0 ),
+        .\alu_result_MA_reg[7] (\alu_result_MA[7]_i_3_n_0 ),
+        .\alu_result_MA_reg[8] (\alu_result_MA[8]_i_3_n_0 ),
+        .\alu_result_MA_reg[9] (\alu_result_MA[9]_i_3_n_0 ),
+        .\alucode_EX_reg[3] (alu1_n_16),
+        .\alucode_EX_reg[4] ({alu1_n_19,alu1_n_20,alu1_n_21,alu1_n_22,alu1_n_23,alu1_n_24,alu1_n_25,alu1_n_26,alu1_n_27,alu1_n_28,alu1_n_29,alu1_n_30,alu1_n_31,alu1_n_32,alu1_n_33,alu1_n_34,alu1_n_35,alu1_n_36,alu1_n_37,alu1_n_38,alu1_n_39,alu1_n_40,alu1_n_41,alu1_n_42,alu1_n_43,alu1_n_44,alu1_n_45,alu1_n_46,alu1_n_47,alu1_n_48,alu1_n_49,alu1_n_50}),
+        .\alucode_EX_reg[4]_0 (p_0_in1_in_0),
         .\alucode_EX_reg[4]_1 (p_0_in1_in),
-        .\alucode_EX_reg[5] (alu1_n_1),
-        .\alucode_EX_reg[5]_0 (alu1_n_2),
-        .\alucode_EX_reg[5]_1 (alu1_n_3),
-        .\alucode_EX_reg[5]_10 (alu1_n_12),
-        .\alucode_EX_reg[5]_11 (alu1_n_13),
-        .\alucode_EX_reg[5]_12 (alu1_n_14),
-        .\alucode_EX_reg[5]_13 (alu1_n_15),
-        .\alucode_EX_reg[5]_14 (alu1_n_16),
-        .\alucode_EX_reg[5]_15 (alu1_n_17),
-        .\alucode_EX_reg[5]_16 (alu1_n_18),
-        .\alucode_EX_reg[5]_17 (alu1_n_19),
-        .\alucode_EX_reg[5]_18 (alu1_n_20),
-        .\alucode_EX_reg[5]_19 (alu1_n_21),
-        .\alucode_EX_reg[5]_2 (alu1_n_4),
-        .\alucode_EX_reg[5]_20 (alu1_n_22),
-        .\alucode_EX_reg[5]_21 (alu1_n_23),
-        .\alucode_EX_reg[5]_22 (alu1_n_24),
-        .\alucode_EX_reg[5]_23 (alu1_n_25),
-        .\alucode_EX_reg[5]_24 (alu1_n_26),
-        .\alucode_EX_reg[5]_25 (alu1_n_27),
-        .\alucode_EX_reg[5]_26 (alu1_n_28),
-        .\alucode_EX_reg[5]_27 (alu1_n_29),
-        .\alucode_EX_reg[5]_28 (alu1_n_30),
-        .\alucode_EX_reg[5]_29 (alu1_n_31),
-        .\alucode_EX_reg[5]_3 (alu1_n_5),
-        .\alucode_EX_reg[5]_30 (alu1_n_32),
-        .\alucode_EX_reg[5]_4 (alu1_n_6),
-        .\alucode_EX_reg[5]_5 (alu1_n_7),
-        .\alucode_EX_reg[5]_6 (alu1_n_8),
-        .\alucode_EX_reg[5]_7 (alu1_n_9),
-        .\alucode_EX_reg[5]_8 (alu1_n_10),
-        .\alucode_EX_reg[5]_9 (alu1_n_11),
+        .\alucode_EX_reg[5] (alu1_n_17),
+        .\alucode_EX_reg[5]_0 (alu1_n_18),
         .calc_reg_write_value_return(calc_reg_write_value_return),
-        .is_oprl_fwd_EE__0(is_oprl_fwd_EE__0),
-        .is_oprl_fwd_ME__0(is_oprl_fwd_ME__0),
+        .data7(data7),
+        .is_oprl_fwd_EE__1(is_oprl_fwd_EE__1),
+        .is_oprl_fwd_ME__1(is_oprl_fwd_ME__1),
         .is_oprr_fwd_EE__0(is_oprr_fwd_EE__0),
         .is_oprr_fwd_ME__0(is_oprr_fwd_ME__0),
         .mem_reg_0_63_0_2_i_10_0({predictor1_n_299,predictor1_n_300,predictor1_n_301,predictor1_n_302}),
         .mem_reg_0_63_0_2_i_10_1({predictor1_n_257,predictor1_n_258,predictor1_n_259,predictor1_n_260}),
-        .mem_reg_0_63_0_2_i_7_0(predictor1_n_339),
-        .mem_reg_0_63_0_2_i_8_0({predictor1_n_303,predictor1_n_304,predictor1_n_305,predictor1_n_306}),
-        .mem_reg_0_63_0_2_i_8_1({predictor1_n_279,predictor1_n_280,predictor1_n_281,predictor1_n_282}),
+        .mem_reg_0_63_0_2_i_9_0({predictor1_n_303,predictor1_n_304,predictor1_n_305,predictor1_n_306}),
+        .mem_reg_0_63_0_2_i_9_1({predictor1_n_279,predictor1_n_280,predictor1_n_281,predictor1_n_282}),
         .mem_valid(mem_valid),
-        .\mem_valid_reg[0] (alu1_n_193),
-        .\mem_valid_reg[0]_0 (predictor1_n_268),
-        .\mem_valid_reg[0]_1 (predictor1_n_261),
-        .\mem_valid_reg[100] (alu1_n_293),
-        .\mem_valid_reg[101] (alu1_n_294),
-        .\mem_valid_reg[102] (alu1_n_295),
-        .\mem_valid_reg[103] (alu1_n_296),
-        .\mem_valid_reg[104] (alu1_n_297),
-        .\mem_valid_reg[105] (alu1_n_298),
-        .\mem_valid_reg[106] (alu1_n_299),
-        .\mem_valid_reg[107] (alu1_n_300),
-        .\mem_valid_reg[108] (alu1_n_301),
-        .\mem_valid_reg[109] (alu1_n_302),
-        .\mem_valid_reg[10] (alu1_n_203),
+        .\mem_valid_reg[0] (alu1_n_172),
+        .\mem_valid_reg[0]_0 (predictor1_n_329),
+        .\mem_valid_reg[0]_1 (predictor1_n_268),
+        .\mem_valid_reg[0]_2 (predictor1_n_261),
+        .\mem_valid_reg[100] (alu1_n_272),
+        .\mem_valid_reg[101] (alu1_n_273),
+        .\mem_valid_reg[102] (alu1_n_274),
+        .\mem_valid_reg[103] (alu1_n_275),
+        .\mem_valid_reg[104] (alu1_n_276),
+        .\mem_valid_reg[105] (alu1_n_277),
+        .\mem_valid_reg[106] (alu1_n_278),
+        .\mem_valid_reg[107] (alu1_n_279),
+        .\mem_valid_reg[108] (alu1_n_280),
+        .\mem_valid_reg[109] (alu1_n_281),
+        .\mem_valid_reg[10] (alu1_n_182),
         .\mem_valid_reg[10]_0 (predictor1_n_315),
-        .\mem_valid_reg[110] (alu1_n_303),
-        .\mem_valid_reg[111] (alu1_n_304),
-        .\mem_valid_reg[112] (alu1_n_305),
+        .\mem_valid_reg[110] (alu1_n_282),
+        .\mem_valid_reg[111] (alu1_n_283),
+        .\mem_valid_reg[112] (alu1_n_284),
         .\mem_valid_reg[112]_0 (predictor1_n_322),
-        .\mem_valid_reg[113] (alu1_n_306),
-        .\mem_valid_reg[114] (alu1_n_307),
-        .\mem_valid_reg[115] (alu1_n_308),
-        .\mem_valid_reg[116] (alu1_n_309),
-        .\mem_valid_reg[117] (alu1_n_310),
-        .\mem_valid_reg[118] (alu1_n_311),
-        .\mem_valid_reg[119] (alu1_n_312),
-        .\mem_valid_reg[11] (alu1_n_204),
+        .\mem_valid_reg[113] (alu1_n_285),
+        .\mem_valid_reg[114] (alu1_n_286),
+        .\mem_valid_reg[115] (alu1_n_287),
+        .\mem_valid_reg[116] (alu1_n_288),
+        .\mem_valid_reg[117] (alu1_n_289),
+        .\mem_valid_reg[118] (alu1_n_290),
+        .\mem_valid_reg[119] (alu1_n_291),
+        .\mem_valid_reg[11] (alu1_n_183),
         .\mem_valid_reg[11]_0 (predictor1_n_316),
-        .\mem_valid_reg[120] (alu1_n_313),
-        .\mem_valid_reg[121] (alu1_n_314),
-        .\mem_valid_reg[122] (alu1_n_315),
-        .\mem_valid_reg[123] (alu1_n_316),
-        .\mem_valid_reg[124] (alu1_n_317),
-        .\mem_valid_reg[125] (alu1_n_318),
-        .\mem_valid_reg[126] (alu1_n_319),
-        .\mem_valid_reg[127] (alu1_n_320),
-        .\mem_valid_reg[128] (alu1_n_321),
+        .\mem_valid_reg[120] (alu1_n_292),
+        .\mem_valid_reg[121] (alu1_n_293),
+        .\mem_valid_reg[122] (alu1_n_294),
+        .\mem_valid_reg[123] (alu1_n_295),
+        .\mem_valid_reg[124] (alu1_n_296),
+        .\mem_valid_reg[125] (alu1_n_297),
+        .\mem_valid_reg[126] (alu1_n_298),
+        .\mem_valid_reg[127] (alu1_n_299),
+        .\mem_valid_reg[128] (alu1_n_300),
         .\mem_valid_reg[128]_0 (predictor1_n_270),
-        .\mem_valid_reg[129] (alu1_n_322),
-        .\mem_valid_reg[12] (alu1_n_205),
+        .\mem_valid_reg[129] (alu1_n_301),
+        .\mem_valid_reg[12] (alu1_n_184),
         .\mem_valid_reg[12]_0 (predictor1_n_262),
-        .\mem_valid_reg[130] (alu1_n_323),
-        .\mem_valid_reg[131] (alu1_n_324),
-        .\mem_valid_reg[132] (alu1_n_325),
-        .\mem_valid_reg[133] (alu1_n_326),
-        .\mem_valid_reg[134] (alu1_n_327),
-        .\mem_valid_reg[135] (alu1_n_328),
-        .\mem_valid_reg[136] (alu1_n_329),
-        .\mem_valid_reg[137] (alu1_n_330),
-        .\mem_valid_reg[138] (alu1_n_331),
-        .\mem_valid_reg[139] (alu1_n_332),
-        .\mem_valid_reg[13] (alu1_n_206),
+        .\mem_valid_reg[130] (alu1_n_302),
+        .\mem_valid_reg[131] (alu1_n_303),
+        .\mem_valid_reg[132] (alu1_n_304),
+        .\mem_valid_reg[133] (alu1_n_305),
+        .\mem_valid_reg[134] (alu1_n_306),
+        .\mem_valid_reg[135] (alu1_n_307),
+        .\mem_valid_reg[136] (alu1_n_308),
+        .\mem_valid_reg[137] (alu1_n_309),
+        .\mem_valid_reg[138] (alu1_n_310),
+        .\mem_valid_reg[139] (alu1_n_311),
+        .\mem_valid_reg[13] (alu1_n_185),
         .\mem_valid_reg[13]_0 (predictor1_n_317),
-        .\mem_valid_reg[140] (alu1_n_333),
-        .\mem_valid_reg[141] (alu1_n_334),
-        .\mem_valid_reg[142] (alu1_n_335),
-        .\mem_valid_reg[143] (alu1_n_336),
-        .\mem_valid_reg[144] (alu1_n_337),
+        .\mem_valid_reg[140] (alu1_n_312),
+        .\mem_valid_reg[141] (alu1_n_313),
+        .\mem_valid_reg[142] (alu1_n_314),
+        .\mem_valid_reg[143] (alu1_n_315),
+        .\mem_valid_reg[144] (alu1_n_316),
         .\mem_valid_reg[144]_0 (predictor1_n_323),
-        .\mem_valid_reg[145] (alu1_n_338),
-        .\mem_valid_reg[146] (alu1_n_339),
-        .\mem_valid_reg[147] (alu1_n_340),
-        .\mem_valid_reg[148] (alu1_n_341),
-        .\mem_valid_reg[149] (alu1_n_342),
-        .\mem_valid_reg[14] (alu1_n_207),
+        .\mem_valid_reg[145] (alu1_n_317),
+        .\mem_valid_reg[146] (alu1_n_318),
+        .\mem_valid_reg[147] (alu1_n_319),
+        .\mem_valid_reg[148] (alu1_n_320),
+        .\mem_valid_reg[149] (alu1_n_321),
+        .\mem_valid_reg[14] (alu1_n_186),
         .\mem_valid_reg[14]_0 (predictor1_n_318),
-        .\mem_valid_reg[150] (alu1_n_343),
-        .\mem_valid_reg[151] (alu1_n_344),
-        .\mem_valid_reg[152] (alu1_n_345),
-        .\mem_valid_reg[153] (alu1_n_346),
-        .\mem_valid_reg[154] (alu1_n_347),
-        .\mem_valid_reg[155] (alu1_n_348),
-        .\mem_valid_reg[156] (alu1_n_349),
-        .\mem_valid_reg[157] (alu1_n_350),
-        .\mem_valid_reg[158] (alu1_n_351),
-        .\mem_valid_reg[159] (alu1_n_352),
-        .\mem_valid_reg[15] (alu1_n_208),
+        .\mem_valid_reg[150] (alu1_n_322),
+        .\mem_valid_reg[151] (alu1_n_323),
+        .\mem_valid_reg[152] (alu1_n_324),
+        .\mem_valid_reg[153] (alu1_n_325),
+        .\mem_valid_reg[154] (alu1_n_326),
+        .\mem_valid_reg[155] (alu1_n_327),
+        .\mem_valid_reg[156] (alu1_n_328),
+        .\mem_valid_reg[157] (alu1_n_329),
+        .\mem_valid_reg[158] (alu1_n_330),
+        .\mem_valid_reg[159] (alu1_n_331),
+        .\mem_valid_reg[15] (alu1_n_187),
         .\mem_valid_reg[15]_0 (predictor1_n_319),
-        .\mem_valid_reg[160] (alu1_n_353),
+        .\mem_valid_reg[160] (alu1_n_332),
         .\mem_valid_reg[160]_0 (predictor1_n_324),
-        .\mem_valid_reg[161] (alu1_n_354),
-        .\mem_valid_reg[162] (alu1_n_355),
-        .\mem_valid_reg[163] (alu1_n_356),
-        .\mem_valid_reg[164] (alu1_n_357),
-        .\mem_valid_reg[165] (alu1_n_358),
-        .\mem_valid_reg[166] (alu1_n_359),
-        .\mem_valid_reg[167] (alu1_n_360),
-        .\mem_valid_reg[168] (alu1_n_361),
-        .\mem_valid_reg[169] (alu1_n_362),
-        .\mem_valid_reg[16] (alu1_n_209),
+        .\mem_valid_reg[161] (alu1_n_333),
+        .\mem_valid_reg[162] (alu1_n_334),
+        .\mem_valid_reg[163] (alu1_n_335),
+        .\mem_valid_reg[164] (alu1_n_336),
+        .\mem_valid_reg[165] (alu1_n_337),
+        .\mem_valid_reg[166] (alu1_n_338),
+        .\mem_valid_reg[167] (alu1_n_339),
+        .\mem_valid_reg[168] (alu1_n_340),
+        .\mem_valid_reg[169] (alu1_n_341),
+        .\mem_valid_reg[16] (alu1_n_188),
         .\mem_valid_reg[16]_0 (predictor1_n_274),
-        .\mem_valid_reg[170] (alu1_n_363),
-        .\mem_valid_reg[171] (alu1_n_364),
-        .\mem_valid_reg[172] (alu1_n_365),
-        .\mem_valid_reg[173] (alu1_n_366),
-        .\mem_valid_reg[174] (alu1_n_367),
-        .\mem_valid_reg[175] (alu1_n_368),
-        .\mem_valid_reg[176] (alu1_n_369),
+        .\mem_valid_reg[170] (alu1_n_342),
+        .\mem_valid_reg[171] (alu1_n_343),
+        .\mem_valid_reg[172] (alu1_n_344),
+        .\mem_valid_reg[173] (alu1_n_345),
+        .\mem_valid_reg[174] (alu1_n_346),
+        .\mem_valid_reg[175] (alu1_n_347),
+        .\mem_valid_reg[176] (alu1_n_348),
         .\mem_valid_reg[176]_0 (predictor1_n_325),
-        .\mem_valid_reg[177] (alu1_n_370),
-        .\mem_valid_reg[178] (alu1_n_371),
-        .\mem_valid_reg[179] (alu1_n_372),
-        .\mem_valid_reg[17] (alu1_n_210),
-        .\mem_valid_reg[180] (alu1_n_373),
-        .\mem_valid_reg[181] (alu1_n_374),
-        .\mem_valid_reg[182] (alu1_n_375),
-        .\mem_valid_reg[183] (alu1_n_376),
-        .\mem_valid_reg[184] (alu1_n_377),
-        .\mem_valid_reg[185] (alu1_n_378),
-        .\mem_valid_reg[186] (alu1_n_379),
-        .\mem_valid_reg[187] (alu1_n_380),
-        .\mem_valid_reg[188] (alu1_n_381),
-        .\mem_valid_reg[189] (alu1_n_382),
-        .\mem_valid_reg[18] (alu1_n_211),
-        .\mem_valid_reg[190] (alu1_n_383),
-        .\mem_valid_reg[191] (alu1_n_384),
-        .\mem_valid_reg[192] (alu1_n_385),
+        .\mem_valid_reg[177] (alu1_n_349),
+        .\mem_valid_reg[178] (alu1_n_350),
+        .\mem_valid_reg[179] (alu1_n_351),
+        .\mem_valid_reg[17] (alu1_n_189),
+        .\mem_valid_reg[180] (alu1_n_352),
+        .\mem_valid_reg[181] (alu1_n_353),
+        .\mem_valid_reg[182] (alu1_n_354),
+        .\mem_valid_reg[183] (alu1_n_355),
+        .\mem_valid_reg[184] (alu1_n_356),
+        .\mem_valid_reg[185] (alu1_n_357),
+        .\mem_valid_reg[186] (alu1_n_358),
+        .\mem_valid_reg[187] (alu1_n_359),
+        .\mem_valid_reg[188] (alu1_n_360),
+        .\mem_valid_reg[189] (alu1_n_361),
+        .\mem_valid_reg[18] (alu1_n_190),
+        .\mem_valid_reg[190] (alu1_n_362),
+        .\mem_valid_reg[191] (alu1_n_363),
+        .\mem_valid_reg[192] (alu1_n_364),
         .\mem_valid_reg[192]_0 (predictor1_n_269),
-        .\mem_valid_reg[193] (alu1_n_386),
-        .\mem_valid_reg[194] (alu1_n_387),
-        .\mem_valid_reg[195] (alu1_n_388),
-        .\mem_valid_reg[196] (alu1_n_389),
-        .\mem_valid_reg[197] (alu1_n_390),
-        .\mem_valid_reg[198] (alu1_n_391),
-        .\mem_valid_reg[199] (alu1_n_392),
-        .\mem_valid_reg[19] (alu1_n_212),
-        .\mem_valid_reg[1] (alu1_n_194),
+        .\mem_valid_reg[193] (alu1_n_365),
+        .\mem_valid_reg[194] (alu1_n_366),
+        .\mem_valid_reg[195] (alu1_n_367),
+        .\mem_valid_reg[196] (alu1_n_368),
+        .\mem_valid_reg[197] (alu1_n_369),
+        .\mem_valid_reg[198] (alu1_n_370),
+        .\mem_valid_reg[199] (alu1_n_371),
+        .\mem_valid_reg[19] (alu1_n_191),
+        .\mem_valid_reg[1] (alu1_n_173),
         .\mem_valid_reg[1]_0 (predictor1_n_267),
-        .\mem_valid_reg[200] (alu1_n_393),
-        .\mem_valid_reg[201] (alu1_n_394),
-        .\mem_valid_reg[202] (alu1_n_395),
-        .\mem_valid_reg[203] (alu1_n_396),
-        .\mem_valid_reg[204] (alu1_n_397),
-        .\mem_valid_reg[205] (alu1_n_398),
-        .\mem_valid_reg[206] (alu1_n_399),
-        .\mem_valid_reg[207] (alu1_n_400),
-        .\mem_valid_reg[208] (alu1_n_401),
+        .\mem_valid_reg[200] (alu1_n_372),
+        .\mem_valid_reg[201] (alu1_n_373),
+        .\mem_valid_reg[202] (alu1_n_374),
+        .\mem_valid_reg[203] (alu1_n_375),
+        .\mem_valid_reg[204] (alu1_n_376),
+        .\mem_valid_reg[205] (alu1_n_377),
+        .\mem_valid_reg[206] (alu1_n_378),
+        .\mem_valid_reg[207] (alu1_n_379),
+        .\mem_valid_reg[208] (alu1_n_380),
         .\mem_valid_reg[208]_0 (predictor1_n_326),
-        .\mem_valid_reg[209] (alu1_n_402),
-        .\mem_valid_reg[20] (alu1_n_213),
-        .\mem_valid_reg[210] (alu1_n_403),
-        .\mem_valid_reg[211] (alu1_n_404),
-        .\mem_valid_reg[212] (alu1_n_405),
-        .\mem_valid_reg[213] (alu1_n_406),
-        .\mem_valid_reg[214] (alu1_n_407),
-        .\mem_valid_reg[215] (alu1_n_408),
-        .\mem_valid_reg[216] (alu1_n_409),
-        .\mem_valid_reg[217] (alu1_n_410),
-        .\mem_valid_reg[218] (alu1_n_411),
-        .\mem_valid_reg[219] (alu1_n_412),
-        .\mem_valid_reg[21] (alu1_n_214),
-        .\mem_valid_reg[220] (alu1_n_413),
-        .\mem_valid_reg[221] (alu1_n_414),
-        .\mem_valid_reg[222] (alu1_n_415),
-        .\mem_valid_reg[223] (alu1_n_416),
-        .\mem_valid_reg[224] (alu1_n_417),
+        .\mem_valid_reg[209] (alu1_n_381),
+        .\mem_valid_reg[20] (alu1_n_192),
+        .\mem_valid_reg[210] (alu1_n_382),
+        .\mem_valid_reg[211] (alu1_n_383),
+        .\mem_valid_reg[212] (alu1_n_384),
+        .\mem_valid_reg[213] (alu1_n_385),
+        .\mem_valid_reg[214] (alu1_n_386),
+        .\mem_valid_reg[215] (alu1_n_387),
+        .\mem_valid_reg[216] (alu1_n_388),
+        .\mem_valid_reg[217] (alu1_n_389),
+        .\mem_valid_reg[218] (alu1_n_390),
+        .\mem_valid_reg[219] (alu1_n_391),
+        .\mem_valid_reg[21] (alu1_n_193),
+        .\mem_valid_reg[220] (alu1_n_392),
+        .\mem_valid_reg[221] (alu1_n_393),
+        .\mem_valid_reg[222] (alu1_n_394),
+        .\mem_valid_reg[223] (alu1_n_395),
+        .\mem_valid_reg[224] (alu1_n_396),
         .\mem_valid_reg[224]_0 (predictor1_n_327),
-        .\mem_valid_reg[225] (alu1_n_418),
-        .\mem_valid_reg[226] (alu1_n_419),
-        .\mem_valid_reg[227] (alu1_n_420),
-        .\mem_valid_reg[228] (alu1_n_421),
-        .\mem_valid_reg[229] (alu1_n_422),
-        .\mem_valid_reg[22] (alu1_n_215),
-        .\mem_valid_reg[230] (alu1_n_423),
-        .\mem_valid_reg[231] (alu1_n_424),
-        .\mem_valid_reg[232] (alu1_n_425),
-        .\mem_valid_reg[233] (alu1_n_426),
-        .\mem_valid_reg[234] (alu1_n_427),
-        .\mem_valid_reg[235] (alu1_n_428),
-        .\mem_valid_reg[236] (alu1_n_429),
-        .\mem_valid_reg[237] (alu1_n_430),
-        .\mem_valid_reg[238] (alu1_n_431),
-        .\mem_valid_reg[239] (alu1_n_432),
-        .\mem_valid_reg[23] (alu1_n_216),
-        .\mem_valid_reg[240] (alu1_n_433),
+        .\mem_valid_reg[225] (alu1_n_397),
+        .\mem_valid_reg[226] (alu1_n_398),
+        .\mem_valid_reg[227] (alu1_n_399),
+        .\mem_valid_reg[228] (alu1_n_400),
+        .\mem_valid_reg[229] (alu1_n_401),
+        .\mem_valid_reg[22] (alu1_n_194),
+        .\mem_valid_reg[230] (alu1_n_402),
+        .\mem_valid_reg[231] (alu1_n_403),
+        .\mem_valid_reg[232] (alu1_n_404),
+        .\mem_valid_reg[233] (alu1_n_405),
+        .\mem_valid_reg[234] (alu1_n_406),
+        .\mem_valid_reg[235] (alu1_n_407),
+        .\mem_valid_reg[236] (alu1_n_408),
+        .\mem_valid_reg[237] (alu1_n_409),
+        .\mem_valid_reg[238] (alu1_n_410),
+        .\mem_valid_reg[239] (alu1_n_411),
+        .\mem_valid_reg[23] (alu1_n_195),
+        .\mem_valid_reg[240] (alu1_n_412),
         .\mem_valid_reg[240]_0 (predictor1_n_328),
-        .\mem_valid_reg[241] (alu1_n_434),
-        .\mem_valid_reg[242] (alu1_n_435),
-        .\mem_valid_reg[243] (alu1_n_436),
-        .\mem_valid_reg[244] (alu1_n_437),
-        .\mem_valid_reg[245] (alu1_n_438),
-        .\mem_valid_reg[246] (alu1_n_439),
-        .\mem_valid_reg[247] (alu1_n_440),
-        .\mem_valid_reg[248] (alu1_n_441),
-        .\mem_valid_reg[249] (alu1_n_442),
-        .\mem_valid_reg[24] (alu1_n_217),
-        .\mem_valid_reg[250] (alu1_n_443),
-        .\mem_valid_reg[251] (alu1_n_444),
-        .\mem_valid_reg[252] (alu1_n_445),
-        .\mem_valid_reg[253] (alu1_n_446),
-        .\mem_valid_reg[254] (alu1_n_447),
-        .\mem_valid_reg[255] (alu1_n_448),
-        .\mem_valid_reg[25] (alu1_n_218),
-        .\mem_valid_reg[26] (alu1_n_219),
-        .\mem_valid_reg[27] (alu1_n_220),
-        .\mem_valid_reg[28] (alu1_n_221),
-        .\mem_valid_reg[29] (alu1_n_222),
-        .\mem_valid_reg[2] (alu1_n_195),
+        .\mem_valid_reg[241] (alu1_n_413),
+        .\mem_valid_reg[242] (alu1_n_414),
+        .\mem_valid_reg[243] (alu1_n_415),
+        .\mem_valid_reg[244] (alu1_n_416),
+        .\mem_valid_reg[245] (alu1_n_417),
+        .\mem_valid_reg[246] (alu1_n_418),
+        .\mem_valid_reg[247] (alu1_n_419),
+        .\mem_valid_reg[248] (alu1_n_420),
+        .\mem_valid_reg[249] (alu1_n_421),
+        .\mem_valid_reg[24] (alu1_n_196),
+        .\mem_valid_reg[250] (alu1_n_422),
+        .\mem_valid_reg[251] (alu1_n_423),
+        .\mem_valid_reg[252] (alu1_n_424),
+        .\mem_valid_reg[253] (alu1_n_425),
+        .\mem_valid_reg[254] (alu1_n_426),
+        .\mem_valid_reg[255] (alu1_n_427),
+        .\mem_valid_reg[25] (alu1_n_197),
+        .\mem_valid_reg[26] (alu1_n_198),
+        .\mem_valid_reg[27] (alu1_n_199),
+        .\mem_valid_reg[28] (alu1_n_200),
+        .\mem_valid_reg[29] (alu1_n_201),
+        .\mem_valid_reg[2] (alu1_n_174),
         .\mem_valid_reg[2]_0 (predictor1_n_266),
-        .\mem_valid_reg[30] (alu1_n_223),
-        .\mem_valid_reg[31] (alu1_n_224),
-        .\mem_valid_reg[32] (alu1_n_225),
+        .\mem_valid_reg[30] (alu1_n_202),
+        .\mem_valid_reg[31] (alu1_n_203),
+        .\mem_valid_reg[32] (alu1_n_204),
         .\mem_valid_reg[32]_0 (predictor1_n_273),
-        .\mem_valid_reg[33] (alu1_n_226),
-        .\mem_valid_reg[34] (alu1_n_227),
-        .\mem_valid_reg[35] (alu1_n_228),
-        .\mem_valid_reg[36] (alu1_n_229),
-        .\mem_valid_reg[37] (alu1_n_230),
-        .\mem_valid_reg[38] (alu1_n_231),
-        .\mem_valid_reg[39] (alu1_n_232),
-        .\mem_valid_reg[3] (alu1_n_196),
+        .\mem_valid_reg[33] (alu1_n_205),
+        .\mem_valid_reg[34] (alu1_n_206),
+        .\mem_valid_reg[35] (alu1_n_207),
+        .\mem_valid_reg[36] (alu1_n_208),
+        .\mem_valid_reg[37] (alu1_n_209),
+        .\mem_valid_reg[38] (alu1_n_210),
+        .\mem_valid_reg[39] (alu1_n_211),
+        .\mem_valid_reg[3] (alu1_n_175),
         .\mem_valid_reg[3]_0 (predictor1_n_265),
-        .\mem_valid_reg[40] (alu1_n_233),
-        .\mem_valid_reg[41] (alu1_n_234),
-        .\mem_valid_reg[42] (alu1_n_235),
-        .\mem_valid_reg[43] (alu1_n_236),
-        .\mem_valid_reg[44] (alu1_n_237),
-        .\mem_valid_reg[45] (alu1_n_238),
-        .\mem_valid_reg[46] (alu1_n_239),
-        .\mem_valid_reg[47] (alu1_n_240),
-        .\mem_valid_reg[48] (alu1_n_241),
+        .\mem_valid_reg[40] (alu1_n_212),
+        .\mem_valid_reg[41] (alu1_n_213),
+        .\mem_valid_reg[42] (alu1_n_214),
+        .\mem_valid_reg[43] (alu1_n_215),
+        .\mem_valid_reg[44] (alu1_n_216),
+        .\mem_valid_reg[45] (alu1_n_217),
+        .\mem_valid_reg[46] (alu1_n_218),
+        .\mem_valid_reg[47] (alu1_n_219),
+        .\mem_valid_reg[48] (alu1_n_220),
         .\mem_valid_reg[48]_0 (predictor1_n_272),
-        .\mem_valid_reg[49] (alu1_n_242),
-        .\mem_valid_reg[4] (alu1_n_197),
+        .\mem_valid_reg[49] (alu1_n_221),
+        .\mem_valid_reg[4] (alu1_n_176),
         .\mem_valid_reg[4]_0 (predictor1_n_264),
-        .\mem_valid_reg[50] (alu1_n_243),
-        .\mem_valid_reg[51] (alu1_n_244),
-        .\mem_valid_reg[52] (alu1_n_245),
-        .\mem_valid_reg[53] (alu1_n_246),
-        .\mem_valid_reg[54] (alu1_n_247),
-        .\mem_valid_reg[55] (alu1_n_248),
-        .\mem_valid_reg[56] (alu1_n_249),
-        .\mem_valid_reg[57] (alu1_n_250),
-        .\mem_valid_reg[58] (alu1_n_251),
-        .\mem_valid_reg[59] (alu1_n_252),
-        .\mem_valid_reg[5] (alu1_n_198),
+        .\mem_valid_reg[50] (alu1_n_222),
+        .\mem_valid_reg[51] (alu1_n_223),
+        .\mem_valid_reg[52] (alu1_n_224),
+        .\mem_valid_reg[53] (alu1_n_225),
+        .\mem_valid_reg[54] (alu1_n_226),
+        .\mem_valid_reg[55] (alu1_n_227),
+        .\mem_valid_reg[56] (alu1_n_228),
+        .\mem_valid_reg[57] (alu1_n_229),
+        .\mem_valid_reg[58] (alu1_n_230),
+        .\mem_valid_reg[59] (alu1_n_231),
+        .\mem_valid_reg[5] (alu1_n_177),
         .\mem_valid_reg[5]_0 (predictor1_n_311),
-        .\mem_valid_reg[60] (alu1_n_253),
-        .\mem_valid_reg[61] (alu1_n_254),
-        .\mem_valid_reg[62] (alu1_n_255),
-        .\mem_valid_reg[63] (alu1_n_256),
-        .\mem_valid_reg[64] (alu1_n_257),
+        .\mem_valid_reg[60] (alu1_n_232),
+        .\mem_valid_reg[61] (alu1_n_233),
+        .\mem_valid_reg[62] (alu1_n_234),
+        .\mem_valid_reg[63] (alu1_n_235),
+        .\mem_valid_reg[64] (alu1_n_236),
         .\mem_valid_reg[64]_0 (predictor1_n_271),
-        .\mem_valid_reg[65] (alu1_n_258),
-        .\mem_valid_reg[66] (alu1_n_259),
-        .\mem_valid_reg[67] (alu1_n_260),
-        .\mem_valid_reg[68] (alu1_n_261),
-        .\mem_valid_reg[69] (alu1_n_262),
-        .\mem_valid_reg[6] (alu1_n_199),
+        .\mem_valid_reg[65] (alu1_n_237),
+        .\mem_valid_reg[66] (alu1_n_238),
+        .\mem_valid_reg[67] (alu1_n_239),
+        .\mem_valid_reg[68] (alu1_n_240),
+        .\mem_valid_reg[69] (alu1_n_241),
+        .\mem_valid_reg[6] (alu1_n_178),
         .\mem_valid_reg[6]_0 (predictor1_n_312),
-        .\mem_valid_reg[70] (alu1_n_263),
-        .\mem_valid_reg[71] (alu1_n_264),
-        .\mem_valid_reg[72] (alu1_n_265),
-        .\mem_valid_reg[73] (alu1_n_266),
-        .\mem_valid_reg[74] (alu1_n_267),
-        .\mem_valid_reg[75] (alu1_n_268),
-        .\mem_valid_reg[76] (alu1_n_269),
-        .\mem_valid_reg[77] (alu1_n_270),
-        .\mem_valid_reg[78] (alu1_n_271),
-        .\mem_valid_reg[79] (alu1_n_272),
-        .\mem_valid_reg[7] (alu1_n_200),
+        .\mem_valid_reg[70] (alu1_n_242),
+        .\mem_valid_reg[71] (alu1_n_243),
+        .\mem_valid_reg[72] (alu1_n_244),
+        .\mem_valid_reg[73] (alu1_n_245),
+        .\mem_valid_reg[74] (alu1_n_246),
+        .\mem_valid_reg[75] (alu1_n_247),
+        .\mem_valid_reg[76] (alu1_n_248),
+        .\mem_valid_reg[77] (alu1_n_249),
+        .\mem_valid_reg[78] (alu1_n_250),
+        .\mem_valid_reg[79] (alu1_n_251),
+        .\mem_valid_reg[7] (alu1_n_179),
         .\mem_valid_reg[7]_0 (predictor1_n_313),
-        .\mem_valid_reg[80] (alu1_n_273),
+        .\mem_valid_reg[80] (alu1_n_252),
         .\mem_valid_reg[80]_0 (predictor1_n_320),
-        .\mem_valid_reg[81] (alu1_n_274),
-        .\mem_valid_reg[82] (alu1_n_275),
-        .\mem_valid_reg[83] (alu1_n_276),
-        .\mem_valid_reg[84] (alu1_n_277),
-        .\mem_valid_reg[85] (alu1_n_278),
-        .\mem_valid_reg[86] (alu1_n_279),
-        .\mem_valid_reg[87] (alu1_n_280),
-        .\mem_valid_reg[88] (alu1_n_281),
-        .\mem_valid_reg[89] (alu1_n_282),
-        .\mem_valid_reg[8] (alu1_n_201),
+        .\mem_valid_reg[81] (alu1_n_253),
+        .\mem_valid_reg[82] (alu1_n_254),
+        .\mem_valid_reg[83] (alu1_n_255),
+        .\mem_valid_reg[84] (alu1_n_256),
+        .\mem_valid_reg[85] (alu1_n_257),
+        .\mem_valid_reg[86] (alu1_n_258),
+        .\mem_valid_reg[87] (alu1_n_259),
+        .\mem_valid_reg[88] (alu1_n_260),
+        .\mem_valid_reg[89] (alu1_n_261),
+        .\mem_valid_reg[8] (alu1_n_180),
         .\mem_valid_reg[8]_0 (predictor1_n_263),
-        .\mem_valid_reg[90] (alu1_n_283),
-        .\mem_valid_reg[91] (alu1_n_284),
-        .\mem_valid_reg[92] (alu1_n_285),
-        .\mem_valid_reg[93] (alu1_n_286),
-        .\mem_valid_reg[94] (alu1_n_287),
-        .\mem_valid_reg[95] (alu1_n_288),
-        .\mem_valid_reg[96] (alu1_n_289),
+        .\mem_valid_reg[90] (alu1_n_262),
+        .\mem_valid_reg[91] (alu1_n_263),
+        .\mem_valid_reg[92] (alu1_n_264),
+        .\mem_valid_reg[93] (alu1_n_265),
+        .\mem_valid_reg[94] (alu1_n_266),
+        .\mem_valid_reg[95] (alu1_n_267),
+        .\mem_valid_reg[96] (alu1_n_268),
         .\mem_valid_reg[96]_0 (predictor1_n_321),
-        .\mem_valid_reg[97] (alu1_n_290),
-        .\mem_valid_reg[98] (alu1_n_291),
-        .\mem_valid_reg[99] (alu1_n_292),
-        .\mem_valid_reg[9] (alu1_n_202),
+        .\mem_valid_reg[97] (alu1_n_269),
+        .\mem_valid_reg[98] (alu1_n_270),
+        .\mem_valid_reg[99] (alu1_n_271),
+        .\mem_valid_reg[9] (alu1_n_181),
         .\mem_valid_reg[9]_0 (predictor1_n_314),
+        .npc_EX(npc_EX),
+        .\npc_jalr_EX_reg[1] (npc_EX__0),
+        .\oprl_EX_reg[10] (\alu_result_MA[10]_i_5_n_0 ),
+        .\oprl_EX_reg[11] (\alu_result_MA[11]_i_5_n_0 ),
+        .\oprl_EX_reg[12] (\alu_result_MA[12]_i_5_n_0 ),
+        .\oprl_EX_reg[13] (\alu_result_MA[13]_i_5_n_0 ),
+        .\oprl_EX_reg[14] (\alu_result_MA[14]_i_5_n_0 ),
+        .\oprl_EX_reg[15] (\alu_result_MA[15]_i_5_n_0 ),
+        .\oprl_EX_reg[16] (\alu_result_MA[16]_i_5_n_0 ),
+        .\oprl_EX_reg[17] (\alu_result_MA[17]_i_5_n_0 ),
+        .\oprl_EX_reg[18] (\alu_result_MA[18]_i_5_n_0 ),
+        .\oprl_EX_reg[19] (\alu_result_MA[19]_i_5_n_0 ),
+        .\oprl_EX_reg[1] (\alu_result_MA[1]_i_5_n_0 ),
+        .\oprl_EX_reg[20] (\alu_result_MA[20]_i_5_n_0 ),
+        .\oprl_EX_reg[21] (\alu_result_MA[21]_i_5_n_0 ),
+        .\oprl_EX_reg[22] (\alu_result_MA[22]_i_5_n_0 ),
+        .\oprl_EX_reg[23] (\alu_result_MA[23]_i_5_n_0 ),
+        .\oprl_EX_reg[24] (\alu_result_MA[24]_i_5_n_0 ),
+        .\oprl_EX_reg[25] (\alu_result_MA[25]_i_5_n_0 ),
+        .\oprl_EX_reg[26] (\alu_result_MA[26]_i_5_n_0 ),
+        .\oprl_EX_reg[27] (\alu_result_MA[27]_i_5_n_0 ),
+        .\oprl_EX_reg[28] (\alu_result_MA[28]_i_5_n_0 ),
+        .\oprl_EX_reg[29] (\alu_result_MA[29]_i_5_n_0 ),
+        .\oprl_EX_reg[2] (\alu_result_MA[2]_i_5_n_0 ),
+        .\oprl_EX_reg[30] (\alu_result_MA[30]_i_7_n_0 ),
+        .\oprl_EX_reg[3] (\alu_result_MA[3]_i_5_n_0 ),
+        .\oprl_EX_reg[4] (\alu_result_MA[4]_i_5_n_0 ),
+        .\oprl_EX_reg[5] (\alu_result_MA[5]_i_5_n_0 ),
+        .\oprl_EX_reg[6] (\alu_result_MA[6]_i_5_n_0 ),
+        .\oprl_EX_reg[7] (\alu_result_MA[7]_i_5_n_0 ),
+        .\oprl_EX_reg[8] (\alu_result_MA[8]_i_5_n_0 ),
+        .\oprl_EX_reg[9] (\alu_result_MA[9]_i_5_n_0 ),
         .oprl_ID(oprl_ID),
         .oprr_ID(oprr_ID),
+        .p_0_out(p_0_out),
+        .p_3_in(p_3_in),
         .p_4_in(p_4_in),
-        .p_5_in(p_5_in),
-        .p_6_in(p_6_in),
-        .p_7_in(p_7_in),
-        .\pc_EX_reg[11] ({alu1_n_109,alu1_n_110,alu1_n_111,alu1_n_112}),
-        .\pc_EX_reg[15] ({alu1_n_113,alu1_n_114,alu1_n_115,alu1_n_116}),
-        .\pc_EX_reg[19] ({alu1_n_117,alu1_n_118,alu1_n_119,alu1_n_120}),
-        .\pc_EX_reg[23] ({alu1_n_121,alu1_n_122,alu1_n_123,alu1_n_124}),
-        .\pc_EX_reg[27] ({alu1_n_125,alu1_n_126,alu1_n_127,alu1_n_128}),
-        .\pc_EX_reg[31] ({alu1_n_97,alu1_n_98,alu1_n_99,alu1_n_100}),
-        .\pc_EX_reg[3] ({alu1_n_101,alu1_n_102,alu1_n_103,alu1_n_104}),
-        .\pc_EX_reg[7] ({alu1_n_105,alu1_n_106,alu1_n_107,alu1_n_108}),
-        .regdata1_ID(regdata1_ID),
+        .\pc_ID_reg[21] ({alu1_n_71,alu1_n_72,alu1_n_73,alu1_n_74}),
+        .\pc_ID_reg[30] ({alu1_n_75,alu1_n_76,alu1_n_77}),
+        .\pc_ID_reg[9] ({alu1_n_51,alu1_n_52,alu1_n_53,alu1_n_54}),
+        .pc_IF1(pc_IF1),
+        .pc_IF2_carry__1(pc_ID),
+        .\pc_IF_reg[31] ({\npc_default_EX_reg_n_0_[31] ,\npc_default_EX_reg_n_0_[30] ,\npc_default_EX_reg_n_0_[29] ,\npc_default_EX_reg_n_0_[28] ,\npc_default_EX_reg_n_0_[27] ,\npc_default_EX_reg_n_0_[26] ,\npc_default_EX_reg_n_0_[25] ,\npc_default_EX_reg_n_0_[24] ,\npc_default_EX_reg_n_0_[23] ,\npc_default_EX_reg_n_0_[22] ,\npc_default_EX_reg_n_0_[21] ,\npc_default_EX_reg_n_0_[20] ,\npc_default_EX_reg_n_0_[19] ,\npc_default_EX_reg_n_0_[18] ,\npc_default_EX_reg_n_0_[17] ,\npc_default_EX_reg_n_0_[16] ,\npc_default_EX_reg_n_0_[15] ,\npc_default_EX_reg_n_0_[14] ,\npc_default_EX_reg_n_0_[13] ,\npc_default_EX_reg_n_0_[12] ,\npc_default_EX_reg_n_0_[11] ,\npc_default_EX_reg_n_0_[10] ,\npc_default_EX_reg_n_0_[9] ,\npc_default_EX_reg_n_0_[8] ,\npc_default_EX_reg_n_0_[7] ,\npc_default_EX_reg_n_0_[6] ,\npc_default_EX_reg_n_0_[5] ,\npc_default_EX_reg_n_0_[4] ,\npc_default_EX_reg_n_0_[3] ,\npc_default_EX_reg_n_0_[2] ,\npc_default_EX_reg_n_0_[1] ,\npc_default_EX_reg_n_0_[0] }),
+        .\pc_IF_reg[31]_0 (npc_branch_EX),
+        .\pc_IF_reg[31]_1 (predictor1_n_330),
+        .\pc_IF_reg[31]_2 (npc_jalr_EX),
+        .\regdata2_EX[10]_i_2_0 (\alu_result_MA[10]_i_7_n_0 ),
+        .\regdata2_EX[11]_i_2_0 (\alu_result_MA[11]_i_7_n_0 ),
+        .\regdata2_EX[12]_i_2_0 (\alu_result_MA[12]_i_8_n_0 ),
+        .\regdata2_EX[13]_i_2_0 (\alu_result_MA[13]_i_7_n_0 ),
+        .\regdata2_EX[14]_i_2_0 (\alu_result_MA[14]_i_7_n_0 ),
+        .\regdata2_EX[15]_i_2_0 (\alu_result_MA[15]_i_7_n_0 ),
+        .\regdata2_EX[16]_i_2_0 (\alu_result_MA[16]_i_8_n_0 ),
+        .\regdata2_EX[17]_i_2_0 (\alu_result_MA[17]_i_7_n_0 ),
+        .\regdata2_EX[18]_i_2_0 (\alu_result_MA[18]_i_7_n_0 ),
+        .\regdata2_EX[19]_i_2_0 (\alu_result_MA[19]_i_7_n_0 ),
+        .\regdata2_EX[1]_i_2_0 (\alu_result_MA[1]_i_7_n_0 ),
+        .\regdata2_EX[20]_i_2_0 (\alu_result_MA[20]_i_8_n_0 ),
+        .\regdata2_EX[21]_i_2_0 (\alu_result_MA[21]_i_7_n_0 ),
+        .\regdata2_EX[22]_i_2_0 (\alu_result_MA[22]_i_7_n_0 ),
+        .\regdata2_EX[23]_i_2_0 (\alu_result_MA[23]_i_7_n_0 ),
+        .\regdata2_EX[24]_i_2_0 (\alu_result_MA[24]_i_8_n_0 ),
+        .\regdata2_EX[25]_i_2_0 (\alu_result_MA[25]_i_7_n_0 ),
+        .\regdata2_EX[26]_i_2_0 (\alu_result_MA[26]_i_7_n_0 ),
+        .\regdata2_EX[27]_i_2_0 (\alu_result_MA[27]_i_7_n_0 ),
+        .\regdata2_EX[28]_i_2_0 (\alu_result_MA[28]_i_8_n_0 ),
+        .\regdata2_EX[29]_i_2_0 (\alu_result_MA[29]_i_7_n_0 ),
+        .\regdata2_EX[2]_i_2_0 (\alu_result_MA[2]_i_7_n_0 ),
+        .\regdata2_EX[30]_i_2_0 (\alu_result_MA[30]_i_10_n_0 ),
+        .\regdata2_EX[3]_i_2_0 (\alu_result_MA[3]_i_7_n_0 ),
+        .\regdata2_EX[4]_i_2_0 (\alu_result_MA[4]_i_8_n_0 ),
+        .\regdata2_EX[5]_i_2_0 (\alu_result_MA[5]_i_7_n_0 ),
+        .\regdata2_EX[6]_i_2_0 (\alu_result_MA[6]_i_7_n_0 ),
+        .\regdata2_EX[7]_i_2_0 (\alu_result_MA[7]_i_7_n_0 ),
+        .\regdata2_EX[8]_i_2_0 (\alu_result_MA[8]_i_8_n_0 ),
+        .\regdata2_EX[9]_i_2_0 (\alu_result_MA[9]_i_7_n_0 ),
         .regdata2_ID(regdata2_ID));
   LUT2 #(
     .INIT(4'h9)) 
@@ -7470,24 +7506,102 @@ module design_1_CPUTop_0_0_CPUTop
        (.I0(oprl_EX[28]),
         .I1(oprr_EX[28]),
         .O(alu_result1_carry__6_i_4_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair90" *) 
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[0]_i_10 
-       (.I0(\alu_result_MA[4]_i_12_n_0 ),
+       (.I0(\alu_result_MA[0]_i_16_n_0 ),
         .I1(oprr_EX[2]),
-        .I2(\alu_result_MA[0]_i_11_n_0 ),
+        .I2(\alu_result_MA[0]_i_17_n_0 ),
         .O(\alu_result_MA[0]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \alu_result_MA[0]_i_11 
+       (.I0(\alu_result_MA[0]_i_18_n_0 ),
+        .I1(oprr_EX[2]),
+        .I2(\alu_result_MA[0]_i_19_n_0 ),
+        .O(\alu_result_MA[0]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[0]_i_11 
+    \alu_result_MA[0]_i_12 
+       (.I0(oprl_EX[31]),
+        .I1(oprl_EX[15]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[23]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[7]),
+        .O(\alu_result_MA[0]_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[0]_i_13 
+       (.I0(oprl_EX[27]),
+        .I1(oprl_EX[11]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[19]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[3]),
+        .O(\alu_result_MA[0]_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[0]_i_14 
+       (.I0(oprl_EX[29]),
+        .I1(oprl_EX[13]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[21]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[5]),
+        .O(\alu_result_MA[0]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[0]_i_15 
+       (.I0(oprl_EX[25]),
+        .I1(oprl_EX[9]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[17]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[1]),
+        .O(\alu_result_MA[0]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[0]_i_16 
+       (.I0(oprl_EX[30]),
+        .I1(oprl_EX[14]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[22]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[6]),
+        .O(\alu_result_MA[0]_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[0]_i_17 
+       (.I0(oprl_EX[26]),
+        .I1(oprl_EX[10]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[18]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[2]),
+        .O(\alu_result_MA[0]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[0]_i_18 
+       (.I0(oprl_EX[28]),
+        .I1(oprl_EX[12]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[20]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[4]),
+        .O(\alu_result_MA[0]_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[0]_i_19 
        (.I0(oprl_EX[24]),
         .I1(oprl_EX[8]),
         .I2(oprr_EX[3]),
         .I3(oprl_EX[16]),
         .I4(oprr_EX[4]),
         .I5(oprl_EX[0]),
-        .O(\alu_result_MA[0]_i_11_n_0 ));
+        .O(\alu_result_MA[0]_i_19_n_0 ));
   LUT6 #(
     .INIT(64'h000000000F00F404)) 
     \alu_result_MA[0]_i_2 
@@ -7510,21 +7624,23 @@ module design_1_CPUTop_0_0_CPUTop
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \alu_result_MA[0]_i_6 
-       (.I0(\alu_result_MA[1]_i_8_n_0 ),
+       (.I0(\alu_result_MA[0]_i_9_n_0 ),
         .I1(oprr_EX[0]),
-        .I2(\alu_result_MA[0]_i_9_n_0 ),
+        .I2(\alu_result_MA[0]_i_10_n_0 ),
         .I3(oprr_EX[1]),
-        .I4(\alu_result_MA[0]_i_10_n_0 ),
+        .I4(\alu_result_MA[0]_i_11_n_0 ),
         .O(data9));
-  (* SOFT_HLUTNM = "soft_lutpair90" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[0]_i_9 
-       (.I0(\alu_result_MA[6]_i_11_n_0 ),
-        .I1(oprr_EX[2]),
-        .I2(\alu_result_MA[2]_i_11_n_0 ),
+       (.I0(\alu_result_MA[0]_i_12_n_0 ),
+        .I1(\alu_result_MA[0]_i_13_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[0]_i_14_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[0]_i_15_n_0 ),
         .O(\alu_result_MA[0]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair92" *) 
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[10]_i_10 
@@ -7542,7 +7658,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprl_EX[10]),
         .O(\alu_result_MA[10]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[10]_i_12 
@@ -7562,32 +7678,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[3]),
         .O(\alu_result_MA[10]_i_13_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[10]_i_3 
+       (.I0(oprr_EX[10]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[10]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[10]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[10]_i_2 
+    \alu_result_MA[10]_i_5 
        (.I0(oprl_EX[10]),
         .I1(oprr_EX[10]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[10]_i_2_n_0 ));
+        .O(\alu_result_MA[10]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[10]_i_6 
+    \alu_result_MA[10]_i_7 
        (.I0(\alu_result_MA[11]_i_9_n_0 ),
         .I1(\alu_result_MA[10]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[10]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[11]_i_10_n_0 ),
-        .O(\alu_result_MA[10]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[10]_i_7 
-       (.I0(oprr_EX[10]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[10]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[10]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -7609,7 +7725,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[10]_i_12_n_0 ),
         .O(\alu_result_MA[10]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair91" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[11]_i_10 
@@ -7627,7 +7743,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprl_EX[11]),
         .O(\alu_result_MA[11]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[11]_i_12 
@@ -7648,32 +7764,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[11]_i_13_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[11]_i_2 
-       (.I0(oprl_EX[11]),
-        .I1(oprr_EX[11]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[11]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[11]_i_6 
-       (.I0(\alu_result_MA[12]_i_9_n_0 ),
-        .I1(\alu_result_MA[11]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[11]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[12]_i_10_n_0 ),
-        .O(\alu_result_MA[11]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[11]_i_7 
+    \alu_result_MA[11]_i_3 
        (.I0(oprr_EX[11]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[11]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[11]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[11]_i_5 
+       (.I0(oprl_EX[11]),
+        .I1(oprr_EX[11]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[11]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[11]_i_7 
+       (.I0(\alu_result_MA[12]_i_10_n_0 ),
+        .I1(\alu_result_MA[11]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[11]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[12]_i_11_n_0 ),
         .O(\alu_result_MA[11]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -7695,14 +7811,24 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[11]_i_12_n_0 ),
         .O(\alu_result_MA[11]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair92" *) 
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[12]_i_10 
+       (.I0(\alu_result_MA[18]_i_13_n_0 ),
+        .I1(\alu_result_MA[14]_i_12_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[16]_i_14_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[12]_i_13_n_0 ),
+        .O(\alu_result_MA[12]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \alu_result_MA[12]_i_10 
+    \alu_result_MA[12]_i_11 
        (.I0(\alu_result_MA[12]_i_14_n_0 ),
         .I1(oprr_EX[1]),
         .I2(\alu_result_MA[14]_i_13_n_0 ),
-        .O(\alu_result_MA[12]_i_10_n_0 ));
+        .O(\alu_result_MA[12]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[12]_i_12 
@@ -7713,7 +7839,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprl_EX[12]),
         .O(\alu_result_MA[12]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[12]_i_13 
@@ -7734,52 +7860,42 @@ module design_1_CPUTop_0_0_CPUTop
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[12]_i_14_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[12]_i_2 
-       (.I0(oprl_EX[12]),
-        .I1(oprr_EX[12]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[12]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[12]_i_6 
-       (.I0(\alu_result_MA[13]_i_9_n_0 ),
-        .I1(\alu_result_MA[12]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[12]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[13]_i_10_n_0 ),
-        .O(\alu_result_MA[12]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[12]_i_7 
+    \alu_result_MA[12]_i_3 
        (.I0(oprr_EX[12]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[12]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[12]_i_7_n_0 ));
+        .O(\alu_result_MA[12]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[12]_i_5 
+       (.I0(oprl_EX[12]),
+        .I1(oprr_EX[12]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[12]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[12]_i_8 
+       (.I0(\alu_result_MA[13]_i_9_n_0 ),
+        .I1(\alu_result_MA[12]_i_10_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[12]_i_11_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[13]_i_10_n_0 ),
+        .O(\alu_result_MA[12]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[12]_i_9 
        (.I0(\alu_result_MA[18]_i_11_n_0 ),
         .I1(\alu_result_MA[14]_i_11_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[16]_i_12_n_0 ),
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[12]_i_12_n_0 ),
-        .O(\alu_result_MA[12]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[12]_i_9 
-       (.I0(\alu_result_MA[18]_i_13_n_0 ),
-        .I1(\alu_result_MA[14]_i_12_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[16]_i_14_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[12]_i_13_n_0 ),
         .O(\alu_result_MA[12]_i_9_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
@@ -7800,7 +7916,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprl_EX[13]),
         .O(\alu_result_MA[13]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[13]_i_12 
@@ -7821,32 +7937,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[13]_i_13_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[13]_i_3 
+       (.I0(oprr_EX[13]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[13]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[13]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[13]_i_2 
+    \alu_result_MA[13]_i_5 
        (.I0(oprl_EX[13]),
         .I1(oprr_EX[13]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[13]_i_2_n_0 ));
+        .O(\alu_result_MA[13]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[13]_i_6 
+    \alu_result_MA[13]_i_7 
        (.I0(\alu_result_MA[14]_i_9_n_0 ),
         .I1(\alu_result_MA[13]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[13]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[14]_i_10_n_0 ),
-        .O(\alu_result_MA[13]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[13]_i_7 
-       (.I0(oprr_EX[13]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[13]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[13]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -7887,7 +8003,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprl_EX[14]),
         .O(\alu_result_MA[14]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[14]_i_12 
@@ -7908,32 +8024,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[14]_i_13_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[14]_i_3 
+       (.I0(oprr_EX[14]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[14]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[14]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[14]_i_2 
+    \alu_result_MA[14]_i_5 
        (.I0(oprl_EX[14]),
         .I1(oprr_EX[14]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[14]_i_2_n_0 ));
+        .O(\alu_result_MA[14]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[14]_i_6 
+    \alu_result_MA[14]_i_7 
        (.I0(\alu_result_MA[15]_i_9_n_0 ),
         .I1(\alu_result_MA[14]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[14]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[15]_i_10_n_0 ),
-        .O(\alu_result_MA[14]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[14]_i_7 
-       (.I0(oprr_EX[14]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[14]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[14]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -7965,7 +8081,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[21]_i_14_n_0 ),
         .O(\alu_result_MA[15]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT5 #(
     .INIT(32'hF0BBF088)) 
     \alu_result_MA[15]_i_11 
@@ -7975,7 +8091,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[15]),
         .O(\alu_result_MA[15]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[15]_i_12 
@@ -7985,7 +8101,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[15]),
         .O(\alu_result_MA[15]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[15]_i_13 
@@ -7995,32 +8111,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[15]_i_13_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[15]_i_2 
-       (.I0(oprl_EX[15]),
-        .I1(oprr_EX[15]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[15]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[15]_i_6 
-       (.I0(\alu_result_MA[16]_i_9_n_0 ),
-        .I1(\alu_result_MA[15]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[15]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[16]_i_10_n_0 ),
-        .O(\alu_result_MA[15]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[15]_i_7 
+    \alu_result_MA[15]_i_3 
        (.I0(oprr_EX[15]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[15]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[15]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[15]_i_5 
+       (.I0(oprl_EX[15]),
+        .I1(oprr_EX[15]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[15]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[15]_i_7 
+       (.I0(\alu_result_MA[16]_i_10_n_0 ),
+        .I1(\alu_result_MA[15]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[15]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[16]_i_11_n_0 ),
         .O(\alu_result_MA[15]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -8045,14 +8161,24 @@ module design_1_CPUTop_0_0_CPUTop
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[16]_i_10 
+       (.I0(\alu_result_MA[18]_i_12_n_0 ),
+        .I1(\alu_result_MA[18]_i_13_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[16]_i_13_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[16]_i_14_n_0 ),
+        .O(\alu_result_MA[16]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[16]_i_11 
        (.I0(\alu_result_MA[16]_i_15_n_0 ),
         .I1(\alu_result_MA[20]_i_15_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[18]_i_14_n_0 ),
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[22]_i_14_n_0 ),
-        .O(\alu_result_MA[16]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+        .O(\alu_result_MA[16]_i_11_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT5 #(
     .INIT(32'hF0BBF088)) 
     \alu_result_MA[16]_i_12 
@@ -8062,7 +8188,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[16]),
         .O(\alu_result_MA[16]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[16]_i_13 
@@ -8071,7 +8197,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[20]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[16]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[16]_i_14 
@@ -8080,7 +8206,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[16]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[16]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[16]_i_15 
@@ -8090,52 +8216,42 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[16]_i_15_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[16]_i_2 
-       (.I0(oprl_EX[16]),
-        .I1(oprr_EX[16]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[16]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[16]_i_6 
-       (.I0(\alu_result_MA[17]_i_9_n_0 ),
-        .I1(\alu_result_MA[16]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[16]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[17]_i_10_n_0 ),
-        .O(\alu_result_MA[16]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[16]_i_7 
+    \alu_result_MA[16]_i_3 
        (.I0(oprr_EX[16]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[16]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[16]_i_7_n_0 ));
+        .O(\alu_result_MA[16]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[16]_i_5 
+       (.I0(oprl_EX[16]),
+        .I1(oprr_EX[16]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[16]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[16]_i_8 
+       (.I0(\alu_result_MA[17]_i_9_n_0 ),
+        .I1(\alu_result_MA[16]_i_10_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[16]_i_11_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[17]_i_10_n_0 ),
+        .O(\alu_result_MA[16]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[16]_i_9 
        (.I0(\alu_result_MA[22]_i_12_n_0 ),
         .I1(\alu_result_MA[18]_i_11_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[20]_i_13_n_0 ),
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[16]_i_12_n_0 ),
-        .O(\alu_result_MA[16]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[16]_i_9 
-       (.I0(\alu_result_MA[18]_i_12_n_0 ),
-        .I1(\alu_result_MA[18]_i_13_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[16]_i_13_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[16]_i_14_n_0 ),
         .O(\alu_result_MA[16]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -8147,7 +8263,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[23]_i_13_n_0 ),
         .O(\alu_result_MA[17]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT5 #(
     .INIT(32'hF0BBF088)) 
     \alu_result_MA[17]_i_11 
@@ -8157,7 +8273,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[17]),
         .O(\alu_result_MA[17]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[17]_i_12 
@@ -8166,7 +8282,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[21]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[17]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[17]_i_13 
@@ -8175,7 +8291,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[17]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[17]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[17]_i_14 
@@ -8185,32 +8301,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[17]_i_14_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[17]_i_3 
+       (.I0(oprr_EX[17]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[17]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[17]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[17]_i_2 
+    \alu_result_MA[17]_i_5 
        (.I0(oprl_EX[17]),
         .I1(oprr_EX[17]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[17]_i_2_n_0 ));
+        .O(\alu_result_MA[17]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[17]_i_6 
+    \alu_result_MA[17]_i_7 
        (.I0(\alu_result_MA[18]_i_9_n_0 ),
         .I1(\alu_result_MA[17]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[17]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[18]_i_10_n_0 ),
-        .O(\alu_result_MA[17]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[17]_i_7 
-       (.I0(oprr_EX[17]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[17]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[17]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -8242,7 +8358,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[24]_i_14_n_0 ),
         .O(\alu_result_MA[18]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT5 #(
     .INIT(32'hF0BBF088)) 
     \alu_result_MA[18]_i_11 
@@ -8252,7 +8368,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[18]),
         .O(\alu_result_MA[18]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[18]_i_12 
@@ -8261,7 +8377,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[22]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[18]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[18]_i_13 
@@ -8270,7 +8386,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[18]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[18]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[18]_i_14 
@@ -8280,32 +8396,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[18]_i_14_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[18]_i_3 
+       (.I0(oprr_EX[18]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[18]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[18]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[18]_i_2 
+    \alu_result_MA[18]_i_5 
        (.I0(oprl_EX[18]),
         .I1(oprr_EX[18]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[18]_i_2_n_0 ));
+        .O(\alu_result_MA[18]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[18]_i_6 
+    \alu_result_MA[18]_i_7 
        (.I0(\alu_result_MA[19]_i_9_n_0 ),
         .I1(\alu_result_MA[18]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[18]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[19]_i_10_n_0 ),
-        .O(\alu_result_MA[18]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[18]_i_7 
-       (.I0(oprr_EX[18]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[18]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[18]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -8336,7 +8452,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[25]_i_13_n_0 ),
         .O(\alu_result_MA[19]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair88" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT4 #(
     .INIT(16'hCDC8)) 
     \alu_result_MA[19]_i_11 
@@ -8354,7 +8470,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[19]),
         .O(\alu_result_MA[19]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair88" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[19]_i_13 
@@ -8363,7 +8479,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[23]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[19]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[19]_i_14 
@@ -8372,7 +8488,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprl_EX[19]),
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[19]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[19]_i_15 
@@ -8382,32 +8498,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[19]_i_15_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[19]_i_2 
-       (.I0(oprl_EX[19]),
-        .I1(oprr_EX[19]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[19]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[19]_i_6 
-       (.I0(\alu_result_MA[20]_i_9_n_0 ),
-        .I1(\alu_result_MA[19]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[19]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[20]_i_10_n_0 ),
-        .O(\alu_result_MA[19]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[19]_i_7 
+    \alu_result_MA[19]_i_3 
        (.I0(oprr_EX[19]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[19]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[19]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[19]_i_5 
+       (.I0(oprl_EX[19]),
+        .I1(oprr_EX[19]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[19]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[19]_i_7 
+       (.I0(\alu_result_MA[20]_i_10_n_0 ),
+        .I1(\alu_result_MA[19]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[19]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[20]_i_11_n_0 ),
         .O(\alu_result_MA[19]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -8428,65 +8544,54 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[2]),
         .I4(\alu_result_MA[19]_i_14_n_0 ),
         .O(\alu_result_MA[19]_i_9_n_0 ));
-  LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[1]_i_2 
-       (.I0(oprl_EX[1]),
-        .I1(oprr_EX[1]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[1]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[1]_i_6 
-       (.I0(\alu_result_MA[2]_i_9_n_0 ),
-        .I1(\alu_result_MA[1]_i_8_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[0]_i_5_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[2]_i_10_n_0 ),
-        .O(\alu_result_MA[1]_i_6_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[1]_i_7 
+    \alu_result_MA[1]_i_3 
        (.I0(oprr_EX[1]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[1]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[1]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[1]_i_5 
+       (.I0(oprl_EX[1]),
+        .I1(oprr_EX[1]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[1]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[1]_i_7 
+       (.I0(\alu_result_MA[2]_i_9_n_0 ),
+        .I1(\alu_result_MA[0]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[0]_i_5_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[2]_i_10_n_0 ),
         .O(\alu_result_MA[1]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[1]_i_8 
-       (.I0(\alu_result_MA[7]_i_11_n_0 ),
-        .I1(\alu_result_MA[3]_i_11_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[5]_i_11_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[1]_i_9_n_0 ),
-        .O(\alu_result_MA[1]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[1]_i_9 
-       (.I0(oprl_EX[25]),
-        .I1(oprl_EX[9]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[17]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[1]),
-        .O(\alu_result_MA[1]_i_9_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \alu_result_MA[20]_i_10 
+       (.I0(\alu_result_MA[22]_i_13_n_0 ),
+        .I1(oprr_EX[1]),
+        .I2(\alu_result_MA[20]_i_14_n_0 ),
+        .O(\alu_result_MA[20]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[20]_i_11 
        (.I0(\alu_result_MA[20]_i_15_n_0 ),
         .I1(\alu_result_MA[24]_i_14_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[22]_i_14_n_0 ),
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[26]_i_13_n_0 ),
-        .O(\alu_result_MA[20]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+        .O(\alu_result_MA[20]_i_11_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT4 #(
     .INIT(16'hCDC8)) 
     \alu_result_MA[20]_i_12 
@@ -8514,7 +8619,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[20]),
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[20]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[20]_i_15 
@@ -8524,50 +8629,42 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[20]_i_15_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[20]_i_2 
-       (.I0(oprl_EX[20]),
-        .I1(oprr_EX[20]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[20]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[20]_i_6 
-       (.I0(\alu_result_MA[21]_i_9_n_0 ),
-        .I1(\alu_result_MA[20]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[20]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[21]_i_10_n_0 ),
-        .O(\alu_result_MA[20]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[20]_i_7 
+    \alu_result_MA[20]_i_3 
        (.I0(oprr_EX[20]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[20]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[20]_i_7_n_0 ));
+        .O(\alu_result_MA[20]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[20]_i_5 
+       (.I0(oprl_EX[20]),
+        .I1(oprr_EX[20]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[20]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[20]_i_8 
+       (.I0(\alu_result_MA[21]_i_9_n_0 ),
+        .I1(\alu_result_MA[20]_i_10_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[20]_i_11_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[21]_i_10_n_0 ),
+        .O(\alu_result_MA[20]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[20]_i_9 
        (.I0(\alu_result_MA[22]_i_11_n_0 ),
         .I1(\alu_result_MA[22]_i_12_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[20]_i_12_n_0 ),
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[20]_i_13_n_0 ),
-        .O(\alu_result_MA[20]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair94" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \alu_result_MA[20]_i_9 
-       (.I0(\alu_result_MA[22]_i_13_n_0 ),
-        .I1(oprr_EX[1]),
-        .I2(\alu_result_MA[20]_i_14_n_0 ),
         .O(\alu_result_MA[20]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -8579,7 +8676,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[27]_i_14_n_0 ),
         .O(\alu_result_MA[21]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT4 #(
     .INIT(16'hCDC8)) 
     \alu_result_MA[21]_i_11 
@@ -8607,7 +8704,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[21]),
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[21]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[21]_i_14 
@@ -8617,32 +8714,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[21]_i_14_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[21]_i_3 
+       (.I0(oprr_EX[21]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[21]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[21]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[21]_i_2 
+    \alu_result_MA[21]_i_5 
        (.I0(oprl_EX[21]),
         .I1(oprr_EX[21]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[21]_i_2_n_0 ));
+        .O(\alu_result_MA[21]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[21]_i_6 
+    \alu_result_MA[21]_i_7 
        (.I0(\alu_result_MA[22]_i_9_n_0 ),
         .I1(\alu_result_MA[21]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[21]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[22]_i_10_n_0 ),
-        .O(\alu_result_MA[21]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[21]_i_7 
-       (.I0(oprr_EX[21]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[21]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[21]_i_7_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
@@ -8653,7 +8750,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[2]),
         .I4(\alu_result_MA[21]_i_12_n_0 ),
         .O(\alu_result_MA[21]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair95" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[21]_i_9 
@@ -8671,7 +8768,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[28]_i_14_n_0 ),
         .O(\alu_result_MA[22]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT4 #(
     .INIT(16'hCDC8)) 
     \alu_result_MA[22]_i_11 
@@ -8699,7 +8796,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[22]),
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[22]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT4 #(
     .INIT(16'h00B8)) 
     \alu_result_MA[22]_i_14 
@@ -8709,32 +8806,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .O(\alu_result_MA[22]_i_14_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[22]_i_3 
+       (.I0(oprr_EX[22]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[22]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[22]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[22]_i_2 
+    \alu_result_MA[22]_i_5 
        (.I0(oprl_EX[22]),
         .I1(oprr_EX[22]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[22]_i_2_n_0 ));
+        .O(\alu_result_MA[22]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[22]_i_6 
+    \alu_result_MA[22]_i_7 
        (.I0(\alu_result_MA[23]_i_9_n_0 ),
         .I1(\alu_result_MA[22]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[22]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[23]_i_10_n_0 ),
-        .O(\alu_result_MA[22]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[22]_i_7 
-       (.I0(oprr_EX[22]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[22]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[22]_i_7_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
@@ -8745,7 +8842,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[2]),
         .I4(\alu_result_MA[22]_i_12_n_0 ),
         .O(\alu_result_MA[22]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair94" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[22]_i_9 
@@ -8783,7 +8880,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[23]),
         .I5(oprr_EX[4]),
         .O(\alu_result_MA[23]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[23]_i_13 
@@ -8794,34 +8891,34 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[16]),
         .O(\alu_result_MA[23]_i_13_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[23]_i_2 
-       (.I0(oprl_EX[23]),
-        .I1(oprr_EX[23]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[23]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[23]_i_6 
-       (.I0(\alu_result_MA[24]_i_9_n_0 ),
-        .I1(\alu_result_MA[23]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[23]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[24]_i_10_n_0 ),
-        .O(\alu_result_MA[23]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[23]_i_7 
+    \alu_result_MA[23]_i_3 
        (.I0(oprr_EX[23]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[23]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[23]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[23]_i_5 
+       (.I0(oprl_EX[23]),
+        .I1(oprr_EX[23]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[23]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[23]_i_7 
+       (.I0(\alu_result_MA[24]_i_10_n_0 ),
+        .I1(\alu_result_MA[23]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[23]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[24]_i_11_n_0 ),
         .O(\alu_result_MA[23]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair97" *) 
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[23]_i_8 
@@ -8829,7 +8926,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I1(oprr_EX[1]),
         .I2(\alu_result_MA[23]_i_11_n_0 ),
         .O(\alu_result_MA[23]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair95" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[23]_i_9 
@@ -8837,16 +8934,24 @@ module design_1_CPUTop_0_0_CPUTop
         .I1(oprr_EX[1]),
         .I2(\alu_result_MA[23]_i_12_n_0 ),
         .O(\alu_result_MA[23]_i_9_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \alu_result_MA[24]_i_10 
+       (.I0(\alu_result_MA[26]_i_12_n_0 ),
+        .I1(oprr_EX[1]),
+        .I2(\alu_result_MA[24]_i_13_n_0 ),
+        .O(\alu_result_MA[24]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[24]_i_10 
+    \alu_result_MA[24]_i_11 
        (.I0(\alu_result_MA[24]_i_14_n_0 ),
         .I1(\alu_result_MA[28]_i_14_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[26]_i_13_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[30]_i_11_n_0 ),
-        .O(\alu_result_MA[24]_i_10_n_0 ));
+        .I5(\alu_result_MA[30]_i_14_n_0 ),
+        .O(\alu_result_MA[24]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hFF00FB0BFF00F808)) 
     \alu_result_MA[24]_i_12 
@@ -8866,7 +8971,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprl_EX[24]),
         .I4(oprr_EX[3]),
         .O(\alu_result_MA[24]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[24]_i_14 
@@ -8877,48 +8982,40 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[17]),
         .O(\alu_result_MA[24]_i_14_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[24]_i_2 
-       (.I0(oprl_EX[24]),
-        .I1(oprr_EX[24]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[24]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[24]_i_6 
-       (.I0(\alu_result_MA[25]_i_9_n_0 ),
-        .I1(\alu_result_MA[24]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[24]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[25]_i_10_n_0 ),
-        .O(\alu_result_MA[24]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[24]_i_7 
+    \alu_result_MA[24]_i_3 
        (.I0(oprr_EX[24]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[24]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[24]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair98" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+        .O(\alu_result_MA[24]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[24]_i_5 
+       (.I0(oprl_EX[24]),
+        .I1(oprr_EX[24]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[24]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[24]_i_8 
-       (.I0(\alu_result_MA[26]_i_11_n_0 ),
-        .I1(oprr_EX[1]),
-        .I2(\alu_result_MA[24]_i_12_n_0 ),
+       (.I0(\alu_result_MA[25]_i_9_n_0 ),
+        .I1(\alu_result_MA[24]_i_10_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[24]_i_11_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[25]_i_10_n_0 ),
         .O(\alu_result_MA[24]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair96" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[24]_i_9 
-       (.I0(\alu_result_MA[26]_i_12_n_0 ),
+       (.I0(\alu_result_MA[26]_i_11_n_0 ),
         .I1(oprr_EX[1]),
-        .I2(\alu_result_MA[24]_i_13_n_0 ),
+        .I2(\alu_result_MA[24]_i_12_n_0 ),
         .O(\alu_result_MA[24]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -8928,7 +9025,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[27]_i_14_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_16_n_0 ),
+        .I5(\alu_result_MA[31]_i_13_n_0 ),
         .O(\alu_result_MA[25]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'hFF00FB0BFF00F808)) 
@@ -8949,7 +9046,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprl_EX[25]),
         .I4(oprr_EX[3]),
         .O(\alu_result_MA[25]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[25]_i_13 
@@ -8960,34 +9057,34 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[18]),
         .O(\alu_result_MA[25]_i_13_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[25]_i_3 
+       (.I0(oprr_EX[25]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[25]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[25]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[25]_i_2 
+    \alu_result_MA[25]_i_5 
        (.I0(oprl_EX[25]),
         .I1(oprr_EX[25]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[25]_i_2_n_0 ));
+        .O(\alu_result_MA[25]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[25]_i_6 
+    \alu_result_MA[25]_i_7 
        (.I0(\alu_result_MA[26]_i_9_n_0 ),
         .I1(\alu_result_MA[25]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[25]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[26]_i_10_n_0 ),
-        .O(\alu_result_MA[25]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[25]_i_7 
-       (.I0(oprr_EX[25]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[25]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[25]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair97" *) 
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[25]_i_8 
@@ -8995,7 +9092,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I1(oprr_EX[1]),
         .I2(\alu_result_MA[25]_i_11_n_0 ),
         .O(\alu_result_MA[25]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair96" *) 
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[25]_i_9 
@@ -9007,11 +9104,11 @@ module design_1_CPUTop_0_0_CPUTop
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[26]_i_10 
        (.I0(\alu_result_MA[26]_i_13_n_0 ),
-        .I1(\alu_result_MA[30]_i_11_n_0 ),
+        .I1(\alu_result_MA[30]_i_14_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[28]_i_14_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_12_n_0 ),
+        .I5(\alu_result_MA[31]_i_17_n_0 ),
         .O(\alu_result_MA[26]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'hFF00FB0BFF00F808)) 
@@ -9032,7 +9129,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprl_EX[26]),
         .I4(oprr_EX[3]),
         .O(\alu_result_MA[26]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[26]_i_13 
@@ -9043,34 +9140,34 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[19]),
         .O(\alu_result_MA[26]_i_13_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[26]_i_3 
+       (.I0(oprr_EX[26]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[26]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[26]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[26]_i_2 
+    \alu_result_MA[26]_i_5 
        (.I0(oprl_EX[26]),
         .I1(oprr_EX[26]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[26]_i_2_n_0 ));
+        .O(\alu_result_MA[26]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[26]_i_6 
+    \alu_result_MA[26]_i_7 
        (.I0(\alu_result_MA[27]_i_9_n_0 ),
         .I1(\alu_result_MA[26]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[26]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[27]_i_10_n_0 ),
-        .O(\alu_result_MA[26]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[26]_i_7 
-       (.I0(oprr_EX[26]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[26]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[26]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair98" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[26]_i_8 
@@ -9092,11 +9189,11 @@ module design_1_CPUTop_0_0_CPUTop
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[27]_i_10 
        (.I0(\alu_result_MA[27]_i_14_n_0 ),
-        .I1(\alu_result_MA[31]_i_16_n_0 ),
+        .I1(\alu_result_MA[31]_i_13_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[29]_i_11_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_18_n_0 ),
+        .I5(\alu_result_MA[31]_i_15_n_0 ),
         .O(\alu_result_MA[27]_i_10_n_0 ));
   LUT5 #(
     .INIT(32'hF0F1F0E0)) 
@@ -9107,7 +9204,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[29]),
         .O(\alu_result_MA[27]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT5 #(
     .INIT(32'hF0F1F0E0)) 
     \alu_result_MA[27]_i_12 
@@ -9117,7 +9214,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[27]),
         .O(\alu_result_MA[27]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT5 #(
     .INIT(32'h00000B08)) 
     \alu_result_MA[27]_i_13 
@@ -9127,7 +9224,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprl_EX[27]),
         .I4(oprr_EX[3]),
         .O(\alu_result_MA[27]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[27]_i_14 
@@ -9138,34 +9235,34 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[20]),
         .O(\alu_result_MA[27]_i_14_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[27]_i_2 
-       (.I0(oprl_EX[27]),
-        .I1(oprr_EX[27]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[27]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[27]_i_6 
-       (.I0(\alu_result_MA[28]_i_9_n_0 ),
-        .I1(\alu_result_MA[27]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[27]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[28]_i_10_n_0 ),
-        .O(\alu_result_MA[27]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[27]_i_7 
+    \alu_result_MA[27]_i_3 
        (.I0(oprr_EX[27]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[27]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[27]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[27]_i_5 
+       (.I0(oprl_EX[27]),
+        .I1(oprr_EX[27]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[27]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[27]_i_7 
+       (.I0(\alu_result_MA[28]_i_10_n_0 ),
+        .I1(\alu_result_MA[27]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[27]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[28]_i_11_n_0 ),
         .O(\alu_result_MA[27]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair99" *) 
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[27]_i_8 
@@ -9184,15 +9281,25 @@ module design_1_CPUTop_0_0_CPUTop
         .I5(\alu_result_MA[27]_i_13_n_0 ),
         .O(\alu_result_MA[27]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    .INIT(64'h0000000000000B08)) 
     \alu_result_MA[28]_i_10 
-       (.I0(\alu_result_MA[28]_i_14_n_0 ),
-        .I1(\alu_result_MA[31]_i_12_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[30]_i_11_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_14_n_0 ),
+       (.I0(oprl_EX[30]),
+        .I1(oprr_EX[1]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[28]),
+        .I4(oprr_EX[4]),
+        .I5(oprr_EX[2]),
         .O(\alu_result_MA[28]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[28]_i_11 
+       (.I0(\alu_result_MA[28]_i_14_n_0 ),
+        .I1(\alu_result_MA[31]_i_17_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[30]_i_14_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[31]_i_19_n_0 ),
+        .O(\alu_result_MA[28]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'hF0F1F0E0)) 
     \alu_result_MA[28]_i_12 
@@ -9211,7 +9318,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[4]),
         .I4(oprl_EX[28]),
         .O(\alu_result_MA[28]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[28]_i_14 
@@ -9222,62 +9329,52 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[21]),
         .O(\alu_result_MA[28]_i_14_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[28]_i_2 
-       (.I0(oprl_EX[28]),
-        .I1(oprr_EX[28]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[28]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[28]_i_6 
-       (.I0(\alu_result_MA[29]_i_9_n_0 ),
-        .I1(\alu_result_MA[28]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[28]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[29]_i_10_n_0 ),
-        .O(\alu_result_MA[28]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[28]_i_7 
+    \alu_result_MA[28]_i_3 
        (.I0(oprr_EX[28]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[28]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[28]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair99" *) 
+        .O(\alu_result_MA[28]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[28]_i_5 
+       (.I0(oprl_EX[28]),
+        .I1(oprr_EX[28]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[28]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[28]_i_8 
+       (.I0(\alu_result_MA[29]_i_9_n_0 ),
+        .I1(\alu_result_MA[28]_i_10_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[28]_i_11_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[29]_i_10_n_0 ),
+        .O(\alu_result_MA[28]_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \alu_result_MA[28]_i_8 
+    \alu_result_MA[28]_i_9 
        (.I0(\alu_result_MA[28]_i_12_n_0 ),
         .I1(oprr_EX[1]),
         .I2(\alu_result_MA[28]_i_13_n_0 ),
-        .O(\alu_result_MA[28]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000B08)) 
-    \alu_result_MA[28]_i_9 
-       (.I0(oprl_EX[30]),
-        .I1(oprr_EX[1]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[28]),
-        .I4(oprr_EX[4]),
-        .I5(oprr_EX[2]),
         .O(\alu_result_MA[28]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[29]_i_10 
        (.I0(\alu_result_MA[29]_i_11_n_0 ),
-        .I1(\alu_result_MA[31]_i_18_n_0 ),
+        .I1(\alu_result_MA[31]_i_15_n_0 ),
         .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[31]_i_16_n_0 ),
+        .I3(\alu_result_MA[31]_i_13_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_17_n_0 ),
+        .I5(\alu_result_MA[31]_i_14_n_0 ),
         .O(\alu_result_MA[29]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[29]_i_11 
@@ -9288,32 +9385,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprl_EX[22]),
         .O(\alu_result_MA[29]_i_11_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[29]_i_2 
-       (.I0(oprl_EX[29]),
-        .I1(oprr_EX[29]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[29]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[29]_i_6 
-       (.I0(\alu_result_MA[30]_i_9_n_0 ),
-        .I1(\alu_result_MA[29]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[29]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[30]_i_10_n_0 ),
-        .O(\alu_result_MA[29]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[29]_i_7 
+    \alu_result_MA[29]_i_3 
        (.I0(oprr_EX[29]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[29]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[29]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[29]_i_5 
+       (.I0(oprl_EX[29]),
+        .I1(oprr_EX[29]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[29]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[29]_i_7 
+       (.I0(\alu_result_MA[30]_i_12_n_0 ),
+        .I1(\alu_result_MA[29]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[29]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[30]_i_13_n_0 ),
         .O(\alu_result_MA[29]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hFF00FF01FF00FE00)) 
@@ -9344,219 +9441,230 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(oprr_EX[3]),
         .I4(oprr_EX[1]),
         .O(\alu_result_MA[2]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[2]_i_11 
-       (.I0(oprl_EX[26]),
-        .I1(oprl_EX[10]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[18]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[2]),
-        .O(\alu_result_MA[2]_i_11_n_0 ));
+  LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[2]_i_3 
+       (.I0(oprr_EX[2]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[2]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[2]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[2]_i_2 
+    \alu_result_MA[2]_i_5 
        (.I0(oprl_EX[2]),
         .I1(oprr_EX[2]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[2]_i_2_n_0 ));
+        .O(\alu_result_MA[2]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[2]_i_6 
+    \alu_result_MA[2]_i_7 
        (.I0(\alu_result_MA[3]_i_9_n_0 ),
         .I1(\alu_result_MA[2]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[2]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[3]_i_10_n_0 ),
-        .O(\alu_result_MA[2]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[2]_i_7 
-       (.I0(oprr_EX[2]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[2]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[2]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[2]_i_8 
        (.I0(\alu_result_MA[8]_i_12_n_0 ),
-        .I1(\alu_result_MA[4]_i_12_n_0 ),
+        .I1(\alu_result_MA[0]_i_18_n_0 ),
         .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[6]_i_11_n_0 ),
+        .I3(\alu_result_MA[0]_i_16_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[2]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_17_n_0 ),
         .O(\alu_result_MA[2]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[2]_i_9 
        (.I0(\alu_result_MA[8]_i_13_n_0 ),
-        .I1(\alu_result_MA[4]_i_12_n_0 ),
+        .I1(\alu_result_MA[0]_i_18_n_0 ),
         .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[6]_i_11_n_0 ),
+        .I3(\alu_result_MA[0]_i_16_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[2]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_17_n_0 ),
         .O(\alu_result_MA[2]_i_9_n_0 ));
+  LUT2 #(
+    .INIT(4'h8)) 
+    \alu_result_MA[30]_i_1 
+       (.I0(\alucode_EX_reg_n_0_[5] ),
+        .I1(nrst),
+        .O(\alu_result_MA[30]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[30]_i_10 
-       (.I0(\alu_result_MA[30]_i_11_n_0 ),
-        .I1(\alu_result_MA[31]_i_14_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[31]_i_12_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_13_n_0 ),
-        .O(\alu_result_MA[30]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
-  LUT5 #(
-    .INIT(32'h30BB3088)) 
-    \alu_result_MA[30]_i_11 
-       (.I0(oprl_EX[15]),
-        .I1(oprr_EX[3]),
-        .I2(oprl_EX[7]),
-        .I3(oprr_EX[4]),
-        .I4(oprl_EX[23]),
-        .O(\alu_result_MA[30]_i_11_n_0 ));
-  LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[30]_i_2 
-       (.I0(oprl_EX[30]),
-        .I1(oprr_EX[30]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[30]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[30]_i_6 
-       (.I0(\alu_result_MA[31]_i_10_n_0 ),
-        .I1(\alu_result_MA[30]_i_9_n_0 ),
+       (.I0(\alu_result_MA[31]_i_8_n_0 ),
+        .I1(\alu_result_MA[30]_i_12_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[30]_i_10_n_0 ),
+        .I3(\alu_result_MA[30]_i_13_n_0 ),
         .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[31]_i_9_n_0 ),
-        .O(\alu_result_MA[30]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[30]_i_7 
-       (.I0(oprr_EX[30]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[30]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[30]_i_7_n_0 ));
+        .I5(\alu_result_MA[31]_i_10_n_0 ),
+        .O(\alu_result_MA[30]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'hFF00FF01FF00FE00)) 
-    \alu_result_MA[30]_i_8 
+    \alu_result_MA[30]_i_11 
        (.I0(oprr_EX[1]),
         .I1(oprr_EX[2]),
         .I2(oprr_EX[3]),
         .I3(oprl_EX[31]),
         .I4(oprr_EX[4]),
         .I5(oprl_EX[30]),
-        .O(\alu_result_MA[30]_i_8_n_0 ));
+        .O(\alu_result_MA[30]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'h00000010)) 
-    \alu_result_MA[30]_i_9 
+    \alu_result_MA[30]_i_12 
        (.I0(oprr_EX[2]),
         .I1(oprr_EX[4]),
         .I2(oprl_EX[30]),
         .I3(oprr_EX[3]),
         .I4(oprr_EX[1]),
-        .O(\alu_result_MA[30]_i_9_n_0 ));
-  LUT5 #(
-    .INIT(32'h00000010)) 
-    \alu_result_MA[31]_i_10 
-       (.I0(oprr_EX[2]),
-        .I1(oprr_EX[4]),
-        .I2(oprl_EX[31]),
-        .I3(oprr_EX[3]),
-        .I4(oprr_EX[1]),
-        .O(\alu_result_MA[31]_i_10_n_0 ));
+        .O(\alu_result_MA[30]_i_12_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[30]_i_13 
+       (.I0(\alu_result_MA[30]_i_14_n_0 ),
+        .I1(\alu_result_MA[31]_i_19_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[31]_i_17_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[31]_i_18_n_0 ),
+        .O(\alu_result_MA[30]_i_13_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  LUT5 #(
+    .INIT(32'h30BB3088)) 
+    \alu_result_MA[30]_i_14 
+       (.I0(oprl_EX[15]),
+        .I1(oprr_EX[3]),
+        .I2(oprl_EX[7]),
+        .I3(oprr_EX[4]),
+        .I4(oprl_EX[23]),
+        .O(\alu_result_MA[30]_i_14_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  LUT3 #(
+    .INIT(8'hFE)) 
+    \alu_result_MA[30]_i_4 
+       (.I0(\alucode_EX_reg_n_0_[1] ),
+        .I1(\alucode_EX_reg_n_0_[0] ),
+        .I2(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[30]_i_4_n_0 ));
+  LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[30]_i_5 
+       (.I0(oprr_EX[30]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[30]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[30]_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[30]_i_7 
+       (.I0(oprl_EX[30]),
+        .I1(oprr_EX[30]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[30]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[31]_i_10 
+       (.I0(\alu_result_MA[31]_i_13_n_0 ),
+        .I1(\alu_result_MA[31]_i_14_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[31]_i_15_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[31]_i_16_n_0 ),
+        .O(\alu_result_MA[31]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \alu_result_MA[31]_i_11 
+       (.I0(\alu_result_MA[31]_i_17_n_0 ),
+        .I1(oprr_EX[2]),
+        .I2(\alu_result_MA[31]_i_18_n_0 ),
+        .O(\alu_result_MA[31]_i_11_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
     \alu_result_MA[31]_i_12 
-       (.I0(oprl_EX[1]),
-        .I1(oprl_EX[17]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[9]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[25]),
+       (.I0(\alu_result_MA[31]_i_19_n_0 ),
+        .I1(oprr_EX[2]),
+        .I2(\alu_result_MA[31]_i_20_n_0 ),
         .O(\alu_result_MA[31]_i_12_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[31]_i_13 
-       (.I0(oprl_EX[5]),
-        .I1(oprl_EX[21]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[13]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[29]),
-        .O(\alu_result_MA[31]_i_13_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[31]_i_14 
-       (.I0(oprl_EX[3]),
-        .I1(oprl_EX[19]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[11]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[27]),
-        .O(\alu_result_MA[31]_i_14_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[31]_i_15 
-       (.I0(oprl_EX[7]),
-        .I1(oprl_EX[23]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[15]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[31]),
-        .O(\alu_result_MA[31]_i_15_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[31]_i_16 
        (.I0(oprl_EX[0]),
         .I1(oprl_EX[16]),
         .I2(oprr_EX[3]),
         .I3(oprl_EX[8]),
         .I4(oprr_EX[4]),
         .I5(oprl_EX[24]),
-        .O(\alu_result_MA[31]_i_16_n_0 ));
+        .O(\alu_result_MA[31]_i_13_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[31]_i_17 
+    \alu_result_MA[31]_i_14 
        (.I0(oprl_EX[4]),
         .I1(oprl_EX[20]),
         .I2(oprr_EX[3]),
         .I3(oprl_EX[12]),
         .I4(oprr_EX[4]),
         .I5(oprl_EX[28]),
-        .O(\alu_result_MA[31]_i_17_n_0 ));
+        .O(\alu_result_MA[31]_i_14_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[31]_i_18 
+    \alu_result_MA[31]_i_15 
        (.I0(oprl_EX[2]),
         .I1(oprl_EX[18]),
         .I2(oprr_EX[3]),
         .I3(oprl_EX[10]),
         .I4(oprr_EX[4]),
         .I5(oprl_EX[26]),
-        .O(\alu_result_MA[31]_i_18_n_0 ));
+        .O(\alu_result_MA[31]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[31]_i_19 
+    \alu_result_MA[31]_i_16 
        (.I0(oprl_EX[6]),
         .I1(oprl_EX[22]),
         .I2(oprr_EX[3]),
         .I3(oprl_EX[14]),
         .I4(oprr_EX[4]),
         .I5(oprl_EX[30]),
+        .O(\alu_result_MA[31]_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[31]_i_17 
+       (.I0(oprl_EX[1]),
+        .I1(oprl_EX[17]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[9]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[25]),
+        .O(\alu_result_MA[31]_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[31]_i_18 
+       (.I0(oprl_EX[5]),
+        .I1(oprl_EX[21]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[13]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[29]),
+        .O(\alu_result_MA[31]_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[31]_i_19 
+       (.I0(oprl_EX[3]),
+        .I1(oprl_EX[19]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[11]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[27]),
         .O(\alu_result_MA[31]_i_19_n_0 ));
   LUT5 #(
     .INIT(32'h000086E0)) 
@@ -9568,15 +9676,15 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(\alucode_EX_reg_n_0_[3] ),
         .O(\alu_result_MA[31]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h33E200E2FFFFFFFF)) 
-    \alu_result_MA[31]_i_6 
-       (.I0(\alu_result_MA[31]_i_8_n_0 ),
-        .I1(oprr_EX[0]),
-        .I2(\alu_result_MA[31]_i_9_n_0 ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alu_result_MA[31]_i_10_n_0 ),
-        .I5(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[31]_i_6_n_0 ));
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[31]_i_20 
+       (.I0(oprl_EX[7]),
+        .I1(oprl_EX[23]),
+        .I2(oprr_EX[3]),
+        .I3(oprl_EX[15]),
+        .I4(oprr_EX[4]),
+        .I5(oprl_EX[31]),
+        .O(\alu_result_MA[31]_i_20_n_0 ));
   LUT5 #(
     .INIT(32'h000030E2)) 
     \alu_result_MA[31]_i_7 
@@ -9586,26 +9694,24 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[31]_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT5 #(
+    .INIT(32'h00000010)) 
     \alu_result_MA[31]_i_8 
-       (.I0(\alu_result_MA[31]_i_12_n_0 ),
-        .I1(\alu_result_MA[31]_i_13_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[31]_i_14_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_15_n_0 ),
+       (.I0(oprr_EX[2]),
+        .I1(oprr_EX[4]),
+        .I2(oprl_EX[31]),
+        .I3(oprr_EX[3]),
+        .I4(oprr_EX[1]),
         .O(\alu_result_MA[31]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
     \alu_result_MA[31]_i_9 
-       (.I0(\alu_result_MA[31]_i_16_n_0 ),
-        .I1(\alu_result_MA[31]_i_17_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[31]_i_18_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[31]_i_19_n_0 ),
-        .O(\alu_result_MA[31]_i_9_n_0 ));
+       (.I0(\alu_result_MA[31]_i_10_n_0 ),
+        .I1(oprr_EX[0]),
+        .I2(\alu_result_MA[31]_i_11_n_0 ),
+        .I3(oprr_EX[1]),
+        .I4(\alu_result_MA[31]_i_12_n_0 ),
+        .O(data7));
   LUT6 #(
     .INIT(64'h0000000000000B08)) 
     \alu_result_MA[3]_i_10 
@@ -9616,136 +9722,116 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprr_EX[2]),
         .O(\alu_result_MA[3]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[3]_i_11 
-       (.I0(oprl_EX[27]),
-        .I1(oprl_EX[11]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[19]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[3]),
-        .O(\alu_result_MA[3]_i_11_n_0 ));
-  LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[3]_i_2 
-       (.I0(oprl_EX[3]),
-        .I1(oprr_EX[3]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[3]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[3]_i_6 
-       (.I0(\alu_result_MA[4]_i_9_n_0 ),
-        .I1(\alu_result_MA[3]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[3]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[4]_i_10_n_0 ),
-        .O(\alu_result_MA[3]_i_6_n_0 ));
   LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[3]_i_7 
+    \alu_result_MA[3]_i_3 
        (.I0(oprr_EX[3]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[3]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[3]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[3]_i_5 
+       (.I0(oprl_EX[3]),
+        .I1(oprr_EX[3]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[3]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[3]_i_7 
+       (.I0(\alu_result_MA[4]_i_11_n_0 ),
+        .I1(\alu_result_MA[3]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[3]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[4]_i_12_n_0 ),
         .O(\alu_result_MA[3]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[3]_i_8 
        (.I0(\alu_result_MA[9]_i_11_n_0 ),
-        .I1(\alu_result_MA[5]_i_11_n_0 ),
+        .I1(\alu_result_MA[0]_i_14_n_0 ),
         .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[7]_i_11_n_0 ),
+        .I3(\alu_result_MA[0]_i_12_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[3]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_13_n_0 ),
         .O(\alu_result_MA[3]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[3]_i_9 
        (.I0(\alu_result_MA[9]_i_12_n_0 ),
-        .I1(\alu_result_MA[5]_i_11_n_0 ),
+        .I1(\alu_result_MA[0]_i_14_n_0 ),
         .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[7]_i_11_n_0 ),
+        .I3(\alu_result_MA[0]_i_12_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[3]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_13_n_0 ),
         .O(\alu_result_MA[3]_i_9_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000B08)) 
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[4]_i_10 
+       (.I0(\alu_result_MA[10]_i_11_n_0 ),
+        .I1(\alu_result_MA[0]_i_16_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[8]_i_12_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[0]_i_18_n_0 ),
+        .O(\alu_result_MA[4]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[4]_i_11 
+       (.I0(\alu_result_MA[10]_i_12_n_0 ),
+        .I1(\alu_result_MA[0]_i_16_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[8]_i_13_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[0]_i_18_n_0 ),
+        .O(\alu_result_MA[4]_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000000B08)) 
+    \alu_result_MA[4]_i_12 
        (.I0(oprl_EX[1]),
         .I1(oprr_EX[1]),
         .I2(oprr_EX[3]),
         .I3(oprl_EX[3]),
         .I4(oprr_EX[4]),
         .I5(oprr_EX[2]),
-        .O(\alu_result_MA[4]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[4]_i_12 
-       (.I0(oprl_EX[28]),
-        .I1(oprl_EX[12]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[20]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[4]),
         .O(\alu_result_MA[4]_i_12_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \alu_result_MA[4]_i_13 
-       (.I0(oprr_EX[2]),
-        .O(\alu_result_MA[4]_i_13_n_0 ));
-  LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[4]_i_2 
-       (.I0(oprl_EX[4]),
-        .I1(oprr_EX[4]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[4]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[4]_i_6 
-       (.I0(\alu_result_MA[5]_i_9_n_0 ),
-        .I1(\alu_result_MA[4]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[4]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[5]_i_10_n_0 ),
-        .O(\alu_result_MA[4]_i_6_n_0 ));
   LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[4]_i_7 
+    \alu_result_MA[4]_i_3 
        (.I0(oprr_EX[4]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[4]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[4]_i_7_n_0 ));
+        .O(\alu_result_MA[4]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[4]_i_5 
+       (.I0(oprl_EX[4]),
+        .I1(oprr_EX[4]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[4]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[4]_i_8 
-       (.I0(\alu_result_MA[10]_i_11_n_0 ),
-        .I1(\alu_result_MA[6]_i_11_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[8]_i_12_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[4]_i_12_n_0 ),
+       (.I0(\alu_result_MA[5]_i_9_n_0 ),
+        .I1(\alu_result_MA[4]_i_11_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[4]_i_12_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[5]_i_10_n_0 ),
         .O(\alu_result_MA[4]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+  LUT1 #(
+    .INIT(2'h1)) 
     \alu_result_MA[4]_i_9 
-       (.I0(\alu_result_MA[10]_i_12_n_0 ),
-        .I1(\alu_result_MA[6]_i_11_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[8]_i_13_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[4]_i_12_n_0 ),
+       (.I0(oprr_EX[2]),
         .O(\alu_result_MA[4]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h0004FFFF00040000)) 
@@ -9755,65 +9841,55 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprr_EX[4]),
         .I3(oprr_EX[2]),
         .I4(oprr_EX[1]),
-        .I5(\alu_result_MA[7]_i_12_n_0 ),
+        .I5(\alu_result_MA[7]_i_11_n_0 ),
         .O(\alu_result_MA[5]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[5]_i_11 
-       (.I0(oprl_EX[29]),
-        .I1(oprl_EX[13]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[21]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[5]),
-        .O(\alu_result_MA[5]_i_11_n_0 ));
+  LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[5]_i_3 
+       (.I0(oprr_EX[5]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[5]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[5]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[5]_i_2 
+    \alu_result_MA[5]_i_5 
        (.I0(oprl_EX[5]),
         .I1(oprr_EX[5]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[5]_i_2_n_0 ));
+        .O(\alu_result_MA[5]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[5]_i_6 
+    \alu_result_MA[5]_i_7 
        (.I0(\alu_result_MA[6]_i_9_n_0 ),
         .I1(\alu_result_MA[5]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[5]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[6]_i_10_n_0 ),
-        .O(\alu_result_MA[5]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[5]_i_7 
-       (.I0(oprr_EX[5]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[5]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[5]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[5]_i_8 
        (.I0(\alu_result_MA[11]_i_11_n_0 ),
-        .I1(\alu_result_MA[7]_i_11_n_0 ),
+        .I1(\alu_result_MA[0]_i_12_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[9]_i_11_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[5]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_14_n_0 ),
         .O(\alu_result_MA[5]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[5]_i_9 
        (.I0(\alu_result_MA[11]_i_12_n_0 ),
-        .I1(\alu_result_MA[7]_i_11_n_0 ),
+        .I1(\alu_result_MA[0]_i_12_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[9]_i_12_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[5]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_14_n_0 ),
         .O(\alu_result_MA[5]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h0004FFFF00040000)) 
@@ -9825,43 +9901,33 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[1]),
         .I5(\alu_result_MA[8]_i_14_n_0 ),
         .O(\alu_result_MA[6]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[6]_i_11 
-       (.I0(oprl_EX[30]),
-        .I1(oprl_EX[14]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[22]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[6]),
-        .O(\alu_result_MA[6]_i_11_n_0 ));
+  LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[6]_i_3 
+       (.I0(oprr_EX[6]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[6]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[6]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[6]_i_2 
+    \alu_result_MA[6]_i_5 
        (.I0(oprl_EX[6]),
         .I1(oprr_EX[6]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[6]_i_2_n_0 ));
+        .O(\alu_result_MA[6]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[6]_i_6 
+    \alu_result_MA[6]_i_7 
        (.I0(\alu_result_MA[7]_i_9_n_0 ),
         .I1(\alu_result_MA[6]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[6]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[7]_i_10_n_0 ),
-        .O(\alu_result_MA[6]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[6]_i_7 
-       (.I0(oprr_EX[6]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[6]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[6]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -9871,7 +9937,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[10]_i_11_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[6]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_16_n_0 ),
         .O(\alu_result_MA[6]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -9881,62 +9947,52 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[10]_i_12_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[6]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_16_n_0 ),
         .O(\alu_result_MA[6]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair93" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[7]_i_10 
-       (.I0(\alu_result_MA[7]_i_12_n_0 ),
+       (.I0(\alu_result_MA[7]_i_11_n_0 ),
         .I1(oprr_EX[1]),
         .I2(\alu_result_MA[9]_i_13_n_0 ),
         .O(\alu_result_MA[7]_i_10_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[7]_i_11 
-       (.I0(oprl_EX[31]),
-        .I1(oprl_EX[15]),
-        .I2(oprr_EX[3]),
-        .I3(oprl_EX[23]),
-        .I4(oprr_EX[4]),
-        .I5(oprl_EX[7]),
-        .O(\alu_result_MA[7]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'h00000B08)) 
-    \alu_result_MA[7]_i_12 
+    \alu_result_MA[7]_i_11 
        (.I0(oprl_EX[0]),
         .I1(oprr_EX[2]),
         .I2(oprr_EX[4]),
         .I3(oprl_EX[4]),
         .I4(oprr_EX[3]),
-        .O(\alu_result_MA[7]_i_12_n_0 ));
-  LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[7]_i_2 
-       (.I0(oprl_EX[7]),
-        .I1(oprr_EX[7]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[7]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[7]_i_6 
-       (.I0(\alu_result_MA[8]_i_9_n_0 ),
-        .I1(\alu_result_MA[7]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[7]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[8]_i_10_n_0 ),
-        .O(\alu_result_MA[7]_i_6_n_0 ));
+        .O(\alu_result_MA[7]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[7]_i_7 
+    \alu_result_MA[7]_i_3 
        (.I0(oprr_EX[7]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[7]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[7]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[7]_i_5 
+       (.I0(oprl_EX[7]),
+        .I1(oprr_EX[7]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[7]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[7]_i_7 
+       (.I0(\alu_result_MA[8]_i_10_n_0 ),
+        .I1(\alu_result_MA[7]_i_9_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[7]_i_10_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[8]_i_11_n_0 ),
         .O(\alu_result_MA[7]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -9946,7 +10002,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[11]_i_11_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[7]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_12_n_0 ),
         .O(\alu_result_MA[7]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -9956,16 +10012,26 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[11]_i_12_n_0 ),
         .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[7]_i_11_n_0 ),
+        .I5(\alu_result_MA[0]_i_12_n_0 ),
         .O(\alu_result_MA[7]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair93" *) 
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[8]_i_10 
+       (.I0(\alu_result_MA[14]_i_12_n_0 ),
+        .I1(\alu_result_MA[10]_i_12_n_0 ),
+        .I2(oprr_EX[1]),
+        .I3(\alu_result_MA[12]_i_13_n_0 ),
+        .I4(oprr_EX[2]),
+        .I5(\alu_result_MA[8]_i_13_n_0 ),
+        .O(\alu_result_MA[8]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \alu_result_MA[8]_i_10 
+    \alu_result_MA[8]_i_11 
        (.I0(\alu_result_MA[8]_i_14_n_0 ),
         .I1(oprr_EX[1]),
         .I2(\alu_result_MA[10]_i_13_n_0 ),
-        .O(\alu_result_MA[8]_i_10_n_0 ));
+        .O(\alu_result_MA[8]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[8]_i_12 
@@ -9976,7 +10042,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprl_EX[8]),
         .O(\alu_result_MA[8]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[8]_i_13 
@@ -9996,54 +10062,44 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[3]),
         .O(\alu_result_MA[8]_i_14_n_0 ));
   LUT5 #(
-    .INIT(32'h000086E0)) 
-    \alu_result_MA[8]_i_2 
-       (.I0(oprl_EX[8]),
-        .I1(oprr_EX[8]),
-        .I2(\alucode_EX_reg_n_0_[1] ),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[8]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[8]_i_6 
-       (.I0(\alu_result_MA[9]_i_9_n_0 ),
-        .I1(\alu_result_MA[8]_i_9_n_0 ),
-        .I2(\alucode_EX_reg_n_0_[0] ),
-        .I3(\alu_result_MA[8]_i_10_n_0 ),
-        .I4(oprr_EX[0]),
-        .I5(\alu_result_MA[9]_i_10_n_0 ),
-        .O(\alu_result_MA[8]_i_6_n_0 ));
-  LUT5 #(
     .INIT(32'h000030E2)) 
-    \alu_result_MA[8]_i_7 
+    \alu_result_MA[8]_i_3 
        (.I0(oprr_EX[8]),
         .I1(\alucode_EX_reg_n_0_[1] ),
         .I2(data10[8]),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[2] ),
-        .O(\alu_result_MA[8]_i_7_n_0 ));
+        .O(\alu_result_MA[8]_i_3_n_0 ));
+  LUT5 #(
+    .INIT(32'h000086E0)) 
+    \alu_result_MA[8]_i_5 
+       (.I0(oprl_EX[8]),
+        .I1(oprr_EX[8]),
+        .I2(\alucode_EX_reg_n_0_[1] ),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[3] ),
+        .O(\alu_result_MA[8]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \alu_result_MA[8]_i_8 
+       (.I0(\alu_result_MA[9]_i_9_n_0 ),
+        .I1(\alu_result_MA[8]_i_10_n_0 ),
+        .I2(\alucode_EX_reg_n_0_[0] ),
+        .I3(\alu_result_MA[8]_i_11_n_0 ),
+        .I4(oprr_EX[0]),
+        .I5(\alu_result_MA[9]_i_10_n_0 ),
+        .O(\alu_result_MA[8]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \alu_result_MA[8]_i_9 
        (.I0(\alu_result_MA[14]_i_11_n_0 ),
         .I1(\alu_result_MA[10]_i_11_n_0 ),
         .I2(oprr_EX[1]),
         .I3(\alu_result_MA[12]_i_12_n_0 ),
         .I4(oprr_EX[2]),
         .I5(\alu_result_MA[8]_i_12_n_0 ),
-        .O(\alu_result_MA[8]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[8]_i_9 
-       (.I0(\alu_result_MA[14]_i_12_n_0 ),
-        .I1(\alu_result_MA[10]_i_12_n_0 ),
-        .I2(oprr_EX[1]),
-        .I3(\alu_result_MA[12]_i_13_n_0 ),
-        .I4(oprr_EX[2]),
-        .I5(\alu_result_MA[8]_i_13_n_0 ),
         .O(\alu_result_MA[8]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair91" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \alu_result_MA[9]_i_10 
@@ -10061,7 +10117,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[4]),
         .I5(oprl_EX[9]),
         .O(\alu_result_MA[9]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT5 #(
     .INIT(32'h30BB3088)) 
     \alu_result_MA[9]_i_12 
@@ -10081,32 +10137,32 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(oprr_EX[3]),
         .O(\alu_result_MA[9]_i_13_n_0 ));
   LUT5 #(
+    .INIT(32'h000030E2)) 
+    \alu_result_MA[9]_i_3 
+       (.I0(oprr_EX[9]),
+        .I1(\alucode_EX_reg_n_0_[1] ),
+        .I2(data10[9]),
+        .I3(\alucode_EX_reg_n_0_[0] ),
+        .I4(\alucode_EX_reg_n_0_[2] ),
+        .O(\alu_result_MA[9]_i_3_n_0 ));
+  LUT5 #(
     .INIT(32'h000086E0)) 
-    \alu_result_MA[9]_i_2 
+    \alu_result_MA[9]_i_5 
        (.I0(oprl_EX[9]),
         .I1(oprr_EX[9]),
         .I2(\alucode_EX_reg_n_0_[1] ),
         .I3(\alucode_EX_reg_n_0_[0] ),
         .I4(\alucode_EX_reg_n_0_[3] ),
-        .O(\alu_result_MA[9]_i_2_n_0 ));
+        .O(\alu_result_MA[9]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \alu_result_MA[9]_i_6 
+    \alu_result_MA[9]_i_7 
        (.I0(\alu_result_MA[10]_i_9_n_0 ),
         .I1(\alu_result_MA[9]_i_9_n_0 ),
         .I2(\alucode_EX_reg_n_0_[0] ),
         .I3(\alu_result_MA[9]_i_10_n_0 ),
         .I4(oprr_EX[0]),
         .I5(\alu_result_MA[10]_i_10_n_0 ),
-        .O(\alu_result_MA[9]_i_6_n_0 ));
-  LUT5 #(
-    .INIT(32'h000030E2)) 
-    \alu_result_MA[9]_i_7 
-       (.I0(oprr_EX[9]),
-        .I1(\alucode_EX_reg_n_0_[1] ),
-        .I2(data10[9]),
-        .I3(\alucode_EX_reg_n_0_[0] ),
-        .I4(\alucode_EX_reg_n_0_[2] ),
         .O(\alu_result_MA[9]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -10131,31 +10187,31 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \alu_result_MA_reg[0] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_32),
+        .D(alu1_n_18),
         .Q(alu_result[0]),
         .R(1'b0));
   FDRE \alu_result_MA_reg[10] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_22),
+        .D(p_0_out[10]),
         .Q(alu_result[10]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[11] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_21),
+        .D(p_0_out[11]),
         .Q(alu_result[11]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[12] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_20),
+        .D(p_0_out[12]),
         .Q(alu_result[12]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[12]_i_11 
-       (.CI(\alu_result_MA_reg[8]_i_11_n_0 ),
-        .CO({\alu_result_MA_reg[12]_i_11_n_0 ,\alu_result_MA_reg[12]_i_11_n_1 ,\alu_result_MA_reg[12]_i_11_n_2 ,\alu_result_MA_reg[12]_i_11_n_3 }),
+  CARRY4 \alu_result_MA_reg[12]_i_6 
+       (.CI(\alu_result_MA_reg[8]_i_6_n_0 ),
+        .CO({\alu_result_MA_reg[12]_i_6_n_0 ,\alu_result_MA_reg[12]_i_6_n_1 ,\alu_result_MA_reg[12]_i_6_n_2 ,\alu_result_MA_reg[12]_i_6_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(data10[12:9]),
@@ -10163,31 +10219,31 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \alu_result_MA_reg[13] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_19),
+        .D(p_0_out[13]),
         .Q(alu_result[13]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[14] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_18),
+        .D(p_0_out[14]),
         .Q(alu_result[14]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[15] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_17),
+        .D(p_0_out[15]),
         .Q(alu_result[15]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[16] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_16),
+        .D(p_0_out[16]),
         .Q(alu_result[16]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[16]_i_11 
-       (.CI(\alu_result_MA_reg[12]_i_11_n_0 ),
-        .CO({\alu_result_MA_reg[16]_i_11_n_0 ,\alu_result_MA_reg[16]_i_11_n_1 ,\alu_result_MA_reg[16]_i_11_n_2 ,\alu_result_MA_reg[16]_i_11_n_3 }),
+  CARRY4 \alu_result_MA_reg[16]_i_6 
+       (.CI(\alu_result_MA_reg[12]_i_6_n_0 ),
+        .CO({\alu_result_MA_reg[16]_i_6_n_0 ,\alu_result_MA_reg[16]_i_6_n_1 ,\alu_result_MA_reg[16]_i_6_n_2 ,\alu_result_MA_reg[16]_i_6_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(data10[16:13]),
@@ -10195,37 +10251,37 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \alu_result_MA_reg[17] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_15),
+        .D(p_0_out[17]),
         .Q(alu_result[17]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[18] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_14),
+        .D(p_0_out[18]),
         .Q(alu_result[18]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[19] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_13),
+        .D(p_0_out[19]),
         .Q(alu_result[19]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[1] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_31),
+        .D(p_0_out[1]),
         .Q(alu_result[1]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[20] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_12),
+        .D(p_0_out[20]),
         .Q(alu_result[20]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[20]_i_11 
-       (.CI(\alu_result_MA_reg[16]_i_11_n_0 ),
-        .CO({\alu_result_MA_reg[20]_i_11_n_0 ,\alu_result_MA_reg[20]_i_11_n_1 ,\alu_result_MA_reg[20]_i_11_n_2 ,\alu_result_MA_reg[20]_i_11_n_3 }),
+  CARRY4 \alu_result_MA_reg[20]_i_6 
+       (.CI(\alu_result_MA_reg[16]_i_6_n_0 ),
+        .CO({\alu_result_MA_reg[20]_i_6_n_0 ,\alu_result_MA_reg[20]_i_6_n_1 ,\alu_result_MA_reg[20]_i_6_n_2 ,\alu_result_MA_reg[20]_i_6_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(data10[20:17]),
@@ -10233,31 +10289,31 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \alu_result_MA_reg[21] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_11),
+        .D(p_0_out[21]),
         .Q(alu_result[21]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[22] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_10),
+        .D(p_0_out[22]),
         .Q(alu_result[22]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[23] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_9),
+        .D(p_0_out[23]),
         .Q(alu_result[23]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[24] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_8),
+        .D(p_0_out[24]),
         .Q(alu_result[24]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[24]_i_11 
-       (.CI(\alu_result_MA_reg[20]_i_11_n_0 ),
-        .CO({\alu_result_MA_reg[24]_i_11_n_0 ,\alu_result_MA_reg[24]_i_11_n_1 ,\alu_result_MA_reg[24]_i_11_n_2 ,\alu_result_MA_reg[24]_i_11_n_3 }),
+  CARRY4 \alu_result_MA_reg[24]_i_6 
+       (.CI(\alu_result_MA_reg[20]_i_6_n_0 ),
+        .CO({\alu_result_MA_reg[24]_i_6_n_0 ,\alu_result_MA_reg[24]_i_6_n_1 ,\alu_result_MA_reg[24]_i_6_n_2 ,\alu_result_MA_reg[24]_i_6_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(data10[24:21]),
@@ -10265,31 +10321,31 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \alu_result_MA_reg[25] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_7),
+        .D(p_0_out[25]),
         .Q(alu_result[25]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[26] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_6),
+        .D(p_0_out[26]),
         .Q(alu_result[26]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[27] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_5),
+        .D(p_0_out[27]),
         .Q(alu_result[27]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[28] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_4),
+        .D(p_0_out[28]),
         .Q(alu_result[28]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[28]_i_11 
-       (.CI(\alu_result_MA_reg[24]_i_11_n_0 ),
-        .CO({\alu_result_MA_reg[28]_i_11_n_0 ,\alu_result_MA_reg[28]_i_11_n_1 ,\alu_result_MA_reg[28]_i_11_n_2 ,\alu_result_MA_reg[28]_i_11_n_3 }),
+  CARRY4 \alu_result_MA_reg[28]_i_6 
+       (.CI(\alu_result_MA_reg[24]_i_6_n_0 ),
+        .CO({\alu_result_MA_reg[28]_i_6_n_0 ,\alu_result_MA_reg[28]_i_6_n_1 ,\alu_result_MA_reg[28]_i_6_n_2 ,\alu_result_MA_reg[28]_i_6_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(data10[28:25]),
@@ -10297,83 +10353,83 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \alu_result_MA_reg[29] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_3),
+        .D(p_0_out[29]),
         .Q(alu_result[29]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[2] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_30),
+        .D(p_0_out[2]),
         .Q(alu_result[2]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[30] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_2),
+        .D(p_0_out[30]),
         .Q(alu_result[30]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \alu_result_MA_reg[30]_i_8 
+       (.CI(\alu_result_MA_reg[28]_i_6_n_0 ),
+        .CO({\NLW_alu_result_MA_reg[30]_i_8_CO_UNCONNECTED [3:2],\alu_result_MA_reg[30]_i_8_n_2 ,\alu_result_MA_reg[30]_i_8_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\NLW_alu_result_MA_reg[30]_i_8_O_UNCONNECTED [3],data10[31:29]}),
+        .S({1'b0,oprr_EX[31:29]}));
   FDRE \alu_result_MA_reg[31] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_1),
+        .D(alu1_n_17),
         .Q(alu_result[31]),
         .R(1'b0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[31]_i_11 
-       (.CI(\alu_result_MA_reg[28]_i_11_n_0 ),
-        .CO({\NLW_alu_result_MA_reg[31]_i_11_CO_UNCONNECTED [3:2],\alu_result_MA_reg[31]_i_11_n_2 ,\alu_result_MA_reg[31]_i_11_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\NLW_alu_result_MA_reg[31]_i_11_O_UNCONNECTED [3],data10[31:29]}),
-        .S({1'b0,oprr_EX[31:29]}));
   FDRE \alu_result_MA_reg[3] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_29),
+        .D(p_0_out[3]),
         .Q(alu_result[3]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[4] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_28),
+        .D(p_0_out[4]),
         .Q(alu_result[4]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[4]_i_11 
+  CARRY4 \alu_result_MA_reg[4]_i_6 
        (.CI(1'b0),
-        .CO({\alu_result_MA_reg[4]_i_11_n_0 ,\alu_result_MA_reg[4]_i_11_n_1 ,\alu_result_MA_reg[4]_i_11_n_2 ,\alu_result_MA_reg[4]_i_11_n_3 }),
+        .CO({\alu_result_MA_reg[4]_i_6_n_0 ,\alu_result_MA_reg[4]_i_6_n_1 ,\alu_result_MA_reg[4]_i_6_n_2 ,\alu_result_MA_reg[4]_i_6_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,oprr_EX[2],1'b0}),
         .O(data10[4:1]),
-        .S({oprr_EX[4:3],\alu_result_MA[4]_i_13_n_0 ,oprr_EX[1]}));
+        .S({oprr_EX[4:3],\alu_result_MA[4]_i_9_n_0 ,oprr_EX[1]}));
   FDRE \alu_result_MA_reg[5] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_27),
+        .D(p_0_out[5]),
         .Q(alu_result[5]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[6] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_26),
+        .D(p_0_out[6]),
         .Q(alu_result[6]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[7] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_25),
+        .D(p_0_out[7]),
         .Q(alu_result[7]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   FDRE \alu_result_MA_reg[8] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_24),
+        .D(p_0_out[8]),
         .Q(alu_result[8]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \alu_result_MA_reg[8]_i_11 
-       (.CI(\alu_result_MA_reg[4]_i_11_n_0 ),
-        .CO({\alu_result_MA_reg[8]_i_11_n_0 ,\alu_result_MA_reg[8]_i_11_n_1 ,\alu_result_MA_reg[8]_i_11_n_2 ,\alu_result_MA_reg[8]_i_11_n_3 }),
+  CARRY4 \alu_result_MA_reg[8]_i_6 
+       (.CI(\alu_result_MA_reg[4]_i_6_n_0 ),
+        .CO({\alu_result_MA_reg[8]_i_6_n_0 ,\alu_result_MA_reg[8]_i_6_n_1 ,\alu_result_MA_reg[8]_i_6_n_2 ,\alu_result_MA_reg[8]_i_6_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(data10[8:5]),
@@ -10381,9 +10437,9 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \alu_result_MA_reg[9] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_23),
+        .D(p_0_out[9]),
         .Q(alu_result[9]),
-        .R(1'b0));
+        .R(\alu_result_MA[30]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFBFBFBFFFB)) 
     \alucode_EX[0]_i_1 
@@ -10433,7 +10489,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(\iword_ID_reg_n_0_[29] ),
         .I5(\iword_ID_reg_n_0_[14] ),
         .O(\alucode_EX[0]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT5 #(
     .INIT(32'h9D9D9D95)) 
     \alucode_EX[0]_i_6 
@@ -10570,7 +10626,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(\iword_ID_reg_n_0_[12] ),
         .I5(\iword_ID_reg_n_0_[2] ),
         .O(\alucode_EX[2]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \alucode_EX[2]_i_6 
@@ -10610,14 +10666,14 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(\iword_ID_reg_n_0_[14] ),
         .I5(\iword_ID_reg_n_0_[13] ),
         .O(\alucode_EX[3]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \alucode_EX[3]_i_4 
        (.I0(\iword_ID_reg_n_0_[12] ),
         .I1(\iword_ID_reg_n_0_[13] ),
         .O(\alucode_EX[3]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair85" *) 
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
   LUT5 #(
     .INIT(32'h00003F10)) 
     \alucode_EX[3]_i_5 
@@ -10697,21 +10753,20 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(\iword_ID_reg_n_0_[12] ),
         .I5(\alucode_EX[5]_i_8_n_0 ),
         .O(\alucode_EX[5]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair89" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \alucode_EX[5]_i_5 
        (.I0(\iword_ID_reg_n_0_[3] ),
         .I1(\iword_ID_reg_n_0_[6] ),
         .O(\alucode_EX[5]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \alucode_EX[5]_i_6 
        (.I0(\iword_ID_reg_n_0_[13] ),
         .I1(\iword_ID_reg_n_0_[14] ),
         .O(\alucode_EX[5]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \alucode_EX[5]_i_7 
@@ -10958,565 +11013,6 @@ module design_1_CPUTop_0_0_CPUTop
         .mem_load_value_MA(mem_load_value_MA),
         .rst(rst),
         .sysclk(sysclk));
-  LUT6 #(
-    .INIT(64'h38FF000008000000)) 
-    \imm_EX[0]_i_1 
-       (.I0(\iword_ID_reg_n_0_[7] ),
-        .I1(\imm_EX[10]_i_3_n_0 ),
-        .I2(\imm_EX[10]_i_2_n_0 ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\imm_EX[31]_i_3_n_0 ),
-        .I5(\iword_ID_reg_n_0_[20] ),
-        .O(imm_ID[0]));
-  LUT6 #(
-    .INIT(64'h222AFFFF00000000)) 
-    \imm_EX[10]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\imm_EX[10]_i_2_n_0 ),
-        .I2(\imm_EX[10]_i_3_n_0 ),
-        .I3(\imm_EX[10]_i_4_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[30] ),
-        .O(imm_ID[10]));
-  LUT6 #(
-    .INIT(64'hFFFFDADFFFFFFFFF)) 
-    \imm_EX[10]_i_2 
-       (.I0(\iword_ID_reg_n_0_[2] ),
-        .I1(\iword_ID_reg_n_0_[6] ),
-        .I2(\iword_ID_reg_n_0_[4] ),
-        .I3(\iword_ID_reg_n_0_[5] ),
-        .I4(\iword_ID_reg_n_0_[3] ),
-        .I5(\iword_ID_reg_n_0_[1] ),
-        .O(\imm_EX[10]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF7FFEDFFFFFFFFF)) 
-    \imm_EX[10]_i_3 
-       (.I0(\iword_ID_reg_n_0_[6] ),
-        .I1(\iword_ID_reg_n_0_[3] ),
-        .I2(\iword_ID_reg_n_0_[5] ),
-        .I3(\iword_ID_reg_n_0_[4] ),
-        .I4(\iword_ID_reg_n_0_[2] ),
-        .I5(\iword_ID_reg_n_0_[1] ),
-        .O(\imm_EX[10]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
-  LUT2 #(
-    .INIT(4'h2)) 
-    \imm_EX[10]_i_4 
-       (.I0(\iword_ID_reg_n_0_[12] ),
-        .I1(\iword_ID_reg_n_0_[13] ),
-        .O(\imm_EX[10]_i_4_n_0 ));
-  LUT5 #(
-    .INIT(32'hB833B800)) 
-    \imm_EX[11]_i_1 
-       (.I0(\imm_EX[11]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[20] ),
-        .O(imm_ID[11]));
-  LUT6 #(
-    .INIT(64'h0F00DF0F0F00D000)) 
-    \imm_EX[11]_i_2 
-       (.I0(\iword_ID_reg_n_0_[12] ),
-        .I1(\iword_ID_reg_n_0_[13] ),
-        .I2(\imm_EX[10]_i_2_n_0 ),
-        .I3(\iword_ID_reg_n_0_[31] ),
-        .I4(\imm_EX[10]_i_3_n_0 ),
-        .I5(\iword_ID_reg_n_0_[7] ),
-        .O(\imm_EX[11]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[12]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[12] ),
-        .O(imm_ID[12]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[13]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[13] ),
-        .O(imm_ID[13]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[14]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[14] ),
-        .O(imm_ID[14]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[15]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[15] ),
-        .O(imm_ID[15]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[16]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[16] ),
-        .O(imm_ID[16]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[17]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[17] ),
-        .O(imm_ID[17]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[18]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[18] ),
-        .O(imm_ID[18]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[19]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_4_n_0 ),
-        .I2(\iword_ID_reg_n_0_[31] ),
-        .I3(\imm_EX[31]_i_3_n_0 ),
-        .I4(\iword_ID_reg_n_0_[19] ),
-        .O(imm_ID[19]));
-  LUT6 #(
-    .INIT(64'h08A8FFFF08080000)) 
-    \imm_EX[1]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\iword_ID_reg_n_0_[8] ),
-        .I2(\imm_EX[10]_i_2_n_0 ),
-        .I3(\imm_EX[10]_i_3_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[21] ),
-        .O(imm_ID[1]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[20]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[20] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[20]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[21]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[21] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[21]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[22]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[22] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[22]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[23]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[23] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[23]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[24]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[24] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[24]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[25]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[25] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[25]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[26]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[26] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[26]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[27]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[27] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[27]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[28]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[28] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[28]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[29]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[29] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[29]));
-  LUT6 #(
-    .INIT(64'h08A8FFFF08080000)) 
-    \imm_EX[2]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\iword_ID_reg_n_0_[9] ),
-        .I2(\imm_EX[10]_i_2_n_0 ),
-        .I3(\imm_EX[10]_i_3_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[22] ),
-        .O(imm_ID[2]));
-  LUT5 #(
-    .INIT(32'hB8FFB800)) 
-    \imm_EX[30]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\iword_ID_reg_n_0_[30] ),
-        .I3(\imm_EX[31]_i_4_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[30]));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
-  LUT4 #(
-    .INIT(16'hBF80)) 
-    \imm_EX[31]_i_1 
-       (.I0(\imm_EX[31]_i_2_n_0 ),
-        .I1(\imm_EX[31]_i_3_n_0 ),
-        .I2(\imm_EX[31]_i_4_n_0 ),
-        .I3(\iword_ID_reg_n_0_[31] ),
-        .O(imm_ID[31]));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
-  LUT5 #(
-    .INIT(32'h0DFF0000)) 
-    \imm_EX[31]_i_2 
-       (.I0(\iword_ID_reg_n_0_[12] ),
-        .I1(\iword_ID_reg_n_0_[13] ),
-        .I2(\imm_EX[10]_i_3_n_0 ),
-        .I3(\imm_EX[10]_i_2_n_0 ),
-        .I4(\iword_ID_reg_n_0_[31] ),
-        .O(\imm_EX[31]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hF7FFDFDFFFFFFFFF)) 
-    \imm_EX[31]_i_3 
-       (.I0(\iword_ID_reg_n_0_[2] ),
-        .I1(\iword_ID_reg_n_0_[6] ),
-        .I2(\iword_ID_reg_n_0_[4] ),
-        .I3(\iword_ID_reg_n_0_[5] ),
-        .I4(\iword_ID_reg_n_0_[3] ),
-        .I5(\iword_ID_reg_n_0_[1] ),
-        .O(\imm_EX[31]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hFF5FFFFFFFFFFFFD)) 
-    \imm_EX[31]_i_4 
-       (.I0(\iword_ID_reg_n_0_[1] ),
-        .I1(\iword_ID_reg_n_0_[3] ),
-        .I2(\iword_ID_reg_n_0_[5] ),
-        .I3(\iword_ID_reg_n_0_[4] ),
-        .I4(\iword_ID_reg_n_0_[6] ),
-        .I5(\iword_ID_reg_n_0_[2] ),
-        .O(\imm_EX[31]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h08A8FFFF08080000)) 
-    \imm_EX[3]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\iword_ID_reg_n_0_[10] ),
-        .I2(\imm_EX[10]_i_2_n_0 ),
-        .I3(\imm_EX[10]_i_3_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[23] ),
-        .O(imm_ID[3]));
-  LUT6 #(
-    .INIT(64'h08A8FFFF08080000)) 
-    \imm_EX[4]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\iword_ID_reg_n_0_[11] ),
-        .I2(\imm_EX[10]_i_2_n_0 ),
-        .I3(\imm_EX[10]_i_3_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[24] ),
-        .O(imm_ID[4]));
-  LUT6 #(
-    .INIT(64'h222AFFFF00000000)) 
-    \imm_EX[5]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\imm_EX[10]_i_2_n_0 ),
-        .I2(\imm_EX[10]_i_3_n_0 ),
-        .I3(\imm_EX[10]_i_4_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[25] ),
-        .O(imm_ID[5]));
-  LUT6 #(
-    .INIT(64'h222AFFFF00000000)) 
-    \imm_EX[6]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\imm_EX[10]_i_2_n_0 ),
-        .I2(\imm_EX[10]_i_3_n_0 ),
-        .I3(\imm_EX[10]_i_4_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[26] ),
-        .O(imm_ID[6]));
-  LUT6 #(
-    .INIT(64'h222AFFFF00000000)) 
-    \imm_EX[7]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\imm_EX[10]_i_2_n_0 ),
-        .I2(\imm_EX[10]_i_3_n_0 ),
-        .I3(\imm_EX[10]_i_4_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[27] ),
-        .O(imm_ID[7]));
-  LUT6 #(
-    .INIT(64'h222AFFFF00000000)) 
-    \imm_EX[8]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\imm_EX[10]_i_2_n_0 ),
-        .I2(\imm_EX[10]_i_3_n_0 ),
-        .I3(\imm_EX[10]_i_4_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[28] ),
-        .O(imm_ID[8]));
-  LUT6 #(
-    .INIT(64'h222AFFFF00000000)) 
-    \imm_EX[9]_i_1 
-       (.I0(\imm_EX[31]_i_3_n_0 ),
-        .I1(\imm_EX[10]_i_2_n_0 ),
-        .I2(\imm_EX[10]_i_3_n_0 ),
-        .I3(\imm_EX[10]_i_4_n_0 ),
-        .I4(\imm_EX[31]_i_4_n_0 ),
-        .I5(\iword_ID_reg_n_0_[29] ),
-        .O(imm_ID[9]));
-  FDRE \imm_EX_reg[0] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[0]),
-        .Q(imm_EX[0]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[10] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[10]),
-        .Q(imm_EX[10]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[11] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[11]),
-        .Q(imm_EX[11]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[12] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[12]),
-        .Q(imm_EX[12]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[13] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[13]),
-        .Q(imm_EX[13]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[14] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[14]),
-        .Q(imm_EX[14]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[15] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[15]),
-        .Q(imm_EX[15]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[16] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[16]),
-        .Q(imm_EX[16]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[17] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[17]),
-        .Q(imm_EX[17]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[18] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[18]),
-        .Q(imm_EX[18]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[19] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[19]),
-        .Q(imm_EX[19]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[1] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[1]),
-        .Q(imm_EX[1]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[20] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[20]),
-        .Q(imm_EX[20]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[21] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[21]),
-        .Q(imm_EX[21]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[22] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[22]),
-        .Q(imm_EX[22]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[23] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[23]),
-        .Q(imm_EX[23]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[24] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[24]),
-        .Q(imm_EX[24]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[25] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[25]),
-        .Q(imm_EX[25]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[26] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[26]),
-        .Q(imm_EX[26]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[27] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[27]),
-        .Q(imm_EX[27]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[28] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[28]),
-        .Q(imm_EX[28]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[29] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[29]),
-        .Q(imm_EX[29]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[2] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[2]),
-        .Q(imm_EX[2]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[30] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[30]),
-        .Q(imm_EX[30]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[31] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[31]),
-        .Q(imm_EX[31]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[3] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[3]),
-        .Q(imm_EX[3]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[4] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[4]),
-        .Q(imm_EX[4]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[5] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[5]),
-        .Q(imm_EX[5]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[6] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[6]),
-        .Q(imm_EX[6]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[7] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[7]),
-        .Q(imm_EX[7]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[8] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[8]),
-        .Q(imm_EX[8]),
-        .R(reg_we_EX));
-  FDRE \imm_EX_reg[9] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(imm_ID[9]),
-        .Q(imm_EX[9]),
-        .R(reg_we_EX));
   LUT5 #(
     .INIT(32'hFF00A800)) 
     is_load_EX_i_1
@@ -11962,7 +11458,1427 @@ module design_1_CPUTop_0_0_CPUTop
         .D(iword_IF[9]),
         .Q(\iword_ID_reg_n_0_[9] ),
         .R(\iword_ID[31]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair87" *) 
+  FDRE \npc_branch_EX_reg[0] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[0]),
+        .Q(npc_branch_EX[0]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[10] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[10]),
+        .Q(npc_branch_EX[10]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[11] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[11]),
+        .Q(npc_branch_EX[11]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[12] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[12]),
+        .Q(npc_branch_EX[12]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[13] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[13]),
+        .Q(npc_branch_EX[13]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[14] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[14]),
+        .Q(npc_branch_EX[14]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[15] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[15]),
+        .Q(npc_branch_EX[15]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[16] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[16]),
+        .Q(npc_branch_EX[16]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[17] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[17]),
+        .Q(npc_branch_EX[17]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[18] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[18]),
+        .Q(npc_branch_EX[18]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[19] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[19]),
+        .Q(npc_branch_EX[19]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[1] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[1]),
+        .Q(npc_branch_EX[1]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[20] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[20]),
+        .Q(npc_branch_EX[20]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[21] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[21]),
+        .Q(npc_branch_EX[21]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[22] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[22]),
+        .Q(npc_branch_EX[22]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[23] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[23]),
+        .Q(npc_branch_EX[23]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[24] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[24]),
+        .Q(npc_branch_EX[24]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[25] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[25]),
+        .Q(npc_branch_EX[25]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[26] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[26]),
+        .Q(npc_branch_EX[26]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[27] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[27]),
+        .Q(npc_branch_EX[27]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[28] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[28]),
+        .Q(npc_branch_EX[28]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[29] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[29]),
+        .Q(npc_branch_EX[29]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[2] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[2]),
+        .Q(npc_branch_EX[2]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[30] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[30]),
+        .Q(npc_branch_EX[30]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[31] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[31]),
+        .Q(npc_branch_EX[31]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[3] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[3]),
+        .Q(npc_branch_EX[3]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[4] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[4]),
+        .Q(npc_branch_EX[4]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[5] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[5]),
+        .Q(npc_branch_EX[5]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[6] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[6]),
+        .Q(npc_branch_EX[6]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[7] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[7]),
+        .Q(npc_branch_EX[7]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[8] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[8]),
+        .Q(npc_branch_EX[8]),
+        .R(1'b0));
+  FDRE \npc_branch_EX_reg[9] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_branch_ID[9]),
+        .Q(npc_branch_EX[9]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry
+       (.CI(1'b0),
+        .CO({npc_branch_ID_carry_n_0,npc_branch_ID_carry_n_1,npc_branch_ID_carry_n_2,npc_branch_ID_carry_n_3}),
+        .CYINIT(1'b0),
+        .DI(pc_ID[3:0]),
+        .O(npc_branch_ID[3:0]),
+        .S({npc_branch_ID_carry_i_1_n_0,npc_branch_ID_carry_i_2_n_0,npc_branch_ID_carry_i_3_n_0,npc_branch_ID_carry_i_4_n_0}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry__0
+       (.CI(npc_branch_ID_carry_n_0),
+        .CO({npc_branch_ID_carry__0_n_0,npc_branch_ID_carry__0_n_1,npc_branch_ID_carry__0_n_2,npc_branch_ID_carry__0_n_3}),
+        .CYINIT(1'b0),
+        .DI(pc_ID[7:4]),
+        .O(npc_branch_ID[7:4]),
+        .S({npc_branch_ID_carry__0_i_1_n_0,npc_branch_ID_carry__0_i_2_n_0,npc_branch_ID_carry__0_i_3_n_0,npc_branch_ID_carry__0_i_4_n_0}));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__0_i_1
+       (.I0(pc_ID[7]),
+        .I1(imm_ID[7]),
+        .O(npc_branch_ID_carry__0_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__0_i_2
+       (.I0(pc_ID[6]),
+        .I1(imm_ID[6]),
+        .O(npc_branch_ID_carry__0_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__0_i_3
+       (.I0(pc_ID[5]),
+        .I1(imm_ID[5]),
+        .O(npc_branch_ID_carry__0_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__0_i_4
+       (.I0(pc_ID[4]),
+        .I1(imm_ID[4]),
+        .O(npc_branch_ID_carry__0_i_4_n_0));
+  LUT6 #(
+    .INIT(64'h222AFFFF00000000)) 
+    npc_branch_ID_carry__0_i_5
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(npc_branch_ID_carry_i_9_n_0),
+        .I2(npc_branch_ID_carry_i_10_n_0),
+        .I3(npc_branch_ID_carry__0_i_9_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[27] ),
+        .O(imm_ID[7]));
+  LUT6 #(
+    .INIT(64'h222AFFFF00000000)) 
+    npc_branch_ID_carry__0_i_6
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(npc_branch_ID_carry_i_9_n_0),
+        .I2(npc_branch_ID_carry_i_10_n_0),
+        .I3(npc_branch_ID_carry__0_i_9_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[26] ),
+        .O(imm_ID[6]));
+  LUT6 #(
+    .INIT(64'h222AFFFF00000000)) 
+    npc_branch_ID_carry__0_i_7
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(npc_branch_ID_carry_i_9_n_0),
+        .I2(npc_branch_ID_carry_i_10_n_0),
+        .I3(npc_branch_ID_carry__0_i_9_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[25] ),
+        .O(imm_ID[5]));
+  LUT6 #(
+    .INIT(64'h08A8FFFF08080000)) 
+    npc_branch_ID_carry__0_i_8
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(\iword_ID_reg_n_0_[11] ),
+        .I2(npc_branch_ID_carry_i_9_n_0),
+        .I3(npc_branch_ID_carry_i_10_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[24] ),
+        .O(imm_ID[4]));
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    npc_branch_ID_carry__0_i_9
+       (.I0(\iword_ID_reg_n_0_[12] ),
+        .I1(\iword_ID_reg_n_0_[13] ),
+        .O(npc_branch_ID_carry__0_i_9_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry__1
+       (.CI(npc_branch_ID_carry__0_n_0),
+        .CO({npc_branch_ID_carry__1_n_0,npc_branch_ID_carry__1_n_1,npc_branch_ID_carry__1_n_2,npc_branch_ID_carry__1_n_3}),
+        .CYINIT(1'b0),
+        .DI(pc_ID[11:8]),
+        .O(npc_branch_ID[11:8]),
+        .S({npc_branch_ID_carry__1_i_1_n_0,npc_branch_ID_carry__1_i_2_n_0,npc_branch_ID_carry__1_i_3_n_0,npc_branch_ID_carry__1_i_4_n_0}));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__1_i_1
+       (.I0(pc_ID[11]),
+        .I1(imm_ID[11]),
+        .O(npc_branch_ID_carry__1_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__1_i_2
+       (.I0(pc_ID[10]),
+        .I1(imm_ID[10]),
+        .O(npc_branch_ID_carry__1_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__1_i_3
+       (.I0(pc_ID[9]),
+        .I1(imm_ID[9]),
+        .O(npc_branch_ID_carry__1_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry__1_i_4
+       (.I0(pc_ID[8]),
+        .I1(imm_ID[8]),
+        .O(npc_branch_ID_carry__1_i_4_n_0));
+  LUT5 #(
+    .INIT(32'hB833B800)) 
+    npc_branch_ID_carry__1_i_5
+       (.I0(npc_branch_ID_carry__1_i_9_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[20] ),
+        .O(imm_ID[11]));
+  LUT6 #(
+    .INIT(64'h222AFFFF00000000)) 
+    npc_branch_ID_carry__1_i_6
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(npc_branch_ID_carry_i_9_n_0),
+        .I2(npc_branch_ID_carry_i_10_n_0),
+        .I3(npc_branch_ID_carry__0_i_9_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[30] ),
+        .O(imm_ID[10]));
+  LUT6 #(
+    .INIT(64'h222AFFFF00000000)) 
+    npc_branch_ID_carry__1_i_7
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(npc_branch_ID_carry_i_9_n_0),
+        .I2(npc_branch_ID_carry_i_10_n_0),
+        .I3(npc_branch_ID_carry__0_i_9_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[29] ),
+        .O(imm_ID[9]));
+  LUT6 #(
+    .INIT(64'h222AFFFF00000000)) 
+    npc_branch_ID_carry__1_i_8
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(npc_branch_ID_carry_i_9_n_0),
+        .I2(npc_branch_ID_carry_i_10_n_0),
+        .I3(npc_branch_ID_carry__0_i_9_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[28] ),
+        .O(imm_ID[8]));
+  LUT6 #(
+    .INIT(64'h0F00DF0F0F00D000)) 
+    npc_branch_ID_carry__1_i_9
+       (.I0(\iword_ID_reg_n_0_[12] ),
+        .I1(\iword_ID_reg_n_0_[13] ),
+        .I2(npc_branch_ID_carry_i_9_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry_i_10_n_0),
+        .I5(\iword_ID_reg_n_0_[7] ),
+        .O(npc_branch_ID_carry__1_i_9_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry__2
+       (.CI(npc_branch_ID_carry__1_n_0),
+        .CO({npc_branch_ID_carry__2_n_0,npc_branch_ID_carry__2_n_1,npc_branch_ID_carry__2_n_2,npc_branch_ID_carry__2_n_3}),
+        .CYINIT(1'b0),
+        .DI(pc_ID[15:12]),
+        .O(npc_branch_ID[15:12]),
+        .S({npc_branch_ID_carry__2_i_1_n_0,npc_branch_ID_carry__2_i_2_n_0,npc_branch_ID_carry__2_i_3_n_0,npc_branch_ID_carry__2_i_4_n_0}));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__2_i_1
+       (.I0(pc_ID[15]),
+        .I1(\iword_ID_reg_n_0_[15] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__2_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__2_i_2
+       (.I0(pc_ID[14]),
+        .I1(\iword_ID_reg_n_0_[14] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__2_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__2_i_3
+       (.I0(pc_ID[13]),
+        .I1(\iword_ID_reg_n_0_[13] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__2_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__2_i_4
+       (.I0(pc_ID[12]),
+        .I1(\iword_ID_reg_n_0_[12] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__2_i_4_n_0));
+  LUT6 #(
+    .INIT(64'hF7FFDFDFFFFFFFFF)) 
+    npc_branch_ID_carry__2_i_5
+       (.I0(\iword_ID_reg_n_0_[2] ),
+        .I1(\iword_ID_reg_n_0_[6] ),
+        .I2(\iword_ID_reg_n_0_[4] ),
+        .I3(\iword_ID_reg_n_0_[5] ),
+        .I4(\iword_ID_reg_n_0_[3] ),
+        .I5(\iword_ID_reg_n_0_[1] ),
+        .O(npc_branch_ID_carry__2_i_5_n_0));
+  LUT6 #(
+    .INIT(64'hFF5FFFFFFFFFFFFD)) 
+    npc_branch_ID_carry__2_i_6
+       (.I0(\iword_ID_reg_n_0_[1] ),
+        .I1(\iword_ID_reg_n_0_[3] ),
+        .I2(\iword_ID_reg_n_0_[5] ),
+        .I3(\iword_ID_reg_n_0_[4] ),
+        .I4(\iword_ID_reg_n_0_[6] ),
+        .I5(\iword_ID_reg_n_0_[2] ),
+        .O(npc_branch_ID_carry__2_i_6_n_0));
+  LUT5 #(
+    .INIT(32'h0DFF0000)) 
+    npc_branch_ID_carry__2_i_7
+       (.I0(\iword_ID_reg_n_0_[12] ),
+        .I1(\iword_ID_reg_n_0_[13] ),
+        .I2(npc_branch_ID_carry_i_10_n_0),
+        .I3(npc_branch_ID_carry_i_9_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(npc_branch_ID_carry__2_i_7_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry__3
+       (.CI(npc_branch_ID_carry__2_n_0),
+        .CO({npc_branch_ID_carry__3_n_0,npc_branch_ID_carry__3_n_1,npc_branch_ID_carry__3_n_2,npc_branch_ID_carry__3_n_3}),
+        .CYINIT(1'b0),
+        .DI(pc_ID[19:16]),
+        .O(npc_branch_ID[19:16]),
+        .S({npc_branch_ID_carry__3_i_1_n_0,npc_branch_ID_carry__3_i_2_n_0,npc_branch_ID_carry__3_i_3_n_0,npc_branch_ID_carry__3_i_4_n_0}));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__3_i_1
+       (.I0(pc_ID[19]),
+        .I1(\iword_ID_reg_n_0_[19] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__3_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__3_i_2
+       (.I0(pc_ID[18]),
+        .I1(\iword_ID_reg_n_0_[18] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__3_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__3_i_3
+       (.I0(pc_ID[17]),
+        .I1(\iword_ID_reg_n_0_[17] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__3_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__3_i_4
+       (.I0(pc_ID[16]),
+        .I1(\iword_ID_reg_n_0_[16] ),
+        .I2(npc_branch_ID_carry__2_i_5_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__3_i_4_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry__4
+       (.CI(npc_branch_ID_carry__3_n_0),
+        .CO({npc_branch_ID_carry__4_n_0,npc_branch_ID_carry__4_n_1,npc_branch_ID_carry__4_n_2,npc_branch_ID_carry__4_n_3}),
+        .CYINIT(1'b0),
+        .DI(pc_ID[23:20]),
+        .O(npc_branch_ID[23:20]),
+        .S({npc_branch_ID_carry__4_i_1_n_0,npc_branch_ID_carry__4_i_2_n_0,npc_branch_ID_carry__4_i_3_n_0,npc_branch_ID_carry__4_i_4_n_0}));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__4_i_1
+       (.I0(pc_ID[23]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[23] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__4_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__4_i_2
+       (.I0(pc_ID[22]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[22] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__4_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__4_i_3
+       (.I0(pc_ID[21]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[21] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__4_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__4_i_4
+       (.I0(pc_ID[20]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[20] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__4_i_4_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry__5
+       (.CI(npc_branch_ID_carry__4_n_0),
+        .CO({npc_branch_ID_carry__5_n_0,npc_branch_ID_carry__5_n_1,npc_branch_ID_carry__5_n_2,npc_branch_ID_carry__5_n_3}),
+        .CYINIT(1'b0),
+        .DI(pc_ID[27:24]),
+        .O(npc_branch_ID[27:24]),
+        .S({npc_branch_ID_carry__5_i_1_n_0,npc_branch_ID_carry__5_i_2_n_0,npc_branch_ID_carry__5_i_3_n_0,npc_branch_ID_carry__5_i_4_n_0}));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__5_i_1
+       (.I0(pc_ID[27]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[27] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__5_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__5_i_2
+       (.I0(pc_ID[26]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[26] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__5_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__5_i_3
+       (.I0(pc_ID[25]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[25] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__5_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__5_i_4
+       (.I0(pc_ID[24]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[24] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__5_i_4_n_0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_branch_ID_carry__6
+       (.CI(npc_branch_ID_carry__5_n_0),
+        .CO({NLW_npc_branch_ID_carry__6_CO_UNCONNECTED[3],npc_branch_ID_carry__6_n_1,npc_branch_ID_carry__6_n_2,npc_branch_ID_carry__6_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,pc_ID[30:28]}),
+        .O(npc_branch_ID[31:28]),
+        .S({npc_branch_ID_carry__6_i_1_n_0,npc_branch_ID_carry__6_i_2_n_0,npc_branch_ID_carry__6_i_3_n_0,npc_branch_ID_carry__6_i_4_n_0}));
+  LUT5 #(
+    .INIT(32'h5666A666)) 
+    npc_branch_ID_carry__6_i_1
+       (.I0(pc_ID[31]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__6_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__6_i_2
+       (.I0(pc_ID[30]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[30] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__6_i_2_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__6_i_3
+       (.I0(pc_ID[29]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[29] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__6_i_3_n_0));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_branch_ID_carry__6_i_4
+       (.I0(pc_ID[28]),
+        .I1(\iword_ID_reg_n_0_[31] ),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[28] ),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(npc_branch_ID_carry__2_i_7_n_0),
+        .O(npc_branch_ID_carry__6_i_4_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry_i_1
+       (.I0(pc_ID[3]),
+        .I1(imm_ID[3]),
+        .O(npc_branch_ID_carry_i_1_n_0));
+  LUT6 #(
+    .INIT(64'hFF7FFEDFFFFFFFFF)) 
+    npc_branch_ID_carry_i_10
+       (.I0(\iword_ID_reg_n_0_[6] ),
+        .I1(\iword_ID_reg_n_0_[3] ),
+        .I2(\iword_ID_reg_n_0_[5] ),
+        .I3(\iword_ID_reg_n_0_[4] ),
+        .I4(\iword_ID_reg_n_0_[2] ),
+        .I5(\iword_ID_reg_n_0_[1] ),
+        .O(npc_branch_ID_carry_i_10_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry_i_2
+       (.I0(pc_ID[2]),
+        .I1(imm_ID[2]),
+        .O(npc_branch_ID_carry_i_2_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry_i_3
+       (.I0(pc_ID[1]),
+        .I1(imm_ID[1]),
+        .O(npc_branch_ID_carry_i_3_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_branch_ID_carry_i_4
+       (.I0(pc_ID[0]),
+        .I1(imm_ID[0]),
+        .O(npc_branch_ID_carry_i_4_n_0));
+  LUT6 #(
+    .INIT(64'h08A8FFFF08080000)) 
+    npc_branch_ID_carry_i_5
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(\iword_ID_reg_n_0_[10] ),
+        .I2(npc_branch_ID_carry_i_9_n_0),
+        .I3(npc_branch_ID_carry_i_10_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[23] ),
+        .O(imm_ID[3]));
+  LUT6 #(
+    .INIT(64'h08A8FFFF08080000)) 
+    npc_branch_ID_carry_i_6
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(\iword_ID_reg_n_0_[9] ),
+        .I2(npc_branch_ID_carry_i_9_n_0),
+        .I3(npc_branch_ID_carry_i_10_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[22] ),
+        .O(imm_ID[2]));
+  LUT6 #(
+    .INIT(64'h08A8FFFF08080000)) 
+    npc_branch_ID_carry_i_7
+       (.I0(npc_branch_ID_carry__2_i_5_n_0),
+        .I1(\iword_ID_reg_n_0_[8] ),
+        .I2(npc_branch_ID_carry_i_9_n_0),
+        .I3(npc_branch_ID_carry_i_10_n_0),
+        .I4(npc_branch_ID_carry__2_i_6_n_0),
+        .I5(\iword_ID_reg_n_0_[21] ),
+        .O(imm_ID[1]));
+  LUT6 #(
+    .INIT(64'h38FF000008000000)) 
+    npc_branch_ID_carry_i_8
+       (.I0(\iword_ID_reg_n_0_[7] ),
+        .I1(npc_branch_ID_carry_i_10_n_0),
+        .I2(npc_branch_ID_carry_i_9_n_0),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(npc_branch_ID_carry__2_i_5_n_0),
+        .I5(\iword_ID_reg_n_0_[20] ),
+        .O(imm_ID[0]));
+  LUT6 #(
+    .INIT(64'hFFFFDADFFFFFFFFF)) 
+    npc_branch_ID_carry_i_9
+       (.I0(\iword_ID_reg_n_0_[2] ),
+        .I1(\iword_ID_reg_n_0_[6] ),
+        .I2(\iword_ID_reg_n_0_[4] ),
+        .I3(\iword_ID_reg_n_0_[5] ),
+        .I4(\iword_ID_reg_n_0_[3] ),
+        .I5(\iword_ID_reg_n_0_[1] ),
+        .O(npc_branch_ID_carry_i_9_n_0));
+  LUT5 #(
+    .INIT(32'h00005700)) 
+    \npc_default_EX[31]_i_1 
+       (.I0(is_load_EX),
+        .I1(is_stall_DE1__8),
+        .I2(is_stall_DE10_out),
+        .I3(nrst),
+        .I4(pc_IF1),
+        .O(npc_default_EX));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \npc_default_EX[4]_i_2 
+       (.I0(pc_ID[2]),
+        .O(\npc_default_EX[4]_i_2_n_0 ));
+  FDRE \npc_default_EX_reg[0] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(pc_ID[0]),
+        .Q(\npc_default_EX_reg_n_0_[0] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[10] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[10]),
+        .Q(\npc_default_EX_reg_n_0_[10] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[11] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[11]),
+        .Q(\npc_default_EX_reg_n_0_[11] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[12] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[12]),
+        .Q(\npc_default_EX_reg_n_0_[12] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[12]_i_1 
+       (.CI(\npc_default_EX_reg[8]_i_1_n_0 ),
+        .CO({\npc_default_EX_reg[12]_i_1_n_0 ,\npc_default_EX_reg[12]_i_1_n_1 ,\npc_default_EX_reg[12]_i_1_n_2 ,\npc_default_EX_reg[12]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(npc_default_ID[12:9]),
+        .S(pc_ID[12:9]));
+  FDRE \npc_default_EX_reg[13] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[13]),
+        .Q(\npc_default_EX_reg_n_0_[13] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[14] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[14]),
+        .Q(\npc_default_EX_reg_n_0_[14] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[15] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[15]),
+        .Q(\npc_default_EX_reg_n_0_[15] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[16] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[16]),
+        .Q(\npc_default_EX_reg_n_0_[16] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[16]_i_1 
+       (.CI(\npc_default_EX_reg[12]_i_1_n_0 ),
+        .CO({\npc_default_EX_reg[16]_i_1_n_0 ,\npc_default_EX_reg[16]_i_1_n_1 ,\npc_default_EX_reg[16]_i_1_n_2 ,\npc_default_EX_reg[16]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(npc_default_ID[16:13]),
+        .S(pc_ID[16:13]));
+  FDRE \npc_default_EX_reg[17] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[17]),
+        .Q(\npc_default_EX_reg_n_0_[17] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[18] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[18]),
+        .Q(\npc_default_EX_reg_n_0_[18] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[19] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[19]),
+        .Q(\npc_default_EX_reg_n_0_[19] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[1] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[1]),
+        .Q(\npc_default_EX_reg_n_0_[1] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[20] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[20]),
+        .Q(\npc_default_EX_reg_n_0_[20] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[20]_i_1 
+       (.CI(\npc_default_EX_reg[16]_i_1_n_0 ),
+        .CO({\npc_default_EX_reg[20]_i_1_n_0 ,\npc_default_EX_reg[20]_i_1_n_1 ,\npc_default_EX_reg[20]_i_1_n_2 ,\npc_default_EX_reg[20]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(npc_default_ID[20:17]),
+        .S(pc_ID[20:17]));
+  FDRE \npc_default_EX_reg[21] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[21]),
+        .Q(\npc_default_EX_reg_n_0_[21] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[22] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[22]),
+        .Q(\npc_default_EX_reg_n_0_[22] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[23] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[23]),
+        .Q(\npc_default_EX_reg_n_0_[23] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[24] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[24]),
+        .Q(\npc_default_EX_reg_n_0_[24] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[24]_i_1 
+       (.CI(\npc_default_EX_reg[20]_i_1_n_0 ),
+        .CO({\npc_default_EX_reg[24]_i_1_n_0 ,\npc_default_EX_reg[24]_i_1_n_1 ,\npc_default_EX_reg[24]_i_1_n_2 ,\npc_default_EX_reg[24]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(npc_default_ID[24:21]),
+        .S(pc_ID[24:21]));
+  FDRE \npc_default_EX_reg[25] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[25]),
+        .Q(\npc_default_EX_reg_n_0_[25] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[26] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[26]),
+        .Q(\npc_default_EX_reg_n_0_[26] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[27] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[27]),
+        .Q(\npc_default_EX_reg_n_0_[27] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[28] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[28]),
+        .Q(\npc_default_EX_reg_n_0_[28] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[28]_i_1 
+       (.CI(\npc_default_EX_reg[24]_i_1_n_0 ),
+        .CO({\npc_default_EX_reg[28]_i_1_n_0 ,\npc_default_EX_reg[28]_i_1_n_1 ,\npc_default_EX_reg[28]_i_1_n_2 ,\npc_default_EX_reg[28]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(npc_default_ID[28:25]),
+        .S(pc_ID[28:25]));
+  FDRE \npc_default_EX_reg[29] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[29]),
+        .Q(\npc_default_EX_reg_n_0_[29] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[2] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[2]),
+        .Q(\npc_default_EX_reg_n_0_[2] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[30] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[30]),
+        .Q(\npc_default_EX_reg_n_0_[30] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[31] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[31]),
+        .Q(\npc_default_EX_reg_n_0_[31] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[31]_i_2 
+       (.CI(\npc_default_EX_reg[28]_i_1_n_0 ),
+        .CO({\NLW_npc_default_EX_reg[31]_i_2_CO_UNCONNECTED [3:2],\npc_default_EX_reg[31]_i_2_n_2 ,\npc_default_EX_reg[31]_i_2_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\NLW_npc_default_EX_reg[31]_i_2_O_UNCONNECTED [3],npc_default_ID[31:29]}),
+        .S({1'b0,pc_ID[31:29]}));
+  FDRE \npc_default_EX_reg[3] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[3]),
+        .Q(\npc_default_EX_reg_n_0_[3] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[4] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[4]),
+        .Q(\npc_default_EX_reg_n_0_[4] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[4]_i_1 
+       (.CI(1'b0),
+        .CO({\npc_default_EX_reg[4]_i_1_n_0 ,\npc_default_EX_reg[4]_i_1_n_1 ,\npc_default_EX_reg[4]_i_1_n_2 ,\npc_default_EX_reg[4]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,pc_ID[2],1'b0}),
+        .O(npc_default_ID[4:1]),
+        .S({pc_ID[4:3],\npc_default_EX[4]_i_2_n_0 ,pc_ID[1]}));
+  FDRE \npc_default_EX_reg[5] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[5]),
+        .Q(\npc_default_EX_reg_n_0_[5] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[6] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[6]),
+        .Q(\npc_default_EX_reg_n_0_[6] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[7] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[7]),
+        .Q(\npc_default_EX_reg_n_0_[7] ),
+        .R(1'b0));
+  FDRE \npc_default_EX_reg[8] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[8]),
+        .Q(\npc_default_EX_reg_n_0_[8] ),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 \npc_default_EX_reg[8]_i_1 
+       (.CI(\npc_default_EX_reg[4]_i_1_n_0 ),
+        .CO({\npc_default_EX_reg[8]_i_1_n_0 ,\npc_default_EX_reg[8]_i_1_n_1 ,\npc_default_EX_reg[8]_i_1_n_2 ,\npc_default_EX_reg[8]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(npc_default_ID[8:5]),
+        .S(pc_ID[8:5]));
+  FDRE \npc_default_EX_reg[9] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_default_ID[9]),
+        .Q(\npc_default_EX_reg_n_0_[9] ),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[0] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[0]),
+        .Q(npc_jalr_EX[0]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[10] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[10]),
+        .Q(npc_jalr_EX[10]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[11] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[11]),
+        .Q(npc_jalr_EX[11]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[12] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[12]),
+        .Q(npc_jalr_EX[12]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[13] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[13]),
+        .Q(npc_jalr_EX[13]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[14] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[14]),
+        .Q(npc_jalr_EX[14]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[15] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[15]),
+        .Q(npc_jalr_EX[15]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[16] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[16]),
+        .Q(npc_jalr_EX[16]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[17] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[17]),
+        .Q(npc_jalr_EX[17]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[18] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[18]),
+        .Q(npc_jalr_EX[18]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[19] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[19]),
+        .Q(npc_jalr_EX[19]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[1] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[1]),
+        .Q(npc_jalr_EX[1]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[20] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[20]),
+        .Q(npc_jalr_EX[20]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[21] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[21]),
+        .Q(npc_jalr_EX[21]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[22] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[22]),
+        .Q(npc_jalr_EX[22]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[23] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[23]),
+        .Q(npc_jalr_EX[23]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[24] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[24]),
+        .Q(npc_jalr_EX[24]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[25] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[25]),
+        .Q(npc_jalr_EX[25]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[26] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[26]),
+        .Q(npc_jalr_EX[26]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[27] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[27]),
+        .Q(npc_jalr_EX[27]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[28] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[28]),
+        .Q(npc_jalr_EX[28]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[29] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[29]),
+        .Q(npc_jalr_EX[29]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[2] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[2]),
+        .Q(npc_jalr_EX[2]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[30] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[30]),
+        .Q(npc_jalr_EX[30]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[31] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[31]),
+        .Q(npc_jalr_EX[31]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[3] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[3]),
+        .Q(npc_jalr_EX[3]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[4] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[4]),
+        .Q(npc_jalr_EX[4]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[5] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[5]),
+        .Q(npc_jalr_EX[5]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[6] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[6]),
+        .Q(npc_jalr_EX[6]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[7] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[7]),
+        .Q(npc_jalr_EX[7]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[8] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[8]),
+        .Q(npc_jalr_EX[8]),
+        .R(1'b0));
+  FDRE \npc_jalr_EX_reg[9] 
+       (.C(sysclk),
+        .CE(npc_default_EX),
+        .D(npc_jalr_ID[9]),
+        .Q(npc_jalr_EX[9]),
+        .R(1'b0));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry
+       (.CI(1'b0),
+        .CO({npc_jalr_ID_carry_n_0,npc_jalr_ID_carry_n_1,npc_jalr_ID_carry_n_2,npc_jalr_ID_carry_n_3}),
+        .CYINIT(1'b0),
+        .DI(regdata1_ID[3:0]),
+        .O(npc_jalr_ID[3:0]),
+        .S({register1_n_142,register1_n_143,register1_n_144,register1_n_145}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry__0
+       (.CI(npc_jalr_ID_carry_n_0),
+        .CO({npc_jalr_ID_carry__0_n_0,npc_jalr_ID_carry__0_n_1,npc_jalr_ID_carry__0_n_2,npc_jalr_ID_carry__0_n_3}),
+        .CYINIT(1'b0),
+        .DI(regdata1_ID[7:4]),
+        .O(npc_jalr_ID[7:4]),
+        .S({register1_n_146,register1_n_147,register1_n_148,register1_n_149}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry__1
+       (.CI(npc_jalr_ID_carry__0_n_0),
+        .CO({npc_jalr_ID_carry__1_n_0,npc_jalr_ID_carry__1_n_1,npc_jalr_ID_carry__1_n_2,npc_jalr_ID_carry__1_n_3}),
+        .CYINIT(1'b0),
+        .DI(regdata1_ID[11:8]),
+        .O(npc_jalr_ID[11:8]),
+        .S({register1_n_150,register1_n_151,register1_n_152,register1_n_153}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry__2
+       (.CI(npc_jalr_ID_carry__1_n_0),
+        .CO({npc_jalr_ID_carry__2_n_0,npc_jalr_ID_carry__2_n_1,npc_jalr_ID_carry__2_n_2,npc_jalr_ID_carry__2_n_3}),
+        .CYINIT(1'b0),
+        .DI(regdata1_ID[15:12]),
+        .O(npc_jalr_ID[15:12]),
+        .S({register1_n_154,register1_n_155,register1_n_156,register1_n_157}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry__3
+       (.CI(npc_jalr_ID_carry__2_n_0),
+        .CO({npc_jalr_ID_carry__3_n_0,npc_jalr_ID_carry__3_n_1,npc_jalr_ID_carry__3_n_2,npc_jalr_ID_carry__3_n_3}),
+        .CYINIT(1'b0),
+        .DI(regdata1_ID[19:16]),
+        .O(npc_jalr_ID[19:16]),
+        .S({register1_n_158,register1_n_159,register1_n_160,register1_n_161}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry__4
+       (.CI(npc_jalr_ID_carry__3_n_0),
+        .CO({npc_jalr_ID_carry__4_n_0,npc_jalr_ID_carry__4_n_1,npc_jalr_ID_carry__4_n_2,npc_jalr_ID_carry__4_n_3}),
+        .CYINIT(1'b0),
+        .DI(regdata1_ID[23:20]),
+        .O(npc_jalr_ID[23:20]),
+        .S({register1_n_162,register1_n_163,register1_n_164,register1_n_165}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry__5
+       (.CI(npc_jalr_ID_carry__4_n_0),
+        .CO({npc_jalr_ID_carry__5_n_0,npc_jalr_ID_carry__5_n_1,npc_jalr_ID_carry__5_n_2,npc_jalr_ID_carry__5_n_3}),
+        .CYINIT(1'b0),
+        .DI(regdata1_ID[27:24]),
+        .O(npc_jalr_ID[27:24]),
+        .S({register1_n_166,register1_n_167,register1_n_168,register1_n_169}));
+  (* ADDER_THRESHOLD = "35" *) 
+  CARRY4 npc_jalr_ID_carry__6
+       (.CI(npc_jalr_ID_carry__5_n_0),
+        .CO({NLW_npc_jalr_ID_carry__6_CO_UNCONNECTED[3],npc_jalr_ID_carry__6_n_1,npc_jalr_ID_carry__6_n_2,npc_jalr_ID_carry__6_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,regdata1_ID[30:28]}),
+        .O(npc_jalr_ID[31:28]),
+        .S({register1_n_73,register1_n_74,register1_n_75,register1_n_76}));
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[12]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[12] ),
+        .O(imm_ID[12]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[13]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[13] ),
+        .O(imm_ID[13]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[14]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[14] ),
+        .O(imm_ID[14]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[15]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[15] ),
+        .O(imm_ID[15]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[16]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[16] ),
+        .O(imm_ID[16]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[17]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[17] ),
+        .O(imm_ID[17]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[18]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[18] ),
+        .O(imm_ID[18]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[19]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_6_n_0),
+        .I2(\iword_ID_reg_n_0_[31] ),
+        .I3(npc_branch_ID_carry__2_i_5_n_0),
+        .I4(\iword_ID_reg_n_0_[19] ),
+        .O(imm_ID[19]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[20]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[20] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[20]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[21]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[21] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[21]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[22]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[22] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[22]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[23]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[23] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[23]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[24]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[24] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[24]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[25]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[25] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[25]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[26]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[26] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[26]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[27]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[27] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[27]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[28]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[28] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[28]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[29]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[29] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[29]));
+  LUT5 #(
+    .INIT(32'hB8FFB800)) 
+    \oprl_EX[30]_i_3 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(\iword_ID_reg_n_0_[30] ),
+        .I3(npc_branch_ID_carry__2_i_6_n_0),
+        .I4(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID[30]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    \oprl_EX[31]_i_10 
+       (.I0(srcreg1_num_ID[0]),
+        .I1(dstreg_num_MA[0]),
+        .I2(dstreg_num_MA[2]),
+        .I3(srcreg1_num_ID[2]),
+        .I4(dstreg_num_MA[1]),
+        .I5(srcreg1_num_ID[1]),
+        .O(\oprl_EX[31]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     \oprl_EX[31]_i_2 
@@ -11970,15 +12886,15 @@ module design_1_CPUTop_0_0_CPUTop
         .I1(aluop1_type_ID[0]),
         .I2(is_stall_DE10_out),
         .I3(is_reg1_fwd_EE0__3),
-        .O(is_oprl_fwd_EE__0));
-  (* SOFT_HLUTNM = "soft_lutpair87" *) 
+        .O(is_oprl_fwd_EE__1));
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT3 #(
     .INIT(8'h40)) 
     \oprl_EX[31]_i_3 
        (.I0(aluop1_type_ID[1]),
         .I1(aluop1_type_ID[0]),
-        .I2(p_7_in),
-        .O(is_oprl_fwd_ME__0));
+        .I2(\oprl_EX[31]_i_8_n_0 ),
+        .O(is_oprl_fwd_ME__1));
   LUT6 #(
     .INIT(64'h0100000000000000)) 
     \oprl_EX[31]_i_5 
@@ -11999,6 +12915,35 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(\iword_ID_reg_n_0_[5] ),
         .I5(\iword_ID_reg_n_0_[4] ),
         .O(aluop1_type_ID[0]));
+  LUT6 #(
+    .INIT(64'hFFFF0000FFFE0000)) 
+    \oprl_EX[31]_i_7 
+       (.I0(\iword_ID_reg_n_0_[17] ),
+        .I1(\iword_ID_reg_n_0_[15] ),
+        .I2(\iword_ID_reg_n_0_[16] ),
+        .I3(\iword_ID_reg_n_0_[18] ),
+        .I4(register1_n_141),
+        .I5(\iword_ID_reg_n_0_[19] ),
+        .O(is_reg1_fwd_EE0__3));
+  LUT6 #(
+    .INIT(64'h8200000000008200)) 
+    \oprl_EX[31]_i_8 
+       (.I0(is_reg1_fwd_EE0__3),
+        .I1(srcreg1_num_ID[4]),
+        .I2(dstreg_num_MA[4]),
+        .I3(\oprl_EX[31]_i_10_n_0 ),
+        .I4(dstreg_num_MA[3]),
+        .I5(srcreg1_num_ID[3]),
+        .O(\oprl_EX[31]_i_8_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  LUT4 #(
+    .INIT(16'hBF80)) 
+    \oprl_EX[31]_i_9 
+       (.I0(npc_branch_ID_carry__2_i_7_n_0),
+        .I1(npc_branch_ID_carry__2_i_5_n_0),
+        .I2(npc_branch_ID_carry__2_i_6_n_0),
+        .I3(\iword_ID_reg_n_0_[31] ),
+        .O(imm_ID__0));
   FDRE \oprl_EX_reg[0] 
        (.C(sysclk),
         .CE(nrst),
@@ -12191,7 +13136,7 @@ module design_1_CPUTop_0_0_CPUTop
         .D(p_0_in1_in_0[9]),
         .Q(oprl_EX[9]),
         .R(reg_we_EX));
-  (* SOFT_HLUTNM = "soft_lutpair86" *) 
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     \oprr_EX[31]_i_2 
@@ -12200,13 +13145,13 @@ module design_1_CPUTop_0_0_CPUTop
         .I2(is_stall_DE1__8),
         .I3(is_reg2_fwd_EE0__3),
         .O(is_oprr_fwd_EE__0));
-  (* SOFT_HLUTNM = "soft_lutpair86" *) 
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT3 #(
     .INIT(8'h40)) 
     \oprr_EX[31]_i_3 
        (.I0(aluop2_type_ID[1]),
         .I1(aluop2_type_ID[0]),
-        .I2(p_5_in),
+        .I2(p_4_in),
         .O(is_oprr_fwd_ME__0));
   LUT6 #(
     .INIT(64'h080008000000A02A)) 
@@ -12231,193 +13176,193 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \oprr_EX_reg[0] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_64),
+        .D(alu1_n_50),
         .Q(oprr_EX[0]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[10] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_54),
+        .D(alu1_n_40),
         .Q(oprr_EX[10]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[11] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_53),
+        .D(alu1_n_39),
         .Q(oprr_EX[11]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[12] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_52),
+        .D(alu1_n_38),
         .Q(oprr_EX[12]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[13] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_51),
+        .D(alu1_n_37),
         .Q(oprr_EX[13]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[14] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_50),
+        .D(alu1_n_36),
         .Q(oprr_EX[14]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[15] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_49),
+        .D(alu1_n_35),
         .Q(oprr_EX[15]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[16] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_48),
+        .D(alu1_n_34),
         .Q(oprr_EX[16]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[17] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_47),
+        .D(alu1_n_33),
         .Q(oprr_EX[17]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[18] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_46),
+        .D(alu1_n_32),
         .Q(oprr_EX[18]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[19] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_45),
+        .D(alu1_n_31),
         .Q(oprr_EX[19]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[1] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_63),
+        .D(alu1_n_49),
         .Q(oprr_EX[1]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[20] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_44),
+        .D(alu1_n_30),
         .Q(oprr_EX[20]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[21] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_43),
+        .D(alu1_n_29),
         .Q(oprr_EX[21]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[22] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_42),
+        .D(alu1_n_28),
         .Q(oprr_EX[22]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[23] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_41),
+        .D(alu1_n_27),
         .Q(oprr_EX[23]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[24] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_40),
+        .D(alu1_n_26),
         .Q(oprr_EX[24]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[25] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_39),
+        .D(alu1_n_25),
         .Q(oprr_EX[25]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[26] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_38),
+        .D(alu1_n_24),
         .Q(oprr_EX[26]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[27] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_37),
+        .D(alu1_n_23),
         .Q(oprr_EX[27]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[28] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_36),
+        .D(alu1_n_22),
         .Q(oprr_EX[28]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[29] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_35),
+        .D(alu1_n_21),
         .Q(oprr_EX[29]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[2] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_62),
+        .D(alu1_n_48),
         .Q(oprr_EX[2]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[30] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_34),
+        .D(alu1_n_20),
         .Q(oprr_EX[30]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[31] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_33),
+        .D(alu1_n_19),
         .Q(oprr_EX[31]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[3] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_61),
+        .D(alu1_n_47),
         .Q(oprr_EX[3]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[4] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_60),
+        .D(alu1_n_46),
         .Q(oprr_EX[4]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[5] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_59),
+        .D(alu1_n_45),
         .Q(oprr_EX[5]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[6] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_58),
+        .D(alu1_n_44),
         .Q(oprr_EX[6]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[7] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_57),
+        .D(alu1_n_43),
         .Q(oprr_EX[7]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[8] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_56),
+        .D(alu1_n_42),
         .Q(oprr_EX[8]),
         .R(reg_we_EX));
   FDRE \oprr_EX_reg[9] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_55),
+        .D(alu1_n_41),
         .Q(oprr_EX[9]),
         .R(reg_we_EX));
   LUT5 #(
@@ -12729,28 +13674,28 @@ module design_1_CPUTop_0_0_CPUTop
         .D(\pc_EX[9]_i_1_n_0 ),
         .Q(\pc_EX_reg_n_0_[9] ),
         .S(rst));
-  (* SOFT_HLUTNM = "soft_lutpair104" *) 
+  (* SOFT_HLUTNM = "soft_lutpair88" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[10]_i_1 
        (.I0(pc_IF[10]),
         .I1(pc_IF1),
         .O(\pc_ID[10]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair104" *) 
+  (* SOFT_HLUTNM = "soft_lutpair88" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[11]_i_1 
        (.I0(pc_IF[11]),
         .I1(pc_IF1),
         .O(\pc_ID[11]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair105" *) 
+  (* SOFT_HLUTNM = "soft_lutpair89" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[12]_i_1 
        (.I0(pc_IF[12]),
         .I1(pc_IF1),
         .O(\pc_ID[12]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair105" *) 
+  (* SOFT_HLUTNM = "soft_lutpair89" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[13]_i_1 
@@ -12763,7 +13708,7 @@ module design_1_CPUTop_0_0_CPUTop
        (.I0(pc_IF[14]),
         .I1(pc_IF1),
         .O(\pc_ID[14]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair100" *) 
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[2]_i_1 
@@ -12783,49 +13728,49 @@ module design_1_CPUTop_0_0_CPUTop
         .I1(is_stall_DE1__8),
         .I2(is_stall_DE10_out),
         .O(\pc_ID[31]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair100" *) 
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[3]_i_1 
        (.I0(pc_IF[3]),
         .I1(pc_IF1),
         .O(\pc_ID[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair101" *) 
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[4]_i_1 
        (.I0(pc_IF[4]),
         .I1(pc_IF1),
         .O(\pc_ID[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair101" *) 
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[5]_i_1 
        (.I0(pc_IF[5]),
         .I1(pc_IF1),
         .O(\pc_ID[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair102" *) 
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[6]_i_1 
        (.I0(pc_IF[6]),
         .I1(pc_IF1),
         .O(\pc_ID[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair102" *) 
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[7]_i_1 
        (.I0(pc_IF[7]),
         .I1(pc_IF1),
         .O(\pc_ID[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair103" *) 
+  (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[8]_i_1 
        (.I0(pc_IF[8]),
         .I1(pc_IF1),
         .O(\pc_ID[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair103" *) 
+  (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \pc_ID[9]_i_1 
@@ -13030,21 +13975,21 @@ module design_1_CPUTop_0_0_CPUTop
         .CYINIT(1'b0),
         .DI({1'b1,1'b1,1'b1,1'b1}),
         .O(NLW_pc_IF2_carry_O_UNCONNECTED[3:0]),
-        .S({NPCGen1_n_16,NPCGen1_n_17,NPCGen1_n_18,NPCGen1_n_19}));
+        .S({alu1_n_51,alu1_n_52,alu1_n_53,alu1_n_54}));
   CARRY4 pc_IF2_carry__0
        (.CI(pc_IF2_carry_n_0),
         .CO({pc_IF2_carry__0_n_0,pc_IF2_carry__0_n_1,pc_IF2_carry__0_n_2,pc_IF2_carry__0_n_3}),
         .CYINIT(1'b0),
         .DI({1'b1,1'b1,1'b1,1'b1}),
         .O(NLW_pc_IF2_carry__0_O_UNCONNECTED[3:0]),
-        .S({NPCGen1_n_36,NPCGen1_n_37,NPCGen1_n_38,NPCGen1_n_39}));
+        .S({alu1_n_71,alu1_n_72,alu1_n_73,alu1_n_74}));
   CARRY4 pc_IF2_carry__1
        (.CI(pc_IF2_carry__0_n_0),
         .CO({NLW_pc_IF2_carry__1_CO_UNCONNECTED[3],pc_IF2,pc_IF2_carry__1_n_2,pc_IF2_carry__1_n_3}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b1,1'b1,1'b1}),
         .O(NLW_pc_IF2_carry__1_O_UNCONNECTED[3:0]),
-        .S({1'b0,NPCGen1_n_40,NPCGen1_n_41,NPCGen1_n_42}));
+        .S({1'b0,alu1_n_75,alu1_n_76,alu1_n_77}));
   LUT4 #(
     .INIT(16'hFF57)) 
     \pc_IF[31]_i_1 
@@ -13098,25 +14043,25 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[16] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_15),
+        .D(alu1_n_15),
         .Q(pc_IF__0[16]),
         .R(rst));
   FDRE \pc_IF_reg[17] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_14),
+        .D(alu1_n_14),
         .Q(pc_IF__0[17]),
         .R(rst));
   FDRE \pc_IF_reg[18] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_13),
+        .D(alu1_n_13),
         .Q(pc_IF__0[18]),
         .R(rst));
   FDRE \pc_IF_reg[19] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_12),
+        .D(alu1_n_12),
         .Q(pc_IF__0[19]),
         .R(rst));
   FDRE \pc_IF_reg[1] 
@@ -13128,61 +14073,61 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[20] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_11),
+        .D(alu1_n_11),
         .Q(pc_IF__0[20]),
         .R(rst));
   FDRE \pc_IF_reg[21] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_10),
+        .D(alu1_n_10),
         .Q(pc_IF__0[21]),
         .R(rst));
   FDRE \pc_IF_reg[22] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_9),
+        .D(alu1_n_9),
         .Q(pc_IF__0[22]),
         .R(rst));
   FDRE \pc_IF_reg[23] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_8),
+        .D(alu1_n_8),
         .Q(pc_IF__0[23]),
         .R(rst));
   FDRE \pc_IF_reg[24] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_7),
+        .D(alu1_n_7),
         .Q(pc_IF__0[24]),
         .R(rst));
   FDRE \pc_IF_reg[25] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_6),
+        .D(alu1_n_6),
         .Q(pc_IF__0[25]),
         .R(rst));
   FDRE \pc_IF_reg[26] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_5),
+        .D(alu1_n_5),
         .Q(pc_IF__0[26]),
         .R(rst));
   FDRE \pc_IF_reg[27] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_4),
+        .D(alu1_n_4),
         .Q(pc_IF__0[27]),
         .R(rst));
   FDRE \pc_IF_reg[28] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_3),
+        .D(alu1_n_3),
         .Q(pc_IF__0[28]),
         .R(rst));
   FDRE \pc_IF_reg[29] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_2),
+        .D(alu1_n_2),
         .Q(pc_IF__0[29]),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[2]" *) 
@@ -13196,26 +14141,26 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[2]_rep 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_336),
+        .D(predictor1_n_337),
         .Q(\pc_IF_reg[2]_rep_n_0 ),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[2]" *) 
   FDRE \pc_IF_reg[2]_rep__0 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_337),
+        .D(predictor1_n_338),
         .Q(\pc_IF_reg[2]_rep__0_n_0 ),
         .R(rst));
   FDRE \pc_IF_reg[30] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_1),
+        .D(alu1_n_1),
         .Q(pc_IF__0[30]),
         .R(rst));
   FDRE \pc_IF_reg[31] 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(NPCGen1_n_0),
+        .D(alu1_n_0),
         .Q(pc_IF__0[31]),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[3]" *) 
@@ -13229,14 +14174,14 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[3]_rep 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_334),
+        .D(predictor1_n_335),
         .Q(\pc_IF_reg[3]_rep_n_0 ),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[3]" *) 
   FDRE \pc_IF_reg[3]_rep__0 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_335),
+        .D(predictor1_n_336),
         .Q(\pc_IF_reg[3]_rep__0_n_0 ),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[4]" *) 
@@ -13250,7 +14195,7 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[4]_rep 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_333),
+        .D(predictor1_n_334),
         .Q(\pc_IF_reg[4]_rep_n_0 ),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[5]" *) 
@@ -13264,7 +14209,7 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[5]_rep 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_332),
+        .D(predictor1_n_333),
         .Q(\pc_IF_reg[5]_rep_n_0 ),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[6]" *) 
@@ -13278,7 +14223,7 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[6]_rep 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_331),
+        .D(predictor1_n_332),
         .Q(\pc_IF_reg[6]_rep_n_0 ),
         .R(rst));
   (* ORIG_CELL_NAME = "pc_IF_reg[7]" *) 
@@ -13292,7 +14237,7 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \pc_IF_reg[7]_rep 
        (.C(sysclk),
         .CE(\pc_IF[31]_i_1_n_0 ),
-        .D(predictor1_n_330),
+        .D(predictor1_n_331),
         .Q(\pc_IF_reg[7]_rep_n_0 ),
         .R(rst));
   FDRE \pc_IF_reg[8] 
@@ -13309,279 +14254,287 @@ module design_1_CPUTop_0_0_CPUTop
         .R(rst));
   design_1_CPUTop_0_0_Predictor predictor1
        (.\/pc_IF[15]_i_14_0 ({\pc_EX_reg_n_0_[15] ,\pc_EX_reg_n_0_[14] ,\pc_EX_reg_n_0_[13] ,\pc_EX_reg_n_0_[12] ,\pc_EX_reg_n_0_[11] ,\pc_EX_reg_n_0_[10] ,\pc_EX_reg_n_0_[9] ,\pc_EX_reg_n_0_[8] ,\pc_EX_reg_n_0_[7] ,\pc_EX_reg_n_0_[6] ,\pc_EX_reg_n_0_[5] ,\pc_EX_reg_n_0_[4] ,\pc_EX_reg_n_0_[3] ,\pc_EX_reg_n_0_[2] }),
-        .CO(predictor1_n_338),
+        .CO(predictor1_n_339),
         .D(p_1_in),
         .DI({predictor1_n_307,predictor1_n_308,predictor1_n_309,predictor1_n_310}),
         .Q(pc_IF),
-        .\alucode_EX_reg[1] (predictor1_n_329),
+        .\alucode_EX_reg[1] (predictor1_n_330),
+        .\alucode_EX_reg[2] (predictor1_n_329),
         .br_taken6_carry__2(oprr_EX),
         .br_taken6_carry__2_0(oprl_EX),
-        .mem_reg_192_255_19_19(alu1_n_0),
+        .mem_reg_192_255_19_19(alu1_n_16),
         .mem_valid(mem_valid),
-        .\mem_valid_reg[0] (alu1_n_193),
-        .\mem_valid_reg[100] (alu1_n_293),
-        .\mem_valid_reg[101] (alu1_n_294),
-        .\mem_valid_reg[102] (alu1_n_295),
-        .\mem_valid_reg[103] (alu1_n_296),
-        .\mem_valid_reg[104] (alu1_n_297),
-        .\mem_valid_reg[105] (alu1_n_298),
-        .\mem_valid_reg[106] (alu1_n_299),
-        .\mem_valid_reg[107] (alu1_n_300),
-        .\mem_valid_reg[108] (alu1_n_301),
-        .\mem_valid_reg[109] (alu1_n_302),
-        .\mem_valid_reg[10] (alu1_n_203),
-        .\mem_valid_reg[110] (alu1_n_303),
-        .\mem_valid_reg[111] (alu1_n_304),
-        .\mem_valid_reg[112] (alu1_n_305),
-        .\mem_valid_reg[113] (alu1_n_306),
-        .\mem_valid_reg[114] (alu1_n_307),
-        .\mem_valid_reg[115] (alu1_n_308),
-        .\mem_valid_reg[116] (alu1_n_309),
-        .\mem_valid_reg[117] (alu1_n_310),
-        .\mem_valid_reg[118] (alu1_n_311),
-        .\mem_valid_reg[119] (alu1_n_312),
-        .\mem_valid_reg[11] (alu1_n_204),
-        .\mem_valid_reg[120] (alu1_n_313),
-        .\mem_valid_reg[121] (alu1_n_314),
-        .\mem_valid_reg[122] (alu1_n_315),
-        .\mem_valid_reg[123] (alu1_n_316),
-        .\mem_valid_reg[124] (alu1_n_317),
-        .\mem_valid_reg[125] (alu1_n_318),
-        .\mem_valid_reg[126] (alu1_n_319),
-        .\mem_valid_reg[127] (alu1_n_320),
-        .\mem_valid_reg[128] (alu1_n_321),
-        .\mem_valid_reg[129] (alu1_n_322),
-        .\mem_valid_reg[12] (alu1_n_205),
-        .\mem_valid_reg[130] (alu1_n_323),
-        .\mem_valid_reg[131] (alu1_n_324),
-        .\mem_valid_reg[132] (alu1_n_325),
-        .\mem_valid_reg[133] (alu1_n_326),
-        .\mem_valid_reg[134] (alu1_n_327),
-        .\mem_valid_reg[135] (alu1_n_328),
-        .\mem_valid_reg[136] (alu1_n_329),
-        .\mem_valid_reg[137] (alu1_n_330),
-        .\mem_valid_reg[138] (alu1_n_331),
-        .\mem_valid_reg[139] (alu1_n_332),
-        .\mem_valid_reg[13] (alu1_n_206),
-        .\mem_valid_reg[140] (alu1_n_333),
-        .\mem_valid_reg[141] (alu1_n_334),
-        .\mem_valid_reg[142] (alu1_n_335),
-        .\mem_valid_reg[143] (alu1_n_336),
-        .\mem_valid_reg[144] (alu1_n_337),
-        .\mem_valid_reg[145] (alu1_n_338),
-        .\mem_valid_reg[146] (alu1_n_339),
-        .\mem_valid_reg[147] (alu1_n_340),
-        .\mem_valid_reg[148] (alu1_n_341),
-        .\mem_valid_reg[149] (alu1_n_342),
-        .\mem_valid_reg[14] (alu1_n_207),
-        .\mem_valid_reg[150] (alu1_n_343),
-        .\mem_valid_reg[151] (alu1_n_344),
-        .\mem_valid_reg[152] (alu1_n_345),
-        .\mem_valid_reg[153] (alu1_n_346),
-        .\mem_valid_reg[154] (alu1_n_347),
-        .\mem_valid_reg[155] (alu1_n_348),
-        .\mem_valid_reg[156] (alu1_n_349),
-        .\mem_valid_reg[157] (alu1_n_350),
-        .\mem_valid_reg[158] (alu1_n_351),
-        .\mem_valid_reg[159] (alu1_n_352),
-        .\mem_valid_reg[15] (alu1_n_208),
-        .\mem_valid_reg[160] (alu1_n_353),
-        .\mem_valid_reg[161] (alu1_n_354),
-        .\mem_valid_reg[162] (alu1_n_355),
-        .\mem_valid_reg[163] (alu1_n_356),
-        .\mem_valid_reg[164] (alu1_n_357),
-        .\mem_valid_reg[165] (alu1_n_358),
-        .\mem_valid_reg[166] (alu1_n_359),
-        .\mem_valid_reg[167] (alu1_n_360),
-        .\mem_valid_reg[168] (alu1_n_361),
-        .\mem_valid_reg[169] (alu1_n_362),
-        .\mem_valid_reg[16] (alu1_n_209),
-        .\mem_valid_reg[170] (alu1_n_363),
-        .\mem_valid_reg[171] (alu1_n_364),
-        .\mem_valid_reg[172] (alu1_n_365),
-        .\mem_valid_reg[173] (alu1_n_366),
-        .\mem_valid_reg[174] (alu1_n_367),
-        .\mem_valid_reg[175] (alu1_n_368),
-        .\mem_valid_reg[176] (alu1_n_369),
-        .\mem_valid_reg[177] (alu1_n_370),
-        .\mem_valid_reg[178] (alu1_n_371),
-        .\mem_valid_reg[179] (alu1_n_372),
-        .\mem_valid_reg[17] (alu1_n_210),
-        .\mem_valid_reg[180] (alu1_n_373),
-        .\mem_valid_reg[181] (alu1_n_374),
-        .\mem_valid_reg[182] (alu1_n_375),
-        .\mem_valid_reg[183] (alu1_n_376),
-        .\mem_valid_reg[184] (alu1_n_377),
-        .\mem_valid_reg[185] (alu1_n_378),
-        .\mem_valid_reg[186] (alu1_n_379),
-        .\mem_valid_reg[187] (alu1_n_380),
-        .\mem_valid_reg[188] (alu1_n_381),
-        .\mem_valid_reg[189] (alu1_n_382),
-        .\mem_valid_reg[18] (alu1_n_211),
-        .\mem_valid_reg[190] (alu1_n_383),
-        .\mem_valid_reg[191] (alu1_n_384),
-        .\mem_valid_reg[192] (alu1_n_385),
-        .\mem_valid_reg[193] (alu1_n_386),
-        .\mem_valid_reg[194] (alu1_n_387),
-        .\mem_valid_reg[195] (alu1_n_388),
-        .\mem_valid_reg[196] (alu1_n_389),
-        .\mem_valid_reg[197] (alu1_n_390),
-        .\mem_valid_reg[198] (alu1_n_391),
-        .\mem_valid_reg[199] (alu1_n_392),
-        .\mem_valid_reg[19] (alu1_n_212),
-        .\mem_valid_reg[1] (alu1_n_194),
-        .\mem_valid_reg[200] (alu1_n_393),
-        .\mem_valid_reg[201] (alu1_n_394),
-        .\mem_valid_reg[202] (alu1_n_395),
-        .\mem_valid_reg[203] (alu1_n_396),
-        .\mem_valid_reg[204] (alu1_n_397),
-        .\mem_valid_reg[205] (alu1_n_398),
-        .\mem_valid_reg[206] (alu1_n_399),
-        .\mem_valid_reg[207] (alu1_n_400),
-        .\mem_valid_reg[208] (alu1_n_401),
-        .\mem_valid_reg[209] (alu1_n_402),
-        .\mem_valid_reg[20] (alu1_n_213),
-        .\mem_valid_reg[210] (alu1_n_403),
-        .\mem_valid_reg[211] (alu1_n_404),
-        .\mem_valid_reg[212] (alu1_n_405),
-        .\mem_valid_reg[213] (alu1_n_406),
-        .\mem_valid_reg[214] (alu1_n_407),
-        .\mem_valid_reg[215] (alu1_n_408),
-        .\mem_valid_reg[216] (alu1_n_409),
-        .\mem_valid_reg[217] (alu1_n_410),
-        .\mem_valid_reg[218] (alu1_n_411),
-        .\mem_valid_reg[219] (alu1_n_412),
-        .\mem_valid_reg[21] (alu1_n_214),
-        .\mem_valid_reg[220] (alu1_n_413),
-        .\mem_valid_reg[221] (alu1_n_414),
-        .\mem_valid_reg[222] (alu1_n_415),
-        .\mem_valid_reg[223] (alu1_n_416),
-        .\mem_valid_reg[224] (alu1_n_417),
-        .\mem_valid_reg[225] (alu1_n_418),
-        .\mem_valid_reg[226] (alu1_n_419),
-        .\mem_valid_reg[227] (alu1_n_420),
-        .\mem_valid_reg[228] (alu1_n_421),
-        .\mem_valid_reg[229] (alu1_n_422),
-        .\mem_valid_reg[22] (alu1_n_215),
-        .\mem_valid_reg[230] (alu1_n_423),
-        .\mem_valid_reg[231] (alu1_n_424),
-        .\mem_valid_reg[232] (alu1_n_425),
-        .\mem_valid_reg[233] (alu1_n_426),
-        .\mem_valid_reg[234] (alu1_n_427),
-        .\mem_valid_reg[235] (alu1_n_428),
-        .\mem_valid_reg[236] (alu1_n_429),
-        .\mem_valid_reg[237] (alu1_n_430),
-        .\mem_valid_reg[238] (alu1_n_431),
-        .\mem_valid_reg[239] (alu1_n_432),
-        .\mem_valid_reg[23] (alu1_n_216),
-        .\mem_valid_reg[240] (alu1_n_433),
-        .\mem_valid_reg[241] (alu1_n_434),
-        .\mem_valid_reg[242] (alu1_n_435),
-        .\mem_valid_reg[243] (alu1_n_436),
-        .\mem_valid_reg[244] (alu1_n_437),
-        .\mem_valid_reg[245] (alu1_n_438),
-        .\mem_valid_reg[246] (alu1_n_439),
-        .\mem_valid_reg[247] (alu1_n_440),
-        .\mem_valid_reg[248] (alu1_n_441),
-        .\mem_valid_reg[249] (alu1_n_442),
-        .\mem_valid_reg[24] (alu1_n_217),
-        .\mem_valid_reg[250] (alu1_n_443),
-        .\mem_valid_reg[251] (alu1_n_444),
-        .\mem_valid_reg[252] (alu1_n_445),
-        .\mem_valid_reg[253] (alu1_n_446),
-        .\mem_valid_reg[254] (alu1_n_447),
-        .\mem_valid_reg[255] (alu1_n_448),
-        .\mem_valid_reg[25] (alu1_n_218),
-        .\mem_valid_reg[26] (alu1_n_219),
-        .\mem_valid_reg[27] (alu1_n_220),
-        .\mem_valid_reg[28] (alu1_n_221),
-        .\mem_valid_reg[29] (alu1_n_222),
-        .\mem_valid_reg[2] (alu1_n_195),
-        .\mem_valid_reg[30] (alu1_n_223),
-        .\mem_valid_reg[31] (alu1_n_224),
-        .\mem_valid_reg[32] (alu1_n_225),
-        .\mem_valid_reg[33] (alu1_n_226),
-        .\mem_valid_reg[34] (alu1_n_227),
-        .\mem_valid_reg[35] (alu1_n_228),
-        .\mem_valid_reg[36] (alu1_n_229),
-        .\mem_valid_reg[37] (alu1_n_230),
-        .\mem_valid_reg[38] (alu1_n_231),
-        .\mem_valid_reg[39] (alu1_n_232),
-        .\mem_valid_reg[3] (alu1_n_196),
-        .\mem_valid_reg[40] (alu1_n_233),
-        .\mem_valid_reg[41] (alu1_n_234),
-        .\mem_valid_reg[42] (alu1_n_235),
-        .\mem_valid_reg[43] (alu1_n_236),
-        .\mem_valid_reg[44] (alu1_n_237),
-        .\mem_valid_reg[45] (alu1_n_238),
-        .\mem_valid_reg[46] (alu1_n_239),
-        .\mem_valid_reg[47] (alu1_n_240),
-        .\mem_valid_reg[48] (alu1_n_241),
-        .\mem_valid_reg[49] (alu1_n_242),
-        .\mem_valid_reg[4] (alu1_n_197),
-        .\mem_valid_reg[50] (alu1_n_243),
-        .\mem_valid_reg[51] (alu1_n_244),
-        .\mem_valid_reg[52] (alu1_n_245),
-        .\mem_valid_reg[53] (alu1_n_246),
-        .\mem_valid_reg[54] (alu1_n_247),
-        .\mem_valid_reg[55] (alu1_n_248),
-        .\mem_valid_reg[56] (alu1_n_249),
-        .\mem_valid_reg[57] (alu1_n_250),
-        .\mem_valid_reg[58] (alu1_n_251),
-        .\mem_valid_reg[59] (alu1_n_252),
-        .\mem_valid_reg[5] (alu1_n_198),
-        .\mem_valid_reg[60] (alu1_n_253),
-        .\mem_valid_reg[61] (alu1_n_254),
-        .\mem_valid_reg[62] (alu1_n_255),
-        .\mem_valid_reg[63] (alu1_n_256),
-        .\mem_valid_reg[64] (alu1_n_257),
-        .\mem_valid_reg[65] (alu1_n_258),
-        .\mem_valid_reg[66] (alu1_n_259),
-        .\mem_valid_reg[67] (alu1_n_260),
-        .\mem_valid_reg[68] (alu1_n_261),
-        .\mem_valid_reg[69] (alu1_n_262),
-        .\mem_valid_reg[6] (alu1_n_199),
-        .\mem_valid_reg[70] (alu1_n_263),
-        .\mem_valid_reg[71] (alu1_n_264),
-        .\mem_valid_reg[72] (alu1_n_265),
-        .\mem_valid_reg[73] (alu1_n_266),
-        .\mem_valid_reg[74] (alu1_n_267),
-        .\mem_valid_reg[75] (alu1_n_268),
-        .\mem_valid_reg[76] (alu1_n_269),
-        .\mem_valid_reg[77] (alu1_n_270),
-        .\mem_valid_reg[78] (alu1_n_271),
-        .\mem_valid_reg[79] (alu1_n_272),
-        .\mem_valid_reg[7] (alu1_n_200),
-        .\mem_valid_reg[80] (alu1_n_273),
-        .\mem_valid_reg[81] (alu1_n_274),
-        .\mem_valid_reg[82] (alu1_n_275),
-        .\mem_valid_reg[83] (alu1_n_276),
-        .\mem_valid_reg[84] (alu1_n_277),
-        .\mem_valid_reg[85] (alu1_n_278),
-        .\mem_valid_reg[86] (alu1_n_279),
-        .\mem_valid_reg[87] (alu1_n_280),
-        .\mem_valid_reg[88] (alu1_n_281),
-        .\mem_valid_reg[89] (alu1_n_282),
-        .\mem_valid_reg[8] (alu1_n_201),
-        .\mem_valid_reg[90] (alu1_n_283),
-        .\mem_valid_reg[91] (alu1_n_284),
-        .\mem_valid_reg[92] (alu1_n_285),
-        .\mem_valid_reg[93] (alu1_n_286),
-        .\mem_valid_reg[94] (alu1_n_287),
-        .\mem_valid_reg[95] (alu1_n_288),
-        .\mem_valid_reg[96] (alu1_n_289),
-        .\mem_valid_reg[97] (alu1_n_290),
-        .\mem_valid_reg[98] (alu1_n_291),
-        .\mem_valid_reg[99] (alu1_n_292),
-        .\mem_valid_reg[9] (alu1_n_202),
+        .\mem_valid_reg[0] (alu1_n_172),
+        .\mem_valid_reg[100] (alu1_n_272),
+        .\mem_valid_reg[101] (alu1_n_273),
+        .\mem_valid_reg[102] (alu1_n_274),
+        .\mem_valid_reg[103] (alu1_n_275),
+        .\mem_valid_reg[104] (alu1_n_276),
+        .\mem_valid_reg[105] (alu1_n_277),
+        .\mem_valid_reg[106] (alu1_n_278),
+        .\mem_valid_reg[107] (alu1_n_279),
+        .\mem_valid_reg[108] (alu1_n_280),
+        .\mem_valid_reg[109] (alu1_n_281),
+        .\mem_valid_reg[10] (alu1_n_182),
+        .\mem_valid_reg[110] (alu1_n_282),
+        .\mem_valid_reg[111] (alu1_n_283),
+        .\mem_valid_reg[112] (alu1_n_284),
+        .\mem_valid_reg[113] (alu1_n_285),
+        .\mem_valid_reg[114] (alu1_n_286),
+        .\mem_valid_reg[115] (alu1_n_287),
+        .\mem_valid_reg[116] (alu1_n_288),
+        .\mem_valid_reg[117] (alu1_n_289),
+        .\mem_valid_reg[118] (alu1_n_290),
+        .\mem_valid_reg[119] (alu1_n_291),
+        .\mem_valid_reg[11] (alu1_n_183),
+        .\mem_valid_reg[120] (alu1_n_292),
+        .\mem_valid_reg[121] (alu1_n_293),
+        .\mem_valid_reg[122] (alu1_n_294),
+        .\mem_valid_reg[123] (alu1_n_295),
+        .\mem_valid_reg[124] (alu1_n_296),
+        .\mem_valid_reg[125] (alu1_n_297),
+        .\mem_valid_reg[126] (alu1_n_298),
+        .\mem_valid_reg[127] (alu1_n_299),
+        .\mem_valid_reg[128] (alu1_n_300),
+        .\mem_valid_reg[129] (alu1_n_301),
+        .\mem_valid_reg[12] (alu1_n_184),
+        .\mem_valid_reg[130] (alu1_n_302),
+        .\mem_valid_reg[131] (alu1_n_303),
+        .\mem_valid_reg[132] (alu1_n_304),
+        .\mem_valid_reg[133] (alu1_n_305),
+        .\mem_valid_reg[134] (alu1_n_306),
+        .\mem_valid_reg[135] (alu1_n_307),
+        .\mem_valid_reg[136] (alu1_n_308),
+        .\mem_valid_reg[137] (alu1_n_309),
+        .\mem_valid_reg[138] (alu1_n_310),
+        .\mem_valid_reg[139] (alu1_n_311),
+        .\mem_valid_reg[13] (alu1_n_185),
+        .\mem_valid_reg[140] (alu1_n_312),
+        .\mem_valid_reg[141] (alu1_n_313),
+        .\mem_valid_reg[142] (alu1_n_314),
+        .\mem_valid_reg[143] (alu1_n_315),
+        .\mem_valid_reg[144] (alu1_n_316),
+        .\mem_valid_reg[145] (alu1_n_317),
+        .\mem_valid_reg[146] (alu1_n_318),
+        .\mem_valid_reg[147] (alu1_n_319),
+        .\mem_valid_reg[148] (alu1_n_320),
+        .\mem_valid_reg[149] (alu1_n_321),
+        .\mem_valid_reg[14] (alu1_n_186),
+        .\mem_valid_reg[150] (alu1_n_322),
+        .\mem_valid_reg[151] (alu1_n_323),
+        .\mem_valid_reg[152] (alu1_n_324),
+        .\mem_valid_reg[153] (alu1_n_325),
+        .\mem_valid_reg[154] (alu1_n_326),
+        .\mem_valid_reg[155] (alu1_n_327),
+        .\mem_valid_reg[156] (alu1_n_328),
+        .\mem_valid_reg[157] (alu1_n_329),
+        .\mem_valid_reg[158] (alu1_n_330),
+        .\mem_valid_reg[159] (alu1_n_331),
+        .\mem_valid_reg[15] (alu1_n_187),
+        .\mem_valid_reg[160] (alu1_n_332),
+        .\mem_valid_reg[161] (alu1_n_333),
+        .\mem_valid_reg[162] (alu1_n_334),
+        .\mem_valid_reg[163] (alu1_n_335),
+        .\mem_valid_reg[164] (alu1_n_336),
+        .\mem_valid_reg[165] (alu1_n_337),
+        .\mem_valid_reg[166] (alu1_n_338),
+        .\mem_valid_reg[167] (alu1_n_339),
+        .\mem_valid_reg[168] (alu1_n_340),
+        .\mem_valid_reg[169] (alu1_n_341),
+        .\mem_valid_reg[16] (alu1_n_188),
+        .\mem_valid_reg[170] (alu1_n_342),
+        .\mem_valid_reg[171] (alu1_n_343),
+        .\mem_valid_reg[172] (alu1_n_344),
+        .\mem_valid_reg[173] (alu1_n_345),
+        .\mem_valid_reg[174] (alu1_n_346),
+        .\mem_valid_reg[175] (alu1_n_347),
+        .\mem_valid_reg[176] (alu1_n_348),
+        .\mem_valid_reg[177] (alu1_n_349),
+        .\mem_valid_reg[178] (alu1_n_350),
+        .\mem_valid_reg[179] (alu1_n_351),
+        .\mem_valid_reg[17] (alu1_n_189),
+        .\mem_valid_reg[180] (alu1_n_352),
+        .\mem_valid_reg[181] (alu1_n_353),
+        .\mem_valid_reg[182] (alu1_n_354),
+        .\mem_valid_reg[183] (alu1_n_355),
+        .\mem_valid_reg[184] (alu1_n_356),
+        .\mem_valid_reg[185] (alu1_n_357),
+        .\mem_valid_reg[186] (alu1_n_358),
+        .\mem_valid_reg[187] (alu1_n_359),
+        .\mem_valid_reg[188] (alu1_n_360),
+        .\mem_valid_reg[189] (alu1_n_361),
+        .\mem_valid_reg[18] (alu1_n_190),
+        .\mem_valid_reg[190] (alu1_n_362),
+        .\mem_valid_reg[191] (alu1_n_363),
+        .\mem_valid_reg[192] (alu1_n_364),
+        .\mem_valid_reg[193] (alu1_n_365),
+        .\mem_valid_reg[194] (alu1_n_366),
+        .\mem_valid_reg[195] (alu1_n_367),
+        .\mem_valid_reg[196] (alu1_n_368),
+        .\mem_valid_reg[197] (alu1_n_369),
+        .\mem_valid_reg[198] (alu1_n_370),
+        .\mem_valid_reg[199] (alu1_n_371),
+        .\mem_valid_reg[19] (alu1_n_191),
+        .\mem_valid_reg[1] (alu1_n_173),
+        .\mem_valid_reg[200] (alu1_n_372),
+        .\mem_valid_reg[201] (alu1_n_373),
+        .\mem_valid_reg[202] (alu1_n_374),
+        .\mem_valid_reg[203] (alu1_n_375),
+        .\mem_valid_reg[204] (alu1_n_376),
+        .\mem_valid_reg[205] (alu1_n_377),
+        .\mem_valid_reg[206] (alu1_n_378),
+        .\mem_valid_reg[207] (alu1_n_379),
+        .\mem_valid_reg[208] (alu1_n_380),
+        .\mem_valid_reg[209] (alu1_n_381),
+        .\mem_valid_reg[20] (alu1_n_192),
+        .\mem_valid_reg[210] (alu1_n_382),
+        .\mem_valid_reg[211] (alu1_n_383),
+        .\mem_valid_reg[212] (alu1_n_384),
+        .\mem_valid_reg[213] (alu1_n_385),
+        .\mem_valid_reg[214] (alu1_n_386),
+        .\mem_valid_reg[215] (alu1_n_387),
+        .\mem_valid_reg[216] (alu1_n_388),
+        .\mem_valid_reg[217] (alu1_n_389),
+        .\mem_valid_reg[218] (alu1_n_390),
+        .\mem_valid_reg[219] (alu1_n_391),
+        .\mem_valid_reg[21] (alu1_n_193),
+        .\mem_valid_reg[220] (alu1_n_392),
+        .\mem_valid_reg[221] (alu1_n_393),
+        .\mem_valid_reg[222] (alu1_n_394),
+        .\mem_valid_reg[223] (alu1_n_395),
+        .\mem_valid_reg[224] (alu1_n_396),
+        .\mem_valid_reg[225] (alu1_n_397),
+        .\mem_valid_reg[226] (alu1_n_398),
+        .\mem_valid_reg[227] (alu1_n_399),
+        .\mem_valid_reg[228] (alu1_n_400),
+        .\mem_valid_reg[229] (alu1_n_401),
+        .\mem_valid_reg[22] (alu1_n_194),
+        .\mem_valid_reg[230] (alu1_n_402),
+        .\mem_valid_reg[231] (alu1_n_403),
+        .\mem_valid_reg[232] (alu1_n_404),
+        .\mem_valid_reg[233] (alu1_n_405),
+        .\mem_valid_reg[234] (alu1_n_406),
+        .\mem_valid_reg[235] (alu1_n_407),
+        .\mem_valid_reg[236] (alu1_n_408),
+        .\mem_valid_reg[237] (alu1_n_409),
+        .\mem_valid_reg[238] (alu1_n_410),
+        .\mem_valid_reg[239] (alu1_n_411),
+        .\mem_valid_reg[23] (alu1_n_195),
+        .\mem_valid_reg[240] (alu1_n_412),
+        .\mem_valid_reg[241] (alu1_n_413),
+        .\mem_valid_reg[242] (alu1_n_414),
+        .\mem_valid_reg[243] (alu1_n_415),
+        .\mem_valid_reg[244] (alu1_n_416),
+        .\mem_valid_reg[245] (alu1_n_417),
+        .\mem_valid_reg[246] (alu1_n_418),
+        .\mem_valid_reg[247] (alu1_n_419),
+        .\mem_valid_reg[248] (alu1_n_420),
+        .\mem_valid_reg[249] (alu1_n_421),
+        .\mem_valid_reg[24] (alu1_n_196),
+        .\mem_valid_reg[250] (alu1_n_422),
+        .\mem_valid_reg[251] (alu1_n_423),
+        .\mem_valid_reg[252] (alu1_n_424),
+        .\mem_valid_reg[253] (alu1_n_425),
+        .\mem_valid_reg[254] (alu1_n_426),
+        .\mem_valid_reg[255] (alu1_n_427),
+        .\mem_valid_reg[25] (alu1_n_197),
+        .\mem_valid_reg[26] (alu1_n_198),
+        .\mem_valid_reg[27] (alu1_n_199),
+        .\mem_valid_reg[28] (alu1_n_200),
+        .\mem_valid_reg[29] (alu1_n_201),
+        .\mem_valid_reg[2] (alu1_n_174),
+        .\mem_valid_reg[30] (alu1_n_202),
+        .\mem_valid_reg[31] (alu1_n_203),
+        .\mem_valid_reg[32] (alu1_n_204),
+        .\mem_valid_reg[33] (alu1_n_205),
+        .\mem_valid_reg[34] (alu1_n_206),
+        .\mem_valid_reg[35] (alu1_n_207),
+        .\mem_valid_reg[36] (alu1_n_208),
+        .\mem_valid_reg[37] (alu1_n_209),
+        .\mem_valid_reg[38] (alu1_n_210),
+        .\mem_valid_reg[39] (alu1_n_211),
+        .\mem_valid_reg[3] (alu1_n_175),
+        .\mem_valid_reg[40] (alu1_n_212),
+        .\mem_valid_reg[41] (alu1_n_213),
+        .\mem_valid_reg[42] (alu1_n_214),
+        .\mem_valid_reg[43] (alu1_n_215),
+        .\mem_valid_reg[44] (alu1_n_216),
+        .\mem_valid_reg[45] (alu1_n_217),
+        .\mem_valid_reg[46] (alu1_n_218),
+        .\mem_valid_reg[47] (alu1_n_219),
+        .\mem_valid_reg[48] (alu1_n_220),
+        .\mem_valid_reg[49] (alu1_n_221),
+        .\mem_valid_reg[4] (alu1_n_176),
+        .\mem_valid_reg[50] (alu1_n_222),
+        .\mem_valid_reg[51] (alu1_n_223),
+        .\mem_valid_reg[52] (alu1_n_224),
+        .\mem_valid_reg[53] (alu1_n_225),
+        .\mem_valid_reg[54] (alu1_n_226),
+        .\mem_valid_reg[55] (alu1_n_227),
+        .\mem_valid_reg[56] (alu1_n_228),
+        .\mem_valid_reg[57] (alu1_n_229),
+        .\mem_valid_reg[58] (alu1_n_230),
+        .\mem_valid_reg[59] (alu1_n_231),
+        .\mem_valid_reg[5] (alu1_n_177),
+        .\mem_valid_reg[60] (alu1_n_232),
+        .\mem_valid_reg[61] (alu1_n_233),
+        .\mem_valid_reg[62] (alu1_n_234),
+        .\mem_valid_reg[63] (alu1_n_235),
+        .\mem_valid_reg[64] (alu1_n_236),
+        .\mem_valid_reg[65] (alu1_n_237),
+        .\mem_valid_reg[66] (alu1_n_238),
+        .\mem_valid_reg[67] (alu1_n_239),
+        .\mem_valid_reg[68] (alu1_n_240),
+        .\mem_valid_reg[69] (alu1_n_241),
+        .\mem_valid_reg[6] (alu1_n_178),
+        .\mem_valid_reg[70] (alu1_n_242),
+        .\mem_valid_reg[71] (alu1_n_243),
+        .\mem_valid_reg[72] (alu1_n_244),
+        .\mem_valid_reg[73] (alu1_n_245),
+        .\mem_valid_reg[74] (alu1_n_246),
+        .\mem_valid_reg[75] (alu1_n_247),
+        .\mem_valid_reg[76] (alu1_n_248),
+        .\mem_valid_reg[77] (alu1_n_249),
+        .\mem_valid_reg[78] (alu1_n_250),
+        .\mem_valid_reg[79] (alu1_n_251),
+        .\mem_valid_reg[7] (alu1_n_179),
+        .\mem_valid_reg[80] (alu1_n_252),
+        .\mem_valid_reg[81] (alu1_n_253),
+        .\mem_valid_reg[82] (alu1_n_254),
+        .\mem_valid_reg[83] (alu1_n_255),
+        .\mem_valid_reg[84] (alu1_n_256),
+        .\mem_valid_reg[85] (alu1_n_257),
+        .\mem_valid_reg[86] (alu1_n_258),
+        .\mem_valid_reg[87] (alu1_n_259),
+        .\mem_valid_reg[88] (alu1_n_260),
+        .\mem_valid_reg[89] (alu1_n_261),
+        .\mem_valid_reg[8] (alu1_n_180),
+        .\mem_valid_reg[90] (alu1_n_262),
+        .\mem_valid_reg[91] (alu1_n_263),
+        .\mem_valid_reg[92] (alu1_n_264),
+        .\mem_valid_reg[93] (alu1_n_265),
+        .\mem_valid_reg[94] (alu1_n_266),
+        .\mem_valid_reg[95] (alu1_n_267),
+        .\mem_valid_reg[96] (alu1_n_268),
+        .\mem_valid_reg[97] (alu1_n_269),
+        .\mem_valid_reg[98] (alu1_n_270),
+        .\mem_valid_reg[99] (alu1_n_271),
+        .\mem_valid_reg[9] (alu1_n_181),
         .npc_EX(npc_EX),
+        .\npc_jalr_EX_reg[2] (predictor1_n_337),
+        .\npc_jalr_EX_reg[2]_0 (predictor1_n_338),
+        .\npc_jalr_EX_reg[3] (predictor1_n_335),
+        .\npc_jalr_EX_reg[3]_0 (predictor1_n_336),
+        .\npc_jalr_EX_reg[4] (predictor1_n_334),
+        .\npc_jalr_EX_reg[5] (predictor1_n_333),
+        .\npc_jalr_EX_reg[6] (predictor1_n_332),
+        .\npc_jalr_EX_reg[7] (predictor1_n_331),
         .nrst(nrst),
         .\oprl_EX_reg[30] ({predictor1_n_299,predictor1_n_300,predictor1_n_301,predictor1_n_302}),
         .\oprr_EX_reg[30] ({predictor1_n_257,predictor1_n_258,predictor1_n_259,predictor1_n_260}),
         .\oprr_EX_reg[30]_0 ({predictor1_n_275,predictor1_n_276,predictor1_n_277,predictor1_n_278}),
         .\oprr_EX_reg[30]_1 ({predictor1_n_279,predictor1_n_280,predictor1_n_281,predictor1_n_282}),
         .\oprr_EX_reg[30]_2 ({predictor1_n_303,predictor1_n_304,predictor1_n_305,predictor1_n_306}),
-        .\oprr_EX_reg[30]_3 (predictor1_n_339),
         .\pc_EX_reg[2] (predictor1_n_262),
         .\pc_EX_reg[2]_0 (predictor1_n_263),
         .\pc_EX_reg[2]_1 (predictor1_n_264),
@@ -13619,14 +14572,6 @@ module design_1_CPUTop_0_0_CPUTop
         .\pc_IF_reg[15]_i_41_0 (\pc_IF_reg[2]_rep_n_0 ),
         .\pc_IF_reg[1] (npc_EX__0),
         .\pc_IF_reg[31] ({\alucode_EX_reg_n_0_[5] ,\alucode_EX_reg_n_0_[4] ,\alucode_EX_reg_n_0_[3] ,\alucode_EX_reg_n_0_[2] ,\alucode_EX_reg_n_0_[1] ,\alucode_EX_reg_n_0_[0] }),
-        .\pc_IF_reg[9] (predictor1_n_330),
-        .\pc_IF_reg[9]_0 (predictor1_n_331),
-        .\pc_IF_reg[9]_1 (predictor1_n_332),
-        .\pc_IF_reg[9]_2 (predictor1_n_333),
-        .\pc_IF_reg[9]_3 (predictor1_n_334),
-        .\pc_IF_reg[9]_4 (predictor1_n_335),
-        .\pc_IF_reg[9]_5 (predictor1_n_336),
-        .\pc_IF_reg[9]_6 (predictor1_n_337),
         .rst(rst),
         .sysclk(sysclk));
   design_1_CPUTop_0_0_RAM ram1
@@ -13758,7 +14703,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I4(\iword_ID_reg_n_0_[4] ),
         .I5(\iword_ID_reg_n_0_[5] ),
         .O(reg_we_ID));
-  (* SOFT_HLUTNM = "soft_lutpair89" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT4 #(
     .INIT(16'h5501)) 
     reg_we_EX_i_2
@@ -14069,238 +15014,6 @@ module design_1_CPUTop_0_0_CPUTop
         .R(1'b0));
   LUT6 #(
     .INIT(64'hFFFFFFFE00000000)) 
-    \regdata1_EX[31]_i_2 
-       (.I0(srcreg1_num_ID[4]),
-        .I1(srcreg1_num_ID[3]),
-        .I2(srcreg1_num_ID[1]),
-        .I3(srcreg1_num_ID[0]),
-        .I4(srcreg1_num_ID[2]),
-        .I5(is_stall_DE10_out),
-        .O(p_6_in));
-  LUT6 #(
-    .INIT(64'h8200000000008200)) 
-    \regdata1_EX[31]_i_3 
-       (.I0(is_reg1_fwd_EE0__3),
-        .I1(srcreg1_num_ID[4]),
-        .I2(dstreg_num_MA[4]),
-        .I3(\regdata1_EX[31]_i_5_n_0 ),
-        .I4(dstreg_num_MA[3]),
-        .I5(srcreg1_num_ID[3]),
-        .O(p_7_in));
-  LUT6 #(
-    .INIT(64'hFFFF0000FFFE0000)) 
-    \regdata1_EX[31]_i_4 
-       (.I0(\iword_ID_reg_n_0_[17] ),
-        .I1(\iword_ID_reg_n_0_[15] ),
-        .I2(\iword_ID_reg_n_0_[16] ),
-        .I3(\iword_ID_reg_n_0_[18] ),
-        .I4(register1_n_138),
-        .I5(\iword_ID_reg_n_0_[19] ),
-        .O(is_reg1_fwd_EE0__3));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    \regdata1_EX[31]_i_5 
-       (.I0(srcreg1_num_ID[0]),
-        .I1(dstreg_num_MA[0]),
-        .I2(dstreg_num_MA[2]),
-        .I3(srcreg1_num_ID[2]),
-        .I4(dstreg_num_MA[1]),
-        .I5(srcreg1_num_ID[1]),
-        .O(\regdata1_EX[31]_i_5_n_0 ));
-  FDRE \regdata1_EX_reg[0] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[0]),
-        .Q(regdata1_EX[0]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[10] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[10]),
-        .Q(regdata1_EX[10]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[11] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[11]),
-        .Q(regdata1_EX[11]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[12] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[12]),
-        .Q(regdata1_EX[12]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[13] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[13]),
-        .Q(regdata1_EX[13]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[14] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[14]),
-        .Q(regdata1_EX[14]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[15] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[15]),
-        .Q(regdata1_EX[15]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[16] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[16]),
-        .Q(regdata1_EX[16]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[17] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[17]),
-        .Q(regdata1_EX[17]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[18] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[18]),
-        .Q(regdata1_EX[18]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[19] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[19]),
-        .Q(regdata1_EX[19]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[1] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[1]),
-        .Q(regdata1_EX[1]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[20] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[20]),
-        .Q(regdata1_EX[20]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[21] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[21]),
-        .Q(regdata1_EX[21]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[22] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[22]),
-        .Q(regdata1_EX[22]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[23] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[23]),
-        .Q(regdata1_EX[23]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[24] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[24]),
-        .Q(regdata1_EX[24]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[25] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[25]),
-        .Q(regdata1_EX[25]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[26] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[26]),
-        .Q(regdata1_EX[26]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[27] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[27]),
-        .Q(regdata1_EX[27]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[28] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[28]),
-        .Q(regdata1_EX[28]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[29] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[29]),
-        .Q(regdata1_EX[29]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[2] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[2]),
-        .Q(regdata1_EX[2]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[30] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[30]),
-        .Q(regdata1_EX[30]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[31] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[31]),
-        .Q(regdata1_EX[31]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[3] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[3]),
-        .Q(regdata1_EX[3]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[4] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[4]),
-        .Q(regdata1_EX[4]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[5] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[5]),
-        .Q(regdata1_EX[5]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[6] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[6]),
-        .Q(regdata1_EX[6]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[7] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[7]),
-        .Q(regdata1_EX[7]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[8] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[8]),
-        .Q(regdata1_EX[8]),
-        .R(reg_we_EX));
-  FDRE \regdata1_EX_reg[9] 
-       (.C(sysclk),
-        .CE(nrst),
-        .D(p_0_in1_in[9]),
-        .Q(regdata1_EX[9]),
-        .R(reg_we_EX));
-  LUT6 #(
-    .INIT(64'hFFFFFFFE00000000)) 
     \regdata2_EX[31]_i_3 
        (.I0(srcreg2_num_ID[4]),
         .I1(srcreg2_num_ID[3]),
@@ -14308,7 +15021,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(srcreg2_num_ID[0]),
         .I4(srcreg2_num_ID[2]),
         .I5(is_stall_DE1__8),
-        .O(p_4_in));
+        .O(p_3_in));
   LUT6 #(
     .INIT(64'h8200000000008200)) 
     \regdata2_EX[31]_i_4 
@@ -14318,7 +15031,7 @@ module design_1_CPUTop_0_0_CPUTop
         .I3(\regdata2_EX[31]_i_6_n_0 ),
         .I4(dstreg_num_MA[3]),
         .I5(srcreg2_num_ID[3]),
-        .O(p_5_in));
+        .O(p_4_in));
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \regdata2_EX[31]_i_5 
@@ -14341,193 +15054,193 @@ module design_1_CPUTop_0_0_CPUTop
   FDRE \regdata2_EX_reg[0] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_160),
+        .D(p_0_in1_in[0]),
         .Q(regdata2_EX[0]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[10] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_150),
+        .D(p_0_in1_in[10]),
         .Q(regdata2_EX[10]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[11] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_149),
+        .D(p_0_in1_in[11]),
         .Q(regdata2_EX[11]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[12] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_148),
+        .D(p_0_in1_in[12]),
         .Q(regdata2_EX[12]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[13] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_147),
+        .D(p_0_in1_in[13]),
         .Q(regdata2_EX[13]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[14] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_146),
+        .D(p_0_in1_in[14]),
         .Q(regdata2_EX[14]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[15] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_145),
+        .D(p_0_in1_in[15]),
         .Q(regdata2_EX[15]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[16] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_144),
+        .D(p_0_in1_in[16]),
         .Q(regdata2_EX[16]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[17] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_143),
+        .D(p_0_in1_in[17]),
         .Q(regdata2_EX[17]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[18] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_142),
+        .D(p_0_in1_in[18]),
         .Q(regdata2_EX[18]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[19] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_141),
+        .D(p_0_in1_in[19]),
         .Q(regdata2_EX[19]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[1] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_159),
+        .D(p_0_in1_in[1]),
         .Q(regdata2_EX[1]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[20] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_140),
+        .D(p_0_in1_in[20]),
         .Q(regdata2_EX[20]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[21] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_139),
+        .D(p_0_in1_in[21]),
         .Q(regdata2_EX[21]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[22] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_138),
+        .D(p_0_in1_in[22]),
         .Q(regdata2_EX[22]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[23] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_137),
+        .D(p_0_in1_in[23]),
         .Q(regdata2_EX[23]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[24] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_136),
+        .D(p_0_in1_in[24]),
         .Q(regdata2_EX[24]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[25] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_135),
+        .D(p_0_in1_in[25]),
         .Q(regdata2_EX[25]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[26] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_134),
+        .D(p_0_in1_in[26]),
         .Q(regdata2_EX[26]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[27] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_133),
+        .D(p_0_in1_in[27]),
         .Q(regdata2_EX[27]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[28] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_132),
+        .D(p_0_in1_in[28]),
         .Q(regdata2_EX[28]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[29] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_131),
+        .D(p_0_in1_in[29]),
         .Q(regdata2_EX[29]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[2] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_158),
+        .D(p_0_in1_in[2]),
         .Q(regdata2_EX[2]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[30] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_130),
+        .D(p_0_in1_in[30]),
         .Q(regdata2_EX[30]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[31] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_129),
+        .D(p_0_in1_in[31]),
         .Q(regdata2_EX[31]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[3] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_157),
+        .D(p_0_in1_in[3]),
         .Q(regdata2_EX[3]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[4] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_156),
+        .D(p_0_in1_in[4]),
         .Q(regdata2_EX[4]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[5] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_155),
+        .D(p_0_in1_in[5]),
         .Q(regdata2_EX[5]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[6] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_154),
+        .D(p_0_in1_in[6]),
         .Q(regdata2_EX[6]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[7] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_153),
+        .D(p_0_in1_in[7]),
         .Q(regdata2_EX[7]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[8] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_152),
+        .D(p_0_in1_in[8]),
         .Q(regdata2_EX[8]),
         .R(reg_we_EX));
   FDRE \regdata2_EX_reg[9] 
        (.C(sysclk),
         .CE(nrst),
-        .D(alu1_n_151),
+        .D(p_0_in1_in[9]),
         .Q(regdata2_EX[9]),
         .R(reg_we_EX));
   FDRE \regdata2_MA_reg[0] 
@@ -14723,21 +15436,33 @@ module design_1_CPUTop_0_0_CPUTop
         .Q(regdata2_MA[9]),
         .R(1'b0));
   design_1_CPUTop_0_0_RegisterFile register1
-       (.D(imm_ID),
+       (.ADDRA(srcreg1_num_ID),
         .Q({\dstreg_num_RW_reg_n_0_[4] ,\dstreg_num_RW_reg_n_0_[3] ,\dstreg_num_RW_reg_n_0_[2] ,\dstreg_num_RW_reg_n_0_[1] ,\dstreg_num_RW_reg_n_0_[0] }),
+        .S({register1_n_73,register1_n_74,register1_n_75,register1_n_76}),
         .aluop1_type_ID(aluop1_type_ID),
         .aluop2_type_ID(aluop2_type_ID),
-        .\iword_ID_reg[1] (register1_n_138),
+        .imm_ID(imm_ID),
+        .imm_ID__0(imm_ID__0),
+        .\iword_ID_reg[15] ({register1_n_154,register1_n_155,register1_n_156,register1_n_157}),
+        .\iword_ID_reg[19] ({register1_n_158,register1_n_159,register1_n_160,register1_n_161}),
+        .\iword_ID_reg[1] (register1_n_141),
+        .\iword_ID_reg[31] ({register1_n_162,register1_n_163,register1_n_164,register1_n_165}),
+        .\iword_ID_reg[31]_0 ({register1_n_166,register1_n_167,register1_n_168,register1_n_169}),
+        .\npc_jalr_EX_reg[15] ({\iword_ID_reg_n_0_[31] ,\iword_ID_reg_n_0_[30] ,\iword_ID_reg_n_0_[29] ,\iword_ID_reg_n_0_[28] ,\iword_ID_reg_n_0_[27] ,\iword_ID_reg_n_0_[26] ,\iword_ID_reg_n_0_[25] ,\iword_ID_reg_n_0_[24] ,\iword_ID_reg_n_0_[23] ,\iword_ID_reg_n_0_[22] ,\iword_ID_reg_n_0_[21] ,\iword_ID_reg_n_0_[20] ,\iword_ID_reg_n_0_[19] ,\iword_ID_reg_n_0_[18] ,\iword_ID_reg_n_0_[17] ,\iword_ID_reg_n_0_[16] ,\iword_ID_reg_n_0_[15] ,\iword_ID_reg_n_0_[14] ,\iword_ID_reg_n_0_[13] ,\iword_ID_reg_n_0_[12] ,\iword_ID_reg_n_0_[6] ,\iword_ID_reg_n_0_[5] ,\iword_ID_reg_n_0_[4] ,\iword_ID_reg_n_0_[3] ,\iword_ID_reg_n_0_[2] ,\iword_ID_reg_n_0_[1] }),
+        .\npc_jalr_EX_reg[15]_0 (npc_branch_ID_carry__2_i_6_n_0),
+        .\npc_jalr_EX_reg[15]_1 (npc_branch_ID_carry__2_i_5_n_0),
+        .\npc_jalr_EX_reg[15]_2 (npc_branch_ID_carry__2_i_7_n_0),
         .\oprl_EX_reg[31] (pc_ID),
         .oprl_ID(oprl_ID),
         .oprr_ID(oprr_ID),
         .reg_we(reg_we),
-        .regdata1_ID(regdata1_ID),
-        .\regdata2_EX[31]_i_4 ({\iword_ID_reg_n_0_[24] ,\iword_ID_reg_n_0_[23] ,\iword_ID_reg_n_0_[22] ,\iword_ID_reg_n_0_[21] ,\iword_ID_reg_n_0_[20] ,\iword_ID_reg_n_0_[19] ,\iword_ID_reg_n_0_[18] ,\iword_ID_reg_n_0_[17] ,\iword_ID_reg_n_0_[16] ,\iword_ID_reg_n_0_[15] ,\iword_ID_reg_n_0_[6] ,\iword_ID_reg_n_0_[5] ,\iword_ID_reg_n_0_[4] ,\iword_ID_reg_n_0_[3] ,\iword_ID_reg_n_0_[2] ,\iword_ID_reg_n_0_[1] }),
+        .\reg_write_value_RW_reg[1] ({register1_n_142,register1_n_143,register1_n_144,register1_n_145}),
+        .\reg_write_value_RW_reg[31] (regdata1_ID),
+        .\reg_write_value_RW_reg[7] ({register1_n_146,register1_n_147,register1_n_148,register1_n_149}),
+        .\reg_write_value_RW_reg[7]_0 ({register1_n_150,register1_n_151,register1_n_152,register1_n_153}),
         .\regdata2_EX_reg[31] (r_data_reg_0),
         .\regdata2_EX_reg[31]_0 (write_value),
         .regdata2_ID(regdata2_ID),
-        .srcreg1_num_ID(srcreg1_num_ID),
         .srcreg2_num_ID(srcreg2_num_ID));
   design_1_CPUTop_0_0_ROM rom1
        (.ADDRARDADDR({pc_IF[15:8],\pc_IF_reg[7]_rep_n_0 ,\pc_IF_reg[6]_rep_n_0 ,\pc_IF_reg[5]_rep_n_0 ,\pc_IF_reg[4]_rep_n_0 ,\pc_IF_reg[3]_rep__0_n_0 ,\pc_IF_reg[2]_rep__0_n_0 }),
@@ -14754,953 +15479,6 @@ module design_1_CPUTop_0_0_CPUTop
         .rst(rst),
         .sysclk(sysclk),
         .uart_tx(uart_tx));
-endmodule
-
-(* ORIG_REF_NAME = "NPCGenerator" *) 
-module design_1_CPUTop_0_0_NPCGenerator
-   (D,
-    \pc_ID_reg[9] ,
-    \regdata1_EX_reg[3] ,
-    npc_EX,
-    \pc_ID_reg[21] ,
-    \pc_ID_reg[30] ,
-    regdata1_EX,
-    S,
-    Q,
-    \pc_IF[0]_i_2_0 ,
-    mem_reg_0_63_0_2_i_3_0,
-    mem_reg_0_63_6_8_i_1_0,
-    mem_reg_0_63_9_11_i_2_0,
-    \pc_IF_reg[19] ,
-    \pc_IF_reg[23] ,
-    \pc_IF_reg[27] ,
-    \pc_IF_reg[31] ,
-    pc_IF1,
-    \pc_IF_reg[31]_0 ,
-    pc_IF2_carry__1,
-    NPC0_carry__5_0);
-  output [15:0]D;
-  output [3:0]\pc_ID_reg[9] ;
-  output [1:0]\regdata1_EX_reg[3] ;
-  output [13:0]npc_EX;
-  output [3:0]\pc_ID_reg[21] ;
-  output [2:0]\pc_ID_reg[30] ;
-  input [30:0]regdata1_EX;
-  input [3:0]S;
-  input [30:0]Q;
-  input [3:0]\pc_IF[0]_i_2_0 ;
-  input [3:0]mem_reg_0_63_0_2_i_3_0;
-  input [3:0]mem_reg_0_63_6_8_i_1_0;
-  input [3:0]mem_reg_0_63_9_11_i_2_0;
-  input [3:0]\pc_IF_reg[19] ;
-  input [3:0]\pc_IF_reg[23] ;
-  input [3:0]\pc_IF_reg[27] ;
-  input [3:0]\pc_IF_reg[31] ;
-  input pc_IF1;
-  input \pc_IF_reg[31]_0 ;
-  input [31:0]pc_IF2_carry__1;
-  input [27:0]NPC0_carry__5_0;
-
-  wire [15:0]D;
-  wire NPC0_carry__0_i_1_n_0;
-  wire NPC0_carry__0_i_2_n_0;
-  wire NPC0_carry__0_i_3_n_0;
-  wire NPC0_carry__0_i_4_n_0;
-  wire NPC0_carry__0_n_0;
-  wire NPC0_carry__0_n_1;
-  wire NPC0_carry__0_n_2;
-  wire NPC0_carry__0_n_3;
-  wire NPC0_carry__1_i_1_n_0;
-  wire NPC0_carry__1_i_2_n_0;
-  wire NPC0_carry__1_i_3_n_0;
-  wire NPC0_carry__1_i_4_n_0;
-  wire NPC0_carry__1_n_0;
-  wire NPC0_carry__1_n_1;
-  wire NPC0_carry__1_n_2;
-  wire NPC0_carry__1_n_3;
-  wire NPC0_carry__2_i_1_n_0;
-  wire NPC0_carry__2_i_2_n_0;
-  wire NPC0_carry__2_i_3_n_0;
-  wire NPC0_carry__2_i_4_n_0;
-  wire NPC0_carry__2_n_0;
-  wire NPC0_carry__2_n_1;
-  wire NPC0_carry__2_n_2;
-  wire NPC0_carry__2_n_3;
-  wire NPC0_carry__3_i_1_n_0;
-  wire NPC0_carry__3_i_2_n_0;
-  wire NPC0_carry__3_i_3_n_0;
-  wire NPC0_carry__3_i_4_n_0;
-  wire NPC0_carry__3_n_0;
-  wire NPC0_carry__3_n_1;
-  wire NPC0_carry__3_n_2;
-  wire NPC0_carry__3_n_3;
-  wire NPC0_carry__4_i_1_n_0;
-  wire NPC0_carry__4_i_2_n_0;
-  wire NPC0_carry__4_i_3_n_0;
-  wire NPC0_carry__4_i_4_n_0;
-  wire NPC0_carry__4_n_0;
-  wire NPC0_carry__4_n_1;
-  wire NPC0_carry__4_n_2;
-  wire NPC0_carry__4_n_3;
-  wire [27:0]NPC0_carry__5_0;
-  wire NPC0_carry__5_i_1_n_0;
-  wire NPC0_carry__5_i_2_n_0;
-  wire NPC0_carry__5_i_3_n_0;
-  wire NPC0_carry__5_i_4_n_0;
-  wire NPC0_carry__5_n_0;
-  wire NPC0_carry__5_n_1;
-  wire NPC0_carry__5_n_2;
-  wire NPC0_carry__5_n_3;
-  wire NPC0_carry__6_n_1;
-  wire NPC0_carry__6_n_2;
-  wire NPC0_carry__6_n_3;
-  wire NPC0_carry_i_1_n_0;
-  wire NPC0_carry_i_2_n_0;
-  wire NPC0_carry_i_3_n_0;
-  wire NPC0_carry_i_4_n_0;
-  wire NPC0_carry_n_0;
-  wire NPC0_carry_n_1;
-  wire NPC0_carry_n_2;
-  wire NPC0_carry_n_3;
-  wire \NPC0_inferred__0/i__carry__0_n_0 ;
-  wire \NPC0_inferred__0/i__carry__0_n_1 ;
-  wire \NPC0_inferred__0/i__carry__0_n_2 ;
-  wire \NPC0_inferred__0/i__carry__0_n_3 ;
-  wire \NPC0_inferred__0/i__carry__1_n_0 ;
-  wire \NPC0_inferred__0/i__carry__1_n_1 ;
-  wire \NPC0_inferred__0/i__carry__1_n_2 ;
-  wire \NPC0_inferred__0/i__carry__1_n_3 ;
-  wire \NPC0_inferred__0/i__carry__2_n_0 ;
-  wire \NPC0_inferred__0/i__carry__2_n_1 ;
-  wire \NPC0_inferred__0/i__carry__2_n_2 ;
-  wire \NPC0_inferred__0/i__carry__2_n_3 ;
-  wire \NPC0_inferred__0/i__carry__3_n_0 ;
-  wire \NPC0_inferred__0/i__carry__3_n_1 ;
-  wire \NPC0_inferred__0/i__carry__3_n_2 ;
-  wire \NPC0_inferred__0/i__carry__3_n_3 ;
-  wire \NPC0_inferred__0/i__carry__4_n_0 ;
-  wire \NPC0_inferred__0/i__carry__4_n_1 ;
-  wire \NPC0_inferred__0/i__carry__4_n_2 ;
-  wire \NPC0_inferred__0/i__carry__4_n_3 ;
-  wire \NPC0_inferred__0/i__carry__5_n_0 ;
-  wire \NPC0_inferred__0/i__carry__5_n_1 ;
-  wire \NPC0_inferred__0/i__carry__5_n_2 ;
-  wire \NPC0_inferred__0/i__carry__5_n_3 ;
-  wire \NPC0_inferred__0/i__carry__6_n_1 ;
-  wire \NPC0_inferred__0/i__carry__6_n_2 ;
-  wire \NPC0_inferred__0/i__carry__6_n_3 ;
-  wire \NPC0_inferred__0/i__carry_n_0 ;
-  wire \NPC0_inferred__0/i__carry_n_1 ;
-  wire \NPC0_inferred__0/i__carry_n_2 ;
-  wire \NPC0_inferred__0/i__carry_n_3 ;
-  wire [30:0]Q;
-  wire [3:0]S;
-  wire [31:0]data0;
-  wire [31:0]data1;
-  wire [3:0]mem_reg_0_63_0_2_i_3_0;
-  wire [3:0]mem_reg_0_63_6_8_i_1_0;
-  wire [3:0]mem_reg_0_63_9_11_i_2_0;
-  wire [13:0]npc_EX;
-  wire [31:16]npc_EX__0;
-  wire [3:0]\pc_ID_reg[21] ;
-  wire [2:0]\pc_ID_reg[30] ;
-  wire [3:0]\pc_ID_reg[9] ;
-  wire pc_IF1;
-  wire [31:0]pc_IF2_carry__1;
-  wire [3:0]\pc_IF[0]_i_2_0 ;
-  wire [3:0]\pc_IF_reg[19] ;
-  wire [3:0]\pc_IF_reg[23] ;
-  wire [3:0]\pc_IF_reg[27] ;
-  wire [3:0]\pc_IF_reg[31] ;
-  wire \pc_IF_reg[31]_0 ;
-  wire [30:0]regdata1_EX;
-  wire [1:0]\regdata1_EX_reg[3] ;
-  wire [3:3]NLW_NPC0_carry__6_CO_UNCONNECTED;
-  wire [3:3]\NLW_NPC0_inferred__0/i__carry__6_CO_UNCONNECTED ;
-
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry
-       (.CI(1'b0),
-        .CO({NPC0_carry_n_0,NPC0_carry_n_1,NPC0_carry_n_2,NPC0_carry_n_3}),
-        .CYINIT(1'b0),
-        .DI(regdata1_EX[3:0]),
-        .O(data0[3:0]),
-        .S({NPC0_carry_i_1_n_0,NPC0_carry_i_2_n_0,NPC0_carry_i_3_n_0,NPC0_carry_i_4_n_0}));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry__0
-       (.CI(NPC0_carry_n_0),
-        .CO({NPC0_carry__0_n_0,NPC0_carry__0_n_1,NPC0_carry__0_n_2,NPC0_carry__0_n_3}),
-        .CYINIT(1'b0),
-        .DI(regdata1_EX[7:4]),
-        .O(data0[7:4]),
-        .S({NPC0_carry__0_i_1_n_0,NPC0_carry__0_i_2_n_0,NPC0_carry__0_i_3_n_0,NPC0_carry__0_i_4_n_0}));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__0_i_1
-       (.I0(regdata1_EX[7]),
-        .I1(NPC0_carry__5_0[7]),
-        .O(NPC0_carry__0_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__0_i_2
-       (.I0(regdata1_EX[6]),
-        .I1(NPC0_carry__5_0[6]),
-        .O(NPC0_carry__0_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__0_i_3
-       (.I0(regdata1_EX[5]),
-        .I1(NPC0_carry__5_0[5]),
-        .O(NPC0_carry__0_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__0_i_4
-       (.I0(regdata1_EX[4]),
-        .I1(NPC0_carry__5_0[4]),
-        .O(NPC0_carry__0_i_4_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry__1
-       (.CI(NPC0_carry__0_n_0),
-        .CO({NPC0_carry__1_n_0,NPC0_carry__1_n_1,NPC0_carry__1_n_2,NPC0_carry__1_n_3}),
-        .CYINIT(1'b0),
-        .DI(regdata1_EX[11:8]),
-        .O(data0[11:8]),
-        .S({NPC0_carry__1_i_1_n_0,NPC0_carry__1_i_2_n_0,NPC0_carry__1_i_3_n_0,NPC0_carry__1_i_4_n_0}));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__1_i_1
-       (.I0(regdata1_EX[11]),
-        .I1(NPC0_carry__5_0[11]),
-        .O(NPC0_carry__1_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__1_i_2
-       (.I0(regdata1_EX[10]),
-        .I1(NPC0_carry__5_0[10]),
-        .O(NPC0_carry__1_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__1_i_3
-       (.I0(regdata1_EX[9]),
-        .I1(NPC0_carry__5_0[9]),
-        .O(NPC0_carry__1_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__1_i_4
-       (.I0(regdata1_EX[8]),
-        .I1(NPC0_carry__5_0[8]),
-        .O(NPC0_carry__1_i_4_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry__2
-       (.CI(NPC0_carry__1_n_0),
-        .CO({NPC0_carry__2_n_0,NPC0_carry__2_n_1,NPC0_carry__2_n_2,NPC0_carry__2_n_3}),
-        .CYINIT(1'b0),
-        .DI(regdata1_EX[15:12]),
-        .O(data0[15:12]),
-        .S({NPC0_carry__2_i_1_n_0,NPC0_carry__2_i_2_n_0,NPC0_carry__2_i_3_n_0,NPC0_carry__2_i_4_n_0}));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__2_i_1
-       (.I0(regdata1_EX[15]),
-        .I1(NPC0_carry__5_0[15]),
-        .O(NPC0_carry__2_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__2_i_2
-       (.I0(regdata1_EX[14]),
-        .I1(NPC0_carry__5_0[14]),
-        .O(NPC0_carry__2_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__2_i_3
-       (.I0(regdata1_EX[13]),
-        .I1(NPC0_carry__5_0[13]),
-        .O(NPC0_carry__2_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__2_i_4
-       (.I0(regdata1_EX[12]),
-        .I1(NPC0_carry__5_0[12]),
-        .O(NPC0_carry__2_i_4_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry__3
-       (.CI(NPC0_carry__2_n_0),
-        .CO({NPC0_carry__3_n_0,NPC0_carry__3_n_1,NPC0_carry__3_n_2,NPC0_carry__3_n_3}),
-        .CYINIT(1'b0),
-        .DI(regdata1_EX[19:16]),
-        .O(data0[19:16]),
-        .S({NPC0_carry__3_i_1_n_0,NPC0_carry__3_i_2_n_0,NPC0_carry__3_i_3_n_0,NPC0_carry__3_i_4_n_0}));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__3_i_1
-       (.I0(regdata1_EX[19]),
-        .I1(NPC0_carry__5_0[19]),
-        .O(NPC0_carry__3_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__3_i_2
-       (.I0(regdata1_EX[18]),
-        .I1(NPC0_carry__5_0[18]),
-        .O(NPC0_carry__3_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__3_i_3
-       (.I0(regdata1_EX[17]),
-        .I1(NPC0_carry__5_0[17]),
-        .O(NPC0_carry__3_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__3_i_4
-       (.I0(regdata1_EX[16]),
-        .I1(NPC0_carry__5_0[16]),
-        .O(NPC0_carry__3_i_4_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry__4
-       (.CI(NPC0_carry__3_n_0),
-        .CO({NPC0_carry__4_n_0,NPC0_carry__4_n_1,NPC0_carry__4_n_2,NPC0_carry__4_n_3}),
-        .CYINIT(1'b0),
-        .DI(regdata1_EX[23:20]),
-        .O(data0[23:20]),
-        .S({NPC0_carry__4_i_1_n_0,NPC0_carry__4_i_2_n_0,NPC0_carry__4_i_3_n_0,NPC0_carry__4_i_4_n_0}));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__4_i_1
-       (.I0(regdata1_EX[23]),
-        .I1(NPC0_carry__5_0[23]),
-        .O(NPC0_carry__4_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__4_i_2
-       (.I0(regdata1_EX[22]),
-        .I1(NPC0_carry__5_0[22]),
-        .O(NPC0_carry__4_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__4_i_3
-       (.I0(regdata1_EX[21]),
-        .I1(NPC0_carry__5_0[21]),
-        .O(NPC0_carry__4_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__4_i_4
-       (.I0(regdata1_EX[20]),
-        .I1(NPC0_carry__5_0[20]),
-        .O(NPC0_carry__4_i_4_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry__5
-       (.CI(NPC0_carry__4_n_0),
-        .CO({NPC0_carry__5_n_0,NPC0_carry__5_n_1,NPC0_carry__5_n_2,NPC0_carry__5_n_3}),
-        .CYINIT(1'b0),
-        .DI(regdata1_EX[27:24]),
-        .O(data0[27:24]),
-        .S({NPC0_carry__5_i_1_n_0,NPC0_carry__5_i_2_n_0,NPC0_carry__5_i_3_n_0,NPC0_carry__5_i_4_n_0}));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__5_i_1
-       (.I0(regdata1_EX[27]),
-        .I1(NPC0_carry__5_0[27]),
-        .O(NPC0_carry__5_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__5_i_2
-       (.I0(regdata1_EX[26]),
-        .I1(NPC0_carry__5_0[26]),
-        .O(NPC0_carry__5_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__5_i_3
-       (.I0(regdata1_EX[25]),
-        .I1(NPC0_carry__5_0[25]),
-        .O(NPC0_carry__5_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry__5_i_4
-       (.I0(regdata1_EX[24]),
-        .I1(NPC0_carry__5_0[24]),
-        .O(NPC0_carry__5_i_4_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 NPC0_carry__6
-       (.CI(NPC0_carry__5_n_0),
-        .CO({NLW_NPC0_carry__6_CO_UNCONNECTED[3],NPC0_carry__6_n_1,NPC0_carry__6_n_2,NPC0_carry__6_n_3}),
-        .CYINIT(1'b0),
-        .DI({1'b0,regdata1_EX[30:28]}),
-        .O(data0[31:28]),
-        .S(S));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry_i_1
-       (.I0(regdata1_EX[3]),
-        .I1(NPC0_carry__5_0[3]),
-        .O(NPC0_carry_i_1_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry_i_2
-       (.I0(regdata1_EX[2]),
-        .I1(NPC0_carry__5_0[2]),
-        .O(NPC0_carry_i_2_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry_i_3
-       (.I0(regdata1_EX[1]),
-        .I1(NPC0_carry__5_0[1]),
-        .O(NPC0_carry_i_3_n_0));
-  LUT2 #(
-    .INIT(4'h6)) 
-    NPC0_carry_i_4
-       (.I0(regdata1_EX[0]),
-        .I1(NPC0_carry__5_0[0]),
-        .O(NPC0_carry_i_4_n_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry 
-       (.CI(1'b0),
-        .CO({\NPC0_inferred__0/i__carry_n_0 ,\NPC0_inferred__0/i__carry_n_1 ,\NPC0_inferred__0/i__carry_n_2 ,\NPC0_inferred__0/i__carry_n_3 }),
-        .CYINIT(1'b0),
-        .DI(Q[3:0]),
-        .O(data1[3:0]),
-        .S(\pc_IF[0]_i_2_0 ));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry__0 
-       (.CI(\NPC0_inferred__0/i__carry_n_0 ),
-        .CO({\NPC0_inferred__0/i__carry__0_n_0 ,\NPC0_inferred__0/i__carry__0_n_1 ,\NPC0_inferred__0/i__carry__0_n_2 ,\NPC0_inferred__0/i__carry__0_n_3 }),
-        .CYINIT(1'b0),
-        .DI(Q[7:4]),
-        .O(data1[7:4]),
-        .S(mem_reg_0_63_0_2_i_3_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry__1 
-       (.CI(\NPC0_inferred__0/i__carry__0_n_0 ),
-        .CO({\NPC0_inferred__0/i__carry__1_n_0 ,\NPC0_inferred__0/i__carry__1_n_1 ,\NPC0_inferred__0/i__carry__1_n_2 ,\NPC0_inferred__0/i__carry__1_n_3 }),
-        .CYINIT(1'b0),
-        .DI(Q[11:8]),
-        .O(data1[11:8]),
-        .S(mem_reg_0_63_6_8_i_1_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry__2 
-       (.CI(\NPC0_inferred__0/i__carry__1_n_0 ),
-        .CO({\NPC0_inferred__0/i__carry__2_n_0 ,\NPC0_inferred__0/i__carry__2_n_1 ,\NPC0_inferred__0/i__carry__2_n_2 ,\NPC0_inferred__0/i__carry__2_n_3 }),
-        .CYINIT(1'b0),
-        .DI(Q[15:12]),
-        .O(data1[15:12]),
-        .S(mem_reg_0_63_9_11_i_2_0));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry__3 
-       (.CI(\NPC0_inferred__0/i__carry__2_n_0 ),
-        .CO({\NPC0_inferred__0/i__carry__3_n_0 ,\NPC0_inferred__0/i__carry__3_n_1 ,\NPC0_inferred__0/i__carry__3_n_2 ,\NPC0_inferred__0/i__carry__3_n_3 }),
-        .CYINIT(1'b0),
-        .DI(Q[19:16]),
-        .O(data1[19:16]),
-        .S(\pc_IF_reg[19] ));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry__4 
-       (.CI(\NPC0_inferred__0/i__carry__3_n_0 ),
-        .CO({\NPC0_inferred__0/i__carry__4_n_0 ,\NPC0_inferred__0/i__carry__4_n_1 ,\NPC0_inferred__0/i__carry__4_n_2 ,\NPC0_inferred__0/i__carry__4_n_3 }),
-        .CYINIT(1'b0),
-        .DI(Q[23:20]),
-        .O(data1[23:20]),
-        .S(\pc_IF_reg[23] ));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry__5 
-       (.CI(\NPC0_inferred__0/i__carry__4_n_0 ),
-        .CO({\NPC0_inferred__0/i__carry__5_n_0 ,\NPC0_inferred__0/i__carry__5_n_1 ,\NPC0_inferred__0/i__carry__5_n_2 ,\NPC0_inferred__0/i__carry__5_n_3 }),
-        .CYINIT(1'b0),
-        .DI(Q[27:24]),
-        .O(data1[27:24]),
-        .S(\pc_IF_reg[27] ));
-  (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \NPC0_inferred__0/i__carry__6 
-       (.CI(\NPC0_inferred__0/i__carry__5_n_0 ),
-        .CO({\NLW_NPC0_inferred__0/i__carry__6_CO_UNCONNECTED [3],\NPC0_inferred__0/i__carry__6_n_1 ,\NPC0_inferred__0/i__carry__6_n_2 ,\NPC0_inferred__0/i__carry__6_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,Q[30:28]}),
-        .O(data1[31:28]),
-        .S(\pc_IF_reg[31] ));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_0_2_i_1
-       (.I0(data0[2]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[2]),
-        .O(npc_EX[0]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_0_2_i_2
-       (.I0(data0[3]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[3]),
-        .O(npc_EX[1]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_0_2_i_3
-       (.I0(data0[4]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[4]),
-        .O(npc_EX[2]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_12_14_i_1
-       (.I0(data0[14]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[14]),
-        .O(npc_EX[12]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_12_14_i_2
-       (.I0(data0[15]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[15]),
-        .O(npc_EX[13]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_3_5_i_1
-       (.I0(data0[5]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[5]),
-        .O(npc_EX[3]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_3_5_i_2
-       (.I0(data0[6]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[6]),
-        .O(npc_EX[4]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_3_5_i_3
-       (.I0(data0[7]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[7]),
-        .O(npc_EX[5]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_6_8_i_1
-       (.I0(data0[8]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[8]),
-        .O(npc_EX[6]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_6_8_i_2
-       (.I0(data0[9]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[9]),
-        .O(npc_EX[7]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_6_8_i_3
-       (.I0(data0[10]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[10]),
-        .O(npc_EX[8]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_9_11_i_1
-       (.I0(data0[11]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[11]),
-        .O(npc_EX[9]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_9_11_i_2
-       (.I0(data0[12]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[12]),
-        .O(npc_EX[10]));
-  LUT3 #(
-    .INIT(8'hB8)) 
-    mem_reg_0_63_9_11_i_3
-       (.I0(data0[13]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[13]),
-        .O(npc_EX[11]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry__0_i_1
-       (.I0(npc_EX__0[21]),
-        .I1(pc_IF2_carry__1[21]),
-        .I2(pc_IF2_carry__1[23]),
-        .I3(npc_EX__0[23]),
-        .I4(pc_IF2_carry__1[22]),
-        .I5(npc_EX__0[22]),
-        .O(\pc_ID_reg[21] [3]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_10
-       (.I0(data0[19]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[19]),
-        .O(npc_EX__0[19]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_11
-       (.I0(data0[17]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[17]),
-        .O(npc_EX__0[17]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_12
-       (.I0(data0[16]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[16]),
-        .O(npc_EX__0[16]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry__0_i_2
-       (.I0(npc_EX__0[18]),
-        .I1(pc_IF2_carry__1[18]),
-        .I2(pc_IF2_carry__1[20]),
-        .I3(npc_EX__0[20]),
-        .I4(pc_IF2_carry__1[19]),
-        .I5(npc_EX__0[19]),
-        .O(\pc_ID_reg[21] [2]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry__0_i_3
-       (.I0(npc_EX[13]),
-        .I1(pc_IF2_carry__1[15]),
-        .I2(pc_IF2_carry__1[17]),
-        .I3(npc_EX__0[17]),
-        .I4(pc_IF2_carry__1[16]),
-        .I5(npc_EX__0[16]),
-        .O(\pc_ID_reg[21] [1]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry__0_i_4
-       (.I0(npc_EX[10]),
-        .I1(pc_IF2_carry__1[12]),
-        .I2(pc_IF2_carry__1[14]),
-        .I3(npc_EX[12]),
-        .I4(pc_IF2_carry__1[13]),
-        .I5(npc_EX[11]),
-        .O(\pc_ID_reg[21] [0]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_5
-       (.I0(data0[21]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[21]),
-        .O(npc_EX__0[21]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_6
-       (.I0(data0[23]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[23]),
-        .O(npc_EX__0[23]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_7
-       (.I0(data0[22]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[22]),
-        .O(npc_EX__0[22]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_8
-       (.I0(data0[18]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[18]),
-        .O(npc_EX__0[18]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__0_i_9
-       (.I0(data0[20]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[20]),
-        .O(npc_EX__0[20]));
-  LUT6 #(
-    .INIT(64'hB84700000000B847)) 
-    pc_IF2_carry__1_i_1
-       (.I0(data0[30]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[30]),
-        .I3(pc_IF2_carry__1[30]),
-        .I4(npc_EX__0[31]),
-        .I5(pc_IF2_carry__1[31]),
-        .O(\pc_ID_reg[30] [2]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__1_i_10
-       (.I0(data0[25]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[25]),
-        .O(npc_EX__0[25]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry__1_i_2
-       (.I0(npc_EX__0[27]),
-        .I1(pc_IF2_carry__1[27]),
-        .I2(pc_IF2_carry__1[29]),
-        .I3(npc_EX__0[29]),
-        .I4(pc_IF2_carry__1[28]),
-        .I5(npc_EX__0[28]),
-        .O(\pc_ID_reg[30] [1]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry__1_i_3
-       (.I0(npc_EX__0[24]),
-        .I1(pc_IF2_carry__1[24]),
-        .I2(pc_IF2_carry__1[26]),
-        .I3(npc_EX__0[26]),
-        .I4(pc_IF2_carry__1[25]),
-        .I5(npc_EX__0[25]),
-        .O(\pc_ID_reg[30] [0]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__1_i_4
-       (.I0(data0[31]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[31]),
-        .O(npc_EX__0[31]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__1_i_5
-       (.I0(data0[27]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[27]),
-        .O(npc_EX__0[27]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__1_i_6
-       (.I0(data0[29]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[29]),
-        .O(npc_EX__0[29]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__1_i_7
-       (.I0(data0[28]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[28]),
-        .O(npc_EX__0[28]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__1_i_8
-       (.I0(data0[24]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[24]),
-        .O(npc_EX__0[24]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    pc_IF2_carry__1_i_9
-       (.I0(data0[26]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[26]),
-        .O(npc_EX__0[26]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry_i_1
-       (.I0(npc_EX[7]),
-        .I1(pc_IF2_carry__1[9]),
-        .I2(pc_IF2_carry__1[11]),
-        .I3(npc_EX[9]),
-        .I4(pc_IF2_carry__1[10]),
-        .I5(npc_EX[8]),
-        .O(\pc_ID_reg[9] [3]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry_i_2
-       (.I0(npc_EX[4]),
-        .I1(pc_IF2_carry__1[6]),
-        .I2(pc_IF2_carry__1[8]),
-        .I3(npc_EX[6]),
-        .I4(pc_IF2_carry__1[7]),
-        .I5(npc_EX[5]),
-        .O(\pc_ID_reg[9] [2]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry_i_3
-       (.I0(npc_EX[1]),
-        .I1(pc_IF2_carry__1[3]),
-        .I2(pc_IF2_carry__1[5]),
-        .I3(npc_EX[3]),
-        .I4(pc_IF2_carry__1[4]),
-        .I5(npc_EX[2]),
-        .O(\pc_ID_reg[9] [1]));
-  LUT6 #(
-    .INIT(64'h9009000000009009)) 
-    pc_IF2_carry_i_4
-       (.I0(\regdata1_EX_reg[3] [0]),
-        .I1(pc_IF2_carry__1[0]),
-        .I2(pc_IF2_carry__1[2]),
-        .I3(npc_EX[0]),
-        .I4(pc_IF2_carry__1[1]),
-        .I5(\regdata1_EX_reg[3] [1]),
-        .O(\pc_ID_reg[9] [0]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \pc_IF[0]_i_2 
-       (.I0(data0[0]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[0]),
-        .O(\regdata1_EX_reg[3] [0]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[16]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[16]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[16]),
-        .O(D[0]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[17]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[17]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[17]),
-        .O(D[1]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[18]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[18]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[18]),
-        .O(D[2]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[19]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[19]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[19]),
-        .O(D[3]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \pc_IF[1]_i_2 
-       (.I0(data0[1]),
-        .I1(\pc_IF_reg[31]_0 ),
-        .I2(data1[1]),
-        .O(\regdata1_EX_reg[3] [1]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[20]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[20]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[20]),
-        .O(D[4]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[21]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[21]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[21]),
-        .O(D[5]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[22]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[22]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[22]),
-        .O(D[6]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[23]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[23]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[23]),
-        .O(D[7]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[24]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[24]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[24]),
-        .O(D[8]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[25]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[25]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[25]),
-        .O(D[9]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[26]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[26]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[26]),
-        .O(D[10]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[27]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[27]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[27]),
-        .O(D[11]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[28]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[28]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[28]),
-        .O(D[12]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[29]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[29]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[29]),
-        .O(D[13]));
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[30]_i_1 
-       (.I0(pc_IF1),
-        .I1(data1[30]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[30]),
-        .O(D[14]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'hA808)) 
-    \pc_IF[31]_i_2 
-       (.I0(pc_IF1),
-        .I1(data1[31]),
-        .I2(\pc_IF_reg[31]_0 ),
-        .I3(data0[31]),
-        .O(D[15]));
 endmodule
 
 (* ORIG_REF_NAME = "PHT" *) 
@@ -15875,17 +15653,17 @@ module design_1_CPUTop_0_0_Predictor
     \pc_EX_reg[8]_6 ,
     \pc_EX_reg[8]_7 ,
     \pc_EX_reg[8]_8 ,
+    \alucode_EX_reg[2] ,
     \alucode_EX_reg[1] ,
-    \pc_IF_reg[9] ,
-    \pc_IF_reg[9]_0 ,
-    \pc_IF_reg[9]_1 ,
-    \pc_IF_reg[9]_2 ,
-    \pc_IF_reg[9]_3 ,
-    \pc_IF_reg[9]_4 ,
-    \pc_IF_reg[9]_5 ,
-    \pc_IF_reg[9]_6 ,
+    \npc_jalr_EX_reg[7] ,
+    \npc_jalr_EX_reg[6] ,
+    \npc_jalr_EX_reg[5] ,
+    \npc_jalr_EX_reg[4] ,
+    \npc_jalr_EX_reg[3] ,
+    \npc_jalr_EX_reg[3]_0 ,
+    \npc_jalr_EX_reg[2] ,
+    \npc_jalr_EX_reg[2]_0 ,
     CO,
-    \oprr_EX_reg[30]_3 ,
     \mem_valid_reg[255] ,
     sysclk,
     \mem_valid_reg[254] ,
@@ -16196,17 +15974,17 @@ module design_1_CPUTop_0_0_Predictor
   output \pc_EX_reg[8]_6 ;
   output \pc_EX_reg[8]_7 ;
   output \pc_EX_reg[8]_8 ;
+  output \alucode_EX_reg[2] ;
   output \alucode_EX_reg[1] ;
-  output \pc_IF_reg[9] ;
-  output \pc_IF_reg[9]_0 ;
-  output \pc_IF_reg[9]_1 ;
-  output \pc_IF_reg[9]_2 ;
-  output \pc_IF_reg[9]_3 ;
-  output \pc_IF_reg[9]_4 ;
-  output \pc_IF_reg[9]_5 ;
-  output \pc_IF_reg[9]_6 ;
+  output \npc_jalr_EX_reg[7] ;
+  output \npc_jalr_EX_reg[6] ;
+  output \npc_jalr_EX_reg[5] ;
+  output \npc_jalr_EX_reg[4] ;
+  output \npc_jalr_EX_reg[3] ;
+  output \npc_jalr_EX_reg[3]_0 ;
+  output \npc_jalr_EX_reg[2] ;
+  output \npc_jalr_EX_reg[2]_0 ;
   output [0:0]CO;
-  output [0:0]\oprr_EX_reg[30]_3 ;
   input \mem_valid_reg[255] ;
   input sysclk;
   input \mem_valid_reg[254] ;
@@ -16502,6 +16280,7 @@ module design_1_CPUTop_0_0_Predictor
   wire [15:0]Q;
   wire \__0/mem_reg_0_127_0_0_i_2_n_0 ;
   wire \alucode_EX_reg[1] ;
+  wire \alucode_EX_reg[2] ;
   wire [31:0]br_taken6_carry__2;
   wire [31:0]br_taken6_carry__2_0;
   wire btb1_n_257;
@@ -16844,13 +16623,20 @@ module design_1_CPUTop_0_0_Predictor
   wire \mem_valid_reg[99] ;
   wire \mem_valid_reg[9] ;
   wire [13:0]npc_EX;
+  wire \npc_jalr_EX_reg[2] ;
+  wire \npc_jalr_EX_reg[2]_0 ;
+  wire \npc_jalr_EX_reg[3] ;
+  wire \npc_jalr_EX_reg[3]_0 ;
+  wire \npc_jalr_EX_reg[4] ;
+  wire \npc_jalr_EX_reg[5] ;
+  wire \npc_jalr_EX_reg[6] ;
+  wire \npc_jalr_EX_reg[7] ;
   wire nrst;
   wire [3:0]\oprl_EX_reg[30] ;
   wire [3:0]\oprr_EX_reg[30] ;
   wire [3:0]\oprr_EX_reg[30]_0 ;
   wire [3:0]\oprr_EX_reg[30]_1 ;
   wire [3:0]\oprr_EX_reg[30]_2 ;
-  wire [0:0]\oprr_EX_reg[30]_3 ;
   wire \pc_EX_reg[2] ;
   wire \pc_EX_reg[2]_0 ;
   wire \pc_EX_reg[2]_1 ;
@@ -16888,14 +16674,6 @@ module design_1_CPUTop_0_0_Predictor
   wire \pc_IF_reg[15]_i_41_0 ;
   wire [1:0]\pc_IF_reg[1] ;
   wire [5:0]\pc_IF_reg[31] ;
-  wire \pc_IF_reg[9] ;
-  wire \pc_IF_reg[9]_0 ;
-  wire \pc_IF_reg[9]_1 ;
-  wire \pc_IF_reg[9]_2 ;
-  wire \pc_IF_reg[9]_3 ;
-  wire \pc_IF_reg[9]_4 ;
-  wire \pc_IF_reg[9]_5 ;
-  wire \pc_IF_reg[9]_6 ;
   wire rst;
   wire sysclk;
   wire [5:0]tag_mem;
@@ -17144,6 +16922,7 @@ module design_1_CPUTop_0_0_Predictor
         .DI(DI),
         .Q(Q),
         .\alucode_EX_reg[1] (\alucode_EX_reg[1] ),
+        .\alucode_EX_reg[2] (\alucode_EX_reg[2] ),
         .br_taken6_carry__2(br_taken6_carry__2),
         .br_taken6_carry__2_0(br_taken6_carry__2_0),
         .is_taken_predict(is_taken_predict),
@@ -17405,6 +17184,14 @@ module design_1_CPUTop_0_0_Predictor
         .\mem_valid_reg[99]_0 (\mem_valid_reg[99] ),
         .\mem_valid_reg[9]_0 (\mem_valid_reg[9] ),
         .npc_EX(npc_EX),
+        .\npc_jalr_EX_reg[2] (\npc_jalr_EX_reg[2] ),
+        .\npc_jalr_EX_reg[2]_0 (\npc_jalr_EX_reg[2]_0 ),
+        .\npc_jalr_EX_reg[3] (\npc_jalr_EX_reg[3] ),
+        .\npc_jalr_EX_reg[3]_0 (\npc_jalr_EX_reg[3]_0 ),
+        .\npc_jalr_EX_reg[4] (\npc_jalr_EX_reg[4] ),
+        .\npc_jalr_EX_reg[5] (\npc_jalr_EX_reg[5] ),
+        .\npc_jalr_EX_reg[6] (\npc_jalr_EX_reg[6] ),
+        .\npc_jalr_EX_reg[7] (\npc_jalr_EX_reg[7] ),
         .nrst(nrst),
         .nrst_0(rst),
         .\oprl_EX_reg[30] (\oprl_EX_reg[30] ),
@@ -17412,7 +17199,6 @@ module design_1_CPUTop_0_0_Predictor
         .\oprr_EX_reg[30]_0 (\oprr_EX_reg[30]_0 ),
         .\oprr_EX_reg[30]_1 (\oprr_EX_reg[30]_1 ),
         .\oprr_EX_reg[30]_2 (\oprr_EX_reg[30]_2 ),
-        .\oprr_EX_reg[30]_3 (\oprr_EX_reg[30]_3 ),
         .\pc_EX_reg[2] (\pc_EX_reg[2] ),
         .\pc_EX_reg[2]_0 (\pc_EX_reg[2]_0 ),
         .\pc_EX_reg[2]_1 (\pc_EX_reg[2]_1 ),
@@ -17463,15 +17249,7 @@ module design_1_CPUTop_0_0_Predictor
         .\pc_IF_reg[6] (\/pc_IF[6]_i_2_n_0 ),
         .\pc_IF_reg[7] (\/pc_IF[7]_i_2_n_0 ),
         .\pc_IF_reg[8] (\/pc_IF[8]_i_2_n_0 ),
-        .\pc_IF_reg[9] (\pc_IF_reg[9] ),
-        .\pc_IF_reg[9]_0 (\pc_IF_reg[9]_0 ),
-        .\pc_IF_reg[9]_1 (\pc_IF_reg[9]_1 ),
-        .\pc_IF_reg[9]_2 (\pc_IF_reg[9]_2 ),
-        .\pc_IF_reg[9]_3 (\pc_IF_reg[9]_3 ),
-        .\pc_IF_reg[9]_4 (\pc_IF_reg[9]_4 ),
-        .\pc_IF_reg[9]_5 (\pc_IF_reg[9]_5 ),
-        .\pc_IF_reg[9]_6 (\pc_IF_reg[9]_6 ),
-        .\pc_IF_reg[9]_7 (\/pc_IF[9]_i_2_n_0 ),
+        .\pc_IF_reg[9] (\/pc_IF[9]_i_2_n_0 ),
         .sysclk(sysclk),
         .sysclk_0(btb1_n_257),
         .sysclk_1(btb1_n_258),
@@ -20342,14 +20120,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[0]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_0_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_0_i_4
        (.I0(is_store_MA),
         .I1(Q[8]),
         .O(mem_write_value_MA[8]));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_0_i_5
@@ -20584,14 +20362,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[1]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_1_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_1_i_3
        (.I0(is_store_MA),
         .I1(Q[9]),
         .O(mem_write_value_MA[9]));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_1_i_4
@@ -20826,14 +20604,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[2]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_2_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_2_i_3
        (.I0(is_store_MA),
         .I1(Q[10]),
         .O(mem_write_value_MA[10]));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_2_i_4
@@ -21068,14 +20846,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[3]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_3_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_3_i_3
        (.I0(is_store_MA),
         .I1(Q[11]),
         .O(mem_write_value_MA[11]));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_3_i_4
@@ -21310,14 +21088,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[4]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_4_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_4_i_3
        (.I0(is_store_MA),
         .I1(Q[12]),
         .O(mem_write_value_MA[12]));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_4_i_4
@@ -21552,14 +21330,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[5]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_5_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_5_i_3
        (.I0(is_store_MA),
         .I1(Q[13]),
         .O(mem_write_value_MA[13]));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_5_i_4
@@ -21794,14 +21572,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[6]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_6_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_6_i_3
        (.I0(is_store_MA),
         .I1(Q[14]),
         .O(mem_write_value_MA[14]));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_6_i_4
@@ -22036,14 +21814,14 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_write_value_MA[7]),
         .I5(mem_address_MA__0[1]),
         .O(mem_reg_1_0_7_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_7_i_3
        (.I0(is_store_MA),
         .I1(Q[15]),
         .O(mem_write_value_MA[15]));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT2 #(
     .INIT(4'h8)) 
     mem_reg_1_0_7_i_4
@@ -22281,7 +22059,7 @@ module design_1_CPUTop_0_0_RAM
         .I3(mem_reg_0_0_0_0[0]),
         .I4(mem_reg_0_0_0_0[1]),
         .O(p_2_in));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_0_i_3
@@ -22290,7 +22068,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[0]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_0_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_0_i_4
@@ -22522,7 +22300,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_2_0_1_i_3_n_0),
         .O(mem_reg_2_0_1_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_1_i_2
@@ -22531,7 +22309,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[1]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_1_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_1_i_3
@@ -22763,7 +22541,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_2_0_2_i_3_n_0),
         .O(mem_reg_2_0_2_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_2_i_2
@@ -22772,7 +22550,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[2]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_2_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_2_i_3
@@ -23004,7 +22782,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_2_0_3_i_3_n_0),
         .O(mem_reg_2_0_3_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_3_i_2
@@ -23013,7 +22791,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[3]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_3_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_3_i_3
@@ -23245,7 +23023,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_2_0_4_i_3_n_0),
         .O(mem_reg_2_0_4_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_4_i_2
@@ -23254,7 +23032,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[4]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_4_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_4_i_3
@@ -23486,7 +23264,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_2_0_5_i_3_n_0),
         .O(mem_reg_2_0_5_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_5_i_2
@@ -23495,7 +23273,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[5]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_5_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_5_i_3
@@ -23727,7 +23505,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_2_0_6_i_3_n_0),
         .O(mem_reg_2_0_6_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_6_i_2
@@ -23736,7 +23514,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[6]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_6_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_6_i_3
@@ -23968,7 +23746,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_2_0_7_i_3_n_0),
         .O(mem_reg_2_0_7_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     mem_reg_2_0_7_i_2
@@ -23977,7 +23755,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(Q[7]),
         .I3(alu_result[1]),
         .O(mem_reg_2_0_7_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT5 #(
     .INIT(32'h0C008080)) 
     mem_reg_2_0_7_i_3
@@ -24218,7 +23996,7 @@ module design_1_CPUTop_0_0_RAM
         .I3(mem_reg_0_0_0_0[1]),
         .I4(mem_reg_0_0_0_0[0]),
         .O(p_3_in));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_0_i_3
@@ -24227,7 +24005,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[0]),
         .O(mem_reg_3_0_0_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_0_i_4
@@ -24459,7 +24237,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_3_0_1_i_3_n_0),
         .O(mem_reg_3_0_1_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_1_i_2
@@ -24468,7 +24246,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[1]),
         .O(mem_reg_3_0_1_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_1_i_3
@@ -24700,7 +24478,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_3_0_2_i_3_n_0),
         .O(mem_reg_3_0_2_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_2_i_2
@@ -24709,7 +24487,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[2]),
         .O(mem_reg_3_0_2_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_2_i_3
@@ -24941,7 +24719,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_3_0_3_i_3_n_0),
         .O(mem_reg_3_0_3_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_3_i_2
@@ -24950,7 +24728,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[3]),
         .O(mem_reg_3_0_3_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_3_i_3
@@ -25182,7 +24960,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_3_0_4_i_3_n_0),
         .O(mem_reg_3_0_4_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_4_i_2
@@ -25191,7 +24969,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[4]),
         .O(mem_reg_3_0_4_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_4_i_3
@@ -25423,7 +25201,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_3_0_5_i_3_n_0),
         .O(mem_reg_3_0_5_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_5_i_2
@@ -25432,7 +25210,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[5]),
         .O(mem_reg_3_0_5_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_5_i_3
@@ -25664,7 +25442,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_3_0_6_i_3_n_0),
         .O(mem_reg_3_0_6_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_6_i_2
@@ -25673,7 +25451,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[6]),
         .O(mem_reg_3_0_6_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_6_i_3
@@ -25905,7 +25683,7 @@ module design_1_CPUTop_0_0_RAM
         .I4(mem_reg_0_0_0_0[0]),
         .I5(mem_reg_3_0_7_i_3_n_0),
         .O(mem_reg_3_0_7_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     mem_reg_3_0_7_i_2
@@ -25914,7 +25692,7 @@ module design_1_CPUTop_0_0_RAM
         .I2(alu_result[0]),
         .I3(Q[7]),
         .O(mem_reg_3_0_7_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT5 #(
     .INIT(32'h00000080)) 
     mem_reg_3_0_7_i_3
@@ -27230,7 +27008,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h08F2C238B08E28238A08E24238908E202388C238B08E2C238A08E28238908E24),
     .INIT_55(256'h238A08E28238908E24238804E31C0CD3C23CB0CE3823CA0CE3423C90CE30338C),
     .INIT_56(256'h32CBEFBAEB6DB2E000334F08F2C338E08F28338D08F24338C0CE30023CB08E2C),
-    .INIT_57(256'h02013C0000310E05400C08033080C32CBEFBAEB6DB2E00C32CBEFBAEB6DB2E00),
+    .INIT_57(256'h02013C0000310E05400C08013080C32CBEFBAEB6DB2E00C32CBEFBAEB6DB2E00),
     .INIT_58(256'h7DF3BFFBDBCCCB79731C261CCC0CB76D75D3B3F6CDEE6D860261CA308C3030F0),
     .INIT_59(256'h0088A889EB9E78EC01B37B9B61809970B801FBADBBEF15AC5EE6D86016C2F7EF),
     .INIT_5A(256'h32280FA508078F8008202229083A9A638C30CBE8D30730F404C001820E882012),
@@ -27654,7 +27432,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h000000000000000000000000000000000000C000000000000000000000000000),
     .INIT_55(256'h000000000000000000000000030C000000000000000000000000000000000000),
     .INIT_56(256'h0000000000000003000000000000000000000000000000000000000000000000),
-    .INIT_57(256'h00A44C40C00BFC0C0C00012E0000000000000000000030000000000000000030),
+    .INIT_57(256'h00A44C40C00BFC0C0C00010E0000000000000000000030000000000000000030),
     .INIT_58(256'h041048300C000C0C0701000E840030000410460C103304105303E0000104F034),
     .INIT_59(256'h01FFC000000104110B040CC204140070FC000030C71C42C10330400500C2F000),
     .INIT_5A(256'h270C00FFFB0FC0003D33222CC8C6C7178133CC07CF00C43608C000C000C5214C),
@@ -27866,7 +27644,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h0000000000000000000000000000000000004000000000000000000000000000),
     .INIT_55(256'h0000000000000000000000000304000000000000000000000000000000000000),
     .INIT_56(256'h8000000000000003000000000000000000000000000000000000000000000000),
-    .INIT_57(256'h04400C08000001515800001C0CC0C80000000000000030C80000000000000030),
+    .INIT_57(256'h04400C08000001515800003C0CC0C80000000000000030C80000000000000030),
     .INIT_58(256'h000000300C000C0C0300000D8C0030000000000C003304000101D0000000D030),
     .INIT_59(256'h010015540000000003000CC30C000070FC000030C30C00C02330410020C1F000),
     .INIT_5A(256'h2108FFAAA802C0203020132C8042C32300F0C850CF1003335EC0008005CE3008),
@@ -28078,7 +27856,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h0020000800020000800020000800020000800008000200008000200008000200),
     .INIT_55(256'h0080002000080002000080002300002000080002000080002000080002000080),
     .INIT_56(256'hC000000000000003000080002000080002000080002000080002000008000200),
-    .INIT_57(256'h08A00C8C800000000C00020C2CC0CC0000000000000030CC0000000000000030),
+    .INIT_57(256'h08A00C8C800000000C00022C2CC0CC0000000000000030CC0000000000000030),
     .INIT_58(256'h000002300C008C0C030020AC440030000000008C013B0820020AC80000A0E030),
     .INIT_59(256'h000000000000000083004EC000004230FC000030C30C20C013B0410010E8F000),
     .INIT_5A(256'h010000000303C0303412211C8C42CF1380B3CC00E72001310FC000C000471000),
@@ -29052,7 +28830,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'hA288A8A22A288A8A22A288A8A22A288A8A22A8A22A288A8A22A288A8A22A288A),
     .INIT_55(256'h8A22A288A8A22A288A8A22A28088A288A8A22A288A8A22A288A8A22A288A8A22),
     .INIT_56(256'h0000000000000000028A22A288A8A22A288A8A22A288A8A22A288AA8A22A288A),
-    .INIT_57(256'h2E0E4835950D5450500002020000000000000000000000000000000000000000),
+    .INIT_57(256'h2E0E4835950D5450500002000000000000000000000000000000000000000000),
     .INIT_58(256'h0000C0300822603000212823444010010000C00C002408080382242044960111),
     .INIT_59(256'hA05555000040003003000D020200E0C1840008C3083000C02240C18028021001),
     .INIT_5A(256'h569400540406C000092226608882082580820802582002125E41109100896760),
@@ -29264,7 +29042,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h8ACEA2B3A8ACEA2B3A8ACEA2B3A8ACEA2B3ACAB3A8ACEA2B3A8ACEA2B3A8ACEA),
     .INIT_55(256'h2B3A8ACEA2B3A8ACEA2B3A8AC1EC8ACEA2B3A8ACEA2B3A8ACEA2B3A8ACEA2B3A),
     .INIT_56(256'h5145145145145154022B3A8ACEA2B3A8ACEA2B3A8ACEA2B3A8ACEA22B3A8ACEA),
-    .INIT_57(256'h738F1C30001D5555500004430440451451451451451540451451451451451540),
+    .INIT_57(256'h738F1C30001D5555500004410440451451451451451540451451451451451540),
     .INIT_58(256'h000080013CCC000000303C2000004000000080004130000C03C2012100010040),
     .INIT_59(256'hF05555540000002000104C000300F0800020088208200004130000C03C020000),
     .INIT_5A(256'h10125555540304414C733330CCD30C30C0C30D500C3003435C00080005DC3331),
@@ -29688,7 +29466,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'hBFCFFFF3FFFCFFFF3FFFCFFFF3FFFCFFFF3FBBF3FFFCFFFF3FFFCFFFF3FFFCFF),
     .INIT_55(256'hFF3FFFCFFFF3FFFCFFFF3FFECFF8AB8ABFF3EFFCFBFF3EFFCFBFF3EFFCFBFF3B),
     .INIT_56(256'h0C30C30C30C30C0002AE2AFFCFBFF3EFFCFBFF3EFFCFBFF3EFFCEEEBF3FFFCFF),
-    .INIT_57(256'h3FBF0CB43E8C0000008800202CC0C0C30C30C30C30C000C0C30C30C30C30C000),
+    .INIT_57(256'h3FBF0CB43E8C0000008800222CC0C0C30C30C30C30C000C0C30C30C30C30C000),
     .INIT_58(256'h3CF33FAF7ED512B22CBBAC0200AB0BCF3CF333EFFCB0ACBE3AC030E800830203),
     .INIT_59(256'hF0000002F3CF3CCCF3FC202B2F8EF00ABFFABBBEFBEF3BFFCB7ACBE3AC4ECBCF),
     .INIT_5A(256'h00C20000000FF3300C3BBFF2EEC3ECB0E8FB2C020CBA23030452A92020CD3F3C),
@@ -29900,7 +29678,7 @@ module design_1_CPUTop_0_0_ROM
     .INIT_54(256'h0A8A80AA00A8A80AA00A8A80AA00A8A82A2880AA20A8A00AA20A8A00AA20A8A0),
     .INIT_55(256'h282A02280282A02280282A0A2BA8028882A2802A882A2802A882A2802A880AA0),
     .INIT_56(256'h288288288288288000282A0A2A028AA0A2A028AA0A2A028AA0A2A0028AA02280),
-    .INIT_57(256'h0040004440008AAA000A02832000028828828828828800028828828828828800),
+    .INIT_57(256'h0040004440008AAA000A02812000028828828828828800028828828828828800),
     .INIT_58(256'hA08AA4208615D68CA1882A2DCC68288288288100009DA28202A2C420287271B0),
     .INIT_59(256'hA00000020020022006032768A080A8BBE203080280280100298A28200A88AA08),
     .INIT_5A(256'h000088882003A2000C33333CCCEB8F31E8CB6E09EDB223BB0457810410CD3002),
@@ -29997,56 +29775,93 @@ endmodule
 
 (* ORIG_REF_NAME = "RegisterFile" *) 
 module design_1_CPUTop_0_0_RegisterFile
-   (regdata1_ID,
-    srcreg1_num_ID,
+   (\reg_write_value_RW_reg[31] ,
+    ADDRA,
     regdata2_ID,
     srcreg2_num_ID,
+    S,
     oprl_ID,
     oprr_ID,
     \iword_ID_reg[1] ,
+    \reg_write_value_RW_reg[1] ,
+    \reg_write_value_RW_reg[7] ,
+    \reg_write_value_RW_reg[7]_0 ,
+    \iword_ID_reg[15] ,
+    \iword_ID_reg[19] ,
+    \iword_ID_reg[31] ,
+    \iword_ID_reg[31]_0 ,
     reg_we,
     Q,
     \regdata2_EX_reg[31] ,
     \regdata2_EX_reg[31]_0 ,
+    \npc_jalr_EX_reg[15] ,
+    \npc_jalr_EX_reg[15]_0 ,
+    \npc_jalr_EX_reg[15]_1 ,
+    \npc_jalr_EX_reg[15]_2 ,
     \oprl_EX_reg[31] ,
     aluop1_type_ID,
-    D,
-    aluop2_type_ID,
-    \regdata2_EX[31]_i_4 );
-  output [31:0]regdata1_ID;
-  output [4:0]srcreg1_num_ID;
+    imm_ID,
+    imm_ID__0,
+    aluop2_type_ID);
+  output [30:0]\reg_write_value_RW_reg[31] ;
+  output [4:0]ADDRA;
   output [31:0]regdata2_ID;
   output [4:0]srcreg2_num_ID;
+  output [3:0]S;
   output [31:0]oprl_ID;
   output [31:0]oprr_ID;
   output \iword_ID_reg[1] ;
+  output [3:0]\reg_write_value_RW_reg[1] ;
+  output [3:0]\reg_write_value_RW_reg[7] ;
+  output [3:0]\reg_write_value_RW_reg[7]_0 ;
+  output [3:0]\iword_ID_reg[15] ;
+  output [3:0]\iword_ID_reg[19] ;
+  output [3:0]\iword_ID_reg[31] ;
+  output [3:0]\iword_ID_reg[31]_0 ;
   input reg_we;
   input [4:0]Q;
   input \regdata2_EX_reg[31] ;
   input [31:0]\regdata2_EX_reg[31]_0 ;
+  input [25:0]\npc_jalr_EX_reg[15] ;
+  input \npc_jalr_EX_reg[15]_0 ;
+  input \npc_jalr_EX_reg[15]_1 ;
+  input \npc_jalr_EX_reg[15]_2 ;
   input [31:0]\oprl_EX_reg[31] ;
   input [1:0]aluop1_type_ID;
-  input [31:0]D;
+  input [30:0]imm_ID;
+  input [0:0]imm_ID__0;
   input [1:0]aluop2_type_ID;
-  input [15:0]\regdata2_EX[31]_i_4 ;
 
-  wire [31:0]D;
+  wire [4:0]ADDRA;
   wire [4:0]Q;
+  wire [3:0]S;
   wire [1:0]aluop1_type_ID;
   wire [1:0]aluop2_type_ID;
+  wire [30:0]imm_ID;
+  wire [0:0]imm_ID__0;
+  wire [3:0]\iword_ID_reg[15] ;
+  wire [3:0]\iword_ID_reg[19] ;
   wire \iword_ID_reg[1] ;
+  wire [3:0]\iword_ID_reg[31] ;
+  wire [3:0]\iword_ID_reg[31]_0 ;
+  wire [25:0]\npc_jalr_EX_reg[15] ;
+  wire \npc_jalr_EX_reg[15]_0 ;
+  wire \npc_jalr_EX_reg[15]_1 ;
+  wire \npc_jalr_EX_reg[15]_2 ;
   wire [31:0]\oprl_EX_reg[31] ;
   wire [31:0]oprl_ID;
   wire [31:0]oprr_ID;
   wire p_0_in_n_0;
   wire reg_we;
-  wire [31:0]regdata1_ID;
-  wire [15:0]\regdata2_EX[31]_i_4 ;
+  wire [3:0]\reg_write_value_RW_reg[1] ;
+  wire [30:0]\reg_write_value_RW_reg[31] ;
+  wire [3:0]\reg_write_value_RW_reg[7] ;
+  wire [3:0]\reg_write_value_RW_reg[7]_0 ;
+  wire [31:31]regdata1_ID;
   wire \regdata2_EX_reg[31] ;
   wire [31:0]\regdata2_EX_reg[31]_0 ;
   wire [31:0]regdata2_ID;
   wire regfile_reg_r2_0_31_0_5_i_6_n_0;
-  wire [4:0]srcreg1_num_ID;
   wire [4:0]srcreg2_num_ID;
   wire [1:0]NLW_regfile_reg_r1_0_31_0_5_DOD_UNCONNECTED;
   wire [1:0]NLW_regfile_reg_r1_0_31_12_17_DOD_UNCONNECTED;
@@ -30065,293 +29880,564 @@ module design_1_CPUTop_0_0_RegisterFile
   wire [1:0]NLW_regfile_reg_r2_0_31_30_31_DOD_UNCONNECTED;
   wire [1:0]NLW_regfile_reg_r2_0_31_6_11_DOD_UNCONNECTED;
 
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__0_i_1
+       (.I0(\reg_write_value_RW_reg[31] [7]),
+        .I1(imm_ID[7]),
+        .O(\reg_write_value_RW_reg[7] [3]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__0_i_2
+       (.I0(\reg_write_value_RW_reg[31] [6]),
+        .I1(imm_ID[6]),
+        .O(\reg_write_value_RW_reg[7] [2]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__0_i_3
+       (.I0(\reg_write_value_RW_reg[31] [5]),
+        .I1(imm_ID[5]),
+        .O(\reg_write_value_RW_reg[7] [1]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__0_i_4
+       (.I0(\reg_write_value_RW_reg[31] [4]),
+        .I1(imm_ID[4]),
+        .O(\reg_write_value_RW_reg[7] [0]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__1_i_1
+       (.I0(\reg_write_value_RW_reg[31] [11]),
+        .I1(imm_ID[11]),
+        .O(\reg_write_value_RW_reg[7]_0 [3]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__1_i_2
+       (.I0(\reg_write_value_RW_reg[31] [10]),
+        .I1(imm_ID[10]),
+        .O(\reg_write_value_RW_reg[7]_0 [2]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__1_i_3
+       (.I0(\reg_write_value_RW_reg[31] [9]),
+        .I1(imm_ID[9]),
+        .O(\reg_write_value_RW_reg[7]_0 [1]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry__1_i_4
+       (.I0(\reg_write_value_RW_reg[31] [8]),
+        .I1(imm_ID[8]),
+        .O(\reg_write_value_RW_reg[7]_0 [0]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__2_i_1
+       (.I0(\reg_write_value_RW_reg[31] [15]),
+        .I1(\npc_jalr_EX_reg[15] [9]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[15] [3]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__2_i_2
+       (.I0(\reg_write_value_RW_reg[31] [14]),
+        .I1(\npc_jalr_EX_reg[15] [8]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[15] [2]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__2_i_3
+       (.I0(\reg_write_value_RW_reg[31] [13]),
+        .I1(\npc_jalr_EX_reg[15] [7]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[15] [1]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__2_i_4
+       (.I0(\reg_write_value_RW_reg[31] [12]),
+        .I1(\npc_jalr_EX_reg[15] [6]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[15] [0]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__3_i_1
+       (.I0(\reg_write_value_RW_reg[31] [19]),
+        .I1(\npc_jalr_EX_reg[15] [13]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[19] [3]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__3_i_2
+       (.I0(\reg_write_value_RW_reg[31] [18]),
+        .I1(\npc_jalr_EX_reg[15] [12]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[19] [2]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__3_i_3
+       (.I0(\reg_write_value_RW_reg[31] [17]),
+        .I1(\npc_jalr_EX_reg[15] [11]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[19] [1]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__3_i_4
+       (.I0(\reg_write_value_RW_reg[31] [16]),
+        .I1(\npc_jalr_EX_reg[15] [10]),
+        .I2(\npc_jalr_EX_reg[15]_1 ),
+        .I3(\npc_jalr_EX_reg[15] [25]),
+        .I4(\npc_jalr_EX_reg[15]_0 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[19] [0]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__4_i_1
+       (.I0(\reg_write_value_RW_reg[31] [23]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [17]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31] [3]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__4_i_2
+       (.I0(\reg_write_value_RW_reg[31] [22]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [16]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31] [2]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__4_i_3
+       (.I0(\reg_write_value_RW_reg[31] [21]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [15]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31] [1]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__4_i_4
+       (.I0(\reg_write_value_RW_reg[31] [20]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [14]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31] [0]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__5_i_1
+       (.I0(\reg_write_value_RW_reg[31] [27]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [21]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31]_0 [3]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__5_i_2
+       (.I0(\reg_write_value_RW_reg[31] [26]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [20]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31]_0 [2]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__5_i_3
+       (.I0(\reg_write_value_RW_reg[31] [25]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [19]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31]_0 [1]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__5_i_4
+       (.I0(\reg_write_value_RW_reg[31] [24]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [18]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(\iword_ID_reg[31]_0 [0]));
+  LUT5 #(
+    .INIT(32'h5666A666)) 
+    npc_jalr_ID_carry__6_i_1
+       (.I0(regdata1_ID),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15]_1 ),
+        .I4(\npc_jalr_EX_reg[15]_2 ),
+        .O(S[3]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__6_i_2
+       (.I0(\reg_write_value_RW_reg[31] [30]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [24]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(S[2]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__6_i_3
+       (.I0(\reg_write_value_RW_reg[31] [29]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [23]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(S[1]));
+  LUT6 #(
+    .INIT(64'h565656A6A6A656A6)) 
+    npc_jalr_ID_carry__6_i_4
+       (.I0(\reg_write_value_RW_reg[31] [28]),
+        .I1(\npc_jalr_EX_reg[15] [25]),
+        .I2(\npc_jalr_EX_reg[15]_0 ),
+        .I3(\npc_jalr_EX_reg[15] [22]),
+        .I4(\npc_jalr_EX_reg[15]_1 ),
+        .I5(\npc_jalr_EX_reg[15]_2 ),
+        .O(S[0]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry_i_1
+       (.I0(\reg_write_value_RW_reg[31] [3]),
+        .I1(imm_ID[3]),
+        .O(\reg_write_value_RW_reg[1] [3]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry_i_2
+       (.I0(\reg_write_value_RW_reg[31] [2]),
+        .I1(imm_ID[2]),
+        .O(\reg_write_value_RW_reg[1] [2]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry_i_3
+       (.I0(\reg_write_value_RW_reg[31] [1]),
+        .I1(imm_ID[1]),
+        .O(\reg_write_value_RW_reg[1] [1]));
+  LUT2 #(
+    .INIT(4'h6)) 
+    npc_jalr_ID_carry_i_4
+       (.I0(\reg_write_value_RW_reg[31] [0]),
+        .I1(imm_ID[0]),
+        .O(\reg_write_value_RW_reg[1] [0]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[0]_i_2 
        (.I0(\oprl_EX_reg[31] [0]),
-        .I1(regdata1_ID[0]),
+        .I1(\reg_write_value_RW_reg[31] [0]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[0]),
+        .I4(imm_ID[0]),
         .O(oprl_ID[0]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[10]_i_2 
        (.I0(\oprl_EX_reg[31] [10]),
-        .I1(regdata1_ID[10]),
+        .I1(\reg_write_value_RW_reg[31] [10]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[10]),
+        .I4(imm_ID[10]),
         .O(oprl_ID[10]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[11]_i_2 
        (.I0(\oprl_EX_reg[31] [11]),
-        .I1(regdata1_ID[11]),
+        .I1(\reg_write_value_RW_reg[31] [11]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[11]),
+        .I4(imm_ID[11]),
         .O(oprl_ID[11]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[12]_i_2 
        (.I0(\oprl_EX_reg[31] [12]),
-        .I1(regdata1_ID[12]),
+        .I1(\reg_write_value_RW_reg[31] [12]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[12]),
+        .I4(imm_ID[12]),
         .O(oprl_ID[12]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[13]_i_2 
        (.I0(\oprl_EX_reg[31] [13]),
-        .I1(regdata1_ID[13]),
+        .I1(\reg_write_value_RW_reg[31] [13]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[13]),
+        .I4(imm_ID[13]),
         .O(oprl_ID[13]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[14]_i_2 
        (.I0(\oprl_EX_reg[31] [14]),
-        .I1(regdata1_ID[14]),
+        .I1(\reg_write_value_RW_reg[31] [14]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[14]),
+        .I4(imm_ID[14]),
         .O(oprl_ID[14]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[15]_i_2 
        (.I0(\oprl_EX_reg[31] [15]),
-        .I1(regdata1_ID[15]),
+        .I1(\reg_write_value_RW_reg[31] [15]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[15]),
+        .I4(imm_ID[15]),
         .O(oprl_ID[15]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[16]_i_2 
        (.I0(\oprl_EX_reg[31] [16]),
-        .I1(regdata1_ID[16]),
+        .I1(\reg_write_value_RW_reg[31] [16]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[16]),
+        .I4(imm_ID[16]),
         .O(oprl_ID[16]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[17]_i_2 
        (.I0(\oprl_EX_reg[31] [17]),
-        .I1(regdata1_ID[17]),
+        .I1(\reg_write_value_RW_reg[31] [17]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[17]),
+        .I4(imm_ID[17]),
         .O(oprl_ID[17]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[18]_i_2 
        (.I0(\oprl_EX_reg[31] [18]),
-        .I1(regdata1_ID[18]),
+        .I1(\reg_write_value_RW_reg[31] [18]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[18]),
+        .I4(imm_ID[18]),
         .O(oprl_ID[18]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[19]_i_2 
        (.I0(\oprl_EX_reg[31] [19]),
-        .I1(regdata1_ID[19]),
+        .I1(\reg_write_value_RW_reg[31] [19]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[19]),
+        .I4(imm_ID[19]),
         .O(oprl_ID[19]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[1]_i_2 
        (.I0(\oprl_EX_reg[31] [1]),
-        .I1(regdata1_ID[1]),
+        .I1(\reg_write_value_RW_reg[31] [1]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[1]),
+        .I4(imm_ID[1]),
         .O(oprl_ID[1]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[20]_i_2 
        (.I0(\oprl_EX_reg[31] [20]),
-        .I1(regdata1_ID[20]),
+        .I1(\reg_write_value_RW_reg[31] [20]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[20]),
+        .I4(imm_ID[20]),
         .O(oprl_ID[20]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[21]_i_2 
        (.I0(\oprl_EX_reg[31] [21]),
-        .I1(regdata1_ID[21]),
+        .I1(\reg_write_value_RW_reg[31] [21]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[21]),
+        .I4(imm_ID[21]),
         .O(oprl_ID[21]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[22]_i_2 
        (.I0(\oprl_EX_reg[31] [22]),
-        .I1(regdata1_ID[22]),
+        .I1(\reg_write_value_RW_reg[31] [22]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[22]),
+        .I4(imm_ID[22]),
         .O(oprl_ID[22]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[23]_i_2 
        (.I0(\oprl_EX_reg[31] [23]),
-        .I1(regdata1_ID[23]),
+        .I1(\reg_write_value_RW_reg[31] [23]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[23]),
+        .I4(imm_ID[23]),
         .O(oprl_ID[23]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[24]_i_2 
        (.I0(\oprl_EX_reg[31] [24]),
-        .I1(regdata1_ID[24]),
+        .I1(\reg_write_value_RW_reg[31] [24]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[24]),
+        .I4(imm_ID[24]),
         .O(oprl_ID[24]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[25]_i_2 
        (.I0(\oprl_EX_reg[31] [25]),
-        .I1(regdata1_ID[25]),
+        .I1(\reg_write_value_RW_reg[31] [25]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[25]),
+        .I4(imm_ID[25]),
         .O(oprl_ID[25]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[26]_i_2 
        (.I0(\oprl_EX_reg[31] [26]),
-        .I1(regdata1_ID[26]),
+        .I1(\reg_write_value_RW_reg[31] [26]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[26]),
+        .I4(imm_ID[26]),
         .O(oprl_ID[26]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[27]_i_2 
        (.I0(\oprl_EX_reg[31] [27]),
-        .I1(regdata1_ID[27]),
+        .I1(\reg_write_value_RW_reg[31] [27]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[27]),
+        .I4(imm_ID[27]),
         .O(oprl_ID[27]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[28]_i_2 
        (.I0(\oprl_EX_reg[31] [28]),
-        .I1(regdata1_ID[28]),
+        .I1(\reg_write_value_RW_reg[31] [28]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[28]),
+        .I4(imm_ID[28]),
         .O(oprl_ID[28]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[29]_i_2 
        (.I0(\oprl_EX_reg[31] [29]),
-        .I1(regdata1_ID[29]),
+        .I1(\reg_write_value_RW_reg[31] [29]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[29]),
+        .I4(imm_ID[29]),
         .O(oprl_ID[29]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[2]_i_2 
        (.I0(\oprl_EX_reg[31] [2]),
-        .I1(regdata1_ID[2]),
+        .I1(\reg_write_value_RW_reg[31] [2]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[2]),
+        .I4(imm_ID[2]),
         .O(oprl_ID[2]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[30]_i_2 
        (.I0(\oprl_EX_reg[31] [30]),
-        .I1(regdata1_ID[30]),
+        .I1(\reg_write_value_RW_reg[31] [30]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[30]),
+        .I4(imm_ID[30]),
         .O(oprl_ID[30]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[31]_i_4 
        (.I0(\oprl_EX_reg[31] [31]),
-        .I1(regdata1_ID[31]),
+        .I1(regdata1_ID),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[31]),
+        .I4(imm_ID__0),
         .O(oprl_ID[31]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[3]_i_2 
        (.I0(\oprl_EX_reg[31] [3]),
-        .I1(regdata1_ID[3]),
+        .I1(\reg_write_value_RW_reg[31] [3]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[3]),
+        .I4(imm_ID[3]),
         .O(oprl_ID[3]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[4]_i_2 
        (.I0(\oprl_EX_reg[31] [4]),
-        .I1(regdata1_ID[4]),
+        .I1(\reg_write_value_RW_reg[31] [4]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[4]),
+        .I4(imm_ID[4]),
         .O(oprl_ID[4]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[5]_i_2 
        (.I0(\oprl_EX_reg[31] [5]),
-        .I1(regdata1_ID[5]),
+        .I1(\reg_write_value_RW_reg[31] [5]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[5]),
+        .I4(imm_ID[5]),
         .O(oprl_ID[5]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[6]_i_2 
        (.I0(\oprl_EX_reg[31] [6]),
-        .I1(regdata1_ID[6]),
+        .I1(\reg_write_value_RW_reg[31] [6]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[6]),
+        .I4(imm_ID[6]),
         .O(oprl_ID[6]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[7]_i_2 
        (.I0(\oprl_EX_reg[31] [7]),
-        .I1(regdata1_ID[7]),
+        .I1(\reg_write_value_RW_reg[31] [7]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[7]),
+        .I4(imm_ID[7]),
         .O(oprl_ID[7]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[8]_i_2 
        (.I0(\oprl_EX_reg[31] [8]),
-        .I1(regdata1_ID[8]),
+        .I1(\reg_write_value_RW_reg[31] [8]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[8]),
+        .I4(imm_ID[8]),
         .O(oprl_ID[8]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
     \oprl_EX[9]_i_2 
        (.I0(\oprl_EX_reg[31] [9]),
-        .I1(regdata1_ID[9]),
+        .I1(\reg_write_value_RW_reg[31] [9]),
         .I2(aluop1_type_ID[0]),
         .I3(aluop1_type_ID[1]),
-        .I4(D[9]),
+        .I4(imm_ID[9]),
         .O(oprl_ID[9]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30360,7 +30446,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[0]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[0]),
+        .I4(imm_ID[0]),
         .O(oprr_ID[0]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30369,7 +30455,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[10]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[10]),
+        .I4(imm_ID[10]),
         .O(oprr_ID[10]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30378,7 +30464,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[11]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[11]),
+        .I4(imm_ID[11]),
         .O(oprr_ID[11]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30387,7 +30473,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[12]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[12]),
+        .I4(imm_ID[12]),
         .O(oprr_ID[12]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30396,7 +30482,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[13]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[13]),
+        .I4(imm_ID[13]),
         .O(oprr_ID[13]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30405,7 +30491,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[14]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[14]),
+        .I4(imm_ID[14]),
         .O(oprr_ID[14]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30414,7 +30500,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[15]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[15]),
+        .I4(imm_ID[15]),
         .O(oprr_ID[15]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30423,7 +30509,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[16]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[16]),
+        .I4(imm_ID[16]),
         .O(oprr_ID[16]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30432,7 +30518,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[17]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[17]),
+        .I4(imm_ID[17]),
         .O(oprr_ID[17]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30441,7 +30527,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[18]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[18]),
+        .I4(imm_ID[18]),
         .O(oprr_ID[18]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30450,7 +30536,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[19]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[19]),
+        .I4(imm_ID[19]),
         .O(oprr_ID[19]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30459,7 +30545,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[1]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[1]),
+        .I4(imm_ID[1]),
         .O(oprr_ID[1]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30468,7 +30554,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[20]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[20]),
+        .I4(imm_ID[20]),
         .O(oprr_ID[20]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30477,7 +30563,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[21]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[21]),
+        .I4(imm_ID[21]),
         .O(oprr_ID[21]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30486,7 +30572,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[22]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[22]),
+        .I4(imm_ID[22]),
         .O(oprr_ID[22]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30495,7 +30581,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[23]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[23]),
+        .I4(imm_ID[23]),
         .O(oprr_ID[23]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30504,7 +30590,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[24]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[24]),
+        .I4(imm_ID[24]),
         .O(oprr_ID[24]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30513,7 +30599,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[25]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[25]),
+        .I4(imm_ID[25]),
         .O(oprr_ID[25]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30522,7 +30608,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[26]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[26]),
+        .I4(imm_ID[26]),
         .O(oprr_ID[26]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30531,7 +30617,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[27]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[27]),
+        .I4(imm_ID[27]),
         .O(oprr_ID[27]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30540,7 +30626,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[28]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[28]),
+        .I4(imm_ID[28]),
         .O(oprr_ID[28]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30549,7 +30635,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[29]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[29]),
+        .I4(imm_ID[29]),
         .O(oprr_ID[29]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30558,7 +30644,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[2]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[2]),
+        .I4(imm_ID[2]),
         .O(oprr_ID[2]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30567,7 +30653,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[30]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[30]),
+        .I4(imm_ID[30]),
         .O(oprr_ID[30]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30576,7 +30662,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[31]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[31]),
+        .I4(imm_ID__0),
         .O(oprr_ID[31]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30585,7 +30671,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[3]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[3]),
+        .I4(imm_ID[3]),
         .O(oprr_ID[3]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30594,7 +30680,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[4]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[4]),
+        .I4(imm_ID[4]),
         .O(oprr_ID[4]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30603,7 +30689,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[5]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[5]),
+        .I4(imm_ID[5]),
         .O(oprr_ID[5]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30612,7 +30698,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[6]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[6]),
+        .I4(imm_ID[6]),
         .O(oprr_ID[6]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30621,7 +30707,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[7]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[7]),
+        .I4(imm_ID[7]),
         .O(oprr_ID[7]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30630,7 +30716,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[8]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[8]),
+        .I4(imm_ID[8]),
         .O(oprr_ID[8]));
   LUT5 #(
     .INIT(32'hAFC0A0C0)) 
@@ -30639,7 +30725,7 @@ module design_1_CPUTop_0_0_RegisterFile
         .I1(regdata2_ID[9]),
         .I2(aluop2_type_ID[0]),
         .I3(aluop2_type_ID[1]),
-        .I4(D[9]),
+        .I4(imm_ID[9]),
         .O(oprr_ID[9]));
   LUT6 #(
     .INIT(64'hAAAAAAAAAAAAAAA8)) 
@@ -30668,59 +30754,59 @@ module design_1_CPUTop_0_0_RegisterFile
     .INIT_D(64'h0000000000000000),
     .IS_WCLK_INVERTED(1'b1)) 
     regfile_reg_r1_0_31_0_5
-       (.ADDRA(srcreg1_num_ID),
-        .ADDRB(srcreg1_num_ID),
-        .ADDRC(srcreg1_num_ID),
+       (.ADDRA(ADDRA),
+        .ADDRB(ADDRA),
+        .ADDRC(ADDRA),
         .ADDRD(Q),
         .DIA(\regdata2_EX_reg[31]_0 [1:0]),
         .DIB(\regdata2_EX_reg[31]_0 [3:2]),
         .DIC(\regdata2_EX_reg[31]_0 [5:4]),
         .DID({1'b0,1'b0}),
-        .DOA(regdata1_ID[1:0]),
-        .DOB(regdata1_ID[3:2]),
-        .DOC(regdata1_ID[5:4]),
+        .DOA(\reg_write_value_RW_reg[31] [1:0]),
+        .DOB(\reg_write_value_RW_reg[31] [3:2]),
+        .DOC(\reg_write_value_RW_reg[31] [5:4]),
         .DOD(NLW_regfile_reg_r1_0_31_0_5_DOD_UNCONNECTED[1:0]),
         .WCLK(\regdata2_EX_reg[31] ),
         .WE(p_0_in_n_0));
   LUT2 #(
     .INIT(4'h8)) 
     regfile_reg_r1_0_31_0_5_i_1
-       (.I0(\regdata2_EX[31]_i_4 [10]),
+       (.I0(\npc_jalr_EX_reg[15] [13]),
         .I1(\iword_ID_reg[1] ),
-        .O(srcreg1_num_ID[4]));
+        .O(ADDRA[4]));
   LUT2 #(
     .INIT(4'h8)) 
     regfile_reg_r1_0_31_0_5_i_2
-       (.I0(\regdata2_EX[31]_i_4 [9]),
+       (.I0(\npc_jalr_EX_reg[15] [12]),
         .I1(\iword_ID_reg[1] ),
-        .O(srcreg1_num_ID[3]));
+        .O(ADDRA[3]));
   LUT2 #(
     .INIT(4'h8)) 
     regfile_reg_r1_0_31_0_5_i_3
-       (.I0(\regdata2_EX[31]_i_4 [8]),
+       (.I0(\npc_jalr_EX_reg[15] [11]),
         .I1(\iword_ID_reg[1] ),
-        .O(srcreg1_num_ID[2]));
+        .O(ADDRA[2]));
   LUT2 #(
     .INIT(4'h8)) 
     regfile_reg_r1_0_31_0_5_i_4
-       (.I0(\regdata2_EX[31]_i_4 [7]),
+       (.I0(\npc_jalr_EX_reg[15] [10]),
         .I1(\iword_ID_reg[1] ),
-        .O(srcreg1_num_ID[1]));
+        .O(ADDRA[1]));
   LUT2 #(
     .INIT(4'h8)) 
     regfile_reg_r1_0_31_0_5_i_5
-       (.I0(\regdata2_EX[31]_i_4 [6]),
+       (.I0(\npc_jalr_EX_reg[15] [9]),
         .I1(\iword_ID_reg[1] ),
-        .O(srcreg1_num_ID[0]));
+        .O(ADDRA[0]));
   LUT6 #(
     .INIT(64'hFFDFFFDF7FFFFFFF)) 
     regfile_reg_r1_0_31_0_5_i_6
-       (.I0(\regdata2_EX[31]_i_4 [0]),
-        .I1(\regdata2_EX[31]_i_4 [2]),
-        .I2(\regdata2_EX[31]_i_4 [1]),
-        .I3(\regdata2_EX[31]_i_4 [5]),
-        .I4(\regdata2_EX[31]_i_4 [4]),
-        .I5(\regdata2_EX[31]_i_4 [3]),
+       (.I0(\npc_jalr_EX_reg[15] [0]),
+        .I1(\npc_jalr_EX_reg[15] [2]),
+        .I2(\npc_jalr_EX_reg[15] [1]),
+        .I3(\npc_jalr_EX_reg[15] [5]),
+        .I4(\npc_jalr_EX_reg[15] [4]),
+        .I5(\npc_jalr_EX_reg[15] [3]),
         .O(\iword_ID_reg[1] ));
   (* METHODOLOGY_DRC_VIOS = "" *) 
   (* OPT_MODIFIED = "MLO" *) 
@@ -30739,17 +30825,17 @@ module design_1_CPUTop_0_0_RegisterFile
     .INIT_D(64'h0000000000000000),
     .IS_WCLK_INVERTED(1'b1)) 
     regfile_reg_r1_0_31_12_17
-       (.ADDRA(srcreg1_num_ID),
-        .ADDRB(srcreg1_num_ID),
-        .ADDRC(srcreg1_num_ID),
+       (.ADDRA(ADDRA),
+        .ADDRB(ADDRA),
+        .ADDRC(ADDRA),
         .ADDRD(Q),
         .DIA(\regdata2_EX_reg[31]_0 [13:12]),
         .DIB(\regdata2_EX_reg[31]_0 [15:14]),
         .DIC(\regdata2_EX_reg[31]_0 [17:16]),
         .DID({1'b0,1'b0}),
-        .DOA(regdata1_ID[13:12]),
-        .DOB(regdata1_ID[15:14]),
-        .DOC(regdata1_ID[17:16]),
+        .DOA(\reg_write_value_RW_reg[31] [13:12]),
+        .DOB(\reg_write_value_RW_reg[31] [15:14]),
+        .DOC(\reg_write_value_RW_reg[31] [17:16]),
         .DOD(NLW_regfile_reg_r1_0_31_12_17_DOD_UNCONNECTED[1:0]),
         .WCLK(\regdata2_EX_reg[31] ),
         .WE(p_0_in_n_0));
@@ -30770,17 +30856,17 @@ module design_1_CPUTop_0_0_RegisterFile
     .INIT_D(64'h0000000000000000),
     .IS_WCLK_INVERTED(1'b1)) 
     regfile_reg_r1_0_31_18_23
-       (.ADDRA(srcreg1_num_ID),
-        .ADDRB(srcreg1_num_ID),
-        .ADDRC(srcreg1_num_ID),
+       (.ADDRA(ADDRA),
+        .ADDRB(ADDRA),
+        .ADDRC(ADDRA),
         .ADDRD(Q),
         .DIA(\regdata2_EX_reg[31]_0 [19:18]),
         .DIB(\regdata2_EX_reg[31]_0 [21:20]),
         .DIC(\regdata2_EX_reg[31]_0 [23:22]),
         .DID({1'b0,1'b0}),
-        .DOA(regdata1_ID[19:18]),
-        .DOB(regdata1_ID[21:20]),
-        .DOC(regdata1_ID[23:22]),
+        .DOA(\reg_write_value_RW_reg[31] [19:18]),
+        .DOB(\reg_write_value_RW_reg[31] [21:20]),
+        .DOC(\reg_write_value_RW_reg[31] [23:22]),
         .DOD(NLW_regfile_reg_r1_0_31_18_23_DOD_UNCONNECTED[1:0]),
         .WCLK(\regdata2_EX_reg[31] ),
         .WE(p_0_in_n_0));
@@ -30801,17 +30887,17 @@ module design_1_CPUTop_0_0_RegisterFile
     .INIT_D(64'h0000000000000000),
     .IS_WCLK_INVERTED(1'b1)) 
     regfile_reg_r1_0_31_24_29
-       (.ADDRA(srcreg1_num_ID),
-        .ADDRB(srcreg1_num_ID),
-        .ADDRC(srcreg1_num_ID),
+       (.ADDRA(ADDRA),
+        .ADDRB(ADDRA),
+        .ADDRC(ADDRA),
         .ADDRD(Q),
         .DIA(\regdata2_EX_reg[31]_0 [25:24]),
         .DIB(\regdata2_EX_reg[31]_0 [27:26]),
         .DIC(\regdata2_EX_reg[31]_0 [29:28]),
         .DID({1'b0,1'b0}),
-        .DOA(regdata1_ID[25:24]),
-        .DOB(regdata1_ID[27:26]),
-        .DOC(regdata1_ID[29:28]),
+        .DOA(\reg_write_value_RW_reg[31] [25:24]),
+        .DOB(\reg_write_value_RW_reg[31] [27:26]),
+        .DOC(\reg_write_value_RW_reg[31] [29:28]),
         .DOD(NLW_regfile_reg_r1_0_31_24_29_DOD_UNCONNECTED[1:0]),
         .WCLK(\regdata2_EX_reg[31] ),
         .WE(p_0_in_n_0));
@@ -30832,15 +30918,15 @@ module design_1_CPUTop_0_0_RegisterFile
     .INIT_D(64'h0000000000000000),
     .IS_WCLK_INVERTED(1'b1)) 
     regfile_reg_r1_0_31_30_31
-       (.ADDRA(srcreg1_num_ID),
-        .ADDRB(srcreg1_num_ID),
-        .ADDRC(srcreg1_num_ID),
+       (.ADDRA(ADDRA),
+        .ADDRB(ADDRA),
+        .ADDRC(ADDRA),
         .ADDRD(Q),
         .DIA(\regdata2_EX_reg[31]_0 [31:30]),
         .DIB({1'b0,1'b0}),
         .DIC({1'b0,1'b0}),
         .DID({1'b0,1'b0}),
-        .DOA(regdata1_ID[31:30]),
+        .DOA({regdata1_ID,\reg_write_value_RW_reg[31] [30]}),
         .DOB(NLW_regfile_reg_r1_0_31_30_31_DOB_UNCONNECTED[1:0]),
         .DOC(NLW_regfile_reg_r1_0_31_30_31_DOC_UNCONNECTED[1:0]),
         .DOD(NLW_regfile_reg_r1_0_31_30_31_DOD_UNCONNECTED[1:0]),
@@ -30863,17 +30949,17 @@ module design_1_CPUTop_0_0_RegisterFile
     .INIT_D(64'h0000000000000000),
     .IS_WCLK_INVERTED(1'b1)) 
     regfile_reg_r1_0_31_6_11
-       (.ADDRA(srcreg1_num_ID),
-        .ADDRB(srcreg1_num_ID),
-        .ADDRC(srcreg1_num_ID),
+       (.ADDRA(ADDRA),
+        .ADDRB(ADDRA),
+        .ADDRC(ADDRA),
         .ADDRD(Q),
         .DIA(\regdata2_EX_reg[31]_0 [7:6]),
         .DIB(\regdata2_EX_reg[31]_0 [9:8]),
         .DIC(\regdata2_EX_reg[31]_0 [11:10]),
         .DID({1'b0,1'b0}),
-        .DOA(regdata1_ID[7:6]),
-        .DOB(regdata1_ID[9:8]),
-        .DOC(regdata1_ID[11:10]),
+        .DOA(\reg_write_value_RW_reg[31] [7:6]),
+        .DOB(\reg_write_value_RW_reg[31] [9:8]),
+        .DOC(\reg_write_value_RW_reg[31] [11:10]),
         .DOD(NLW_regfile_reg_r1_0_31_6_11_DOD_UNCONNECTED[1:0]),
         .WCLK(\regdata2_EX_reg[31] ),
         .WE(p_0_in_n_0));
@@ -30911,59 +30997,59 @@ module design_1_CPUTop_0_0_RegisterFile
   LUT6 #(
     .INIT(64'h0004000000000000)) 
     regfile_reg_r2_0_31_0_5_i_1
-       (.I0(\regdata2_EX[31]_i_4 [1]),
-        .I1(\regdata2_EX[31]_i_4 [0]),
-        .I2(\regdata2_EX[31]_i_4 [2]),
+       (.I0(\npc_jalr_EX_reg[15] [1]),
+        .I1(\npc_jalr_EX_reg[15] [0]),
+        .I2(\npc_jalr_EX_reg[15] [2]),
         .I3(regfile_reg_r2_0_31_0_5_i_6_n_0),
-        .I4(\regdata2_EX[31]_i_4 [4]),
-        .I5(\regdata2_EX[31]_i_4 [15]),
+        .I4(\npc_jalr_EX_reg[15] [4]),
+        .I5(\npc_jalr_EX_reg[15] [18]),
         .O(srcreg2_num_ID[4]));
   LUT6 #(
     .INIT(64'h0004000000000000)) 
     regfile_reg_r2_0_31_0_5_i_2
-       (.I0(\regdata2_EX[31]_i_4 [1]),
-        .I1(\regdata2_EX[31]_i_4 [0]),
-        .I2(\regdata2_EX[31]_i_4 [2]),
+       (.I0(\npc_jalr_EX_reg[15] [1]),
+        .I1(\npc_jalr_EX_reg[15] [0]),
+        .I2(\npc_jalr_EX_reg[15] [2]),
         .I3(regfile_reg_r2_0_31_0_5_i_6_n_0),
-        .I4(\regdata2_EX[31]_i_4 [4]),
-        .I5(\regdata2_EX[31]_i_4 [14]),
+        .I4(\npc_jalr_EX_reg[15] [4]),
+        .I5(\npc_jalr_EX_reg[15] [17]),
         .O(srcreg2_num_ID[3]));
   LUT6 #(
     .INIT(64'h0004000000000000)) 
     regfile_reg_r2_0_31_0_5_i_3
-       (.I0(\regdata2_EX[31]_i_4 [1]),
-        .I1(\regdata2_EX[31]_i_4 [0]),
-        .I2(\regdata2_EX[31]_i_4 [2]),
+       (.I0(\npc_jalr_EX_reg[15] [1]),
+        .I1(\npc_jalr_EX_reg[15] [0]),
+        .I2(\npc_jalr_EX_reg[15] [2]),
         .I3(regfile_reg_r2_0_31_0_5_i_6_n_0),
-        .I4(\regdata2_EX[31]_i_4 [4]),
-        .I5(\regdata2_EX[31]_i_4 [13]),
+        .I4(\npc_jalr_EX_reg[15] [4]),
+        .I5(\npc_jalr_EX_reg[15] [16]),
         .O(srcreg2_num_ID[2]));
   LUT6 #(
     .INIT(64'h0004000000000000)) 
     regfile_reg_r2_0_31_0_5_i_4
-       (.I0(\regdata2_EX[31]_i_4 [1]),
-        .I1(\regdata2_EX[31]_i_4 [0]),
-        .I2(\regdata2_EX[31]_i_4 [2]),
+       (.I0(\npc_jalr_EX_reg[15] [1]),
+        .I1(\npc_jalr_EX_reg[15] [0]),
+        .I2(\npc_jalr_EX_reg[15] [2]),
         .I3(regfile_reg_r2_0_31_0_5_i_6_n_0),
-        .I4(\regdata2_EX[31]_i_4 [4]),
-        .I5(\regdata2_EX[31]_i_4 [12]),
+        .I4(\npc_jalr_EX_reg[15] [4]),
+        .I5(\npc_jalr_EX_reg[15] [15]),
         .O(srcreg2_num_ID[1]));
   LUT6 #(
     .INIT(64'h0004000000000000)) 
     regfile_reg_r2_0_31_0_5_i_5
-       (.I0(\regdata2_EX[31]_i_4 [1]),
-        .I1(\regdata2_EX[31]_i_4 [0]),
-        .I2(\regdata2_EX[31]_i_4 [2]),
+       (.I0(\npc_jalr_EX_reg[15] [1]),
+        .I1(\npc_jalr_EX_reg[15] [0]),
+        .I2(\npc_jalr_EX_reg[15] [2]),
         .I3(regfile_reg_r2_0_31_0_5_i_6_n_0),
-        .I4(\regdata2_EX[31]_i_4 [4]),
-        .I5(\regdata2_EX[31]_i_4 [11]),
+        .I4(\npc_jalr_EX_reg[15] [4]),
+        .I5(\npc_jalr_EX_reg[15] [14]),
         .O(srcreg2_num_ID[0]));
   LUT3 #(
     .INIT(8'hD5)) 
     regfile_reg_r2_0_31_0_5_i_6
-       (.I0(\regdata2_EX[31]_i_4 [0]),
-        .I1(\regdata2_EX[31]_i_4 [5]),
-        .I2(\regdata2_EX[31]_i_4 [3]),
+       (.I0(\npc_jalr_EX_reg[15] [0]),
+        .I1(\npc_jalr_EX_reg[15] [5]),
+        .I2(\npc_jalr_EX_reg[15] [3]),
         .O(regfile_reg_r2_0_31_0_5_i_6_n_0));
   (* METHODOLOGY_DRC_VIOS = "" *) 
   (* OPT_MODIFIED = "MLO" *) 
@@ -31124,50 +31210,18 @@ endmodule
 
 (* ORIG_REF_NAME = "alu" *) 
 module design_1_CPUTop_0_0_alu
-   (\alucode_EX_reg[3] ,
+   (D,
+    \alucode_EX_reg[3] ,
     \alucode_EX_reg[5] ,
     \alucode_EX_reg[5]_0 ,
-    \alucode_EX_reg[5]_1 ,
-    \alucode_EX_reg[5]_2 ,
-    \alucode_EX_reg[5]_3 ,
-    \alucode_EX_reg[5]_4 ,
-    \alucode_EX_reg[5]_5 ,
-    \alucode_EX_reg[5]_6 ,
-    \alucode_EX_reg[5]_7 ,
-    \alucode_EX_reg[5]_8 ,
-    \alucode_EX_reg[5]_9 ,
-    \alucode_EX_reg[5]_10 ,
-    \alucode_EX_reg[5]_11 ,
-    \alucode_EX_reg[5]_12 ,
-    \alucode_EX_reg[5]_13 ,
-    \alucode_EX_reg[5]_14 ,
-    \alucode_EX_reg[5]_15 ,
-    \alucode_EX_reg[5]_16 ,
-    \alucode_EX_reg[5]_17 ,
-    \alucode_EX_reg[5]_18 ,
-    \alucode_EX_reg[5]_19 ,
-    \alucode_EX_reg[5]_20 ,
-    \alucode_EX_reg[5]_21 ,
-    \alucode_EX_reg[5]_22 ,
-    \alucode_EX_reg[5]_23 ,
-    \alucode_EX_reg[5]_24 ,
-    \alucode_EX_reg[5]_25 ,
-    \alucode_EX_reg[5]_26 ,
-    \alucode_EX_reg[5]_27 ,
-    \alucode_EX_reg[5]_28 ,
-    \alucode_EX_reg[5]_29 ,
-    \alucode_EX_reg[5]_30 ,
-    D,
     \alucode_EX_reg[4] ,
-    \pc_EX_reg[31] ,
-    \pc_EX_reg[3] ,
-    \pc_EX_reg[7] ,
-    \pc_EX_reg[11] ,
-    \pc_EX_reg[15] ,
-    \pc_EX_reg[19] ,
-    \pc_EX_reg[23] ,
-    \pc_EX_reg[27] ,
+    \pc_ID_reg[9] ,
+    \npc_jalr_EX_reg[1] ,
+    npc_EX,
+    \pc_ID_reg[21] ,
+    \pc_ID_reg[30] ,
     \alucode_EX_reg[4]_0 ,
+    p_0_out,
     \alucode_EX_reg[4]_1 ,
     \mem_valid_reg[0] ,
     \mem_valid_reg[1] ,
@@ -31429,155 +31483,158 @@ module design_1_CPUTop_0_0_alu
     S,
     DI,
     \alu_result_MA[0]_i_8_0 ,
-    mem_reg_0_63_0_2_i_8_0,
-    mem_reg_0_63_0_2_i_8_1,
+    mem_reg_0_63_0_2_i_9_0,
+    mem_reg_0_63_0_2_i_9_1,
     mem_reg_0_63_0_2_i_10_0,
     mem_reg_0_63_0_2_i_10_1,
     alu_result0_carry__6_0,
+    pc_IF1,
+    \pc_IF_reg[31] ,
+    \pc_IF_reg[31]_0 ,
+    \pc_IF_reg[31]_1 ,
+    \pc_IF_reg[31]_2 ,
+    \mem_valid_reg[0]_0 ,
     \alu_result_MA_reg[31] ,
-    \alu_result_MA[3]_i_3_0 ,
-    \alu_result_MA[5]_i_3_0 ,
-    \alu_result_MA[2]_i_3_0 ,
-    \alu_result_MA[1]_i_3_0 ,
-    \alu_result_MA[1]_i_3_1 ,
-    \alu_result_MA[11]_i_3_0 ,
-    \alu_result_MA[13]_i_3_0 ,
-    \alu_result_MA[10]_i_3_0 ,
-    \alu_result_MA[9]_i_3_0 ,
-    \alu_result_MA[8]_i_3_0 ,
-    \alu_result_MA[7]_i_3_0 ,
-    \alu_result_MA[6]_i_3_0 ,
-    \alu_result_MA[5]_i_3_1 ,
-    \alu_result_MA[13]_i_3_1 ,
-    \alu_result_MA[15]_i_3_0 ,
-    \alu_result_MA[16]_i_3_0 ,
-    \alu_result_MA[17]_i_3_0 ,
-    \alu_result_MA[18]_i_3_0 ,
-    \alu_result_MA[19]_i_3_0 ,
-    \alu_result_MA[20]_i_3_0 ,
-    \alu_result_MA[21]_i_3_0 ,
-    \alu_result_MA[22]_i_3_0 ,
-    \alu_result_MA[23]_i_3_0 ,
-    \alu_result_MA[24]_i_3_0 ,
-    \alu_result_MA[25]_i_3_0 ,
-    \alu_result_MA[26]_i_3_0 ,
-    \alu_result_MA[27]_i_3_0 ,
-    \alu_result_MA[28]_i_3_0 ,
-    \alu_result_MA[29]_i_3_0 ,
-    \alu_result_MA[30]_i_3_0 ,
+    \alu_result_MA[3]_i_4_0 ,
+    \alu_result_MA[5]_i_4_0 ,
+    \alu_result_MA[2]_i_4_0 ,
+    \alu_result_MA[1]_i_4_0 ,
+    \alu_result_MA[1]_i_4_1 ,
+    \alu_result_MA[11]_i_4_0 ,
+    \alu_result_MA[13]_i_4_0 ,
+    \alu_result_MA[10]_i_4_0 ,
+    \alu_result_MA[9]_i_4_0 ,
+    \alu_result_MA[8]_i_4_0 ,
+    \alu_result_MA[7]_i_4_0 ,
+    \alu_result_MA[6]_i_4_0 ,
+    \alu_result_MA[5]_i_4_1 ,
+    \alu_result_MA[13]_i_4_1 ,
+    \alu_result_MA[15]_i_4_0 ,
+    \alu_result_MA[16]_i_4_0 ,
+    \alu_result_MA[17]_i_4_0 ,
+    \alu_result_MA[18]_i_4_0 ,
+    \alu_result_MA[19]_i_4_0 ,
+    \alu_result_MA[20]_i_4_0 ,
+    \alu_result_MA[21]_i_4_0 ,
+    \alu_result_MA[22]_i_4_0 ,
+    \alu_result_MA[23]_i_4_0 ,
+    \alu_result_MA[24]_i_4_0 ,
+    \alu_result_MA[25]_i_4_0 ,
+    \alu_result_MA[26]_i_4_0 ,
+    \alu_result_MA[27]_i_4_0 ,
+    \alu_result_MA[28]_i_4_0 ,
+    \alu_result_MA[29]_i_4_0 ,
+    \alu_result_MA[30]_i_6_0 ,
     \alu_result_MA_reg[31]_0 ,
-    \alu_result_MA_reg[30] ,
-    \alu_result_MA_reg[29] ,
-    \alu_result_MA_reg[28] ,
-    \alu_result_MA_reg[27] ,
-    \alu_result_MA_reg[26] ,
-    \alu_result_MA_reg[25] ,
-    \alu_result_MA_reg[24] ,
-    \alu_result_MA_reg[23] ,
-    \alu_result_MA_reg[22] ,
-    \alu_result_MA_reg[21] ,
-    \alu_result_MA_reg[20] ,
-    \alu_result_MA_reg[19] ,
-    \alu_result_MA_reg[18] ,
-    \alu_result_MA_reg[17] ,
-    \alu_result_MA_reg[16] ,
-    \alu_result_MA_reg[15] ,
-    \alu_result_MA_reg[14] ,
-    \alu_result_MA_reg[13] ,
-    \alu_result_MA_reg[12] ,
-    \alu_result_MA_reg[11] ,
-    \alu_result_MA_reg[10] ,
-    \alu_result_MA_reg[9] ,
-    \alu_result_MA_reg[8] ,
-    \alu_result_MA_reg[7] ,
-    \alu_result_MA_reg[6] ,
-    \alu_result_MA_reg[5] ,
-    \alu_result_MA_reg[4] ,
-    \alu_result_MA_reg[3] ,
-    \alu_result_MA_reg[2] ,
-    \alu_result_MA_reg[1] ,
     \alu_result_MA_reg[0] ,
     is_oprr_fwd_EE__0,
     calc_reg_write_value_return,
     is_oprr_fwd_ME__0,
     oprr_ID,
-    is_oprl_fwd_EE__0,
-    is_oprl_fwd_ME__0,
+    pc_IF2_carry__1,
+    is_oprl_fwd_EE__1,
+    is_oprl_fwd_ME__1,
     oprl_ID,
-    \NPC0_inferred__0/i__carry__6 ,
-    \NPC0_inferred__0/i__carry__6_0 ,
+    \oprl_EX_reg[30] ,
+    \alu_result_MA_reg[30] ,
     \alu_result_MA_reg[30]_0 ,
-    \alu_result_MA_reg[29]_0 ,
-    \alu_result_MA_reg[28]_0 ,
-    \alu_result_MA_reg[27]_0 ,
-    \alu_result_MA_reg[26]_0 ,
-    \alu_result_MA_reg[25]_0 ,
-    \alu_result_MA_reg[24]_0 ,
-    \alu_result_MA_reg[23]_0 ,
-    \alu_result_MA_reg[22]_0 ,
-    \alu_result_MA_reg[21]_0 ,
-    \alu_result_MA_reg[20]_0 ,
-    \alu_result_MA_reg[19]_0 ,
-    \alu_result_MA_reg[18]_0 ,
-    \alu_result_MA_reg[17]_0 ,
-    \alu_result_MA_reg[16]_0 ,
-    \alu_result_MA_reg[15]_0 ,
-    \alu_result_MA_reg[14]_0 ,
-    \alu_result_MA_reg[13]_0 ,
-    \alu_result_MA_reg[12]_0 ,
-    \alu_result_MA_reg[11]_0 ,
-    \alu_result_MA_reg[10]_0 ,
-    \alu_result_MA_reg[9]_0 ,
-    \alu_result_MA_reg[8]_0 ,
-    \alu_result_MA_reg[7]_0 ,
-    \alu_result_MA_reg[6]_0 ,
-    \alu_result_MA_reg[5]_0 ,
-    \alu_result_MA_reg[4]_0 ,
-    \alu_result_MA_reg[3]_0 ,
-    \alu_result_MA_reg[2]_0 ,
-    \alu_result_MA_reg[1]_0 ,
+    \oprl_EX_reg[29] ,
+    \alu_result_MA_reg[29] ,
+    \oprl_EX_reg[28] ,
+    \alu_result_MA_reg[28] ,
+    \oprl_EX_reg[27] ,
+    \alu_result_MA_reg[27] ,
+    \oprl_EX_reg[26] ,
+    \alu_result_MA_reg[26] ,
+    \oprl_EX_reg[25] ,
+    \alu_result_MA_reg[25] ,
+    \oprl_EX_reg[24] ,
+    \alu_result_MA_reg[24] ,
+    \oprl_EX_reg[23] ,
+    \alu_result_MA_reg[23] ,
+    \oprl_EX_reg[22] ,
+    \alu_result_MA_reg[22] ,
+    \oprl_EX_reg[21] ,
+    \alu_result_MA_reg[21] ,
+    \oprl_EX_reg[20] ,
+    \alu_result_MA_reg[20] ,
+    \oprl_EX_reg[19] ,
+    \alu_result_MA_reg[19] ,
+    \oprl_EX_reg[18] ,
+    \alu_result_MA_reg[18] ,
+    \oprl_EX_reg[17] ,
+    \alu_result_MA_reg[17] ,
+    \oprl_EX_reg[16] ,
+    \alu_result_MA_reg[16] ,
+    \oprl_EX_reg[15] ,
+    \alu_result_MA_reg[15] ,
+    \oprl_EX_reg[14] ,
+    \alu_result_MA_reg[14] ,
+    \oprl_EX_reg[13] ,
+    \alu_result_MA_reg[13] ,
+    \oprl_EX_reg[12] ,
+    \alu_result_MA_reg[12] ,
+    \oprl_EX_reg[11] ,
+    \alu_result_MA_reg[11] ,
+    \oprl_EX_reg[10] ,
+    \alu_result_MA_reg[10] ,
+    \oprl_EX_reg[9] ,
+    \alu_result_MA_reg[9] ,
+    \oprl_EX_reg[8] ,
+    \alu_result_MA_reg[8] ,
+    \oprl_EX_reg[7] ,
+    \alu_result_MA_reg[7] ,
+    \oprl_EX_reg[6] ,
+    \alu_result_MA_reg[6] ,
+    \oprl_EX_reg[5] ,
+    \alu_result_MA_reg[5] ,
+    \oprl_EX_reg[4] ,
+    \alu_result_MA_reg[4] ,
+    \oprl_EX_reg[3] ,
+    \alu_result_MA_reg[3] ,
+    \oprl_EX_reg[2] ,
+    \alu_result_MA_reg[2] ,
+    \oprl_EX_reg[1] ,
+    \alu_result_MA_reg[1] ,
     \alu_result_MA_reg[31]_1 ,
-    \alu_result_MA_reg[4]_1 ,
-    \alu_result_MA_reg[3]_1 ,
-    \alu_result_MA_reg[2]_1 ,
-    \alu_result_MA_reg[1]_1 ,
-    \alu_result_MA_reg[12]_1 ,
-    \alu_result_MA_reg[11]_1 ,
-    \alu_result_MA_reg[10]_1 ,
-    \alu_result_MA_reg[9]_1 ,
-    \alu_result_MA_reg[8]_1 ,
-    \alu_result_MA_reg[7]_1 ,
-    \alu_result_MA_reg[6]_1 ,
-    \alu_result_MA_reg[5]_1 ,
-    \alu_result_MA_reg[14]_1 ,
-    \alu_result_MA_reg[13]_1 ,
-    \alu_result_MA_reg[15]_1 ,
-    \alu_result_MA_reg[31]_2 ,
-    \alu_result_MA_reg[30]_1 ,
-    \alu_result_MA_reg[29]_1 ,
-    \alu_result_MA_reg[28]_1 ,
-    \alu_result_MA_reg[27]_1 ,
-    \alu_result_MA_reg[26]_1 ,
-    \alu_result_MA_reg[25]_1 ,
-    \alu_result_MA_reg[24]_1 ,
-    \alu_result_MA_reg[23]_1 ,
-    \alu_result_MA_reg[22]_1 ,
-    \alu_result_MA_reg[21]_1 ,
-    \alu_result_MA_reg[20]_1 ,
-    \alu_result_MA_reg[19]_1 ,
-    \alu_result_MA_reg[18]_1 ,
-    \alu_result_MA_reg[17]_1 ,
-    \alu_result_MA_reg[16]_1 ,
+    \regdata2_EX[4]_i_2_0 ,
+    \regdata2_EX[3]_i_2_0 ,
+    \regdata2_EX[2]_i_2_0 ,
+    \regdata2_EX[1]_i_2_0 ,
+    \regdata2_EX[12]_i_2_0 ,
+    \regdata2_EX[11]_i_2_0 ,
+    \regdata2_EX[10]_i_2_0 ,
+    \regdata2_EX[9]_i_2_0 ,
+    \regdata2_EX[8]_i_2_0 ,
+    \regdata2_EX[7]_i_2_0 ,
+    \regdata2_EX[6]_i_2_0 ,
+    \regdata2_EX[5]_i_2_0 ,
+    \regdata2_EX[14]_i_2_0 ,
+    \regdata2_EX[13]_i_2_0 ,
+    \regdata2_EX[15]_i_2_0 ,
+    \alu_result_MA_reg[31]_i_3_0 ,
+    data7,
+    \regdata2_EX[30]_i_2_0 ,
+    \regdata2_EX[29]_i_2_0 ,
+    \regdata2_EX[28]_i_2_0 ,
+    \regdata2_EX[27]_i_2_0 ,
+    \regdata2_EX[26]_i_2_0 ,
+    \regdata2_EX[25]_i_2_0 ,
+    \regdata2_EX[24]_i_2_0 ,
+    \regdata2_EX[23]_i_2_0 ,
+    \regdata2_EX[22]_i_2_0 ,
+    \regdata2_EX[21]_i_2_0 ,
+    \regdata2_EX[20]_i_2_0 ,
+    \regdata2_EX[19]_i_2_0 ,
+    \regdata2_EX[18]_i_2_0 ,
+    \regdata2_EX[17]_i_2_0 ,
+    \regdata2_EX[16]_i_2_0 ,
     CO,
-    mem_reg_0_63_0_2_i_7_0,
+    p_3_in,
     p_4_in,
-    p_5_in,
     regdata2_ID,
-    p_6_in,
-    p_7_in,
-    regdata1_ID,
-    \mem_valid_reg[0]_0 ,
     \mem_valid_reg[0]_1 ,
+    \mem_valid_reg[0]_2 ,
     mem_valid,
     \mem_valid_reg[1]_0 ,
     \mem_valid_reg[2]_0 ,
@@ -31609,50 +31666,18 @@ module design_1_CPUTop_0_0_alu
     \mem_valid_reg[208]_0 ,
     \mem_valid_reg[224]_0 ,
     \mem_valid_reg[240]_0 );
+  output [15:0]D;
   output \alucode_EX_reg[3] ;
   output \alucode_EX_reg[5] ;
   output \alucode_EX_reg[5]_0 ;
-  output \alucode_EX_reg[5]_1 ;
-  output \alucode_EX_reg[5]_2 ;
-  output \alucode_EX_reg[5]_3 ;
-  output \alucode_EX_reg[5]_4 ;
-  output \alucode_EX_reg[5]_5 ;
-  output \alucode_EX_reg[5]_6 ;
-  output \alucode_EX_reg[5]_7 ;
-  output \alucode_EX_reg[5]_8 ;
-  output \alucode_EX_reg[5]_9 ;
-  output \alucode_EX_reg[5]_10 ;
-  output \alucode_EX_reg[5]_11 ;
-  output \alucode_EX_reg[5]_12 ;
-  output \alucode_EX_reg[5]_13 ;
-  output \alucode_EX_reg[5]_14 ;
-  output \alucode_EX_reg[5]_15 ;
-  output \alucode_EX_reg[5]_16 ;
-  output \alucode_EX_reg[5]_17 ;
-  output \alucode_EX_reg[5]_18 ;
-  output \alucode_EX_reg[5]_19 ;
-  output \alucode_EX_reg[5]_20 ;
-  output \alucode_EX_reg[5]_21 ;
-  output \alucode_EX_reg[5]_22 ;
-  output \alucode_EX_reg[5]_23 ;
-  output \alucode_EX_reg[5]_24 ;
-  output \alucode_EX_reg[5]_25 ;
-  output \alucode_EX_reg[5]_26 ;
-  output \alucode_EX_reg[5]_27 ;
-  output \alucode_EX_reg[5]_28 ;
-  output \alucode_EX_reg[5]_29 ;
-  output \alucode_EX_reg[5]_30 ;
-  output [31:0]D;
   output [31:0]\alucode_EX_reg[4] ;
-  output [3:0]\pc_EX_reg[31] ;
-  output [3:0]\pc_EX_reg[3] ;
-  output [3:0]\pc_EX_reg[7] ;
-  output [3:0]\pc_EX_reg[11] ;
-  output [3:0]\pc_EX_reg[15] ;
-  output [3:0]\pc_EX_reg[19] ;
-  output [3:0]\pc_EX_reg[23] ;
-  output [3:0]\pc_EX_reg[27] ;
+  output [3:0]\pc_ID_reg[9] ;
+  output [1:0]\npc_jalr_EX_reg[1] ;
+  output [13:0]npc_EX;
+  output [3:0]\pc_ID_reg[21] ;
+  output [2:0]\pc_ID_reg[30] ;
   output [31:0]\alucode_EX_reg[4]_0 ;
+  output [29:0]p_0_out;
   output [31:0]\alucode_EX_reg[4]_1 ;
   output \mem_valid_reg[0] ;
   output \mem_valid_reg[1] ;
@@ -31914,155 +31939,158 @@ module design_1_CPUTop_0_0_alu
   input [3:0]S;
   input [3:0]DI;
   input [3:0]\alu_result_MA[0]_i_8_0 ;
-  input [3:0]mem_reg_0_63_0_2_i_8_0;
-  input [3:0]mem_reg_0_63_0_2_i_8_1;
+  input [3:0]mem_reg_0_63_0_2_i_9_0;
+  input [3:0]mem_reg_0_63_0_2_i_9_1;
   input [3:0]mem_reg_0_63_0_2_i_10_0;
   input [3:0]mem_reg_0_63_0_2_i_10_1;
   input [31:0]alu_result0_carry__6_0;
+  input pc_IF1;
+  input [31:0]\pc_IF_reg[31] ;
+  input [31:0]\pc_IF_reg[31]_0 ;
+  input \pc_IF_reg[31]_1 ;
+  input [31:0]\pc_IF_reg[31]_2 ;
+  input \mem_valid_reg[0]_0 ;
   input [5:0]\alu_result_MA_reg[31] ;
-  input \alu_result_MA[3]_i_3_0 ;
-  input \alu_result_MA[5]_i_3_0 ;
-  input \alu_result_MA[2]_i_3_0 ;
-  input \alu_result_MA[1]_i_3_0 ;
-  input \alu_result_MA[1]_i_3_1 ;
-  input \alu_result_MA[11]_i_3_0 ;
-  input \alu_result_MA[13]_i_3_0 ;
-  input \alu_result_MA[10]_i_3_0 ;
-  input \alu_result_MA[9]_i_3_0 ;
-  input \alu_result_MA[8]_i_3_0 ;
-  input \alu_result_MA[7]_i_3_0 ;
-  input \alu_result_MA[6]_i_3_0 ;
-  input \alu_result_MA[5]_i_3_1 ;
-  input \alu_result_MA[13]_i_3_1 ;
-  input \alu_result_MA[15]_i_3_0 ;
-  input \alu_result_MA[16]_i_3_0 ;
-  input \alu_result_MA[17]_i_3_0 ;
-  input \alu_result_MA[18]_i_3_0 ;
-  input \alu_result_MA[19]_i_3_0 ;
-  input \alu_result_MA[20]_i_3_0 ;
-  input \alu_result_MA[21]_i_3_0 ;
-  input \alu_result_MA[22]_i_3_0 ;
-  input \alu_result_MA[23]_i_3_0 ;
-  input \alu_result_MA[24]_i_3_0 ;
-  input \alu_result_MA[25]_i_3_0 ;
-  input \alu_result_MA[26]_i_3_0 ;
-  input \alu_result_MA[27]_i_3_0 ;
-  input \alu_result_MA[28]_i_3_0 ;
-  input \alu_result_MA[29]_i_3_0 ;
-  input \alu_result_MA[30]_i_3_0 ;
+  input \alu_result_MA[3]_i_4_0 ;
+  input \alu_result_MA[5]_i_4_0 ;
+  input \alu_result_MA[2]_i_4_0 ;
+  input \alu_result_MA[1]_i_4_0 ;
+  input \alu_result_MA[1]_i_4_1 ;
+  input \alu_result_MA[11]_i_4_0 ;
+  input \alu_result_MA[13]_i_4_0 ;
+  input \alu_result_MA[10]_i_4_0 ;
+  input \alu_result_MA[9]_i_4_0 ;
+  input \alu_result_MA[8]_i_4_0 ;
+  input \alu_result_MA[7]_i_4_0 ;
+  input \alu_result_MA[6]_i_4_0 ;
+  input \alu_result_MA[5]_i_4_1 ;
+  input \alu_result_MA[13]_i_4_1 ;
+  input \alu_result_MA[15]_i_4_0 ;
+  input \alu_result_MA[16]_i_4_0 ;
+  input \alu_result_MA[17]_i_4_0 ;
+  input \alu_result_MA[18]_i_4_0 ;
+  input \alu_result_MA[19]_i_4_0 ;
+  input \alu_result_MA[20]_i_4_0 ;
+  input \alu_result_MA[21]_i_4_0 ;
+  input \alu_result_MA[22]_i_4_0 ;
+  input \alu_result_MA[23]_i_4_0 ;
+  input \alu_result_MA[24]_i_4_0 ;
+  input \alu_result_MA[25]_i_4_0 ;
+  input \alu_result_MA[26]_i_4_0 ;
+  input \alu_result_MA[27]_i_4_0 ;
+  input \alu_result_MA[28]_i_4_0 ;
+  input \alu_result_MA[29]_i_4_0 ;
+  input \alu_result_MA[30]_i_6_0 ;
   input \alu_result_MA_reg[31]_0 ;
-  input \alu_result_MA_reg[30] ;
-  input \alu_result_MA_reg[29] ;
-  input \alu_result_MA_reg[28] ;
-  input \alu_result_MA_reg[27] ;
-  input \alu_result_MA_reg[26] ;
-  input \alu_result_MA_reg[25] ;
-  input \alu_result_MA_reg[24] ;
-  input \alu_result_MA_reg[23] ;
-  input \alu_result_MA_reg[22] ;
-  input \alu_result_MA_reg[21] ;
-  input \alu_result_MA_reg[20] ;
-  input \alu_result_MA_reg[19] ;
-  input \alu_result_MA_reg[18] ;
-  input \alu_result_MA_reg[17] ;
-  input \alu_result_MA_reg[16] ;
-  input \alu_result_MA_reg[15] ;
-  input \alu_result_MA_reg[14] ;
-  input \alu_result_MA_reg[13] ;
-  input \alu_result_MA_reg[12] ;
-  input \alu_result_MA_reg[11] ;
-  input \alu_result_MA_reg[10] ;
-  input \alu_result_MA_reg[9] ;
-  input \alu_result_MA_reg[8] ;
-  input \alu_result_MA_reg[7] ;
-  input \alu_result_MA_reg[6] ;
-  input \alu_result_MA_reg[5] ;
-  input \alu_result_MA_reg[4] ;
-  input \alu_result_MA_reg[3] ;
-  input \alu_result_MA_reg[2] ;
-  input \alu_result_MA_reg[1] ;
   input \alu_result_MA_reg[0] ;
   input is_oprr_fwd_EE__0;
   input [31:0]calc_reg_write_value_return;
   input is_oprr_fwd_ME__0;
   input [31:0]oprr_ID;
-  input is_oprl_fwd_EE__0;
-  input is_oprl_fwd_ME__0;
+  input [31:0]pc_IF2_carry__1;
+  input is_oprl_fwd_EE__1;
+  input is_oprl_fwd_ME__1;
   input [31:0]oprl_ID;
-  input [31:0]\NPC0_inferred__0/i__carry__6 ;
-  input [31:0]\NPC0_inferred__0/i__carry__6_0 ;
+  input \oprl_EX_reg[30] ;
+  input \alu_result_MA_reg[30] ;
   input \alu_result_MA_reg[30]_0 ;
-  input \alu_result_MA_reg[29]_0 ;
-  input \alu_result_MA_reg[28]_0 ;
-  input \alu_result_MA_reg[27]_0 ;
-  input \alu_result_MA_reg[26]_0 ;
-  input \alu_result_MA_reg[25]_0 ;
-  input \alu_result_MA_reg[24]_0 ;
-  input \alu_result_MA_reg[23]_0 ;
-  input \alu_result_MA_reg[22]_0 ;
-  input \alu_result_MA_reg[21]_0 ;
-  input \alu_result_MA_reg[20]_0 ;
-  input \alu_result_MA_reg[19]_0 ;
-  input \alu_result_MA_reg[18]_0 ;
-  input \alu_result_MA_reg[17]_0 ;
-  input \alu_result_MA_reg[16]_0 ;
-  input \alu_result_MA_reg[15]_0 ;
-  input \alu_result_MA_reg[14]_0 ;
-  input \alu_result_MA_reg[13]_0 ;
-  input \alu_result_MA_reg[12]_0 ;
-  input \alu_result_MA_reg[11]_0 ;
-  input \alu_result_MA_reg[10]_0 ;
-  input \alu_result_MA_reg[9]_0 ;
-  input \alu_result_MA_reg[8]_0 ;
-  input \alu_result_MA_reg[7]_0 ;
-  input \alu_result_MA_reg[6]_0 ;
-  input \alu_result_MA_reg[5]_0 ;
-  input \alu_result_MA_reg[4]_0 ;
-  input \alu_result_MA_reg[3]_0 ;
-  input \alu_result_MA_reg[2]_0 ;
-  input \alu_result_MA_reg[1]_0 ;
+  input \oprl_EX_reg[29] ;
+  input \alu_result_MA_reg[29] ;
+  input \oprl_EX_reg[28] ;
+  input \alu_result_MA_reg[28] ;
+  input \oprl_EX_reg[27] ;
+  input \alu_result_MA_reg[27] ;
+  input \oprl_EX_reg[26] ;
+  input \alu_result_MA_reg[26] ;
+  input \oprl_EX_reg[25] ;
+  input \alu_result_MA_reg[25] ;
+  input \oprl_EX_reg[24] ;
+  input \alu_result_MA_reg[24] ;
+  input \oprl_EX_reg[23] ;
+  input \alu_result_MA_reg[23] ;
+  input \oprl_EX_reg[22] ;
+  input \alu_result_MA_reg[22] ;
+  input \oprl_EX_reg[21] ;
+  input \alu_result_MA_reg[21] ;
+  input \oprl_EX_reg[20] ;
+  input \alu_result_MA_reg[20] ;
+  input \oprl_EX_reg[19] ;
+  input \alu_result_MA_reg[19] ;
+  input \oprl_EX_reg[18] ;
+  input \alu_result_MA_reg[18] ;
+  input \oprl_EX_reg[17] ;
+  input \alu_result_MA_reg[17] ;
+  input \oprl_EX_reg[16] ;
+  input \alu_result_MA_reg[16] ;
+  input \oprl_EX_reg[15] ;
+  input \alu_result_MA_reg[15] ;
+  input \oprl_EX_reg[14] ;
+  input \alu_result_MA_reg[14] ;
+  input \oprl_EX_reg[13] ;
+  input \alu_result_MA_reg[13] ;
+  input \oprl_EX_reg[12] ;
+  input \alu_result_MA_reg[12] ;
+  input \oprl_EX_reg[11] ;
+  input \alu_result_MA_reg[11] ;
+  input \oprl_EX_reg[10] ;
+  input \alu_result_MA_reg[10] ;
+  input \oprl_EX_reg[9] ;
+  input \alu_result_MA_reg[9] ;
+  input \oprl_EX_reg[8] ;
+  input \alu_result_MA_reg[8] ;
+  input \oprl_EX_reg[7] ;
+  input \alu_result_MA_reg[7] ;
+  input \oprl_EX_reg[6] ;
+  input \alu_result_MA_reg[6] ;
+  input \oprl_EX_reg[5] ;
+  input \alu_result_MA_reg[5] ;
+  input \oprl_EX_reg[4] ;
+  input \alu_result_MA_reg[4] ;
+  input \oprl_EX_reg[3] ;
+  input \alu_result_MA_reg[3] ;
+  input \oprl_EX_reg[2] ;
+  input \alu_result_MA_reg[2] ;
+  input \oprl_EX_reg[1] ;
+  input \alu_result_MA_reg[1] ;
   input \alu_result_MA_reg[31]_1 ;
-  input \alu_result_MA_reg[4]_1 ;
-  input \alu_result_MA_reg[3]_1 ;
-  input \alu_result_MA_reg[2]_1 ;
-  input \alu_result_MA_reg[1]_1 ;
-  input \alu_result_MA_reg[12]_1 ;
-  input \alu_result_MA_reg[11]_1 ;
-  input \alu_result_MA_reg[10]_1 ;
-  input \alu_result_MA_reg[9]_1 ;
-  input \alu_result_MA_reg[8]_1 ;
-  input \alu_result_MA_reg[7]_1 ;
-  input \alu_result_MA_reg[6]_1 ;
-  input \alu_result_MA_reg[5]_1 ;
-  input \alu_result_MA_reg[14]_1 ;
-  input \alu_result_MA_reg[13]_1 ;
-  input \alu_result_MA_reg[15]_1 ;
-  input \alu_result_MA_reg[31]_2 ;
-  input \alu_result_MA_reg[30]_1 ;
-  input \alu_result_MA_reg[29]_1 ;
-  input \alu_result_MA_reg[28]_1 ;
-  input \alu_result_MA_reg[27]_1 ;
-  input \alu_result_MA_reg[26]_1 ;
-  input \alu_result_MA_reg[25]_1 ;
-  input \alu_result_MA_reg[24]_1 ;
-  input \alu_result_MA_reg[23]_1 ;
-  input \alu_result_MA_reg[22]_1 ;
-  input \alu_result_MA_reg[21]_1 ;
-  input \alu_result_MA_reg[20]_1 ;
-  input \alu_result_MA_reg[19]_1 ;
-  input \alu_result_MA_reg[18]_1 ;
-  input \alu_result_MA_reg[17]_1 ;
-  input \alu_result_MA_reg[16]_1 ;
+  input \regdata2_EX[4]_i_2_0 ;
+  input \regdata2_EX[3]_i_2_0 ;
+  input \regdata2_EX[2]_i_2_0 ;
+  input \regdata2_EX[1]_i_2_0 ;
+  input \regdata2_EX[12]_i_2_0 ;
+  input \regdata2_EX[11]_i_2_0 ;
+  input \regdata2_EX[10]_i_2_0 ;
+  input \regdata2_EX[9]_i_2_0 ;
+  input \regdata2_EX[8]_i_2_0 ;
+  input \regdata2_EX[7]_i_2_0 ;
+  input \regdata2_EX[6]_i_2_0 ;
+  input \regdata2_EX[5]_i_2_0 ;
+  input \regdata2_EX[14]_i_2_0 ;
+  input \regdata2_EX[13]_i_2_0 ;
+  input \regdata2_EX[15]_i_2_0 ;
+  input \alu_result_MA_reg[31]_i_3_0 ;
+  input [0:0]data7;
+  input \regdata2_EX[30]_i_2_0 ;
+  input \regdata2_EX[29]_i_2_0 ;
+  input \regdata2_EX[28]_i_2_0 ;
+  input \regdata2_EX[27]_i_2_0 ;
+  input \regdata2_EX[26]_i_2_0 ;
+  input \regdata2_EX[25]_i_2_0 ;
+  input \regdata2_EX[24]_i_2_0 ;
+  input \regdata2_EX[23]_i_2_0 ;
+  input \regdata2_EX[22]_i_2_0 ;
+  input \regdata2_EX[21]_i_2_0 ;
+  input \regdata2_EX[20]_i_2_0 ;
+  input \regdata2_EX[19]_i_2_0 ;
+  input \regdata2_EX[18]_i_2_0 ;
+  input \regdata2_EX[17]_i_2_0 ;
+  input \regdata2_EX[16]_i_2_0 ;
   input [0:0]CO;
-  input [0:0]mem_reg_0_63_0_2_i_7_0;
+  input p_3_in;
   input p_4_in;
-  input p_5_in;
   input [31:0]regdata2_ID;
-  input p_6_in;
-  input p_7_in;
-  input [31:0]regdata1_ID;
-  input \mem_valid_reg[0]_0 ;
   input \mem_valid_reg[0]_1 ;
+  input \mem_valid_reg[0]_2 ;
   input [255:0]mem_valid;
   input \mem_valid_reg[1]_0 ;
   input \mem_valid_reg[2]_0 ;
@@ -32096,10 +32124,8 @@ module design_1_CPUTop_0_0_alu
   input \mem_valid_reg[240]_0 ;
 
   wire [0:0]CO;
-  wire [31:0]D;
+  wire [15:0]D;
   wire [3:0]DI;
-  wire [31:0]\NPC0_inferred__0/i__carry__6 ;
-  wire [31:0]\NPC0_inferred__0/i__carry__6_0 ;
   wire [31:0]Q;
   wire [3:0]S;
   wire alu_result0_carry__0_i_1_n_0;
@@ -32308,261 +32334,173 @@ module design_1_CPUTop_0_0_alu
   wire \alu_result_MA[0]_i_7_n_0 ;
   wire [3:0]\alu_result_MA[0]_i_8_0 ;
   wire \alu_result_MA[0]_i_8_n_0 ;
-  wire \alu_result_MA[10]_i_3_0 ;
-  wire \alu_result_MA[10]_i_3_n_0 ;
+  wire \alu_result_MA[10]_i_4_0 ;
   wire \alu_result_MA[10]_i_4_n_0 ;
-  wire \alu_result_MA[10]_i_5_n_0 ;
-  wire \alu_result_MA[11]_i_3_0 ;
-  wire \alu_result_MA[11]_i_3_n_0 ;
+  wire \alu_result_MA[10]_i_6_n_0 ;
+  wire \alu_result_MA[11]_i_4_0 ;
   wire \alu_result_MA[11]_i_4_n_0 ;
-  wire \alu_result_MA[11]_i_5_n_0 ;
-  wire \alu_result_MA[12]_i_3_n_0 ;
+  wire \alu_result_MA[11]_i_6_n_0 ;
   wire \alu_result_MA[12]_i_4_n_0 ;
-  wire \alu_result_MA[12]_i_5_n_0 ;
-  wire \alu_result_MA[13]_i_3_0 ;
-  wire \alu_result_MA[13]_i_3_1 ;
-  wire \alu_result_MA[13]_i_3_n_0 ;
+  wire \alu_result_MA[12]_i_7_n_0 ;
+  wire \alu_result_MA[13]_i_4_0 ;
+  wire \alu_result_MA[13]_i_4_1 ;
   wire \alu_result_MA[13]_i_4_n_0 ;
-  wire \alu_result_MA[13]_i_5_n_0 ;
-  wire \alu_result_MA[14]_i_3_n_0 ;
+  wire \alu_result_MA[13]_i_6_n_0 ;
   wire \alu_result_MA[14]_i_4_n_0 ;
-  wire \alu_result_MA[14]_i_5_n_0 ;
-  wire \alu_result_MA[15]_i_3_0 ;
-  wire \alu_result_MA[15]_i_3_n_0 ;
+  wire \alu_result_MA[14]_i_6_n_0 ;
+  wire \alu_result_MA[15]_i_4_0 ;
   wire \alu_result_MA[15]_i_4_n_0 ;
-  wire \alu_result_MA[15]_i_5_n_0 ;
-  wire \alu_result_MA[16]_i_3_0 ;
-  wire \alu_result_MA[16]_i_3_n_0 ;
+  wire \alu_result_MA[15]_i_6_n_0 ;
+  wire \alu_result_MA[16]_i_4_0 ;
   wire \alu_result_MA[16]_i_4_n_0 ;
-  wire \alu_result_MA[16]_i_5_n_0 ;
-  wire \alu_result_MA[17]_i_3_0 ;
-  wire \alu_result_MA[17]_i_3_n_0 ;
+  wire \alu_result_MA[16]_i_7_n_0 ;
+  wire \alu_result_MA[17]_i_4_0 ;
   wire \alu_result_MA[17]_i_4_n_0 ;
-  wire \alu_result_MA[17]_i_5_n_0 ;
-  wire \alu_result_MA[18]_i_3_0 ;
-  wire \alu_result_MA[18]_i_3_n_0 ;
+  wire \alu_result_MA[17]_i_6_n_0 ;
+  wire \alu_result_MA[18]_i_4_0 ;
   wire \alu_result_MA[18]_i_4_n_0 ;
-  wire \alu_result_MA[18]_i_5_n_0 ;
-  wire \alu_result_MA[19]_i_3_0 ;
-  wire \alu_result_MA[19]_i_3_n_0 ;
+  wire \alu_result_MA[18]_i_6_n_0 ;
+  wire \alu_result_MA[19]_i_4_0 ;
   wire \alu_result_MA[19]_i_4_n_0 ;
-  wire \alu_result_MA[19]_i_5_n_0 ;
-  wire \alu_result_MA[1]_i_3_0 ;
-  wire \alu_result_MA[1]_i_3_1 ;
-  wire \alu_result_MA[1]_i_3_n_0 ;
+  wire \alu_result_MA[19]_i_6_n_0 ;
+  wire \alu_result_MA[1]_i_4_0 ;
+  wire \alu_result_MA[1]_i_4_1 ;
   wire \alu_result_MA[1]_i_4_n_0 ;
-  wire \alu_result_MA[1]_i_5_n_0 ;
-  wire \alu_result_MA[20]_i_3_0 ;
-  wire \alu_result_MA[20]_i_3_n_0 ;
+  wire \alu_result_MA[1]_i_6_n_0 ;
+  wire \alu_result_MA[20]_i_4_0 ;
   wire \alu_result_MA[20]_i_4_n_0 ;
-  wire \alu_result_MA[20]_i_5_n_0 ;
-  wire \alu_result_MA[21]_i_3_0 ;
-  wire \alu_result_MA[21]_i_3_n_0 ;
+  wire \alu_result_MA[20]_i_7_n_0 ;
+  wire \alu_result_MA[21]_i_4_0 ;
   wire \alu_result_MA[21]_i_4_n_0 ;
-  wire \alu_result_MA[21]_i_5_n_0 ;
-  wire \alu_result_MA[22]_i_3_0 ;
-  wire \alu_result_MA[22]_i_3_n_0 ;
+  wire \alu_result_MA[21]_i_6_n_0 ;
+  wire \alu_result_MA[22]_i_4_0 ;
   wire \alu_result_MA[22]_i_4_n_0 ;
-  wire \alu_result_MA[22]_i_5_n_0 ;
-  wire \alu_result_MA[23]_i_3_0 ;
-  wire \alu_result_MA[23]_i_3_n_0 ;
+  wire \alu_result_MA[22]_i_6_n_0 ;
+  wire \alu_result_MA[23]_i_4_0 ;
   wire \alu_result_MA[23]_i_4_n_0 ;
-  wire \alu_result_MA[23]_i_5_n_0 ;
-  wire \alu_result_MA[24]_i_3_0 ;
-  wire \alu_result_MA[24]_i_3_n_0 ;
+  wire \alu_result_MA[23]_i_6_n_0 ;
+  wire \alu_result_MA[24]_i_4_0 ;
   wire \alu_result_MA[24]_i_4_n_0 ;
-  wire \alu_result_MA[24]_i_5_n_0 ;
-  wire \alu_result_MA[25]_i_3_0 ;
-  wire \alu_result_MA[25]_i_3_n_0 ;
+  wire \alu_result_MA[24]_i_7_n_0 ;
+  wire \alu_result_MA[25]_i_4_0 ;
   wire \alu_result_MA[25]_i_4_n_0 ;
-  wire \alu_result_MA[25]_i_5_n_0 ;
-  wire \alu_result_MA[26]_i_3_0 ;
-  wire \alu_result_MA[26]_i_3_n_0 ;
+  wire \alu_result_MA[25]_i_6_n_0 ;
+  wire \alu_result_MA[26]_i_4_0 ;
   wire \alu_result_MA[26]_i_4_n_0 ;
-  wire \alu_result_MA[26]_i_5_n_0 ;
-  wire \alu_result_MA[27]_i_3_0 ;
-  wire \alu_result_MA[27]_i_3_n_0 ;
+  wire \alu_result_MA[26]_i_6_n_0 ;
+  wire \alu_result_MA[27]_i_4_0 ;
   wire \alu_result_MA[27]_i_4_n_0 ;
-  wire \alu_result_MA[27]_i_5_n_0 ;
-  wire \alu_result_MA[28]_i_3_0 ;
-  wire \alu_result_MA[28]_i_3_n_0 ;
+  wire \alu_result_MA[27]_i_6_n_0 ;
+  wire \alu_result_MA[28]_i_4_0 ;
   wire \alu_result_MA[28]_i_4_n_0 ;
-  wire \alu_result_MA[28]_i_5_n_0 ;
-  wire \alu_result_MA[29]_i_3_0 ;
-  wire \alu_result_MA[29]_i_3_n_0 ;
+  wire \alu_result_MA[28]_i_7_n_0 ;
+  wire \alu_result_MA[29]_i_4_0 ;
   wire \alu_result_MA[29]_i_4_n_0 ;
-  wire \alu_result_MA[29]_i_5_n_0 ;
-  wire \alu_result_MA[2]_i_3_0 ;
-  wire \alu_result_MA[2]_i_3_n_0 ;
+  wire \alu_result_MA[29]_i_6_n_0 ;
+  wire \alu_result_MA[2]_i_4_0 ;
   wire \alu_result_MA[2]_i_4_n_0 ;
-  wire \alu_result_MA[2]_i_5_n_0 ;
-  wire \alu_result_MA[30]_i_3_0 ;
-  wire \alu_result_MA[30]_i_3_n_0 ;
-  wire \alu_result_MA[30]_i_4_n_0 ;
-  wire \alu_result_MA[30]_i_5_n_0 ;
-  wire \alu_result_MA[31]_i_3_n_0 ;
+  wire \alu_result_MA[2]_i_6_n_0 ;
+  wire \alu_result_MA[30]_i_6_0 ;
+  wire \alu_result_MA[30]_i_6_n_0 ;
+  wire \alu_result_MA[30]_i_9_n_0 ;
   wire \alu_result_MA[31]_i_4_n_0 ;
   wire \alu_result_MA[31]_i_5_n_0 ;
-  wire \alu_result_MA[3]_i_3_0 ;
-  wire \alu_result_MA[3]_i_3_n_0 ;
+  wire \alu_result_MA[31]_i_6_n_0 ;
+  wire \alu_result_MA[3]_i_4_0 ;
   wire \alu_result_MA[3]_i_4_n_0 ;
-  wire \alu_result_MA[3]_i_5_n_0 ;
-  wire \alu_result_MA[4]_i_3_n_0 ;
+  wire \alu_result_MA[3]_i_6_n_0 ;
   wire \alu_result_MA[4]_i_4_n_0 ;
-  wire \alu_result_MA[4]_i_5_n_0 ;
-  wire \alu_result_MA[5]_i_3_0 ;
-  wire \alu_result_MA[5]_i_3_1 ;
-  wire \alu_result_MA[5]_i_3_n_0 ;
+  wire \alu_result_MA[4]_i_7_n_0 ;
+  wire \alu_result_MA[5]_i_4_0 ;
+  wire \alu_result_MA[5]_i_4_1 ;
   wire \alu_result_MA[5]_i_4_n_0 ;
-  wire \alu_result_MA[5]_i_5_n_0 ;
-  wire \alu_result_MA[6]_i_3_0 ;
-  wire \alu_result_MA[6]_i_3_n_0 ;
+  wire \alu_result_MA[5]_i_6_n_0 ;
+  wire \alu_result_MA[6]_i_4_0 ;
   wire \alu_result_MA[6]_i_4_n_0 ;
-  wire \alu_result_MA[6]_i_5_n_0 ;
-  wire \alu_result_MA[7]_i_3_0 ;
-  wire \alu_result_MA[7]_i_3_n_0 ;
+  wire \alu_result_MA[6]_i_6_n_0 ;
+  wire \alu_result_MA[7]_i_4_0 ;
   wire \alu_result_MA[7]_i_4_n_0 ;
-  wire \alu_result_MA[7]_i_5_n_0 ;
-  wire \alu_result_MA[8]_i_3_0 ;
-  wire \alu_result_MA[8]_i_3_n_0 ;
+  wire \alu_result_MA[7]_i_6_n_0 ;
+  wire \alu_result_MA[8]_i_4_0 ;
   wire \alu_result_MA[8]_i_4_n_0 ;
-  wire \alu_result_MA[8]_i_5_n_0 ;
-  wire \alu_result_MA[9]_i_3_0 ;
-  wire \alu_result_MA[9]_i_3_n_0 ;
+  wire \alu_result_MA[8]_i_7_n_0 ;
+  wire \alu_result_MA[9]_i_4_0 ;
   wire \alu_result_MA[9]_i_4_n_0 ;
-  wire \alu_result_MA[9]_i_5_n_0 ;
+  wire \alu_result_MA[9]_i_6_n_0 ;
   wire \alu_result_MA_reg[0] ;
   wire \alu_result_MA_reg[0]_i_3_n_0 ;
   wire \alu_result_MA_reg[10] ;
-  wire \alu_result_MA_reg[10]_0 ;
-  wire \alu_result_MA_reg[10]_1 ;
+  wire \alu_result_MA_reg[10]_i_2_n_0 ;
   wire \alu_result_MA_reg[11] ;
-  wire \alu_result_MA_reg[11]_0 ;
-  wire \alu_result_MA_reg[11]_1 ;
+  wire \alu_result_MA_reg[11]_i_2_n_0 ;
   wire \alu_result_MA_reg[12] ;
-  wire \alu_result_MA_reg[12]_0 ;
-  wire \alu_result_MA_reg[12]_1 ;
+  wire \alu_result_MA_reg[12]_i_2_n_0 ;
   wire \alu_result_MA_reg[13] ;
-  wire \alu_result_MA_reg[13]_0 ;
-  wire \alu_result_MA_reg[13]_1 ;
+  wire \alu_result_MA_reg[13]_i_2_n_0 ;
   wire \alu_result_MA_reg[14] ;
-  wire \alu_result_MA_reg[14]_0 ;
-  wire \alu_result_MA_reg[14]_1 ;
+  wire \alu_result_MA_reg[14]_i_2_n_0 ;
   wire \alu_result_MA_reg[15] ;
-  wire \alu_result_MA_reg[15]_0 ;
-  wire \alu_result_MA_reg[15]_1 ;
+  wire \alu_result_MA_reg[15]_i_2_n_0 ;
   wire \alu_result_MA_reg[16] ;
-  wire \alu_result_MA_reg[16]_0 ;
-  wire \alu_result_MA_reg[16]_1 ;
+  wire \alu_result_MA_reg[16]_i_2_n_0 ;
   wire \alu_result_MA_reg[17] ;
-  wire \alu_result_MA_reg[17]_0 ;
-  wire \alu_result_MA_reg[17]_1 ;
+  wire \alu_result_MA_reg[17]_i_2_n_0 ;
   wire \alu_result_MA_reg[18] ;
-  wire \alu_result_MA_reg[18]_0 ;
-  wire \alu_result_MA_reg[18]_1 ;
+  wire \alu_result_MA_reg[18]_i_2_n_0 ;
   wire \alu_result_MA_reg[19] ;
-  wire \alu_result_MA_reg[19]_0 ;
-  wire \alu_result_MA_reg[19]_1 ;
+  wire \alu_result_MA_reg[19]_i_2_n_0 ;
   wire \alu_result_MA_reg[1] ;
-  wire \alu_result_MA_reg[1]_0 ;
-  wire \alu_result_MA_reg[1]_1 ;
+  wire \alu_result_MA_reg[1]_i_2_n_0 ;
   wire \alu_result_MA_reg[20] ;
-  wire \alu_result_MA_reg[20]_0 ;
-  wire \alu_result_MA_reg[20]_1 ;
+  wire \alu_result_MA_reg[20]_i_2_n_0 ;
   wire \alu_result_MA_reg[21] ;
-  wire \alu_result_MA_reg[21]_0 ;
-  wire \alu_result_MA_reg[21]_1 ;
+  wire \alu_result_MA_reg[21]_i_2_n_0 ;
   wire \alu_result_MA_reg[22] ;
-  wire \alu_result_MA_reg[22]_0 ;
-  wire \alu_result_MA_reg[22]_1 ;
+  wire \alu_result_MA_reg[22]_i_2_n_0 ;
   wire \alu_result_MA_reg[23] ;
-  wire \alu_result_MA_reg[23]_0 ;
-  wire \alu_result_MA_reg[23]_1 ;
+  wire \alu_result_MA_reg[23]_i_2_n_0 ;
   wire \alu_result_MA_reg[24] ;
-  wire \alu_result_MA_reg[24]_0 ;
-  wire \alu_result_MA_reg[24]_1 ;
+  wire \alu_result_MA_reg[24]_i_2_n_0 ;
   wire \alu_result_MA_reg[25] ;
-  wire \alu_result_MA_reg[25]_0 ;
-  wire \alu_result_MA_reg[25]_1 ;
+  wire \alu_result_MA_reg[25]_i_2_n_0 ;
   wire \alu_result_MA_reg[26] ;
-  wire \alu_result_MA_reg[26]_0 ;
-  wire \alu_result_MA_reg[26]_1 ;
+  wire \alu_result_MA_reg[26]_i_2_n_0 ;
   wire \alu_result_MA_reg[27] ;
-  wire \alu_result_MA_reg[27]_0 ;
-  wire \alu_result_MA_reg[27]_1 ;
+  wire \alu_result_MA_reg[27]_i_2_n_0 ;
   wire \alu_result_MA_reg[28] ;
-  wire \alu_result_MA_reg[28]_0 ;
-  wire \alu_result_MA_reg[28]_1 ;
+  wire \alu_result_MA_reg[28]_i_2_n_0 ;
   wire \alu_result_MA_reg[29] ;
-  wire \alu_result_MA_reg[29]_0 ;
-  wire \alu_result_MA_reg[29]_1 ;
+  wire \alu_result_MA_reg[29]_i_2_n_0 ;
   wire \alu_result_MA_reg[2] ;
-  wire \alu_result_MA_reg[2]_0 ;
-  wire \alu_result_MA_reg[2]_1 ;
+  wire \alu_result_MA_reg[2]_i_2_n_0 ;
   wire \alu_result_MA_reg[30] ;
   wire \alu_result_MA_reg[30]_0 ;
-  wire \alu_result_MA_reg[30]_1 ;
+  wire \alu_result_MA_reg[30]_i_3_n_0 ;
   wire [5:0]\alu_result_MA_reg[31] ;
   wire \alu_result_MA_reg[31]_0 ;
   wire \alu_result_MA_reg[31]_1 ;
-  wire \alu_result_MA_reg[31]_2 ;
+  wire \alu_result_MA_reg[31]_i_3_0 ;
+  wire \alu_result_MA_reg[31]_i_3_n_0 ;
   wire \alu_result_MA_reg[3] ;
-  wire \alu_result_MA_reg[3]_0 ;
-  wire \alu_result_MA_reg[3]_1 ;
+  wire \alu_result_MA_reg[3]_i_2_n_0 ;
   wire \alu_result_MA_reg[4] ;
-  wire \alu_result_MA_reg[4]_0 ;
-  wire \alu_result_MA_reg[4]_1 ;
+  wire \alu_result_MA_reg[4]_i_2_n_0 ;
   wire \alu_result_MA_reg[5] ;
-  wire \alu_result_MA_reg[5]_0 ;
-  wire \alu_result_MA_reg[5]_1 ;
+  wire \alu_result_MA_reg[5]_i_2_n_0 ;
   wire \alu_result_MA_reg[6] ;
-  wire \alu_result_MA_reg[6]_0 ;
-  wire \alu_result_MA_reg[6]_1 ;
+  wire \alu_result_MA_reg[6]_i_2_n_0 ;
   wire \alu_result_MA_reg[7] ;
-  wire \alu_result_MA_reg[7]_0 ;
-  wire \alu_result_MA_reg[7]_1 ;
+  wire \alu_result_MA_reg[7]_i_2_n_0 ;
   wire \alu_result_MA_reg[8] ;
-  wire \alu_result_MA_reg[8]_0 ;
-  wire \alu_result_MA_reg[8]_1 ;
+  wire \alu_result_MA_reg[8]_i_2_n_0 ;
   wire \alu_result_MA_reg[9] ;
-  wire \alu_result_MA_reg[9]_0 ;
-  wire \alu_result_MA_reg[9]_1 ;
+  wire \alu_result_MA_reg[9]_i_2_n_0 ;
   wire \alucode_EX_reg[3] ;
   wire [31:0]\alucode_EX_reg[4] ;
   wire [31:0]\alucode_EX_reg[4]_0 ;
   wire [31:0]\alucode_EX_reg[4]_1 ;
   wire \alucode_EX_reg[5] ;
   wire \alucode_EX_reg[5]_0 ;
-  wire \alucode_EX_reg[5]_1 ;
-  wire \alucode_EX_reg[5]_10 ;
-  wire \alucode_EX_reg[5]_11 ;
-  wire \alucode_EX_reg[5]_12 ;
-  wire \alucode_EX_reg[5]_13 ;
-  wire \alucode_EX_reg[5]_14 ;
-  wire \alucode_EX_reg[5]_15 ;
-  wire \alucode_EX_reg[5]_16 ;
-  wire \alucode_EX_reg[5]_17 ;
-  wire \alucode_EX_reg[5]_18 ;
-  wire \alucode_EX_reg[5]_19 ;
-  wire \alucode_EX_reg[5]_2 ;
-  wire \alucode_EX_reg[5]_20 ;
-  wire \alucode_EX_reg[5]_21 ;
-  wire \alucode_EX_reg[5]_22 ;
-  wire \alucode_EX_reg[5]_23 ;
-  wire \alucode_EX_reg[5]_24 ;
-  wire \alucode_EX_reg[5]_25 ;
-  wire \alucode_EX_reg[5]_26 ;
-  wire \alucode_EX_reg[5]_27 ;
-  wire \alucode_EX_reg[5]_28 ;
-  wire \alucode_EX_reg[5]_29 ;
-  wire \alucode_EX_reg[5]_3 ;
-  wire \alucode_EX_reg[5]_30 ;
-  wire \alucode_EX_reg[5]_4 ;
-  wire \alucode_EX_reg[5]_5 ;
-  wire \alucode_EX_reg[5]_6 ;
-  wire \alucode_EX_reg[5]_7 ;
-  wire \alucode_EX_reg[5]_8 ;
-  wire \alucode_EX_reg[5]_9 ;
   wire br_taken6_carry__0_i_1_n_0;
   wire br_taken6_carry__0_i_2_n_0;
   wire br_taken6_carry__0_i_3_n_0;
@@ -32608,27 +32546,24 @@ module design_1_CPUTop_0_0_alu
   wire data2;
   wire data3;
   wire data4;
-  wire is_oprl_fwd_EE__0;
-  wire is_oprl_fwd_ME__0;
+  wire [0:0]data7;
+  wire is_oprl_fwd_EE__1;
+  wire is_oprl_fwd_ME__1;
   wire is_oprr_fwd_EE__0;
   wire is_oprr_fwd_ME__0;
   wire [3:0]mem_reg_0_63_0_2_i_10_0;
   wire [3:0]mem_reg_0_63_0_2_i_10_1;
   wire mem_reg_0_63_0_2_i_10_n_0;
   wire mem_reg_0_63_0_2_i_11_n_0;
-  wire [0:0]mem_reg_0_63_0_2_i_7_0;
   wire mem_reg_0_63_0_2_i_7_n_0;
-  wire [3:0]mem_reg_0_63_0_2_i_8_0;
-  wire [3:0]mem_reg_0_63_0_2_i_8_1;
-  wire mem_reg_0_63_0_2_i_8_n_0;
+  wire [3:0]mem_reg_0_63_0_2_i_9_0;
+  wire [3:0]mem_reg_0_63_0_2_i_9_1;
+  wire mem_reg_0_63_0_2_i_9_n_0;
   wire [255:0]mem_valid;
-  wire \mem_valid[127]_i_3_n_0 ;
-  wire \mem_valid[191]_i_3_n_0 ;
-  wire \mem_valid[255]_i_4_n_0 ;
-  wire \mem_valid[63]_i_3_n_0 ;
   wire \mem_valid_reg[0] ;
   wire \mem_valid_reg[0]_0 ;
   wire \mem_valid_reg[0]_1 ;
+  wire \mem_valid_reg[0]_2 ;
   wire \mem_valid_reg[100] ;
   wire \mem_valid_reg[101] ;
   wire \mem_valid_reg[102] ;
@@ -32914,21 +32849,113 @@ module design_1_CPUTop_0_0_alu
   wire \mem_valid_reg[99] ;
   wire \mem_valid_reg[9] ;
   wire \mem_valid_reg[9]_0 ;
+  wire [13:0]npc_EX;
+  wire [31:16]npc_EX__0;
+  wire [1:0]\npc_jalr_EX_reg[1] ;
+  wire \oprl_EX_reg[10] ;
+  wire \oprl_EX_reg[11] ;
+  wire \oprl_EX_reg[12] ;
+  wire \oprl_EX_reg[13] ;
+  wire \oprl_EX_reg[14] ;
+  wire \oprl_EX_reg[15] ;
+  wire \oprl_EX_reg[16] ;
+  wire \oprl_EX_reg[17] ;
+  wire \oprl_EX_reg[18] ;
+  wire \oprl_EX_reg[19] ;
+  wire \oprl_EX_reg[1] ;
+  wire \oprl_EX_reg[20] ;
+  wire \oprl_EX_reg[21] ;
+  wire \oprl_EX_reg[22] ;
+  wire \oprl_EX_reg[23] ;
+  wire \oprl_EX_reg[24] ;
+  wire \oprl_EX_reg[25] ;
+  wire \oprl_EX_reg[26] ;
+  wire \oprl_EX_reg[27] ;
+  wire \oprl_EX_reg[28] ;
+  wire \oprl_EX_reg[29] ;
+  wire \oprl_EX_reg[2] ;
+  wire \oprl_EX_reg[30] ;
+  wire \oprl_EX_reg[3] ;
+  wire \oprl_EX_reg[4] ;
+  wire \oprl_EX_reg[5] ;
+  wire \oprl_EX_reg[6] ;
+  wire \oprl_EX_reg[7] ;
+  wire \oprl_EX_reg[8] ;
+  wire \oprl_EX_reg[9] ;
   wire [31:0]oprl_ID;
   wire [31:0]oprr_ID;
+  wire [29:0]p_0_out;
+  wire p_3_in;
   wire p_4_in;
-  wire p_5_in;
-  wire p_6_in;
-  wire p_7_in;
-  wire [3:0]\pc_EX_reg[11] ;
-  wire [3:0]\pc_EX_reg[15] ;
-  wire [3:0]\pc_EX_reg[19] ;
-  wire [3:0]\pc_EX_reg[23] ;
-  wire [3:0]\pc_EX_reg[27] ;
-  wire [3:0]\pc_EX_reg[31] ;
-  wire [3:0]\pc_EX_reg[3] ;
-  wire [3:0]\pc_EX_reg[7] ;
-  wire [31:0]regdata1_ID;
+  wire [3:0]\pc_ID_reg[21] ;
+  wire [2:0]\pc_ID_reg[30] ;
+  wire [3:0]\pc_ID_reg[9] ;
+  wire pc_IF1;
+  wire [31:0]pc_IF2_carry__1;
+  wire [31:0]\pc_IF_reg[31] ;
+  wire [31:0]\pc_IF_reg[31]_0 ;
+  wire \pc_IF_reg[31]_1 ;
+  wire [31:0]\pc_IF_reg[31]_2 ;
+  wire \regdata2_EX[10]_i_2_0 ;
+  wire \regdata2_EX[10]_i_3_n_0 ;
+  wire \regdata2_EX[11]_i_2_0 ;
+  wire \regdata2_EX[11]_i_3_n_0 ;
+  wire \regdata2_EX[12]_i_2_0 ;
+  wire \regdata2_EX[12]_i_3_n_0 ;
+  wire \regdata2_EX[13]_i_2_0 ;
+  wire \regdata2_EX[13]_i_3_n_0 ;
+  wire \regdata2_EX[14]_i_2_0 ;
+  wire \regdata2_EX[14]_i_3_n_0 ;
+  wire \regdata2_EX[15]_i_2_0 ;
+  wire \regdata2_EX[15]_i_3_n_0 ;
+  wire \regdata2_EX[16]_i_2_0 ;
+  wire \regdata2_EX[16]_i_3_n_0 ;
+  wire \regdata2_EX[17]_i_2_0 ;
+  wire \regdata2_EX[17]_i_3_n_0 ;
+  wire \regdata2_EX[18]_i_2_0 ;
+  wire \regdata2_EX[18]_i_3_n_0 ;
+  wire \regdata2_EX[19]_i_2_0 ;
+  wire \regdata2_EX[19]_i_3_n_0 ;
+  wire \regdata2_EX[1]_i_2_0 ;
+  wire \regdata2_EX[1]_i_3_n_0 ;
+  wire \regdata2_EX[20]_i_2_0 ;
+  wire \regdata2_EX[20]_i_3_n_0 ;
+  wire \regdata2_EX[21]_i_2_0 ;
+  wire \regdata2_EX[21]_i_3_n_0 ;
+  wire \regdata2_EX[22]_i_2_0 ;
+  wire \regdata2_EX[22]_i_3_n_0 ;
+  wire \regdata2_EX[23]_i_2_0 ;
+  wire \regdata2_EX[23]_i_3_n_0 ;
+  wire \regdata2_EX[24]_i_2_0 ;
+  wire \regdata2_EX[24]_i_3_n_0 ;
+  wire \regdata2_EX[25]_i_2_0 ;
+  wire \regdata2_EX[25]_i_3_n_0 ;
+  wire \regdata2_EX[26]_i_2_0 ;
+  wire \regdata2_EX[26]_i_3_n_0 ;
+  wire \regdata2_EX[27]_i_2_0 ;
+  wire \regdata2_EX[27]_i_3_n_0 ;
+  wire \regdata2_EX[28]_i_2_0 ;
+  wire \regdata2_EX[28]_i_3_n_0 ;
+  wire \regdata2_EX[29]_i_2_0 ;
+  wire \regdata2_EX[29]_i_3_n_0 ;
+  wire \regdata2_EX[2]_i_2_0 ;
+  wire \regdata2_EX[2]_i_3_n_0 ;
+  wire \regdata2_EX[30]_i_2_0 ;
+  wire \regdata2_EX[30]_i_3_n_0 ;
+  wire \regdata2_EX[3]_i_2_0 ;
+  wire \regdata2_EX[3]_i_3_n_0 ;
+  wire \regdata2_EX[4]_i_2_0 ;
+  wire \regdata2_EX[4]_i_3_n_0 ;
+  wire \regdata2_EX[5]_i_2_0 ;
+  wire \regdata2_EX[5]_i_3_n_0 ;
+  wire \regdata2_EX[6]_i_2_0 ;
+  wire \regdata2_EX[6]_i_3_n_0 ;
+  wire \regdata2_EX[7]_i_2_0 ;
+  wire \regdata2_EX[7]_i_3_n_0 ;
+  wire \regdata2_EX[8]_i_2_0 ;
+  wire \regdata2_EX[8]_i_3_n_0 ;
+  wire \regdata2_EX[9]_i_2_0 ;
+  wire \regdata2_EX[9]_i_3_n_0 ;
   wire [31:0]regdata2_ID;
   wire [3:3]NLW_alu_result0_carry__6_CO_UNCONNECTED;
   wire [3:3]NLW_alu_result1_carry__6_CO_UNCONNECTED;
@@ -33814,9 +33841,9 @@ module design_1_CPUTop_0_0_alu
        (.CI(alu_result5_carry__1_n_0),
         .CO({data3,alu_result5_carry__2_n_1,alu_result5_carry__2_n_2,alu_result5_carry__2_n_3}),
         .CYINIT(1'b0),
-        .DI(mem_reg_0_63_0_2_i_8_0),
+        .DI(mem_reg_0_63_0_2_i_9_0),
         .O(NLW_alu_result5_carry__2_O_UNCONNECTED[3:0]),
-        .S(mem_reg_0_63_0_2_i_8_1));
+        .S(mem_reg_0_63_0_2_i_9_1));
   LUT4 #(
     .INIT(16'h2F02)) 
     alu_result5_carry_i_1
@@ -33890,7 +33917,7 @@ module design_1_CPUTop_0_0_alu
         .I3(\alu_result_MA_reg[0]_i_3_n_0 ),
         .I4(\alu_result_MA_reg[31] [4]),
         .I5(\alu_result_MA[0]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_30 ));
+        .O(\alucode_EX_reg[5]_0 ));
   LUT6 #(
     .INIT(64'h8888888888B8B830)) 
     \alu_result_MA[0]_i_4 
@@ -33922,921 +33949,682 @@ module design_1_CPUTop_0_0_alu
         .I5(data1[0]),
         .O(\alu_result_MA[0]_i_8_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[10]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[10] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[10]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[10]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_20 ));
+       (.I0(\alu_result_MA_reg[10]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[10]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[10] ),
+        .O(p_0_out[9]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[10]_i_3 
-       (.I0(\alu_result_MA[10]_i_5_n_0 ),
+    \alu_result_MA[10]_i_4 
+       (.I0(\alu_result_MA[10]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[10]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[10]_1 ),
-        .O(\alu_result_MA[10]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[10]_i_4 
-       (.I0(data0[10]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[10]_0 ),
+        .I4(\regdata2_EX[10]_i_2_0 ),
         .O(\alu_result_MA[10]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[10]_i_5 
+    \alu_result_MA[10]_i_6 
        (.I0(data1[10]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[9]_i_3_0 ),
+        .I2(\alu_result_MA[9]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[10]_i_3_0 ),
+        .I4(\alu_result_MA[10]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[10]_i_5_n_0 ));
+        .O(\alu_result_MA[10]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[11]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[11] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[11]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[11]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_19 ));
+       (.I0(\alu_result_MA_reg[11]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[11]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[11] ),
+        .O(p_0_out[10]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[11]_i_3 
-       (.I0(\alu_result_MA[11]_i_5_n_0 ),
+    \alu_result_MA[11]_i_4 
+       (.I0(\alu_result_MA[11]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[11]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[11]_1 ),
-        .O(\alu_result_MA[11]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[11]_i_4 
-       (.I0(data0[11]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[11]_0 ),
+        .I4(\regdata2_EX[11]_i_2_0 ),
         .O(\alu_result_MA[11]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[11]_i_5 
+    \alu_result_MA[11]_i_6 
        (.I0(data1[11]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[10]_i_3_0 ),
+        .I2(\alu_result_MA[10]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[11]_i_3_0 ),
+        .I4(\alu_result_MA[11]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[11]_i_5_n_0 ));
+        .O(\alu_result_MA[11]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[12]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[12] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[12]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[12]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_18 ));
+       (.I0(\alu_result_MA_reg[12]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[12]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[12] ),
+        .O(p_0_out[11]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[12]_i_3 
-       (.I0(\alu_result_MA[12]_i_5_n_0 ),
+    \alu_result_MA[12]_i_4 
+       (.I0(\alu_result_MA[12]_i_7_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[12]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[12]_1 ),
-        .O(\alu_result_MA[12]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[12]_i_4 
-       (.I0(data0[12]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[12]_0 ),
+        .I4(\regdata2_EX[12]_i_2_0 ),
         .O(\alu_result_MA[12]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[12]_i_5 
+    \alu_result_MA[12]_i_7 
        (.I0(data1[12]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[11]_i_3_0 ),
+        .I2(\alu_result_MA[11]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[13]_i_3_0 ),
+        .I4(\alu_result_MA[13]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[12]_i_5_n_0 ));
+        .O(\alu_result_MA[12]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[13]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[13] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[13]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[13]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_17 ));
+       (.I0(\alu_result_MA_reg[13]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[13]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[13] ),
+        .O(p_0_out[12]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[13]_i_3 
-       (.I0(\alu_result_MA[13]_i_5_n_0 ),
+    \alu_result_MA[13]_i_4 
+       (.I0(\alu_result_MA[13]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[13]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[13]_1 ),
-        .O(\alu_result_MA[13]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[13]_i_4 
-       (.I0(data0[13]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[13]_0 ),
+        .I4(\regdata2_EX[13]_i_2_0 ),
         .O(\alu_result_MA[13]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[13]_i_5 
+    \alu_result_MA[13]_i_6 
        (.I0(data1[13]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[13]_i_3_0 ),
+        .I2(\alu_result_MA[13]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[13]_i_3_1 ),
+        .I4(\alu_result_MA[13]_i_4_1 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[13]_i_5_n_0 ));
+        .O(\alu_result_MA[13]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[14]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[14] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[14]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[14]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_16 ));
+       (.I0(\alu_result_MA_reg[14]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[14]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[14] ),
+        .O(p_0_out[13]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[14]_i_3 
-       (.I0(\alu_result_MA[14]_i_5_n_0 ),
+    \alu_result_MA[14]_i_4 
+       (.I0(\alu_result_MA[14]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[14]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[14]_1 ),
-        .O(\alu_result_MA[14]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[14]_i_4 
-       (.I0(data0[14]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[14]_0 ),
+        .I4(\regdata2_EX[14]_i_2_0 ),
         .O(\alu_result_MA[14]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[14]_i_5 
+    \alu_result_MA[14]_i_6 
        (.I0(data1[14]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[13]_i_3_1 ),
+        .I2(\alu_result_MA[13]_i_4_1 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[15]_i_3_0 ),
+        .I4(\alu_result_MA[15]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[14]_i_5_n_0 ));
+        .O(\alu_result_MA[14]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[15]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[15] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[15]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[15]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_15 ));
+       (.I0(\alu_result_MA_reg[15]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[15]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[15] ),
+        .O(p_0_out[14]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[15]_i_3 
-       (.I0(\alu_result_MA[15]_i_5_n_0 ),
+    \alu_result_MA[15]_i_4 
+       (.I0(\alu_result_MA[15]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[15]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[15]_1 ),
-        .O(\alu_result_MA[15]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[15]_i_4 
-       (.I0(data0[15]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[15]_0 ),
+        .I4(\regdata2_EX[15]_i_2_0 ),
         .O(\alu_result_MA[15]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[15]_i_5 
+    \alu_result_MA[15]_i_6 
        (.I0(data1[15]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[15]_i_3_0 ),
+        .I2(\alu_result_MA[15]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[16]_i_3_0 ),
+        .I4(\alu_result_MA[16]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[15]_i_5_n_0 ));
+        .O(\alu_result_MA[15]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[16]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[16] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[16]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[16]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_14 ));
+       (.I0(\alu_result_MA_reg[16]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[16]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[16] ),
+        .O(p_0_out[15]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[16]_i_3 
-       (.I0(\alu_result_MA[16]_i_5_n_0 ),
+    \alu_result_MA[16]_i_4 
+       (.I0(\alu_result_MA[16]_i_7_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[16]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[16]_1 ),
-        .O(\alu_result_MA[16]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[16]_i_4 
-       (.I0(data0[16]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[16]_0 ),
+        .I4(\regdata2_EX[16]_i_2_0 ),
         .O(\alu_result_MA[16]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[16]_i_5 
+    \alu_result_MA[16]_i_7 
        (.I0(data1[16]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[16]_i_3_0 ),
+        .I2(\alu_result_MA[16]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[17]_i_3_0 ),
+        .I4(\alu_result_MA[17]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[16]_i_5_n_0 ));
+        .O(\alu_result_MA[16]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[17]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[17] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[17]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[17]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_13 ));
+       (.I0(\alu_result_MA_reg[17]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[17]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[17] ),
+        .O(p_0_out[16]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[17]_i_3 
-       (.I0(\alu_result_MA[17]_i_5_n_0 ),
+    \alu_result_MA[17]_i_4 
+       (.I0(\alu_result_MA[17]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[17]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[17]_1 ),
-        .O(\alu_result_MA[17]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[17]_i_4 
-       (.I0(data0[17]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[17]_0 ),
+        .I4(\regdata2_EX[17]_i_2_0 ),
         .O(\alu_result_MA[17]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[17]_i_5 
+    \alu_result_MA[17]_i_6 
        (.I0(data1[17]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[17]_i_3_0 ),
+        .I2(\alu_result_MA[17]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[18]_i_3_0 ),
+        .I4(\alu_result_MA[18]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[17]_i_5_n_0 ));
+        .O(\alu_result_MA[17]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[18]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[18] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[18]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[18]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_12 ));
+       (.I0(\alu_result_MA_reg[18]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[18]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[18] ),
+        .O(p_0_out[17]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[18]_i_3 
-       (.I0(\alu_result_MA[18]_i_5_n_0 ),
+    \alu_result_MA[18]_i_4 
+       (.I0(\alu_result_MA[18]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[18]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[18]_1 ),
-        .O(\alu_result_MA[18]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[18]_i_4 
-       (.I0(data0[18]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[18]_0 ),
+        .I4(\regdata2_EX[18]_i_2_0 ),
         .O(\alu_result_MA[18]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[18]_i_5 
+    \alu_result_MA[18]_i_6 
        (.I0(data1[18]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[18]_i_3_0 ),
+        .I2(\alu_result_MA[18]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[19]_i_3_0 ),
+        .I4(\alu_result_MA[19]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[18]_i_5_n_0 ));
+        .O(\alu_result_MA[18]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[19]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[19] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[19]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[19]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_11 ));
+       (.I0(\alu_result_MA_reg[19]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[19]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[19] ),
+        .O(p_0_out[18]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[19]_i_3 
-       (.I0(\alu_result_MA[19]_i_5_n_0 ),
+    \alu_result_MA[19]_i_4 
+       (.I0(\alu_result_MA[19]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[19]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[19]_1 ),
-        .O(\alu_result_MA[19]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[19]_i_4 
-       (.I0(data0[19]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[19]_0 ),
+        .I4(\regdata2_EX[19]_i_2_0 ),
         .O(\alu_result_MA[19]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[19]_i_5 
+    \alu_result_MA[19]_i_6 
        (.I0(data1[19]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[19]_i_3_0 ),
+        .I2(\alu_result_MA[19]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[20]_i_3_0 ),
+        .I4(\alu_result_MA[20]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[19]_i_5_n_0 ));
+        .O(\alu_result_MA[19]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[1]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[1] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[1]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[1]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_29 ));
+       (.I0(\alu_result_MA_reg[1]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[1]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[1] ),
+        .O(p_0_out[0]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[1]_i_3 
-       (.I0(\alu_result_MA[1]_i_5_n_0 ),
+    \alu_result_MA[1]_i_4 
+       (.I0(\alu_result_MA[1]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[1]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[1]_1 ),
-        .O(\alu_result_MA[1]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[1]_i_4 
-       (.I0(data0[1]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[1]_0 ),
+        .I4(\regdata2_EX[1]_i_2_0 ),
         .O(\alu_result_MA[1]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[1]_i_5 
+    \alu_result_MA[1]_i_6 
        (.I0(data1[1]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[1]_i_3_1 ),
+        .I2(\alu_result_MA[1]_i_4_1 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[1]_i_3_0 ),
+        .I4(\alu_result_MA[1]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[1]_i_5_n_0 ));
+        .O(\alu_result_MA[1]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[20]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[20] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[20]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[20]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_10 ));
+       (.I0(\alu_result_MA_reg[20]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[20]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[20] ),
+        .O(p_0_out[19]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[20]_i_3 
-       (.I0(\alu_result_MA[20]_i_5_n_0 ),
+    \alu_result_MA[20]_i_4 
+       (.I0(\alu_result_MA[20]_i_7_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[20]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[20]_1 ),
-        .O(\alu_result_MA[20]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[20]_i_4 
-       (.I0(data0[20]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[20]_0 ),
+        .I4(\regdata2_EX[20]_i_2_0 ),
         .O(\alu_result_MA[20]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[20]_i_5 
+    \alu_result_MA[20]_i_7 
        (.I0(data1[20]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[20]_i_3_0 ),
+        .I2(\alu_result_MA[20]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[21]_i_3_0 ),
+        .I4(\alu_result_MA[21]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[20]_i_5_n_0 ));
+        .O(\alu_result_MA[20]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[21]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[21] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[21]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[21]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_9 ));
+       (.I0(\alu_result_MA_reg[21]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[21]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[21] ),
+        .O(p_0_out[20]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[21]_i_3 
-       (.I0(\alu_result_MA[21]_i_5_n_0 ),
+    \alu_result_MA[21]_i_4 
+       (.I0(\alu_result_MA[21]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[21]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[21]_1 ),
-        .O(\alu_result_MA[21]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[21]_i_4 
-       (.I0(data0[21]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[21]_0 ),
+        .I4(\regdata2_EX[21]_i_2_0 ),
         .O(\alu_result_MA[21]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[21]_i_5 
+    \alu_result_MA[21]_i_6 
        (.I0(data1[21]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[21]_i_3_0 ),
+        .I2(\alu_result_MA[21]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[22]_i_3_0 ),
+        .I4(\alu_result_MA[22]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[21]_i_5_n_0 ));
+        .O(\alu_result_MA[21]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[22]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[22] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[22]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[22]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_8 ));
+       (.I0(\alu_result_MA_reg[22]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[22]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[22] ),
+        .O(p_0_out[21]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[22]_i_3 
-       (.I0(\alu_result_MA[22]_i_5_n_0 ),
+    \alu_result_MA[22]_i_4 
+       (.I0(\alu_result_MA[22]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[22]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[22]_1 ),
-        .O(\alu_result_MA[22]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[22]_i_4 
-       (.I0(data0[22]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[22]_0 ),
+        .I4(\regdata2_EX[22]_i_2_0 ),
         .O(\alu_result_MA[22]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[22]_i_5 
+    \alu_result_MA[22]_i_6 
        (.I0(data1[22]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[22]_i_3_0 ),
+        .I2(\alu_result_MA[22]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[23]_i_3_0 ),
+        .I4(\alu_result_MA[23]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[22]_i_5_n_0 ));
+        .O(\alu_result_MA[22]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[23]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[23] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[23]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[23]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_7 ));
+       (.I0(\alu_result_MA_reg[23]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[23]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[23] ),
+        .O(p_0_out[22]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[23]_i_3 
-       (.I0(\alu_result_MA[23]_i_5_n_0 ),
+    \alu_result_MA[23]_i_4 
+       (.I0(\alu_result_MA[23]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[23]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[23]_1 ),
-        .O(\alu_result_MA[23]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[23]_i_4 
-       (.I0(data0[23]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[23]_0 ),
+        .I4(\regdata2_EX[23]_i_2_0 ),
         .O(\alu_result_MA[23]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[23]_i_5 
+    \alu_result_MA[23]_i_6 
        (.I0(data1[23]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[23]_i_3_0 ),
+        .I2(\alu_result_MA[23]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[24]_i_3_0 ),
+        .I4(\alu_result_MA[24]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[23]_i_5_n_0 ));
+        .O(\alu_result_MA[23]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[24]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[24] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[24]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[24]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_6 ));
+       (.I0(\alu_result_MA_reg[24]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[24]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[24] ),
+        .O(p_0_out[23]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[24]_i_3 
-       (.I0(\alu_result_MA[24]_i_5_n_0 ),
+    \alu_result_MA[24]_i_4 
+       (.I0(\alu_result_MA[24]_i_7_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[24]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[24]_1 ),
-        .O(\alu_result_MA[24]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[24]_i_4 
-       (.I0(data0[24]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[24]_0 ),
+        .I4(\regdata2_EX[24]_i_2_0 ),
         .O(\alu_result_MA[24]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[24]_i_5 
+    \alu_result_MA[24]_i_7 
        (.I0(data1[24]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[24]_i_3_0 ),
+        .I2(\alu_result_MA[24]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[25]_i_3_0 ),
+        .I4(\alu_result_MA[25]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[24]_i_5_n_0 ));
+        .O(\alu_result_MA[24]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[25]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[25] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[25]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[25]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_5 ));
+       (.I0(\alu_result_MA_reg[25]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[25]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[25] ),
+        .O(p_0_out[24]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[25]_i_3 
-       (.I0(\alu_result_MA[25]_i_5_n_0 ),
+    \alu_result_MA[25]_i_4 
+       (.I0(\alu_result_MA[25]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[25]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[25]_1 ),
-        .O(\alu_result_MA[25]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[25]_i_4 
-       (.I0(data0[25]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[25]_0 ),
+        .I4(\regdata2_EX[25]_i_2_0 ),
         .O(\alu_result_MA[25]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[25]_i_5 
+    \alu_result_MA[25]_i_6 
        (.I0(data1[25]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[25]_i_3_0 ),
+        .I2(\alu_result_MA[25]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[26]_i_3_0 ),
+        .I4(\alu_result_MA[26]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[25]_i_5_n_0 ));
+        .O(\alu_result_MA[25]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[26]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[26] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[26]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[26]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_4 ));
+       (.I0(\alu_result_MA_reg[26]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[26]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[26] ),
+        .O(p_0_out[25]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[26]_i_3 
-       (.I0(\alu_result_MA[26]_i_5_n_0 ),
+    \alu_result_MA[26]_i_4 
+       (.I0(\alu_result_MA[26]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[26]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[26]_1 ),
-        .O(\alu_result_MA[26]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[26]_i_4 
-       (.I0(data0[26]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[26]_0 ),
+        .I4(\regdata2_EX[26]_i_2_0 ),
         .O(\alu_result_MA[26]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[26]_i_5 
+    \alu_result_MA[26]_i_6 
        (.I0(data1[26]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[26]_i_3_0 ),
+        .I2(\alu_result_MA[26]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[27]_i_3_0 ),
+        .I4(\alu_result_MA[27]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[26]_i_5_n_0 ));
+        .O(\alu_result_MA[26]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[27]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[27] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[27]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[27]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_3 ));
+       (.I0(\alu_result_MA_reg[27]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[27]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[27] ),
+        .O(p_0_out[26]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[27]_i_3 
-       (.I0(\alu_result_MA[27]_i_5_n_0 ),
+    \alu_result_MA[27]_i_4 
+       (.I0(\alu_result_MA[27]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[27]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[27]_1 ),
-        .O(\alu_result_MA[27]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[27]_i_4 
-       (.I0(data0[27]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[27]_0 ),
+        .I4(\regdata2_EX[27]_i_2_0 ),
         .O(\alu_result_MA[27]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[27]_i_5 
+    \alu_result_MA[27]_i_6 
        (.I0(data1[27]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[27]_i_3_0 ),
+        .I2(\alu_result_MA[27]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[28]_i_3_0 ),
+        .I4(\alu_result_MA[28]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[27]_i_5_n_0 ));
+        .O(\alu_result_MA[27]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[28]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[28] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[28]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[28]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_2 ));
+       (.I0(\alu_result_MA_reg[28]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[28]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[28] ),
+        .O(p_0_out[27]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[28]_i_3 
-       (.I0(\alu_result_MA[28]_i_5_n_0 ),
+    \alu_result_MA[28]_i_4 
+       (.I0(\alu_result_MA[28]_i_7_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[28]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[28]_1 ),
-        .O(\alu_result_MA[28]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[28]_i_4 
-       (.I0(data0[28]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[28]_0 ),
+        .I4(\regdata2_EX[28]_i_2_0 ),
         .O(\alu_result_MA[28]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[28]_i_5 
+    \alu_result_MA[28]_i_7 
        (.I0(data1[28]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[28]_i_3_0 ),
+        .I2(\alu_result_MA[28]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[29]_i_3_0 ),
+        .I4(\alu_result_MA[29]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[28]_i_5_n_0 ));
+        .O(\alu_result_MA[28]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[29]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[29] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[29]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[29]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_1 ));
+       (.I0(\alu_result_MA_reg[29]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[29]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[29] ),
+        .O(p_0_out[28]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[29]_i_3 
-       (.I0(\alu_result_MA[29]_i_5_n_0 ),
+    \alu_result_MA[29]_i_4 
+       (.I0(\alu_result_MA[29]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[29]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[29]_1 ),
-        .O(\alu_result_MA[29]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[29]_i_4 
-       (.I0(data0[29]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[29]_0 ),
+        .I4(\regdata2_EX[29]_i_2_0 ),
         .O(\alu_result_MA[29]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[29]_i_5 
+    \alu_result_MA[29]_i_6 
        (.I0(data1[29]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[29]_i_3_0 ),
+        .I2(\alu_result_MA[29]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[30]_i_3_0 ),
+        .I4(\alu_result_MA[30]_i_6_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[29]_i_5_n_0 ));
+        .O(\alu_result_MA[29]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[2]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[2] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[2]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[2]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_28 ));
+       (.I0(\alu_result_MA_reg[2]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[2]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[2] ),
+        .O(p_0_out[1]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[2]_i_3 
-       (.I0(\alu_result_MA[2]_i_5_n_0 ),
+    \alu_result_MA[2]_i_4 
+       (.I0(\alu_result_MA[2]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[2]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[2]_1 ),
-        .O(\alu_result_MA[2]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[2]_i_4 
-       (.I0(data0[2]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[2]_0 ),
+        .I4(\regdata2_EX[2]_i_2_0 ),
         .O(\alu_result_MA[2]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[2]_i_5 
+    \alu_result_MA[2]_i_6 
        (.I0(data1[2]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[1]_i_3_0 ),
+        .I2(\alu_result_MA[1]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[2]_i_3_0 ),
+        .I4(\alu_result_MA[2]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[2]_i_5_n_0 ));
+        .O(\alu_result_MA[2]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
-    \alu_result_MA[30]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[30] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[30]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[30]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_0 ));
+    .INIT(64'hB888BBBBB8888888)) 
+    \alu_result_MA[30]_i_2 
+       (.I0(\alu_result_MA_reg[30]_i_3_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[30]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[30]_0 ),
+        .O(p_0_out[29]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[30]_i_3 
-       (.I0(\alu_result_MA[30]_i_5_n_0 ),
+    \alu_result_MA[30]_i_6 
+       (.I0(\alu_result_MA[30]_i_9_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[30]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[30]_1 ),
-        .O(\alu_result_MA[30]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[30]_i_4 
-       (.I0(data0[30]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[30]_0 ),
-        .O(\alu_result_MA[30]_i_4_n_0 ));
+        .I4(\regdata2_EX[30]_i_2_0 ),
+        .O(\alu_result_MA[30]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[30]_i_5 
+    \alu_result_MA[30]_i_9 
        (.I0(data1[30]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[30]_i_3_0 ),
+        .I2(\alu_result_MA[30]_i_6_0 ),
         .I3(alu_result0_carry__6_0[0]),
         .I4(Q[31]),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[30]_i_5_n_0 ));
+        .O(\alu_result_MA[30]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h4540555545400000)) 
     \alu_result_MA[31]_i_1 
        (.I0(\alu_result_MA_reg[31] [5]),
         .I1(\alu_result_MA_reg[31]_0 ),
         .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[31]_i_3_n_0 ),
+        .I3(\alu_result_MA_reg[31]_i_3_n_0 ),
         .I4(\alu_result_MA_reg[31] [4]),
         .I5(\alu_result_MA[31]_i_4_n_0 ),
         .O(\alucode_EX_reg[5] ));
-  LUT5 #(
-    .INIT(32'hBBB88888)) 
-    \alu_result_MA[31]_i_3 
-       (.I0(\alu_result_MA[31]_i_5_n_0 ),
-        .I1(\alu_result_MA_reg[31] [1]),
-        .I2(data0[31]),
-        .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[31]_2 ),
-        .O(\alu_result_MA[31]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'hAAA8FFFFAAA80000)) 
     \alu_result_MA[31]_i_4 
@@ -34847,292 +34635,387 @@ module design_1_CPUTop_0_0_alu
         .I4(\alu_result_MA_reg[31] [3]),
         .I5(\alu_result_MA_reg[31]_1 ),
         .O(\alu_result_MA[31]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h22E2EEEE22E22222)) 
+    \alu_result_MA[31]_i_5 
+       (.I0(data0[31]),
+        .I1(\alu_result_MA_reg[31] [3]),
+        .I2(\alu_result_MA_reg[31]_i_3_0 ),
+        .I3(alu_result0_carry__6_0[0]),
+        .I4(\alu_result_MA_reg[31] [0]),
+        .I5(data7),
+        .O(\alu_result_MA[31]_i_5_n_0 ));
   LUT4 #(
     .INIT(16'h00E2)) 
-    \alu_result_MA[31]_i_5 
+    \alu_result_MA[31]_i_6 
        (.I0(data1[31]),
         .I1(\alu_result_MA_reg[31] [3]),
         .I2(Q[31]),
         .I3(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[31]_i_5_n_0 ));
+        .O(\alu_result_MA[31]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[3]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[3] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[3]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[3]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_27 ));
+       (.I0(\alu_result_MA_reg[3]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[3]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[3] ),
+        .O(p_0_out[2]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[3]_i_3 
-       (.I0(\alu_result_MA[3]_i_5_n_0 ),
+    \alu_result_MA[3]_i_4 
+       (.I0(\alu_result_MA[3]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[3]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[3]_1 ),
-        .O(\alu_result_MA[3]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[3]_i_4 
-       (.I0(data0[3]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[3]_0 ),
+        .I4(\regdata2_EX[3]_i_2_0 ),
         .O(\alu_result_MA[3]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[3]_i_5 
+    \alu_result_MA[3]_i_6 
        (.I0(data1[3]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[2]_i_3_0 ),
+        .I2(\alu_result_MA[2]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[3]_i_3_0 ),
+        .I4(\alu_result_MA[3]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[3]_i_5_n_0 ));
+        .O(\alu_result_MA[3]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[4]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[4] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[4]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[4]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_26 ));
+       (.I0(\alu_result_MA_reg[4]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[4]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[4] ),
+        .O(p_0_out[3]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[4]_i_3 
-       (.I0(\alu_result_MA[4]_i_5_n_0 ),
+    \alu_result_MA[4]_i_4 
+       (.I0(\alu_result_MA[4]_i_7_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[4]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[4]_1 ),
-        .O(\alu_result_MA[4]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[4]_i_4 
-       (.I0(data0[4]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[4]_0 ),
+        .I4(\regdata2_EX[4]_i_2_0 ),
         .O(\alu_result_MA[4]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[4]_i_5 
+    \alu_result_MA[4]_i_7 
        (.I0(data1[4]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[3]_i_3_0 ),
+        .I2(\alu_result_MA[3]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[5]_i_3_0 ),
+        .I4(\alu_result_MA[5]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[4]_i_5_n_0 ));
+        .O(\alu_result_MA[4]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[5]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[5] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[5]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[5]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_25 ));
+       (.I0(\alu_result_MA_reg[5]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[5]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[5] ),
+        .O(p_0_out[4]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[5]_i_3 
-       (.I0(\alu_result_MA[5]_i_5_n_0 ),
+    \alu_result_MA[5]_i_4 
+       (.I0(\alu_result_MA[5]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[5]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[5]_1 ),
-        .O(\alu_result_MA[5]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[5]_i_4 
-       (.I0(data0[5]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[5]_0 ),
+        .I4(\regdata2_EX[5]_i_2_0 ),
         .O(\alu_result_MA[5]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[5]_i_5 
+    \alu_result_MA[5]_i_6 
        (.I0(data1[5]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[5]_i_3_0 ),
+        .I2(\alu_result_MA[5]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[5]_i_3_1 ),
+        .I4(\alu_result_MA[5]_i_4_1 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[5]_i_5_n_0 ));
+        .O(\alu_result_MA[5]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[6]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[6] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[6]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[6]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_24 ));
+       (.I0(\alu_result_MA_reg[6]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[6]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[6] ),
+        .O(p_0_out[5]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[6]_i_3 
-       (.I0(\alu_result_MA[6]_i_5_n_0 ),
+    \alu_result_MA[6]_i_4 
+       (.I0(\alu_result_MA[6]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[6]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[6]_1 ),
-        .O(\alu_result_MA[6]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[6]_i_4 
-       (.I0(data0[6]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[6]_0 ),
+        .I4(\regdata2_EX[6]_i_2_0 ),
         .O(\alu_result_MA[6]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[6]_i_5 
+    \alu_result_MA[6]_i_6 
        (.I0(data1[6]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[5]_i_3_1 ),
+        .I2(\alu_result_MA[5]_i_4_1 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[6]_i_3_0 ),
+        .I4(\alu_result_MA[6]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[6]_i_5_n_0 ));
+        .O(\alu_result_MA[6]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[7]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[7] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[7]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[7]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_23 ));
+       (.I0(\alu_result_MA_reg[7]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[7]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[7] ),
+        .O(p_0_out[6]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[7]_i_3 
-       (.I0(\alu_result_MA[7]_i_5_n_0 ),
+    \alu_result_MA[7]_i_4 
+       (.I0(\alu_result_MA[7]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[7]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[7]_1 ),
-        .O(\alu_result_MA[7]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[7]_i_4 
-       (.I0(data0[7]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[7]_0 ),
+        .I4(\regdata2_EX[7]_i_2_0 ),
         .O(\alu_result_MA[7]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[7]_i_5 
+    \alu_result_MA[7]_i_6 
        (.I0(data1[7]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[6]_i_3_0 ),
+        .I2(\alu_result_MA[6]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[7]_i_3_0 ),
+        .I4(\alu_result_MA[7]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[7]_i_5_n_0 ));
+        .O(\alu_result_MA[7]_i_6_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[8]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[8] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[8]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[8]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_22 ));
+       (.I0(\alu_result_MA_reg[8]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[8]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[8] ),
+        .O(p_0_out[7]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[8]_i_3 
-       (.I0(\alu_result_MA[8]_i_5_n_0 ),
+    \alu_result_MA[8]_i_4 
+       (.I0(\alu_result_MA[8]_i_7_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[8]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[8]_1 ),
-        .O(\alu_result_MA[8]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[8]_i_4 
-       (.I0(data0[8]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[8]_0 ),
+        .I4(\regdata2_EX[8]_i_2_0 ),
         .O(\alu_result_MA[8]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[8]_i_5 
+    \alu_result_MA[8]_i_7 
        (.I0(data1[8]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[7]_i_3_0 ),
+        .I2(\alu_result_MA[7]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[8]_i_3_0 ),
+        .I4(\alu_result_MA[8]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[8]_i_5_n_0 ));
+        .O(\alu_result_MA[8]_i_7_n_0 ));
   LUT6 #(
-    .INIT(64'h4540555545400000)) 
+    .INIT(64'hB888BBBBB8888888)) 
     \alu_result_MA[9]_i_1 
-       (.I0(\alu_result_MA_reg[31] [5]),
-        .I1(\alu_result_MA_reg[9] ),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(\alu_result_MA[9]_i_3_n_0 ),
-        .I4(\alu_result_MA_reg[31] [4]),
-        .I5(\alu_result_MA[9]_i_4_n_0 ),
-        .O(\alucode_EX_reg[5]_21 ));
+       (.I0(\alu_result_MA_reg[9]_i_2_n_0 ),
+        .I1(\alu_result_MA_reg[31] [4]),
+        .I2(data0[9]),
+        .I3(\alu_result_MA_reg[30] ),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[9] ),
+        .O(p_0_out[8]));
   LUT5 #(
     .INIT(32'hBBB888B8)) 
-    \alu_result_MA[9]_i_3 
-       (.I0(\alu_result_MA[9]_i_5_n_0 ),
+    \alu_result_MA[9]_i_4 
+       (.I0(\alu_result_MA[9]_i_6_n_0 ),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(data0[9]),
         .I3(\alu_result_MA_reg[31] [3]),
-        .I4(\alu_result_MA_reg[9]_1 ),
-        .O(\alu_result_MA[9]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA8FFFFAAA80000)) 
-    \alu_result_MA[9]_i_4 
-       (.I0(data0[9]),
-        .I1(\alu_result_MA_reg[31] [2]),
-        .I2(\alu_result_MA_reg[31] [0]),
-        .I3(\alu_result_MA_reg[31] [1]),
-        .I4(\alu_result_MA_reg[31] [3]),
-        .I5(\alu_result_MA_reg[9]_0 ),
+        .I4(\regdata2_EX[9]_i_2_0 ),
         .O(\alu_result_MA[9]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
-    \alu_result_MA[9]_i_5 
+    \alu_result_MA[9]_i_6 
        (.I0(data1[9]),
         .I1(\alu_result_MA_reg[31] [3]),
-        .I2(\alu_result_MA[8]_i_3_0 ),
+        .I2(\alu_result_MA[8]_i_4_0 ),
         .I3(alu_result0_carry__6_0[0]),
-        .I4(\alu_result_MA[9]_i_3_0 ),
+        .I4(\alu_result_MA[9]_i_4_0 ),
         .I5(\alu_result_MA_reg[31] [0]),
-        .O(\alu_result_MA[9]_i_5_n_0 ));
+        .O(\alu_result_MA[9]_i_6_n_0 ));
   MUXF7 \alu_result_MA_reg[0]_i_3 
        (.I0(\alu_result_MA[0]_i_7_n_0 ),
         .I1(\alu_result_MA[0]_i_8_n_0 ),
         .O(\alu_result_MA_reg[0]_i_3_n_0 ),
         .S(\alu_result_MA_reg[31] [1]));
+  MUXF7 \alu_result_MA_reg[10]_i_2 
+       (.I0(\alu_result_MA[10]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[10] ),
+        .O(\alu_result_MA_reg[10]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[11]_i_2 
+       (.I0(\alu_result_MA[11]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[11] ),
+        .O(\alu_result_MA_reg[11]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[12]_i_2 
+       (.I0(\alu_result_MA[12]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[12] ),
+        .O(\alu_result_MA_reg[12]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[13]_i_2 
+       (.I0(\alu_result_MA[13]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[13] ),
+        .O(\alu_result_MA_reg[13]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[14]_i_2 
+       (.I0(\alu_result_MA[14]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[14] ),
+        .O(\alu_result_MA_reg[14]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[15]_i_2 
+       (.I0(\alu_result_MA[15]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[15] ),
+        .O(\alu_result_MA_reg[15]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[16]_i_2 
+       (.I0(\alu_result_MA[16]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[16] ),
+        .O(\alu_result_MA_reg[16]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[17]_i_2 
+       (.I0(\alu_result_MA[17]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[17] ),
+        .O(\alu_result_MA_reg[17]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[18]_i_2 
+       (.I0(\alu_result_MA[18]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[18] ),
+        .O(\alu_result_MA_reg[18]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[19]_i_2 
+       (.I0(\alu_result_MA[19]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[19] ),
+        .O(\alu_result_MA_reg[19]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[1]_i_2 
+       (.I0(\alu_result_MA[1]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[1] ),
+        .O(\alu_result_MA_reg[1]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[20]_i_2 
+       (.I0(\alu_result_MA[20]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[20] ),
+        .O(\alu_result_MA_reg[20]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[21]_i_2 
+       (.I0(\alu_result_MA[21]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[21] ),
+        .O(\alu_result_MA_reg[21]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[22]_i_2 
+       (.I0(\alu_result_MA[22]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[22] ),
+        .O(\alu_result_MA_reg[22]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[23]_i_2 
+       (.I0(\alu_result_MA[23]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[23] ),
+        .O(\alu_result_MA_reg[23]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[24]_i_2 
+       (.I0(\alu_result_MA[24]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[24] ),
+        .O(\alu_result_MA_reg[24]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[25]_i_2 
+       (.I0(\alu_result_MA[25]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[25] ),
+        .O(\alu_result_MA_reg[25]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[26]_i_2 
+       (.I0(\alu_result_MA[26]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[26] ),
+        .O(\alu_result_MA_reg[26]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[27]_i_2 
+       (.I0(\alu_result_MA[27]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[27] ),
+        .O(\alu_result_MA_reg[27]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[28]_i_2 
+       (.I0(\alu_result_MA[28]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[28] ),
+        .O(\alu_result_MA_reg[28]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[29]_i_2 
+       (.I0(\alu_result_MA[29]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[29] ),
+        .O(\alu_result_MA_reg[29]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[2]_i_2 
+       (.I0(\alu_result_MA[2]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[2] ),
+        .O(\alu_result_MA_reg[2]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[30]_i_3 
+       (.I0(\alu_result_MA[30]_i_6_n_0 ),
+        .I1(\oprl_EX_reg[30] ),
+        .O(\alu_result_MA_reg[30]_i_3_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[31]_i_3 
+       (.I0(\alu_result_MA[31]_i_5_n_0 ),
+        .I1(\alu_result_MA[31]_i_6_n_0 ),
+        .O(\alu_result_MA_reg[31]_i_3_n_0 ),
+        .S(\alu_result_MA_reg[31] [1]));
+  MUXF7 \alu_result_MA_reg[3]_i_2 
+       (.I0(\alu_result_MA[3]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[3] ),
+        .O(\alu_result_MA_reg[3]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[4]_i_2 
+       (.I0(\alu_result_MA[4]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[4] ),
+        .O(\alu_result_MA_reg[4]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[5]_i_2 
+       (.I0(\alu_result_MA[5]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[5] ),
+        .O(\alu_result_MA_reg[5]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[6]_i_2 
+       (.I0(\alu_result_MA[6]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[6] ),
+        .O(\alu_result_MA_reg[6]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[7]_i_2 
+       (.I0(\alu_result_MA[7]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[7] ),
+        .O(\alu_result_MA_reg[7]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[8]_i_2 
+       (.I0(\alu_result_MA[8]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[8] ),
+        .O(\alu_result_MA_reg[8]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
+  MUXF7 \alu_result_MA_reg[9]_i_2 
+       (.I0(\alu_result_MA[9]_i_4_n_0 ),
+        .I1(\oprl_EX_reg[9] ),
+        .O(\alu_result_MA_reg[9]_i_2_n_0 ),
+        .S(\alu_result_MA_reg[31] [2]));
   (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 br_taken6_carry
        (.CI(1'b0),
@@ -35360,9 +35243,9 @@ module design_1_CPUTop_0_0_alu
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[0]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[0]),
         .O(\mem_valid_reg[0] ));
   LUT4 #(
@@ -35370,7 +35253,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[100]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[100]),
         .O(\mem_valid_reg[100] ));
   LUT4 #(
@@ -35378,7 +35261,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[101]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[101]),
         .O(\mem_valid_reg[101] ));
   LUT4 #(
@@ -35386,7 +35269,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[102]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[102]),
         .O(\mem_valid_reg[102] ));
   LUT4 #(
@@ -35394,7 +35277,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[103]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[103]),
         .O(\mem_valid_reg[103] ));
   LUT4 #(
@@ -35402,7 +35285,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[104]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[104]),
         .O(\mem_valid_reg[104] ));
   LUT4 #(
@@ -35410,7 +35293,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[105]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[105]),
         .O(\mem_valid_reg[105] ));
   LUT4 #(
@@ -35418,7 +35301,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[106]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[106]),
         .O(\mem_valid_reg[106] ));
   LUT4 #(
@@ -35426,7 +35309,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[107]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[107]),
         .O(\mem_valid_reg[107] ));
   LUT4 #(
@@ -35434,7 +35317,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[108]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[108]),
         .O(\mem_valid_reg[108] ));
   LUT4 #(
@@ -35442,15 +35325,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[109]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[109]),
         .O(\mem_valid_reg[109] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[10]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[10]),
         .O(\mem_valid_reg[10] ));
   LUT4 #(
@@ -35458,7 +35341,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[110]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[110]),
         .O(\mem_valid_reg[110] ));
   LUT4 #(
@@ -35466,15 +35349,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[111]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[111]),
         .O(\mem_valid_reg[111] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[112]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[112]),
         .O(\mem_valid_reg[112] ));
   LUT4 #(
@@ -35482,7 +35365,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[113]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[113]),
         .O(\mem_valid_reg[113] ));
   LUT4 #(
@@ -35490,7 +35373,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[114]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[114]),
         .O(\mem_valid_reg[114] ));
   LUT4 #(
@@ -35498,7 +35381,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[115]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[115]),
         .O(\mem_valid_reg[115] ));
   LUT4 #(
@@ -35506,7 +35389,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[116]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[116]),
         .O(\mem_valid_reg[116] ));
   LUT4 #(
@@ -35514,7 +35397,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[117]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[117]),
         .O(\mem_valid_reg[117] ));
   LUT4 #(
@@ -35522,7 +35405,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[118]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[118]),
         .O(\mem_valid_reg[118] ));
   LUT4 #(
@@ -35530,15 +35413,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[119]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[119]),
         .O(\mem_valid_reg[119] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[11]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[11]),
         .O(\mem_valid_reg[11] ));
   LUT4 #(
@@ -35546,7 +35429,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[120]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[120]),
         .O(\mem_valid_reg[120] ));
   LUT4 #(
@@ -35554,7 +35437,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[121]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[121]),
         .O(\mem_valid_reg[121] ));
   LUT4 #(
@@ -35562,7 +35445,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[122]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[122]),
         .O(\mem_valid_reg[122] ));
   LUT4 #(
@@ -35570,7 +35453,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[123]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[123]),
         .O(\mem_valid_reg[123] ));
   LUT4 #(
@@ -35578,7 +35461,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[124]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[124]),
         .O(\mem_valid_reg[124] ));
   LUT4 #(
@@ -35586,7 +35469,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[125]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[125]),
         .O(\mem_valid_reg[125] ));
   LUT4 #(
@@ -35594,7 +35477,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[126]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[126]),
         .O(\mem_valid_reg[126] ));
   LUT4 #(
@@ -35602,15 +35485,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[127]_i_1 
        (.I0(\mem_valid_reg[112]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[127]),
         .O(\mem_valid_reg[127] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[128]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[128]),
         .O(\mem_valid_reg[128] ));
   LUT4 #(
@@ -35618,15 +35501,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[129]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[129]),
         .O(\mem_valid_reg[129] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[12]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[12]),
         .O(\mem_valid_reg[12] ));
   LUT4 #(
@@ -35634,7 +35517,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[130]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[130]),
         .O(\mem_valid_reg[130] ));
   LUT4 #(
@@ -35642,7 +35525,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[131]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[131]),
         .O(\mem_valid_reg[131] ));
   LUT4 #(
@@ -35650,7 +35533,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[132]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[132]),
         .O(\mem_valid_reg[132] ));
   LUT4 #(
@@ -35658,7 +35541,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[133]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[133]),
         .O(\mem_valid_reg[133] ));
   LUT4 #(
@@ -35666,7 +35549,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[134]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[134]),
         .O(\mem_valid_reg[134] ));
   LUT4 #(
@@ -35674,7 +35557,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[135]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[135]),
         .O(\mem_valid_reg[135] ));
   LUT4 #(
@@ -35682,7 +35565,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[136]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[136]),
         .O(\mem_valid_reg[136] ));
   LUT4 #(
@@ -35690,7 +35573,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[137]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[137]),
         .O(\mem_valid_reg[137] ));
   LUT4 #(
@@ -35698,7 +35581,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[138]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[138]),
         .O(\mem_valid_reg[138] ));
   LUT4 #(
@@ -35706,15 +35589,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[139]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[139]),
         .O(\mem_valid_reg[139] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[13]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[13]),
         .O(\mem_valid_reg[13] ));
   LUT4 #(
@@ -35722,7 +35605,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[140]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[140]),
         .O(\mem_valid_reg[140] ));
   LUT4 #(
@@ -35730,7 +35613,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[141]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[141]),
         .O(\mem_valid_reg[141] ));
   LUT4 #(
@@ -35738,7 +35621,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[142]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[142]),
         .O(\mem_valid_reg[142] ));
   LUT4 #(
@@ -35746,15 +35629,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[143]_i_1 
        (.I0(\mem_valid_reg[128]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[143]),
         .O(\mem_valid_reg[143] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[144]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[144]),
         .O(\mem_valid_reg[144] ));
   LUT4 #(
@@ -35762,7 +35645,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[145]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[145]),
         .O(\mem_valid_reg[145] ));
   LUT4 #(
@@ -35770,7 +35653,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[146]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[146]),
         .O(\mem_valid_reg[146] ));
   LUT4 #(
@@ -35778,7 +35661,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[147]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[147]),
         .O(\mem_valid_reg[147] ));
   LUT4 #(
@@ -35786,7 +35669,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[148]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[148]),
         .O(\mem_valid_reg[148] ));
   LUT4 #(
@@ -35794,15 +35677,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[149]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[149]),
         .O(\mem_valid_reg[149] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[14]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[14]),
         .O(\mem_valid_reg[14] ));
   LUT4 #(
@@ -35810,7 +35693,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[150]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[150]),
         .O(\mem_valid_reg[150] ));
   LUT4 #(
@@ -35818,7 +35701,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[151]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[151]),
         .O(\mem_valid_reg[151] ));
   LUT4 #(
@@ -35826,7 +35709,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[152]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[152]),
         .O(\mem_valid_reg[152] ));
   LUT4 #(
@@ -35834,7 +35717,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[153]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[153]),
         .O(\mem_valid_reg[153] ));
   LUT4 #(
@@ -35842,7 +35725,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[154]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[154]),
         .O(\mem_valid_reg[154] ));
   LUT4 #(
@@ -35850,7 +35733,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[155]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[155]),
         .O(\mem_valid_reg[155] ));
   LUT4 #(
@@ -35858,7 +35741,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[156]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[156]),
         .O(\mem_valid_reg[156] ));
   LUT4 #(
@@ -35866,7 +35749,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[157]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[157]),
         .O(\mem_valid_reg[157] ));
   LUT4 #(
@@ -35874,7 +35757,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[158]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[158]),
         .O(\mem_valid_reg[158] ));
   LUT4 #(
@@ -35882,23 +35765,23 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[159]_i_1 
        (.I0(\mem_valid_reg[144]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[159]),
         .O(\mem_valid_reg[159] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[15]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[15]),
         .O(\mem_valid_reg[15] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[160]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[160]),
         .O(\mem_valid_reg[160] ));
   LUT4 #(
@@ -35906,7 +35789,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[161]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[161]),
         .O(\mem_valid_reg[161] ));
   LUT4 #(
@@ -35914,7 +35797,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[162]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[162]),
         .O(\mem_valid_reg[162] ));
   LUT4 #(
@@ -35922,7 +35805,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[163]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[163]),
         .O(\mem_valid_reg[163] ));
   LUT4 #(
@@ -35930,7 +35813,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[164]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[164]),
         .O(\mem_valid_reg[164] ));
   LUT4 #(
@@ -35938,7 +35821,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[165]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[165]),
         .O(\mem_valid_reg[165] ));
   LUT4 #(
@@ -35946,7 +35829,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[166]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[166]),
         .O(\mem_valid_reg[166] ));
   LUT4 #(
@@ -35954,7 +35837,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[167]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[167]),
         .O(\mem_valid_reg[167] ));
   LUT4 #(
@@ -35962,7 +35845,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[168]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[168]),
         .O(\mem_valid_reg[168] ));
   LUT4 #(
@@ -35970,15 +35853,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[169]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[169]),
         .O(\mem_valid_reg[169] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[16]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[16]),
         .O(\mem_valid_reg[16] ));
   LUT4 #(
@@ -35986,7 +35869,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[170]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[170]),
         .O(\mem_valid_reg[170] ));
   LUT4 #(
@@ -35994,7 +35877,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[171]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[171]),
         .O(\mem_valid_reg[171] ));
   LUT4 #(
@@ -36002,7 +35885,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[172]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[172]),
         .O(\mem_valid_reg[172] ));
   LUT4 #(
@@ -36010,7 +35893,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[173]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[173]),
         .O(\mem_valid_reg[173] ));
   LUT4 #(
@@ -36018,7 +35901,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[174]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[174]),
         .O(\mem_valid_reg[174] ));
   LUT4 #(
@@ -36026,15 +35909,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[175]_i_1 
        (.I0(\mem_valid_reg[160]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[175]),
         .O(\mem_valid_reg[175] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[176]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[176]),
         .O(\mem_valid_reg[176] ));
   LUT4 #(
@@ -36042,7 +35925,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[177]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[177]),
         .O(\mem_valid_reg[177] ));
   LUT4 #(
@@ -36050,7 +35933,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[178]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[178]),
         .O(\mem_valid_reg[178] ));
   LUT4 #(
@@ -36058,7 +35941,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[179]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[179]),
         .O(\mem_valid_reg[179] ));
   LUT4 #(
@@ -36066,7 +35949,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[17]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[17]),
         .O(\mem_valid_reg[17] ));
   LUT4 #(
@@ -36074,7 +35957,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[180]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[180]),
         .O(\mem_valid_reg[180] ));
   LUT4 #(
@@ -36082,7 +35965,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[181]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[181]),
         .O(\mem_valid_reg[181] ));
   LUT4 #(
@@ -36090,7 +35973,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[182]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[182]),
         .O(\mem_valid_reg[182] ));
   LUT4 #(
@@ -36098,7 +35981,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[183]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[183]),
         .O(\mem_valid_reg[183] ));
   LUT4 #(
@@ -36106,7 +35989,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[184]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[184]),
         .O(\mem_valid_reg[184] ));
   LUT4 #(
@@ -36114,7 +35997,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[185]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[185]),
         .O(\mem_valid_reg[185] ));
   LUT4 #(
@@ -36122,7 +36005,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[186]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[186]),
         .O(\mem_valid_reg[186] ));
   LUT4 #(
@@ -36130,7 +36013,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[187]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[187]),
         .O(\mem_valid_reg[187] ));
   LUT4 #(
@@ -36138,7 +36021,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[188]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[188]),
         .O(\mem_valid_reg[188] ));
   LUT4 #(
@@ -36146,7 +36029,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[189]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[189]),
         .O(\mem_valid_reg[189] ));
   LUT4 #(
@@ -36154,7 +36037,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[18]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[18]),
         .O(\mem_valid_reg[18] ));
   LUT4 #(
@@ -36162,7 +36045,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[190]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[190]),
         .O(\mem_valid_reg[190] ));
   LUT4 #(
@@ -36170,15 +36053,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[191]_i_1 
        (.I0(\mem_valid_reg[176]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[191]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[191]),
         .O(\mem_valid_reg[191] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[192]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[192]),
         .O(\mem_valid_reg[192] ));
   LUT4 #(
@@ -36186,7 +36069,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[193]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[193]),
         .O(\mem_valid_reg[193] ));
   LUT4 #(
@@ -36194,7 +36077,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[194]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[194]),
         .O(\mem_valid_reg[194] ));
   LUT4 #(
@@ -36202,7 +36085,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[195]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[195]),
         .O(\mem_valid_reg[195] ));
   LUT4 #(
@@ -36210,7 +36093,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[196]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[196]),
         .O(\mem_valid_reg[196] ));
   LUT4 #(
@@ -36218,7 +36101,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[197]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[197]),
         .O(\mem_valid_reg[197] ));
   LUT4 #(
@@ -36226,7 +36109,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[198]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[198]),
         .O(\mem_valid_reg[198] ));
   LUT4 #(
@@ -36234,7 +36117,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[199]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[199]),
         .O(\mem_valid_reg[199] ));
   LUT4 #(
@@ -36242,15 +36125,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[19]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[19]),
         .O(\mem_valid_reg[19] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[1]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[1]),
         .O(\mem_valid_reg[1] ));
   LUT4 #(
@@ -36258,7 +36141,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[200]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[200]),
         .O(\mem_valid_reg[200] ));
   LUT4 #(
@@ -36266,7 +36149,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[201]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[201]),
         .O(\mem_valid_reg[201] ));
   LUT4 #(
@@ -36274,7 +36157,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[202]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[202]),
         .O(\mem_valid_reg[202] ));
   LUT4 #(
@@ -36282,7 +36165,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[203]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[203]),
         .O(\mem_valid_reg[203] ));
   LUT4 #(
@@ -36290,7 +36173,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[204]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[204]),
         .O(\mem_valid_reg[204] ));
   LUT4 #(
@@ -36298,7 +36181,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[205]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[205]),
         .O(\mem_valid_reg[205] ));
   LUT4 #(
@@ -36306,7 +36189,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[206]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[206]),
         .O(\mem_valid_reg[206] ));
   LUT4 #(
@@ -36314,15 +36197,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[207]_i_1 
        (.I0(\mem_valid_reg[192]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[207]),
         .O(\mem_valid_reg[207] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[208]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[208]),
         .O(\mem_valid_reg[208] ));
   LUT4 #(
@@ -36330,7 +36213,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[209]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[209]),
         .O(\mem_valid_reg[209] ));
   LUT4 #(
@@ -36338,7 +36221,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[20]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[20]),
         .O(\mem_valid_reg[20] ));
   LUT4 #(
@@ -36346,7 +36229,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[210]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[210]),
         .O(\mem_valid_reg[210] ));
   LUT4 #(
@@ -36354,7 +36237,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[211]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[211]),
         .O(\mem_valid_reg[211] ));
   LUT4 #(
@@ -36362,7 +36245,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[212]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[212]),
         .O(\mem_valid_reg[212] ));
   LUT4 #(
@@ -36370,7 +36253,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[213]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[213]),
         .O(\mem_valid_reg[213] ));
   LUT4 #(
@@ -36378,7 +36261,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[214]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[214]),
         .O(\mem_valid_reg[214] ));
   LUT4 #(
@@ -36386,7 +36269,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[215]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[215]),
         .O(\mem_valid_reg[215] ));
   LUT4 #(
@@ -36394,7 +36277,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[216]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[216]),
         .O(\mem_valid_reg[216] ));
   LUT4 #(
@@ -36402,7 +36285,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[217]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[217]),
         .O(\mem_valid_reg[217] ));
   LUT4 #(
@@ -36410,7 +36293,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[218]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[218]),
         .O(\mem_valid_reg[218] ));
   LUT4 #(
@@ -36418,7 +36301,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[219]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[219]),
         .O(\mem_valid_reg[219] ));
   LUT4 #(
@@ -36426,7 +36309,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[21]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[21]),
         .O(\mem_valid_reg[21] ));
   LUT4 #(
@@ -36434,7 +36317,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[220]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[220]),
         .O(\mem_valid_reg[220] ));
   LUT4 #(
@@ -36442,7 +36325,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[221]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[221]),
         .O(\mem_valid_reg[221] ));
   LUT4 #(
@@ -36450,7 +36333,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[222]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[222]),
         .O(\mem_valid_reg[222] ));
   LUT4 #(
@@ -36458,15 +36341,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[223]_i_1 
        (.I0(\mem_valid_reg[208]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[223]),
         .O(\mem_valid_reg[223] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[224]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[224]),
         .O(\mem_valid_reg[224] ));
   LUT4 #(
@@ -36474,7 +36357,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[225]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[225]),
         .O(\mem_valid_reg[225] ));
   LUT4 #(
@@ -36482,7 +36365,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[226]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[226]),
         .O(\mem_valid_reg[226] ));
   LUT4 #(
@@ -36490,7 +36373,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[227]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[227]),
         .O(\mem_valid_reg[227] ));
   LUT4 #(
@@ -36498,7 +36381,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[228]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[228]),
         .O(\mem_valid_reg[228] ));
   LUT4 #(
@@ -36506,7 +36389,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[229]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[229]),
         .O(\mem_valid_reg[229] ));
   LUT4 #(
@@ -36514,7 +36397,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[22]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[22]),
         .O(\mem_valid_reg[22] ));
   LUT4 #(
@@ -36522,7 +36405,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[230]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[230]),
         .O(\mem_valid_reg[230] ));
   LUT4 #(
@@ -36530,7 +36413,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[231]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[231]),
         .O(\mem_valid_reg[231] ));
   LUT4 #(
@@ -36538,7 +36421,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[232]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[232]),
         .O(\mem_valid_reg[232] ));
   LUT4 #(
@@ -36546,7 +36429,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[233]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[233]),
         .O(\mem_valid_reg[233] ));
   LUT4 #(
@@ -36554,7 +36437,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[234]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[234]),
         .O(\mem_valid_reg[234] ));
   LUT4 #(
@@ -36562,7 +36445,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[235]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[235]),
         .O(\mem_valid_reg[235] ));
   LUT4 #(
@@ -36570,7 +36453,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[236]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[236]),
         .O(\mem_valid_reg[236] ));
   LUT4 #(
@@ -36578,7 +36461,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[237]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[237]),
         .O(\mem_valid_reg[237] ));
   LUT4 #(
@@ -36586,7 +36469,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[238]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[238]),
         .O(\mem_valid_reg[238] ));
   LUT4 #(
@@ -36594,7 +36477,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[239]_i_1 
        (.I0(\mem_valid_reg[224]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[239]),
         .O(\mem_valid_reg[239] ));
   LUT4 #(
@@ -36602,15 +36485,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[23]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[23]),
         .O(\mem_valid_reg[23] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[240]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[240]),
         .O(\mem_valid_reg[240] ));
   LUT4 #(
@@ -36618,7 +36501,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[241]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[241]),
         .O(\mem_valid_reg[241] ));
   LUT4 #(
@@ -36626,7 +36509,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[242]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[242]),
         .O(\mem_valid_reg[242] ));
   LUT4 #(
@@ -36634,7 +36517,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[243]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[243]),
         .O(\mem_valid_reg[243] ));
   LUT4 #(
@@ -36642,7 +36525,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[244]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[244]),
         .O(\mem_valid_reg[244] ));
   LUT4 #(
@@ -36650,7 +36533,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[245]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[245]),
         .O(\mem_valid_reg[245] ));
   LUT4 #(
@@ -36658,7 +36541,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[246]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[246]),
         .O(\mem_valid_reg[246] ));
   LUT4 #(
@@ -36666,7 +36549,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[247]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[247]),
         .O(\mem_valid_reg[247] ));
   LUT4 #(
@@ -36674,7 +36557,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[248]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[248]),
         .O(\mem_valid_reg[248] ));
   LUT4 #(
@@ -36682,7 +36565,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[249]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[249]),
         .O(\mem_valid_reg[249] ));
   LUT4 #(
@@ -36690,7 +36573,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[24]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[24]),
         .O(\mem_valid_reg[24] ));
   LUT4 #(
@@ -36698,7 +36581,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[250]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[250]),
         .O(\mem_valid_reg[250] ));
   LUT4 #(
@@ -36706,7 +36589,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[251]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[251]),
         .O(\mem_valid_reg[251] ));
   LUT4 #(
@@ -36714,7 +36597,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[252]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[252]),
         .O(\mem_valid_reg[252] ));
   LUT4 #(
@@ -36722,7 +36605,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[253]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[253]),
         .O(\mem_valid_reg[253] ));
   LUT4 #(
@@ -36730,7 +36613,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[254]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[254]),
         .O(\mem_valid_reg[254] ));
   LUT4 #(
@@ -36738,7 +36621,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[255]_i_1 
        (.I0(\mem_valid_reg[240]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[255]_i_4_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[255]),
         .O(\mem_valid_reg[255] ));
   LUT4 #(
@@ -36746,7 +36629,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[25]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[25]),
         .O(\mem_valid_reg[25] ));
   LUT4 #(
@@ -36754,7 +36637,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[26]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[26]),
         .O(\mem_valid_reg[26] ));
   LUT4 #(
@@ -36762,7 +36645,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[27]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[27]),
         .O(\mem_valid_reg[27] ));
   LUT4 #(
@@ -36770,7 +36653,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[28]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[28]),
         .O(\mem_valid_reg[28] ));
   LUT4 #(
@@ -36778,15 +36661,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[29]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[29]),
         .O(\mem_valid_reg[29] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[2]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[2]),
         .O(\mem_valid_reg[2] ));
   LUT4 #(
@@ -36794,7 +36677,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[30]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[30]),
         .O(\mem_valid_reg[30] ));
   LUT4 #(
@@ -36802,15 +36685,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[31]_i_1 
        (.I0(\mem_valid_reg[16]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[31]),
         .O(\mem_valid_reg[31] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[32]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[32]),
         .O(\mem_valid_reg[32] ));
   LUT4 #(
@@ -36818,7 +36701,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[33]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[33]),
         .O(\mem_valid_reg[33] ));
   LUT4 #(
@@ -36826,7 +36709,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[34]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[34]),
         .O(\mem_valid_reg[34] ));
   LUT4 #(
@@ -36834,7 +36717,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[35]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[35]),
         .O(\mem_valid_reg[35] ));
   LUT4 #(
@@ -36842,7 +36725,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[36]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[36]),
         .O(\mem_valid_reg[36] ));
   LUT4 #(
@@ -36850,7 +36733,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[37]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[37]),
         .O(\mem_valid_reg[37] ));
   LUT4 #(
@@ -36858,7 +36741,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[38]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[38]),
         .O(\mem_valid_reg[38] ));
   LUT4 #(
@@ -36866,15 +36749,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[39]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[39]),
         .O(\mem_valid_reg[39] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[3]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[3]),
         .O(\mem_valid_reg[3] ));
   LUT4 #(
@@ -36882,7 +36765,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[40]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[40]),
         .O(\mem_valid_reg[40] ));
   LUT4 #(
@@ -36890,7 +36773,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[41]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[41]),
         .O(\mem_valid_reg[41] ));
   LUT4 #(
@@ -36898,7 +36781,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[42]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[42]),
         .O(\mem_valid_reg[42] ));
   LUT4 #(
@@ -36906,7 +36789,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[43]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[43]),
         .O(\mem_valid_reg[43] ));
   LUT4 #(
@@ -36914,7 +36797,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[44]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[44]),
         .O(\mem_valid_reg[44] ));
   LUT4 #(
@@ -36922,7 +36805,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[45]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[45]),
         .O(\mem_valid_reg[45] ));
   LUT4 #(
@@ -36930,7 +36813,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[46]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[46]),
         .O(\mem_valid_reg[46] ));
   LUT4 #(
@@ -36938,15 +36821,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[47]_i_1 
        (.I0(\mem_valid_reg[32]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[47]),
         .O(\mem_valid_reg[47] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[48]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[48]),
         .O(\mem_valid_reg[48] ));
   LUT4 #(
@@ -36954,15 +36837,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[49]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[49]),
         .O(\mem_valid_reg[49] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[4]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[4]),
         .O(\mem_valid_reg[4] ));
   LUT4 #(
@@ -36970,7 +36853,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[50]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[50]),
         .O(\mem_valid_reg[50] ));
   LUT4 #(
@@ -36978,7 +36861,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[51]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[51]),
         .O(\mem_valid_reg[51] ));
   LUT4 #(
@@ -36986,7 +36869,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[52]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[52]),
         .O(\mem_valid_reg[52] ));
   LUT4 #(
@@ -36994,7 +36877,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[53]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[53]),
         .O(\mem_valid_reg[53] ));
   LUT4 #(
@@ -37002,7 +36885,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[54]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[54]),
         .O(\mem_valid_reg[54] ));
   LUT4 #(
@@ -37010,7 +36893,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[55]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[55]),
         .O(\mem_valid_reg[55] ));
   LUT4 #(
@@ -37018,7 +36901,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[56]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[56]),
         .O(\mem_valid_reg[56] ));
   LUT4 #(
@@ -37026,7 +36909,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[57]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[57]),
         .O(\mem_valid_reg[57] ));
   LUT4 #(
@@ -37034,7 +36917,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[58]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[58]),
         .O(\mem_valid_reg[58] ));
   LUT4 #(
@@ -37042,15 +36925,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[59]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[59]),
         .O(\mem_valid_reg[59] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[5]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[5]),
         .O(\mem_valid_reg[5] ));
   LUT4 #(
@@ -37058,7 +36941,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[60]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[60]),
         .O(\mem_valid_reg[60] ));
   LUT4 #(
@@ -37066,7 +36949,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[61]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[61]),
         .O(\mem_valid_reg[61] ));
   LUT4 #(
@@ -37074,7 +36957,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[62]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[62]),
         .O(\mem_valid_reg[62] ));
   LUT4 #(
@@ -37082,15 +36965,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[63]_i_1 
        (.I0(\mem_valid_reg[48]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[63]),
         .O(\mem_valid_reg[63] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[64]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[64]),
         .O(\mem_valid_reg[64] ));
   LUT4 #(
@@ -37098,7 +36981,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[65]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[65]),
         .O(\mem_valid_reg[65] ));
   LUT4 #(
@@ -37106,7 +36989,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[66]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[66]),
         .O(\mem_valid_reg[66] ));
   LUT4 #(
@@ -37114,7 +36997,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[67]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[67]),
         .O(\mem_valid_reg[67] ));
   LUT4 #(
@@ -37122,7 +37005,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[68]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[68]),
         .O(\mem_valid_reg[68] ));
   LUT4 #(
@@ -37130,15 +37013,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[69]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[69]),
         .O(\mem_valid_reg[69] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[6]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[6]),
         .O(\mem_valid_reg[6] ));
   LUT4 #(
@@ -37146,7 +37029,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[70]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[70]),
         .O(\mem_valid_reg[70] ));
   LUT4 #(
@@ -37154,7 +37037,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[71]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[71]),
         .O(\mem_valid_reg[71] ));
   LUT4 #(
@@ -37162,7 +37045,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[72]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[72]),
         .O(\mem_valid_reg[72] ));
   LUT4 #(
@@ -37170,7 +37053,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[73]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[73]),
         .O(\mem_valid_reg[73] ));
   LUT4 #(
@@ -37178,7 +37061,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[74]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[74]),
         .O(\mem_valid_reg[74] ));
   LUT4 #(
@@ -37186,7 +37069,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[75]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[75]),
         .O(\mem_valid_reg[75] ));
   LUT4 #(
@@ -37194,7 +37077,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[76]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[76]),
         .O(\mem_valid_reg[76] ));
   LUT4 #(
@@ -37202,7 +37085,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[77]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[77]),
         .O(\mem_valid_reg[77] ));
   LUT4 #(
@@ -37210,7 +37093,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[78]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[78]),
         .O(\mem_valid_reg[78] ));
   LUT4 #(
@@ -37218,23 +37101,23 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[79]_i_1 
        (.I0(\mem_valid_reg[64]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[79]),
         .O(\mem_valid_reg[79] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[7]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[7]),
         .O(\mem_valid_reg[7] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[80]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[80]),
         .O(\mem_valid_reg[80] ));
   LUT4 #(
@@ -37242,7 +37125,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[81]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[81]),
         .O(\mem_valid_reg[81] ));
   LUT4 #(
@@ -37250,7 +37133,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[82]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[82]),
         .O(\mem_valid_reg[82] ));
   LUT4 #(
@@ -37258,7 +37141,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[83]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[83]),
         .O(\mem_valid_reg[83] ));
   LUT4 #(
@@ -37266,7 +37149,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[84]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[4]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[84]),
         .O(\mem_valid_reg[84] ));
   LUT4 #(
@@ -37274,7 +37157,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[85]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[5]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[85]),
         .O(\mem_valid_reg[85] ));
   LUT4 #(
@@ -37282,7 +37165,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[86]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[6]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[86]),
         .O(\mem_valid_reg[86] ));
   LUT4 #(
@@ -37290,7 +37173,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[87]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[7]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[87]),
         .O(\mem_valid_reg[87] ));
   LUT4 #(
@@ -37298,7 +37181,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[88]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[88]),
         .O(\mem_valid_reg[88] ));
   LUT4 #(
@@ -37306,15 +37189,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[89]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[89]),
         .O(\mem_valid_reg[89] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[8]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[8]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[8]),
         .O(\mem_valid_reg[8] ));
   LUT4 #(
@@ -37322,7 +37205,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[90]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[10]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[90]),
         .O(\mem_valid_reg[90] ));
   LUT4 #(
@@ -37330,7 +37213,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[91]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[11]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[91]),
         .O(\mem_valid_reg[91] ));
   LUT4 #(
@@ -37338,7 +37221,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[92]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[12]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[92]),
         .O(\mem_valid_reg[92] ));
   LUT4 #(
@@ -37346,7 +37229,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[93]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[13]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[93]),
         .O(\mem_valid_reg[93] ));
   LUT4 #(
@@ -37354,7 +37237,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[94]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[14]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[94]),
         .O(\mem_valid_reg[94] ));
   LUT4 #(
@@ -37362,15 +37245,15 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[95]_i_1 
        (.I0(\mem_valid_reg[80]_0 ),
         .I1(\mem_valid_reg[15]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[95]),
         .O(\mem_valid_reg[95] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[96]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
-        .I1(\mem_valid_reg[0]_1 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I1(\mem_valid_reg[0]_2 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[96]),
         .O(\mem_valid_reg[96] ));
   LUT4 #(
@@ -37378,7 +37261,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[97]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[1]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[97]),
         .O(\mem_valid_reg[97] ));
   LUT4 #(
@@ -37386,7 +37269,7 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[98]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[2]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[98]),
         .O(\mem_valid_reg[98] ));
   LUT4 #(
@@ -37394,250 +37277,34 @@ module design_1_CPUTop_0_0_alu
     \btb1/mem_valid[99]_i_1 
        (.I0(\mem_valid_reg[96]_0 ),
         .I1(\mem_valid_reg[3]_0 ),
-        .I2(\mem_valid[127]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[99]),
         .O(\mem_valid_reg[99] ));
   LUT4 #(
     .INIT(16'hFF10)) 
     \btb1/mem_valid[9]_i_1 
-       (.I0(\mem_valid_reg[0]_0 ),
+       (.I0(\mem_valid_reg[0]_1 ),
         .I1(\mem_valid_reg[9]_0 ),
-        .I2(\mem_valid[63]_i_3_n_0 ),
+        .I2(\alucode_EX_reg[3] ),
         .I3(mem_valid[9]),
         .O(\mem_valid_reg[9] ));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__0_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [7]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [7]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[7] [3]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__0_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [6]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [6]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[7] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__0_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [5]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [5]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[7] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__0_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [4]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [4]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[7] [0]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__1_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [11]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [11]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[11] [3]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__1_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [10]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [10]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[11] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__1_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [9]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [9]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[11] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__1_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [8]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [8]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[11] [0]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__2_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [15]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [15]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[15] [3]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__2_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [14]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [14]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[15] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__2_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [13]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [13]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[15] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__2_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [12]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [12]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[15] [0]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__3_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [19]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [19]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[19] [3]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__3_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [18]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [18]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[19] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__3_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [17]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [17]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[19] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__3_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [16]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [16]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[19] [0]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__4_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [23]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [23]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[23] [3]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__4_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [22]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [22]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[23] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__4_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [21]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [21]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[23] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__4_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [20]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [20]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[23] [0]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__5_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [27]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [27]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[27] [3]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__5_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [26]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [26]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[27] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__5_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [25]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [25]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[27] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__5_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [24]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [24]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[27] [0]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__6_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [31]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [31]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[31] [3]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__6_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [30]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [30]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[31] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__6_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [29]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [29]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[31] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry__6_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [28]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [28]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[31] [0]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry_i_1
-       (.I0(\NPC0_inferred__0/i__carry__6 [3]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [3]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[3] [3]));
-  LUT3 #(
-    .INIT(8'h59)) 
-    i__carry_i_2
-       (.I0(\NPC0_inferred__0/i__carry__6 [2]),
-        .I1(\alucode_EX_reg[3] ),
-        .I2(\NPC0_inferred__0/i__carry__6_0 [2]),
-        .O(\pc_EX_reg[3] [2]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry_i_3
-       (.I0(\NPC0_inferred__0/i__carry__6 [1]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [1]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[3] [1]));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    i__carry_i_4
-       (.I0(\NPC0_inferred__0/i__carry__6 [0]),
-        .I1(\NPC0_inferred__0/i__carry__6_0 [0]),
-        .I2(\alucode_EX_reg[3] ),
-        .O(\pc_EX_reg[3] [0]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_0_2_i_1
+       (.I0(\pc_IF_reg[31]_2 [2]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [2]),
+        .I3(\pc_IF_reg[31] [2]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[0]));
   LUT4 #(
     .INIT(16'hBC8C)) 
     mem_reg_0_63_0_2_i_10
        (.I0(data4),
         .I1(\alu_result_MA_reg[31] [1]),
         .I2(\alu_result_MA_reg[31] [2]),
-        .I3(mem_reg_0_63_0_2_i_7_0),
+        .I3(CO),
         .O(mem_reg_0_63_0_2_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'hB833)) 
     mem_reg_0_63_0_2_i_11
@@ -37647,357 +37314,433 @@ module design_1_CPUTop_0_0_alu
         .I3(\alu_result_MA_reg[31] [2]),
         .O(mem_reg_0_63_0_2_i_11_n_0));
   LUT5 #(
-    .INIT(32'h000000E2)) 
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_0_2_i_2
+       (.I0(\pc_IF_reg[31]_2 [3]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [3]),
+        .I3(\pc_IF_reg[31] [3]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[1]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_0_2_i_3
+       (.I0(\pc_IF_reg[31]_2 [4]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [4]),
+        .I3(\pc_IF_reg[31] [4]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[2]));
+  LUT6 #(
+    .INIT(64'h000000000000FE0E)) 
     mem_reg_0_63_0_2_i_6
        (.I0(mem_reg_0_63_0_2_i_7_n_0),
-        .I1(\alu_result_MA_reg[31] [3]),
-        .I2(mem_reg_0_63_0_2_i_8_n_0),
-        .I3(\alu_result_MA_reg[31] [4]),
-        .I4(\alu_result_MA_reg[31] [5]),
+        .I1(\mem_valid_reg[0]_0 ),
+        .I2(\alu_result_MA_reg[31] [3]),
+        .I3(mem_reg_0_63_0_2_i_9_n_0),
+        .I4(\alu_result_MA_reg[31] [4]),
+        .I5(\alu_result_MA_reg[31] [5]),
         .O(\alucode_EX_reg[3] ));
-  LUT6 #(
-    .INIT(64'hFFFFFF080808FF08)) 
-    mem_reg_0_63_0_2_i_7
-       (.I0(CO),
-        .I1(\alu_result_MA_reg[31] [1]),
-        .I2(\alu_result_MA_reg[31] [2]),
-        .I3(mem_reg_0_63_0_2_i_10_n_0),
-        .I4(\alu_result_MA_reg[31] [0]),
-        .I5(mem_reg_0_63_0_2_i_11_n_0),
-        .O(mem_reg_0_63_0_2_i_7_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  MUXF7 mem_reg_0_63_0_2_i_7
+       (.I0(mem_reg_0_63_0_2_i_10_n_0),
+        .I1(mem_reg_0_63_0_2_i_11_n_0),
+        .O(mem_reg_0_63_0_2_i_7_n_0),
+        .S(\alu_result_MA_reg[31] [0]));
   LUT4 #(
     .INIT(16'h0001)) 
-    mem_reg_0_63_0_2_i_8
+    mem_reg_0_63_0_2_i_9
        (.I0(\alu_result_MA_reg[31] [0]),
         .I1(\alu_result_MA_reg[31] [2]),
         .I2(data3),
         .I3(\alu_result_MA_reg[31] [1]),
-        .O(mem_reg_0_63_0_2_i_8_n_0));
+        .O(mem_reg_0_63_0_2_i_9_n_0));
   LUT5 #(
-    .INIT(32'h000000E2)) 
-    \mem_valid[127]_i_3 
-       (.I0(mem_reg_0_63_0_2_i_7_n_0),
-        .I1(\alu_result_MA_reg[31] [3]),
-        .I2(mem_reg_0_63_0_2_i_8_n_0),
-        .I3(\alu_result_MA_reg[31] [4]),
-        .I4(\alu_result_MA_reg[31] [5]),
-        .O(\mem_valid[127]_i_3_n_0 ));
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_12_14_i_1
+       (.I0(\pc_IF_reg[31]_2 [14]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [14]),
+        .I3(\pc_IF_reg[31] [14]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[12]));
   LUT5 #(
-    .INIT(32'h000000E2)) 
-    \mem_valid[191]_i_3 
-       (.I0(mem_reg_0_63_0_2_i_7_n_0),
-        .I1(\alu_result_MA_reg[31] [3]),
-        .I2(mem_reg_0_63_0_2_i_8_n_0),
-        .I3(\alu_result_MA_reg[31] [4]),
-        .I4(\alu_result_MA_reg[31] [5]),
-        .O(\mem_valid[191]_i_3_n_0 ));
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_12_14_i_2
+       (.I0(\pc_IF_reg[31]_2 [15]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [15]),
+        .I3(\pc_IF_reg[31] [15]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[13]));
   LUT5 #(
-    .INIT(32'h000000E2)) 
-    \mem_valid[255]_i_4 
-       (.I0(mem_reg_0_63_0_2_i_7_n_0),
-        .I1(\alu_result_MA_reg[31] [3]),
-        .I2(mem_reg_0_63_0_2_i_8_n_0),
-        .I3(\alu_result_MA_reg[31] [4]),
-        .I4(\alu_result_MA_reg[31] [5]),
-        .O(\mem_valid[255]_i_4_n_0 ));
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_3_5_i_1
+       (.I0(\pc_IF_reg[31]_2 [5]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [5]),
+        .I3(\pc_IF_reg[31] [5]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[3]));
   LUT5 #(
-    .INIT(32'h000000E2)) 
-    \mem_valid[63]_i_3 
-       (.I0(mem_reg_0_63_0_2_i_7_n_0),
-        .I1(\alu_result_MA_reg[31] [3]),
-        .I2(mem_reg_0_63_0_2_i_8_n_0),
-        .I3(\alu_result_MA_reg[31] [4]),
-        .I4(\alu_result_MA_reg[31] [5]),
-        .O(\mem_valid[63]_i_3_n_0 ));
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_3_5_i_2
+       (.I0(\pc_IF_reg[31]_2 [6]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [6]),
+        .I3(\pc_IF_reg[31] [6]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[4]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_3_5_i_3
+       (.I0(\pc_IF_reg[31]_2 [7]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [7]),
+        .I3(\pc_IF_reg[31] [7]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[5]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_6_8_i_1
+       (.I0(\pc_IF_reg[31]_2 [8]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [8]),
+        .I3(\pc_IF_reg[31] [8]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[6]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_6_8_i_2
+       (.I0(\pc_IF_reg[31]_2 [9]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [9]),
+        .I3(\pc_IF_reg[31] [9]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[7]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_6_8_i_3
+       (.I0(\pc_IF_reg[31]_2 [10]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [10]),
+        .I3(\pc_IF_reg[31] [10]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[8]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_9_11_i_1
+       (.I0(\pc_IF_reg[31]_2 [11]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [11]),
+        .I3(\pc_IF_reg[31] [11]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[9]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_9_11_i_2
+       (.I0(\pc_IF_reg[31]_2 [12]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [12]),
+        .I3(\pc_IF_reg[31] [12]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[10]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    mem_reg_0_63_9_11_i_3
+       (.I0(\pc_IF_reg[31]_2 [13]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [13]),
+        .I3(\pc_IF_reg[31] [13]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX[11]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[0]_i_1 
        (.I0(alu_result_EX[0]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[0]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[0]),
-        .O(\alucode_EX_reg[4] [0]));
+        .O(\alucode_EX_reg[4]_0 [0]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[10]_i_1 
        (.I0(alu_result_EX[10]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[10]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[10]),
-        .O(\alucode_EX_reg[4] [10]));
+        .O(\alucode_EX_reg[4]_0 [10]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[11]_i_1 
        (.I0(alu_result_EX[11]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[11]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[11]),
-        .O(\alucode_EX_reg[4] [11]));
+        .O(\alucode_EX_reg[4]_0 [11]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[12]_i_1 
        (.I0(alu_result_EX[12]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[12]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[12]),
-        .O(\alucode_EX_reg[4] [12]));
+        .O(\alucode_EX_reg[4]_0 [12]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[13]_i_1 
        (.I0(alu_result_EX[13]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[13]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[13]),
-        .O(\alucode_EX_reg[4] [13]));
+        .O(\alucode_EX_reg[4]_0 [13]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[14]_i_1 
        (.I0(alu_result_EX[14]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[14]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[14]),
-        .O(\alucode_EX_reg[4] [14]));
+        .O(\alucode_EX_reg[4]_0 [14]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[15]_i_1 
        (.I0(alu_result_EX[15]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[15]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[15]),
-        .O(\alucode_EX_reg[4] [15]));
+        .O(\alucode_EX_reg[4]_0 [15]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[16]_i_1 
        (.I0(alu_result_EX[16]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[16]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[16]),
-        .O(\alucode_EX_reg[4] [16]));
+        .O(\alucode_EX_reg[4]_0 [16]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[17]_i_1 
        (.I0(alu_result_EX[17]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[17]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[17]),
-        .O(\alucode_EX_reg[4] [17]));
+        .O(\alucode_EX_reg[4]_0 [17]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[18]_i_1 
        (.I0(alu_result_EX[18]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[18]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[18]),
-        .O(\alucode_EX_reg[4] [18]));
+        .O(\alucode_EX_reg[4]_0 [18]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[19]_i_1 
        (.I0(alu_result_EX[19]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[19]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[19]),
-        .O(\alucode_EX_reg[4] [19]));
+        .O(\alucode_EX_reg[4]_0 [19]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[1]_i_1 
        (.I0(alu_result_EX[1]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[1]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[1]),
-        .O(\alucode_EX_reg[4] [1]));
+        .O(\alucode_EX_reg[4]_0 [1]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[20]_i_1 
        (.I0(alu_result_EX[20]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[20]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[20]),
-        .O(\alucode_EX_reg[4] [20]));
+        .O(\alucode_EX_reg[4]_0 [20]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[21]_i_1 
        (.I0(alu_result_EX[21]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[21]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[21]),
-        .O(\alucode_EX_reg[4] [21]));
+        .O(\alucode_EX_reg[4]_0 [21]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[22]_i_1 
        (.I0(alu_result_EX[22]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[22]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[22]),
-        .O(\alucode_EX_reg[4] [22]));
+        .O(\alucode_EX_reg[4]_0 [22]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[23]_i_1 
        (.I0(alu_result_EX[23]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[23]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[23]),
-        .O(\alucode_EX_reg[4] [23]));
+        .O(\alucode_EX_reg[4]_0 [23]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[24]_i_1 
        (.I0(alu_result_EX[24]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[24]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[24]),
-        .O(\alucode_EX_reg[4] [24]));
+        .O(\alucode_EX_reg[4]_0 [24]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[25]_i_1 
        (.I0(alu_result_EX[25]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[25]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[25]),
-        .O(\alucode_EX_reg[4] [25]));
+        .O(\alucode_EX_reg[4]_0 [25]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[26]_i_1 
        (.I0(alu_result_EX[26]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[26]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[26]),
-        .O(\alucode_EX_reg[4] [26]));
+        .O(\alucode_EX_reg[4]_0 [26]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[27]_i_1 
        (.I0(alu_result_EX[27]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[27]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[27]),
-        .O(\alucode_EX_reg[4] [27]));
+        .O(\alucode_EX_reg[4]_0 [27]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[28]_i_1 
        (.I0(alu_result_EX[28]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[28]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[28]),
-        .O(\alucode_EX_reg[4] [28]));
+        .O(\alucode_EX_reg[4]_0 [28]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[29]_i_1 
        (.I0(alu_result_EX[29]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[29]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[29]),
-        .O(\alucode_EX_reg[4] [29]));
+        .O(\alucode_EX_reg[4]_0 [29]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[2]_i_1 
        (.I0(alu_result_EX[2]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[2]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[2]),
-        .O(\alucode_EX_reg[4] [2]));
+        .O(\alucode_EX_reg[4]_0 [2]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[30]_i_1 
        (.I0(alu_result_EX[30]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[30]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[30]),
-        .O(\alucode_EX_reg[4] [30]));
+        .O(\alucode_EX_reg[4]_0 [30]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[31]_i_1 
        (.I0(alu_result_EX[31]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[31]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[31]),
-        .O(\alucode_EX_reg[4] [31]));
+        .O(\alucode_EX_reg[4]_0 [31]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[3]_i_1 
        (.I0(alu_result_EX[3]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[3]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[3]),
-        .O(\alucode_EX_reg[4] [3]));
+        .O(\alucode_EX_reg[4]_0 [3]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[4]_i_1 
        (.I0(alu_result_EX[4]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[4]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[4]),
-        .O(\alucode_EX_reg[4] [4]));
+        .O(\alucode_EX_reg[4]_0 [4]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[5]_i_1 
        (.I0(alu_result_EX[5]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[5]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[5]),
-        .O(\alucode_EX_reg[4] [5]));
+        .O(\alucode_EX_reg[4]_0 [5]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[6]_i_1 
        (.I0(alu_result_EX[6]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[6]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[6]),
-        .O(\alucode_EX_reg[4] [6]));
+        .O(\alucode_EX_reg[4]_0 [6]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[7]_i_1 
        (.I0(alu_result_EX[7]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[7]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[7]),
-        .O(\alucode_EX_reg[4] [7]));
+        .O(\alucode_EX_reg[4]_0 [7]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[8]_i_1 
        (.I0(alu_result_EX[8]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[8]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[8]),
-        .O(\alucode_EX_reg[4] [8]));
+        .O(\alucode_EX_reg[4]_0 [8]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprl_EX[9]_i_1 
        (.I0(alu_result_EX[9]),
-        .I1(is_oprl_fwd_EE__0),
+        .I1(is_oprl_fwd_EE__1),
         .I2(calc_reg_write_value_return[9]),
-        .I3(is_oprl_fwd_ME__0),
+        .I3(is_oprl_fwd_ME__1),
         .I4(oprl_ID[9]),
-        .O(\alucode_EX_reg[4] [9]));
+        .O(\alucode_EX_reg[4]_0 [9]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[0]_i_1 
@@ -38006,7 +37749,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[0]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[0]),
-        .O(D[0]));
+        .O(\alucode_EX_reg[4] [0]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[10]_i_1 
@@ -38015,7 +37758,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[10]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[10]),
-        .O(D[10]));
+        .O(\alucode_EX_reg[4] [10]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[11]_i_1 
@@ -38024,7 +37767,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[11]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[11]),
-        .O(D[11]));
+        .O(\alucode_EX_reg[4] [11]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[12]_i_1 
@@ -38033,7 +37776,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[12]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[12]),
-        .O(D[12]));
+        .O(\alucode_EX_reg[4] [12]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[13]_i_1 
@@ -38042,7 +37785,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[13]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[13]),
-        .O(D[13]));
+        .O(\alucode_EX_reg[4] [13]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[14]_i_1 
@@ -38051,7 +37794,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[14]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[14]),
-        .O(D[14]));
+        .O(\alucode_EX_reg[4] [14]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[15]_i_1 
@@ -38060,7 +37803,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[15]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[15]),
-        .O(D[15]));
+        .O(\alucode_EX_reg[4] [15]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[16]_i_1 
@@ -38069,7 +37812,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[16]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[16]),
-        .O(D[16]));
+        .O(\alucode_EX_reg[4] [16]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[17]_i_1 
@@ -38078,7 +37821,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[17]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[17]),
-        .O(D[17]));
+        .O(\alucode_EX_reg[4] [17]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[18]_i_1 
@@ -38087,7 +37830,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[18]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[18]),
-        .O(D[18]));
+        .O(\alucode_EX_reg[4] [18]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[19]_i_1 
@@ -38096,7 +37839,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[19]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[19]),
-        .O(D[19]));
+        .O(\alucode_EX_reg[4] [19]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[1]_i_1 
@@ -38105,7 +37848,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[1]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[1]),
-        .O(D[1]));
+        .O(\alucode_EX_reg[4] [1]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[20]_i_1 
@@ -38114,7 +37857,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[20]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[20]),
-        .O(D[20]));
+        .O(\alucode_EX_reg[4] [20]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[21]_i_1 
@@ -38123,7 +37866,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[21]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[21]),
-        .O(D[21]));
+        .O(\alucode_EX_reg[4] [21]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[22]_i_1 
@@ -38132,7 +37875,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[22]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[22]),
-        .O(D[22]));
+        .O(\alucode_EX_reg[4] [22]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[23]_i_1 
@@ -38141,7 +37884,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[23]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[23]),
-        .O(D[23]));
+        .O(\alucode_EX_reg[4] [23]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[24]_i_1 
@@ -38150,7 +37893,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[24]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[24]),
-        .O(D[24]));
+        .O(\alucode_EX_reg[4] [24]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[25]_i_1 
@@ -38159,7 +37902,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[25]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[25]),
-        .O(D[25]));
+        .O(\alucode_EX_reg[4] [25]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[26]_i_1 
@@ -38168,7 +37911,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[26]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[26]),
-        .O(D[26]));
+        .O(\alucode_EX_reg[4] [26]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[27]_i_1 
@@ -38177,7 +37920,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[27]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[27]),
-        .O(D[27]));
+        .O(\alucode_EX_reg[4] [27]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[28]_i_1 
@@ -38186,7 +37929,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[28]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[28]),
-        .O(D[28]));
+        .O(\alucode_EX_reg[4] [28]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[29]_i_1 
@@ -38195,7 +37938,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[29]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[29]),
-        .O(D[29]));
+        .O(\alucode_EX_reg[4] [29]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[2]_i_1 
@@ -38204,7 +37947,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[2]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[2]),
-        .O(D[2]));
+        .O(\alucode_EX_reg[4] [2]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[30]_i_1 
@@ -38213,7 +37956,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[30]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[30]),
-        .O(D[30]));
+        .O(\alucode_EX_reg[4] [30]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[31]_i_1 
@@ -38222,7 +37965,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[31]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[31]),
-        .O(D[31]));
+        .O(\alucode_EX_reg[4] [31]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[3]_i_1 
@@ -38231,7 +37974,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[3]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[3]),
-        .O(D[3]));
+        .O(\alucode_EX_reg[4] [3]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[4]_i_1 
@@ -38240,7 +37983,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[4]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[4]),
-        .O(D[4]));
+        .O(\alucode_EX_reg[4] [4]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[5]_i_1 
@@ -38249,7 +37992,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[5]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[5]),
-        .O(D[5]));
+        .O(\alucode_EX_reg[4] [5]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[6]_i_1 
@@ -38258,7 +38001,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[6]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[6]),
-        .O(D[6]));
+        .O(\alucode_EX_reg[4] [6]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[7]_i_1 
@@ -38267,7 +38010,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[7]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[7]),
-        .O(D[7]));
+        .O(\alucode_EX_reg[4] [7]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[8]_i_1 
@@ -38276,7 +38019,7 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[8]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[8]),
-        .O(D[8]));
+        .O(\alucode_EX_reg[4] [8]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \oprr_EX[9]_i_1 
@@ -38285,304 +38028,446 @@ module design_1_CPUTop_0_0_alu
         .I2(calc_reg_write_value_return[9]),
         .I3(is_oprr_fwd_ME__0),
         .I4(oprr_ID[9]),
+        .O(\alucode_EX_reg[4] [9]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry__0_i_1
+       (.I0(npc_EX__0[21]),
+        .I1(pc_IF2_carry__1[21]),
+        .I2(pc_IF2_carry__1[23]),
+        .I3(npc_EX__0[23]),
+        .I4(pc_IF2_carry__1[22]),
+        .I5(npc_EX__0[22]),
+        .O(\pc_ID_reg[21] [3]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_10
+       (.I0(\pc_IF_reg[31]_2 [19]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [19]),
+        .I3(\pc_IF_reg[31] [19]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[19]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_11
+       (.I0(\pc_IF_reg[31]_2 [17]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [17]),
+        .I3(\pc_IF_reg[31] [17]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[17]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_12
+       (.I0(\pc_IF_reg[31]_2 [16]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [16]),
+        .I3(\pc_IF_reg[31] [16]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[16]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry__0_i_2
+       (.I0(npc_EX__0[18]),
+        .I1(pc_IF2_carry__1[18]),
+        .I2(pc_IF2_carry__1[20]),
+        .I3(npc_EX__0[20]),
+        .I4(pc_IF2_carry__1[19]),
+        .I5(npc_EX__0[19]),
+        .O(\pc_ID_reg[21] [2]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry__0_i_3
+       (.I0(npc_EX[13]),
+        .I1(pc_IF2_carry__1[15]),
+        .I2(pc_IF2_carry__1[17]),
+        .I3(npc_EX__0[17]),
+        .I4(pc_IF2_carry__1[16]),
+        .I5(npc_EX__0[16]),
+        .O(\pc_ID_reg[21] [1]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry__0_i_4
+       (.I0(npc_EX[10]),
+        .I1(pc_IF2_carry__1[12]),
+        .I2(pc_IF2_carry__1[14]),
+        .I3(npc_EX[12]),
+        .I4(pc_IF2_carry__1[13]),
+        .I5(npc_EX[11]),
+        .O(\pc_ID_reg[21] [0]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_5
+       (.I0(\pc_IF_reg[31]_2 [21]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [21]),
+        .I3(\pc_IF_reg[31] [21]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[21]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_6
+       (.I0(\pc_IF_reg[31]_2 [23]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [23]),
+        .I3(\pc_IF_reg[31] [23]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[23]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_7
+       (.I0(\pc_IF_reg[31]_2 [22]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [22]),
+        .I3(\pc_IF_reg[31] [22]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[22]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_8
+       (.I0(\pc_IF_reg[31]_2 [18]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [18]),
+        .I3(\pc_IF_reg[31] [18]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[18]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__0_i_9
+       (.I0(\pc_IF_reg[31]_2 [20]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [20]),
+        .I3(\pc_IF_reg[31] [20]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[20]));
+  LUT4 #(
+    .INIT(16'h9009)) 
+    pc_IF2_carry__1_i_1
+       (.I0(npc_EX__0[30]),
+        .I1(pc_IF2_carry__1[30]),
+        .I2(npc_EX__0[31]),
+        .I3(pc_IF2_carry__1[31]),
+        .O(\pc_ID_reg[30] [2]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_10
+       (.I0(\pc_IF_reg[31]_2 [26]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [26]),
+        .I3(\pc_IF_reg[31] [26]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[26]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_11
+       (.I0(\pc_IF_reg[31]_2 [25]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [25]),
+        .I3(\pc_IF_reg[31] [25]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[25]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry__1_i_2
+       (.I0(npc_EX__0[27]),
+        .I1(pc_IF2_carry__1[27]),
+        .I2(pc_IF2_carry__1[29]),
+        .I3(npc_EX__0[29]),
+        .I4(pc_IF2_carry__1[28]),
+        .I5(npc_EX__0[28]),
+        .O(\pc_ID_reg[30] [1]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry__1_i_3
+       (.I0(npc_EX__0[24]),
+        .I1(pc_IF2_carry__1[24]),
+        .I2(pc_IF2_carry__1[26]),
+        .I3(npc_EX__0[26]),
+        .I4(pc_IF2_carry__1[25]),
+        .I5(npc_EX__0[25]),
+        .O(\pc_ID_reg[30] [0]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_4
+       (.I0(\pc_IF_reg[31]_2 [30]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [30]),
+        .I3(\pc_IF_reg[31] [30]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[30]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_5
+       (.I0(\pc_IF_reg[31]_2 [31]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [31]),
+        .I3(\pc_IF_reg[31] [31]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[31]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_6
+       (.I0(\pc_IF_reg[31]_2 [27]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [27]),
+        .I3(\pc_IF_reg[31] [27]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[27]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_7
+       (.I0(\pc_IF_reg[31]_2 [29]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [29]),
+        .I3(\pc_IF_reg[31] [29]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[29]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_8
+       (.I0(\pc_IF_reg[31]_2 [28]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [28]),
+        .I3(\pc_IF_reg[31] [28]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[28]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    pc_IF2_carry__1_i_9
+       (.I0(\pc_IF_reg[31]_2 [24]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [24]),
+        .I3(\pc_IF_reg[31] [24]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(npc_EX__0[24]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry_i_1
+       (.I0(npc_EX[7]),
+        .I1(pc_IF2_carry__1[9]),
+        .I2(pc_IF2_carry__1[11]),
+        .I3(npc_EX[9]),
+        .I4(pc_IF2_carry__1[10]),
+        .I5(npc_EX[8]),
+        .O(\pc_ID_reg[9] [3]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry_i_2
+       (.I0(npc_EX[4]),
+        .I1(pc_IF2_carry__1[6]),
+        .I2(pc_IF2_carry__1[8]),
+        .I3(npc_EX[6]),
+        .I4(pc_IF2_carry__1[7]),
+        .I5(npc_EX[5]),
+        .O(\pc_ID_reg[9] [2]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry_i_3
+       (.I0(npc_EX[1]),
+        .I1(pc_IF2_carry__1[3]),
+        .I2(pc_IF2_carry__1[5]),
+        .I3(npc_EX[3]),
+        .I4(pc_IF2_carry__1[4]),
+        .I5(npc_EX[2]),
+        .O(\pc_ID_reg[9] [1]));
+  LUT6 #(
+    .INIT(64'h9009000000009009)) 
+    pc_IF2_carry_i_4
+       (.I0(\npc_jalr_EX_reg[1] [0]),
+        .I1(pc_IF2_carry__1[0]),
+        .I2(pc_IF2_carry__1[2]),
+        .I3(npc_EX[0]),
+        .I4(pc_IF2_carry__1[1]),
+        .I5(\npc_jalr_EX_reg[1] [1]),
+        .O(\pc_ID_reg[9] [0]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    \pc_IF[0]_i_2 
+       (.I0(\pc_IF_reg[31]_2 [0]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [0]),
+        .I3(\pc_IF_reg[31] [0]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(\npc_jalr_EX_reg[1] [0]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[16]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [16]),
+        .I3(\pc_IF_reg[31]_0 [16]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [16]),
+        .O(D[0]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[17]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [17]),
+        .I3(\pc_IF_reg[31]_0 [17]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [17]),
+        .O(D[1]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[18]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [18]),
+        .I3(\pc_IF_reg[31]_0 [18]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [18]),
+        .O(D[2]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[19]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [19]),
+        .I3(\pc_IF_reg[31]_0 [19]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [19]),
+        .O(D[3]));
+  LUT5 #(
+    .INIT(32'hB8B8BB88)) 
+    \pc_IF[1]_i_2 
+       (.I0(\pc_IF_reg[31]_2 [1]),
+        .I1(\pc_IF_reg[31]_1 ),
+        .I2(\pc_IF_reg[31]_0 [1]),
+        .I3(\pc_IF_reg[31] [1]),
+        .I4(\alucode_EX_reg[3] ),
+        .O(\npc_jalr_EX_reg[1] [1]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[20]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [20]),
+        .I3(\pc_IF_reg[31]_0 [20]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [20]),
+        .O(D[4]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[21]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [21]),
+        .I3(\pc_IF_reg[31]_0 [21]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [21]),
+        .O(D[5]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[22]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [22]),
+        .I3(\pc_IF_reg[31]_0 [22]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [22]),
+        .O(D[6]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[23]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [23]),
+        .I3(\pc_IF_reg[31]_0 [23]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [23]),
+        .O(D[7]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[24]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [24]),
+        .I3(\pc_IF_reg[31]_0 [24]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [24]),
+        .O(D[8]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[25]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [25]),
+        .I3(\pc_IF_reg[31]_0 [25]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [25]),
         .O(D[9]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[0]_i_1 
-       (.I0(alu_result_EX[0]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[0]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[0]),
-        .O(\alucode_EX_reg[4]_1 [0]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[10]_i_1 
-       (.I0(alu_result_EX[10]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[10]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[10]),
-        .O(\alucode_EX_reg[4]_1 [10]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[11]_i_1 
-       (.I0(alu_result_EX[11]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[11]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[11]),
-        .O(\alucode_EX_reg[4]_1 [11]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[12]_i_1 
-       (.I0(alu_result_EX[12]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[12]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[12]),
-        .O(\alucode_EX_reg[4]_1 [12]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[13]_i_1 
-       (.I0(alu_result_EX[13]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[13]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[13]),
-        .O(\alucode_EX_reg[4]_1 [13]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[14]_i_1 
-       (.I0(alu_result_EX[14]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[14]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[14]),
-        .O(\alucode_EX_reg[4]_1 [14]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[15]_i_1 
-       (.I0(alu_result_EX[15]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[15]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[15]),
-        .O(\alucode_EX_reg[4]_1 [15]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[16]_i_1 
-       (.I0(alu_result_EX[16]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[16]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[16]),
-        .O(\alucode_EX_reg[4]_1 [16]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[17]_i_1 
-       (.I0(alu_result_EX[17]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[17]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[17]),
-        .O(\alucode_EX_reg[4]_1 [17]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[18]_i_1 
-       (.I0(alu_result_EX[18]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[18]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[18]),
-        .O(\alucode_EX_reg[4]_1 [18]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[19]_i_1 
-       (.I0(alu_result_EX[19]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[19]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[19]),
-        .O(\alucode_EX_reg[4]_1 [19]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[1]_i_1 
-       (.I0(alu_result_EX[1]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[1]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[1]),
-        .O(\alucode_EX_reg[4]_1 [1]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[20]_i_1 
-       (.I0(alu_result_EX[20]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[20]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[20]),
-        .O(\alucode_EX_reg[4]_1 [20]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[21]_i_1 
-       (.I0(alu_result_EX[21]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[21]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[21]),
-        .O(\alucode_EX_reg[4]_1 [21]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[22]_i_1 
-       (.I0(alu_result_EX[22]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[22]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[22]),
-        .O(\alucode_EX_reg[4]_1 [22]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[23]_i_1 
-       (.I0(alu_result_EX[23]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[23]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[23]),
-        .O(\alucode_EX_reg[4]_1 [23]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[24]_i_1 
-       (.I0(alu_result_EX[24]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[24]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[24]),
-        .O(\alucode_EX_reg[4]_1 [24]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[25]_i_1 
-       (.I0(alu_result_EX[25]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[25]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[25]),
-        .O(\alucode_EX_reg[4]_1 [25]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[26]_i_1 
-       (.I0(alu_result_EX[26]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[26]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[26]),
-        .O(\alucode_EX_reg[4]_1 [26]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[27]_i_1 
-       (.I0(alu_result_EX[27]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[27]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[27]),
-        .O(\alucode_EX_reg[4]_1 [27]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[28]_i_1 
-       (.I0(alu_result_EX[28]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[28]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[28]),
-        .O(\alucode_EX_reg[4]_1 [28]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[29]_i_1 
-       (.I0(alu_result_EX[29]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[29]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[29]),
-        .O(\alucode_EX_reg[4]_1 [29]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[2]_i_1 
-       (.I0(alu_result_EX[2]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[2]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[2]),
-        .O(\alucode_EX_reg[4]_1 [2]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[30]_i_1 
-       (.I0(alu_result_EX[30]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[30]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[30]),
-        .O(\alucode_EX_reg[4]_1 [30]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[31]_i_1 
-       (.I0(alu_result_EX[31]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[31]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[31]),
-        .O(\alucode_EX_reg[4]_1 [31]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[3]_i_1 
-       (.I0(alu_result_EX[3]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[3]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[3]),
-        .O(\alucode_EX_reg[4]_1 [3]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[4]_i_1 
-       (.I0(alu_result_EX[4]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[4]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[4]),
-        .O(\alucode_EX_reg[4]_1 [4]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[5]_i_1 
-       (.I0(alu_result_EX[5]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[5]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[5]),
-        .O(\alucode_EX_reg[4]_1 [5]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[6]_i_1 
-       (.I0(alu_result_EX[6]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[6]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[6]),
-        .O(\alucode_EX_reg[4]_1 [6]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[7]_i_1 
-       (.I0(alu_result_EX[7]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[7]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[7]),
-        .O(\alucode_EX_reg[4]_1 [7]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[8]_i_1 
-       (.I0(alu_result_EX[8]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[8]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[8]),
-        .O(\alucode_EX_reg[4]_1 [8]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \regdata1_EX[9]_i_1 
-       (.I0(alu_result_EX[9]),
-        .I1(p_6_in),
-        .I2(calc_reg_write_value_return[9]),
-        .I3(p_7_in),
-        .I4(regdata1_ID[9]),
-        .O(\alucode_EX_reg[4]_1 [9]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[26]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [26]),
+        .I3(\pc_IF_reg[31]_0 [26]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [26]),
+        .O(D[10]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[27]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [27]),
+        .I3(\pc_IF_reg[31]_0 [27]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [27]),
+        .O(D[11]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[28]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [28]),
+        .I3(\pc_IF_reg[31]_0 [28]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [28]),
+        .O(D[12]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[29]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [29]),
+        .I3(\pc_IF_reg[31]_0 [29]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [29]),
+        .O(D[13]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[30]_i_1 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [30]),
+        .I3(\pc_IF_reg[31]_0 [30]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [30]),
+        .O(D[14]));
+  LUT6 #(
+    .INIT(64'hAAAAA8200000A820)) 
+    \pc_IF[31]_i_2 
+       (.I0(pc_IF1),
+        .I1(\alucode_EX_reg[3] ),
+        .I2(\pc_IF_reg[31] [31]),
+        .I3(\pc_IF_reg[31]_0 [31]),
+        .I4(\pc_IF_reg[31]_1 ),
+        .I5(\pc_IF_reg[31]_2 [31]),
+        .O(D[15]));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[0]_i_1 
        (.I0(alu_result_EX[0]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[0]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[0]),
-        .O(\alucode_EX_reg[4]_0 [0]));
+        .O(\alucode_EX_reg[4]_1 [0]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[0]_i_2 
@@ -38597,454 +38482,684 @@ module design_1_CPUTop_0_0_alu
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[10]_i_1 
        (.I0(alu_result_EX[10]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[10]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[10]),
-        .O(\alucode_EX_reg[4]_0 [10]));
+        .O(\alucode_EX_reg[4]_1 [10]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[10]_i_2 
-       (.I0(\alu_result_MA[10]_i_4_n_0 ),
+       (.I0(\regdata2_EX[10]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[10]_i_3_n_0 ),
+        .I2(\alu_result_MA[10]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[10] ),
+        .I4(\oprl_EX_reg[10] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[10]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[10]_i_3 
+       (.I0(data0[10]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[10] ),
+        .O(\regdata2_EX[10]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[11]_i_1 
        (.I0(alu_result_EX[11]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[11]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[11]),
-        .O(\alucode_EX_reg[4]_0 [11]));
+        .O(\alucode_EX_reg[4]_1 [11]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[11]_i_2 
-       (.I0(\alu_result_MA[11]_i_4_n_0 ),
+       (.I0(\regdata2_EX[11]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[11]_i_3_n_0 ),
+        .I2(\alu_result_MA[11]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[11] ),
+        .I4(\oprl_EX_reg[11] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[11]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[11]_i_3 
+       (.I0(data0[11]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[11] ),
+        .O(\regdata2_EX[11]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[12]_i_1 
        (.I0(alu_result_EX[12]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[12]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[12]),
-        .O(\alucode_EX_reg[4]_0 [12]));
+        .O(\alucode_EX_reg[4]_1 [12]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[12]_i_2 
-       (.I0(\alu_result_MA[12]_i_4_n_0 ),
+       (.I0(\regdata2_EX[12]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[12]_i_3_n_0 ),
+        .I2(\alu_result_MA[12]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[12] ),
+        .I4(\oprl_EX_reg[12] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[12]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[12]_i_3 
+       (.I0(data0[12]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[12] ),
+        .O(\regdata2_EX[12]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[13]_i_1 
        (.I0(alu_result_EX[13]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[13]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[13]),
-        .O(\alucode_EX_reg[4]_0 [13]));
+        .O(\alucode_EX_reg[4]_1 [13]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[13]_i_2 
-       (.I0(\alu_result_MA[13]_i_4_n_0 ),
+       (.I0(\regdata2_EX[13]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[13]_i_3_n_0 ),
+        .I2(\alu_result_MA[13]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[13] ),
+        .I4(\oprl_EX_reg[13] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[13]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[13]_i_3 
+       (.I0(data0[13]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[13] ),
+        .O(\regdata2_EX[13]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[14]_i_1 
        (.I0(alu_result_EX[14]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[14]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[14]),
-        .O(\alucode_EX_reg[4]_0 [14]));
+        .O(\alucode_EX_reg[4]_1 [14]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[14]_i_2 
-       (.I0(\alu_result_MA[14]_i_4_n_0 ),
+       (.I0(\regdata2_EX[14]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[14]_i_3_n_0 ),
+        .I2(\alu_result_MA[14]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[14] ),
+        .I4(\oprl_EX_reg[14] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[14]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[14]_i_3 
+       (.I0(data0[14]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[14] ),
+        .O(\regdata2_EX[14]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[15]_i_1 
        (.I0(alu_result_EX[15]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[15]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[15]),
-        .O(\alucode_EX_reg[4]_0 [15]));
+        .O(\alucode_EX_reg[4]_1 [15]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[15]_i_2 
-       (.I0(\alu_result_MA[15]_i_4_n_0 ),
+       (.I0(\regdata2_EX[15]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[15]_i_3_n_0 ),
+        .I2(\alu_result_MA[15]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[15] ),
+        .I4(\oprl_EX_reg[15] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[15]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[15]_i_3 
+       (.I0(data0[15]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[15] ),
+        .O(\regdata2_EX[15]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[16]_i_1 
        (.I0(alu_result_EX[16]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[16]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[16]),
-        .O(\alucode_EX_reg[4]_0 [16]));
+        .O(\alucode_EX_reg[4]_1 [16]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[16]_i_2 
-       (.I0(\alu_result_MA[16]_i_4_n_0 ),
+       (.I0(\regdata2_EX[16]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[16]_i_3_n_0 ),
+        .I2(\alu_result_MA[16]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[16] ),
+        .I4(\oprl_EX_reg[16] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[16]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[16]_i_3 
+       (.I0(data0[16]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[16] ),
+        .O(\regdata2_EX[16]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[17]_i_1 
        (.I0(alu_result_EX[17]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[17]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[17]),
-        .O(\alucode_EX_reg[4]_0 [17]));
+        .O(\alucode_EX_reg[4]_1 [17]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[17]_i_2 
-       (.I0(\alu_result_MA[17]_i_4_n_0 ),
+       (.I0(\regdata2_EX[17]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[17]_i_3_n_0 ),
+        .I2(\alu_result_MA[17]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[17] ),
+        .I4(\oprl_EX_reg[17] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[17]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[17]_i_3 
+       (.I0(data0[17]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[17] ),
+        .O(\regdata2_EX[17]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[18]_i_1 
        (.I0(alu_result_EX[18]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[18]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[18]),
-        .O(\alucode_EX_reg[4]_0 [18]));
+        .O(\alucode_EX_reg[4]_1 [18]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[18]_i_2 
-       (.I0(\alu_result_MA[18]_i_4_n_0 ),
+       (.I0(\regdata2_EX[18]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[18]_i_3_n_0 ),
+        .I2(\alu_result_MA[18]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[18] ),
+        .I4(\oprl_EX_reg[18] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[18]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[18]_i_3 
+       (.I0(data0[18]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[18] ),
+        .O(\regdata2_EX[18]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[19]_i_1 
        (.I0(alu_result_EX[19]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[19]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[19]),
-        .O(\alucode_EX_reg[4]_0 [19]));
+        .O(\alucode_EX_reg[4]_1 [19]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[19]_i_2 
-       (.I0(\alu_result_MA[19]_i_4_n_0 ),
+       (.I0(\regdata2_EX[19]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[19]_i_3_n_0 ),
+        .I2(\alu_result_MA[19]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[19] ),
+        .I4(\oprl_EX_reg[19] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[19]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[19]_i_3 
+       (.I0(data0[19]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[19] ),
+        .O(\regdata2_EX[19]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[1]_i_1 
        (.I0(alu_result_EX[1]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[1]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[1]),
-        .O(\alucode_EX_reg[4]_0 [1]));
+        .O(\alucode_EX_reg[4]_1 [1]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[1]_i_2 
-       (.I0(\alu_result_MA[1]_i_4_n_0 ),
+       (.I0(\regdata2_EX[1]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[1]_i_3_n_0 ),
+        .I2(\alu_result_MA[1]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[1] ),
+        .I4(\oprl_EX_reg[1] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[1]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[1]_i_3 
+       (.I0(data0[1]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[1] ),
+        .O(\regdata2_EX[1]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[20]_i_1 
        (.I0(alu_result_EX[20]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[20]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[20]),
-        .O(\alucode_EX_reg[4]_0 [20]));
+        .O(\alucode_EX_reg[4]_1 [20]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[20]_i_2 
-       (.I0(\alu_result_MA[20]_i_4_n_0 ),
+       (.I0(\regdata2_EX[20]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[20]_i_3_n_0 ),
+        .I2(\alu_result_MA[20]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[20] ),
+        .I4(\oprl_EX_reg[20] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[20]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[20]_i_3 
+       (.I0(data0[20]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[20] ),
+        .O(\regdata2_EX[20]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[21]_i_1 
        (.I0(alu_result_EX[21]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[21]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[21]),
-        .O(\alucode_EX_reg[4]_0 [21]));
+        .O(\alucode_EX_reg[4]_1 [21]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[21]_i_2 
-       (.I0(\alu_result_MA[21]_i_4_n_0 ),
+       (.I0(\regdata2_EX[21]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[21]_i_3_n_0 ),
+        .I2(\alu_result_MA[21]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[21] ),
+        .I4(\oprl_EX_reg[21] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[21]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[21]_i_3 
+       (.I0(data0[21]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[21] ),
+        .O(\regdata2_EX[21]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[22]_i_1 
        (.I0(alu_result_EX[22]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[22]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[22]),
-        .O(\alucode_EX_reg[4]_0 [22]));
+        .O(\alucode_EX_reg[4]_1 [22]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[22]_i_2 
-       (.I0(\alu_result_MA[22]_i_4_n_0 ),
+       (.I0(\regdata2_EX[22]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[22]_i_3_n_0 ),
+        .I2(\alu_result_MA[22]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[22] ),
+        .I4(\oprl_EX_reg[22] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[22]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[22]_i_3 
+       (.I0(data0[22]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[22] ),
+        .O(\regdata2_EX[22]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[23]_i_1 
        (.I0(alu_result_EX[23]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[23]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[23]),
-        .O(\alucode_EX_reg[4]_0 [23]));
+        .O(\alucode_EX_reg[4]_1 [23]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[23]_i_2 
-       (.I0(\alu_result_MA[23]_i_4_n_0 ),
+       (.I0(\regdata2_EX[23]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[23]_i_3_n_0 ),
+        .I2(\alu_result_MA[23]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[23] ),
+        .I4(\oprl_EX_reg[23] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[23]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[23]_i_3 
+       (.I0(data0[23]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[23] ),
+        .O(\regdata2_EX[23]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[24]_i_1 
        (.I0(alu_result_EX[24]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[24]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[24]),
-        .O(\alucode_EX_reg[4]_0 [24]));
+        .O(\alucode_EX_reg[4]_1 [24]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[24]_i_2 
-       (.I0(\alu_result_MA[24]_i_4_n_0 ),
+       (.I0(\regdata2_EX[24]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[24]_i_3_n_0 ),
+        .I2(\alu_result_MA[24]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[24] ),
+        .I4(\oprl_EX_reg[24] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[24]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[24]_i_3 
+       (.I0(data0[24]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[24] ),
+        .O(\regdata2_EX[24]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[25]_i_1 
        (.I0(alu_result_EX[25]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[25]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[25]),
-        .O(\alucode_EX_reg[4]_0 [25]));
+        .O(\alucode_EX_reg[4]_1 [25]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[25]_i_2 
-       (.I0(\alu_result_MA[25]_i_4_n_0 ),
+       (.I0(\regdata2_EX[25]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[25]_i_3_n_0 ),
+        .I2(\alu_result_MA[25]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[25] ),
+        .I4(\oprl_EX_reg[25] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[25]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[25]_i_3 
+       (.I0(data0[25]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[25] ),
+        .O(\regdata2_EX[25]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[26]_i_1 
        (.I0(alu_result_EX[26]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[26]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[26]),
-        .O(\alucode_EX_reg[4]_0 [26]));
+        .O(\alucode_EX_reg[4]_1 [26]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[26]_i_2 
-       (.I0(\alu_result_MA[26]_i_4_n_0 ),
+       (.I0(\regdata2_EX[26]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[26]_i_3_n_0 ),
+        .I2(\alu_result_MA[26]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[26] ),
+        .I4(\oprl_EX_reg[26] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[26]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[26]_i_3 
+       (.I0(data0[26]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[26] ),
+        .O(\regdata2_EX[26]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[27]_i_1 
        (.I0(alu_result_EX[27]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[27]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[27]),
-        .O(\alucode_EX_reg[4]_0 [27]));
+        .O(\alucode_EX_reg[4]_1 [27]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[27]_i_2 
-       (.I0(\alu_result_MA[27]_i_4_n_0 ),
+       (.I0(\regdata2_EX[27]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[27]_i_3_n_0 ),
+        .I2(\alu_result_MA[27]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[27] ),
+        .I4(\oprl_EX_reg[27] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[27]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[27]_i_3 
+       (.I0(data0[27]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[27] ),
+        .O(\regdata2_EX[27]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[28]_i_1 
        (.I0(alu_result_EX[28]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[28]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[28]),
-        .O(\alucode_EX_reg[4]_0 [28]));
+        .O(\alucode_EX_reg[4]_1 [28]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[28]_i_2 
-       (.I0(\alu_result_MA[28]_i_4_n_0 ),
+       (.I0(\regdata2_EX[28]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[28]_i_3_n_0 ),
+        .I2(\alu_result_MA[28]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[28] ),
+        .I4(\oprl_EX_reg[28] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[28]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[28]_i_3 
+       (.I0(data0[28]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[28] ),
+        .O(\regdata2_EX[28]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[29]_i_1 
        (.I0(alu_result_EX[29]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[29]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[29]),
-        .O(\alucode_EX_reg[4]_0 [29]));
+        .O(\alucode_EX_reg[4]_1 [29]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[29]_i_2 
-       (.I0(\alu_result_MA[29]_i_4_n_0 ),
+       (.I0(\regdata2_EX[29]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[29]_i_3_n_0 ),
+        .I2(\alu_result_MA[29]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[29] ),
+        .I4(\oprl_EX_reg[29] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[29]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[29]_i_3 
+       (.I0(data0[29]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[29] ),
+        .O(\regdata2_EX[29]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[2]_i_1 
        (.I0(alu_result_EX[2]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[2]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[2]),
-        .O(\alucode_EX_reg[4]_0 [2]));
+        .O(\alucode_EX_reg[4]_1 [2]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[2]_i_2 
-       (.I0(\alu_result_MA[2]_i_4_n_0 ),
+       (.I0(\regdata2_EX[2]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[2]_i_3_n_0 ),
+        .I2(\alu_result_MA[2]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[2] ),
+        .I4(\oprl_EX_reg[2] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[2]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[2]_i_3 
+       (.I0(data0[2]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[2] ),
+        .O(\regdata2_EX[2]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[30]_i_1 
        (.I0(alu_result_EX[30]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[30]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[30]),
-        .O(\alucode_EX_reg[4]_0 [30]));
+        .O(\alucode_EX_reg[4]_1 [30]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[30]_i_2 
-       (.I0(\alu_result_MA[30]_i_4_n_0 ),
+       (.I0(\regdata2_EX[30]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[30]_i_3_n_0 ),
+        .I2(\alu_result_MA[30]_i_6_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[30] ),
+        .I4(\oprl_EX_reg[30] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[30]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[30]_i_3 
+       (.I0(data0[30]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[30]_0 ),
+        .O(\regdata2_EX[30]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[31]_i_1 
        (.I0(alu_result_EX[31]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[31]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[31]),
-        .O(\alucode_EX_reg[4]_0 [31]));
+        .O(\alucode_EX_reg[4]_1 [31]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[31]_i_2 
        (.I0(\alu_result_MA[31]_i_4_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[31]_i_3_n_0 ),
+        .I2(\alu_result_MA_reg[31]_i_3_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
         .I4(\alu_result_MA_reg[31]_0 ),
         .I5(\alu_result_MA_reg[31] [5]),
@@ -39053,135 +39168,205 @@ module design_1_CPUTop_0_0_alu
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[3]_i_1 
        (.I0(alu_result_EX[3]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[3]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[3]),
-        .O(\alucode_EX_reg[4]_0 [3]));
+        .O(\alucode_EX_reg[4]_1 [3]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[3]_i_2 
-       (.I0(\alu_result_MA[3]_i_4_n_0 ),
+       (.I0(\regdata2_EX[3]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[3]_i_3_n_0 ),
+        .I2(\alu_result_MA[3]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[3] ),
+        .I4(\oprl_EX_reg[3] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[3]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[3]_i_3 
+       (.I0(data0[3]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[3] ),
+        .O(\regdata2_EX[3]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[4]_i_1 
        (.I0(alu_result_EX[4]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[4]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[4]),
-        .O(\alucode_EX_reg[4]_0 [4]));
+        .O(\alucode_EX_reg[4]_1 [4]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[4]_i_2 
-       (.I0(\alu_result_MA[4]_i_4_n_0 ),
+       (.I0(\regdata2_EX[4]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[4]_i_3_n_0 ),
+        .I2(\alu_result_MA[4]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[4] ),
+        .I4(\oprl_EX_reg[4] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[4]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[4]_i_3 
+       (.I0(data0[4]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[4] ),
+        .O(\regdata2_EX[4]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[5]_i_1 
        (.I0(alu_result_EX[5]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[5]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[5]),
-        .O(\alucode_EX_reg[4]_0 [5]));
+        .O(\alucode_EX_reg[4]_1 [5]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[5]_i_2 
-       (.I0(\alu_result_MA[5]_i_4_n_0 ),
+       (.I0(\regdata2_EX[5]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[5]_i_3_n_0 ),
+        .I2(\alu_result_MA[5]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[5] ),
+        .I4(\oprl_EX_reg[5] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[5]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[5]_i_3 
+       (.I0(data0[5]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[5] ),
+        .O(\regdata2_EX[5]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[6]_i_1 
        (.I0(alu_result_EX[6]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[6]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[6]),
-        .O(\alucode_EX_reg[4]_0 [6]));
+        .O(\alucode_EX_reg[4]_1 [6]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[6]_i_2 
-       (.I0(\alu_result_MA[6]_i_4_n_0 ),
+       (.I0(\regdata2_EX[6]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[6]_i_3_n_0 ),
+        .I2(\alu_result_MA[6]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[6] ),
+        .I4(\oprl_EX_reg[6] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[6]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[6]_i_3 
+       (.I0(data0[6]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[6] ),
+        .O(\regdata2_EX[6]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[7]_i_1 
        (.I0(alu_result_EX[7]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[7]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[7]),
-        .O(\alucode_EX_reg[4]_0 [7]));
+        .O(\alucode_EX_reg[4]_1 [7]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[7]_i_2 
-       (.I0(\alu_result_MA[7]_i_4_n_0 ),
+       (.I0(\regdata2_EX[7]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[7]_i_3_n_0 ),
+        .I2(\alu_result_MA[7]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[7] ),
+        .I4(\oprl_EX_reg[7] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[7]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[7]_i_3 
+       (.I0(data0[7]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[7] ),
+        .O(\regdata2_EX[7]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[8]_i_1 
        (.I0(alu_result_EX[8]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[8]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[8]),
-        .O(\alucode_EX_reg[4]_0 [8]));
+        .O(\alucode_EX_reg[4]_1 [8]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[8]_i_2 
-       (.I0(\alu_result_MA[8]_i_4_n_0 ),
+       (.I0(\regdata2_EX[8]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[8]_i_3_n_0 ),
+        .I2(\alu_result_MA[8]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[8] ),
+        .I4(\oprl_EX_reg[8] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[8]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[8]_i_3 
+       (.I0(data0[8]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[8] ),
+        .O(\regdata2_EX[8]_i_3_n_0 ));
   LUT5 #(
     .INIT(32'hB8BBB888)) 
     \regdata2_EX[9]_i_1 
        (.I0(alu_result_EX[9]),
-        .I1(p_4_in),
+        .I1(p_3_in),
         .I2(calc_reg_write_value_return[9]),
-        .I3(p_5_in),
+        .I3(p_4_in),
         .I4(regdata2_ID[9]),
-        .O(\alucode_EX_reg[4]_0 [9]));
+        .O(\alucode_EX_reg[4]_1 [9]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \regdata2_EX[9]_i_2 
-       (.I0(\alu_result_MA[9]_i_4_n_0 ),
+       (.I0(\regdata2_EX[9]_i_3_n_0 ),
         .I1(\alu_result_MA_reg[31] [4]),
-        .I2(\alu_result_MA[9]_i_3_n_0 ),
+        .I2(\alu_result_MA[9]_i_4_n_0 ),
         .I3(\alu_result_MA_reg[31] [2]),
-        .I4(\alu_result_MA_reg[9] ),
+        .I4(\oprl_EX_reg[9] ),
         .I5(\alu_result_MA_reg[31] [5]),
         .O(alu_result_EX[9]));
+  LUT6 #(
+    .INIT(64'hAAA8FFFFAAA80000)) 
+    \regdata2_EX[9]_i_3 
+       (.I0(data0[9]),
+        .I1(\alu_result_MA_reg[31] [2]),
+        .I2(\alu_result_MA_reg[31] [0]),
+        .I3(\alu_result_MA_reg[31] [1]),
+        .I4(\alu_result_MA_reg[31] [3]),
+        .I5(\alu_result_MA_reg[9] ),
+        .O(\regdata2_EX[9]_i_3_n_0 ));
 endmodule
 
 (* ORIG_REF_NAME = "hardware_counter" *) 
@@ -39858,66 +40043,65 @@ module design_1_CPUTop_0_0_uart
   wire \bitcount[2]_i_1_n_0 ;
   wire \bitcount[3]_i_1_n_0 ;
   wire [3:0]bitcount_reg;
-  wire \d[13]_i_2_n_0 ;
-  wire \d[13]_i_3_n_0 ;
-  wire \d[13]_i_4_n_0 ;
-  wire \d[17]_i_2_n_0 ;
-  wire \d[21]_i_2_n_0 ;
-  wire \d[21]_i_3_n_0 ;
-  wire \d[25]_i_2_n_0 ;
-  wire \d[25]_i_3_n_0 ;
-  wire \d[5]_i_2_n_0 ;
-  wire \d[5]_i_3_n_0 ;
-  wire \d[9]_i_2_n_0 ;
-  wire \d[9]_i_3_n_0 ;
-  wire \d[9]_i_4_n_0 ;
-  wire \d_reg[13]_i_1_n_0 ;
-  wire \d_reg[13]_i_1_n_1 ;
-  wire \d_reg[13]_i_1_n_2 ;
-  wire \d_reg[13]_i_1_n_3 ;
-  wire \d_reg[13]_i_1_n_4 ;
-  wire \d_reg[13]_i_1_n_5 ;
-  wire \d_reg[13]_i_1_n_6 ;
-  wire \d_reg[13]_i_1_n_7 ;
-  wire \d_reg[17]_i_1_n_0 ;
-  wire \d_reg[17]_i_1_n_1 ;
-  wire \d_reg[17]_i_1_n_2 ;
-  wire \d_reg[17]_i_1_n_3 ;
-  wire \d_reg[17]_i_1_n_4 ;
-  wire \d_reg[17]_i_1_n_5 ;
-  wire \d_reg[17]_i_1_n_6 ;
-  wire \d_reg[17]_i_1_n_7 ;
-  wire \d_reg[21]_i_1_n_0 ;
-  wire \d_reg[21]_i_1_n_1 ;
-  wire \d_reg[21]_i_1_n_2 ;
-  wire \d_reg[21]_i_1_n_3 ;
-  wire \d_reg[21]_i_1_n_4 ;
-  wire \d_reg[21]_i_1_n_5 ;
-  wire \d_reg[21]_i_1_n_6 ;
-  wire \d_reg[21]_i_1_n_7 ;
-  wire \d_reg[25]_i_1_n_1 ;
-  wire \d_reg[25]_i_1_n_2 ;
-  wire \d_reg[25]_i_1_n_3 ;
-  wire \d_reg[25]_i_1_n_4 ;
-  wire \d_reg[25]_i_1_n_5 ;
-  wire \d_reg[25]_i_1_n_6 ;
-  wire \d_reg[25]_i_1_n_7 ;
-  wire \d_reg[5]_i_1_n_0 ;
-  wire \d_reg[5]_i_1_n_1 ;
-  wire \d_reg[5]_i_1_n_2 ;
-  wire \d_reg[5]_i_1_n_3 ;
-  wire \d_reg[5]_i_1_n_4 ;
-  wire \d_reg[5]_i_1_n_5 ;
-  wire \d_reg[5]_i_1_n_6 ;
-  wire \d_reg[5]_i_1_n_7 ;
-  wire \d_reg[9]_i_1_n_0 ;
-  wire \d_reg[9]_i_1_n_1 ;
-  wire \d_reg[9]_i_1_n_2 ;
-  wire \d_reg[9]_i_1_n_3 ;
-  wire \d_reg[9]_i_1_n_4 ;
-  wire \d_reg[9]_i_1_n_5 ;
-  wire \d_reg[9]_i_1_n_6 ;
-  wire \d_reg[9]_i_1_n_7 ;
+  wire \d[10]_i_2_n_0 ;
+  wire \d[10]_i_3_n_0 ;
+  wire \d[14]_i_2_n_0 ;
+  wire \d[14]_i_3_n_0 ;
+  wire \d[14]_i_4_n_0 ;
+  wire \d[18]_i_2_n_0 ;
+  wire \d[18]_i_3_n_0 ;
+  wire \d[22]_i_2_n_0 ;
+  wire \d[22]_i_3_n_0 ;
+  wire \d[22]_i_4_n_0 ;
+  wire \d[22]_i_5_n_0 ;
+  wire \d[26]_i_2_n_0 ;
+  wire \d[6]_i_2_n_0 ;
+  wire \d[6]_i_3_n_0 ;
+  wire \d_reg[10]_i_1_n_0 ;
+  wire \d_reg[10]_i_1_n_1 ;
+  wire \d_reg[10]_i_1_n_2 ;
+  wire \d_reg[10]_i_1_n_3 ;
+  wire \d_reg[10]_i_1_n_4 ;
+  wire \d_reg[10]_i_1_n_5 ;
+  wire \d_reg[10]_i_1_n_6 ;
+  wire \d_reg[10]_i_1_n_7 ;
+  wire \d_reg[14]_i_1_n_0 ;
+  wire \d_reg[14]_i_1_n_1 ;
+  wire \d_reg[14]_i_1_n_2 ;
+  wire \d_reg[14]_i_1_n_3 ;
+  wire \d_reg[14]_i_1_n_4 ;
+  wire \d_reg[14]_i_1_n_5 ;
+  wire \d_reg[14]_i_1_n_6 ;
+  wire \d_reg[14]_i_1_n_7 ;
+  wire \d_reg[18]_i_1_n_0 ;
+  wire \d_reg[18]_i_1_n_1 ;
+  wire \d_reg[18]_i_1_n_2 ;
+  wire \d_reg[18]_i_1_n_3 ;
+  wire \d_reg[18]_i_1_n_4 ;
+  wire \d_reg[18]_i_1_n_5 ;
+  wire \d_reg[18]_i_1_n_6 ;
+  wire \d_reg[18]_i_1_n_7 ;
+  wire \d_reg[22]_i_1_n_0 ;
+  wire \d_reg[22]_i_1_n_1 ;
+  wire \d_reg[22]_i_1_n_2 ;
+  wire \d_reg[22]_i_1_n_3 ;
+  wire \d_reg[22]_i_1_n_4 ;
+  wire \d_reg[22]_i_1_n_5 ;
+  wire \d_reg[22]_i_1_n_6 ;
+  wire \d_reg[22]_i_1_n_7 ;
+  wire \d_reg[26]_i_1_n_2 ;
+  wire \d_reg[26]_i_1_n_3 ;
+  wire \d_reg[26]_i_1_n_5 ;
+  wire \d_reg[26]_i_1_n_6 ;
+  wire \d_reg[26]_i_1_n_7 ;
+  wire \d_reg[6]_i_1_n_0 ;
+  wire \d_reg[6]_i_1_n_1 ;
+  wire \d_reg[6]_i_1_n_2 ;
+  wire \d_reg[6]_i_1_n_3 ;
+  wire \d_reg[6]_i_1_n_4 ;
+  wire \d_reg[6]_i_1_n_5 ;
+  wire \d_reg[6]_i_1_n_6 ;
+  wire \d_reg[6]_i_1_n_7 ;
   wire \d_reg_n_0_[10] ;
   wire \d_reg_n_0_[11] ;
   wire \d_reg_n_0_[12] ;
@@ -39936,7 +40120,6 @@ module design_1_CPUTop_0_0_uart
   wire \d_reg_n_0_[25] ;
   wire \d_reg_n_0_[26] ;
   wire \d_reg_n_0_[27] ;
-  wire \d_reg_n_0_[5] ;
   wire \d_reg_n_0_[6] ;
   wire \d_reg_n_0_[7] ;
   wire \d_reg_n_0_[8] ;
@@ -39968,7 +40151,8 @@ module design_1_CPUTop_0_0_uart
   wire uart_tx0;
   wire uart_tx_i_1_n_0;
   wire uart_we__23;
-  wire [3:3]\NLW_d_reg[25]_i_1_CO_UNCONNECTED ;
+  wire [3:2]\NLW_d_reg[26]_i_1_CO_UNCONNECTED ;
+  wire [3:3]\NLW_d_reg[26]_i_1_O_UNCONNECTED ;
 
   LUT2 #(
     .INIT(4'hB)) 
@@ -39976,7 +40160,7 @@ module design_1_CPUTop_0_0_uart
        (.I0(p_0_in),
         .I1(bitcount_reg[0]),
         .O(\bitcount[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
     .INIT(8'hEB)) 
     \bitcount[1]_i_1 
@@ -39984,7 +40168,7 @@ module design_1_CPUTop_0_0_uart
         .I1(bitcount_reg[1]),
         .I2(bitcount_reg[0]),
         .O(\bitcount[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT5 #(
     .INIT(32'h50505004)) 
     \bitcount[2]_i_1 
@@ -39994,7 +40178,7 @@ module design_1_CPUTop_0_0_uart
         .I3(bitcount_reg[0]),
         .I4(bitcount_reg[1]),
         .O(\bitcount[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT5 #(
     .INIT(32'hEEEEEEEB)) 
     \bitcount[3]_i_1 
@@ -40036,97 +40220,110 @@ module design_1_CPUTop_0_0_uart
         .CLR(rst),
         .D(\bitcount[3]_i_1_n_0 ),
         .Q(bitcount_reg[3]));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \d[10]_i_2 
+       (.I0(p_0_in),
+        .I1(\d_reg_n_0_[13] ),
+        .O(\d[10]_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \d[10]_i_3 
+       (.I0(p_0_in),
+        .I1(\d_reg_n_0_[10] ),
+        .O(\d[10]_i_3_n_0 ));
   LUT1 #(
     .INIT(2'h1)) 
-    \d[13]_i_2 
+    \d[14]_i_2 
        (.I0(\d_reg_n_0_[16] ),
-        .O(\d[13]_i_2_n_0 ));
+        .O(\d[14]_i_2_n_0 ));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \d[14]_i_3 
+       (.I0(\d_reg_n_0_[15] ),
+        .O(\d[14]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
-    \d[13]_i_3 
+    \d[14]_i_4 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[15] ),
-        .O(\d[13]_i_3_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \d[13]_i_4 
-       (.I0(\d_reg_n_0_[14] ),
-        .O(\d[13]_i_4_n_0 ));
+        .I1(\d_reg_n_0_[14] ),
+        .O(\d[14]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[17]_i_2 
+    \d[18]_i_2 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[19] ),
-        .O(\d[17]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[20] ),
+        .O(\d[18]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[21]_i_2 
+    \d[18]_i_3 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[24] ),
-        .O(\d[21]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[18] ),
+        .O(\d[18]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[21]_i_3 
-       (.I0(p_0_in),
-        .I1(\d_reg_n_0_[23] ),
-        .O(\d[21]_i_3_n_0 ));
-  LUT2 #(
-    .INIT(4'h9)) 
-    \d[25]_i_2 
-       (.I0(p_0_in),
-        .I1(\d_reg_n_0_[27] ),
-        .O(\d[25]_i_2_n_0 ));
-  LUT2 #(
-    .INIT(4'h9)) 
-    \d[25]_i_3 
+    \d[22]_i_2 
        (.I0(p_0_in),
         .I1(\d_reg_n_0_[25] ),
-        .O(\d[25]_i_3_n_0 ));
+        .O(\d[22]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[5]_i_2 
+    \d[22]_i_3 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[8] ),
-        .O(\d[5]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[24] ),
+        .O(\d[22]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[5]_i_3 
+    \d[22]_i_4 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[6] ),
-        .O(\d[5]_i_3_n_0 ));
+        .I1(\d_reg_n_0_[23] ),
+        .O(\d[22]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[9]_i_2 
+    \d[22]_i_5 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[12] ),
-        .O(\d[9]_i_2_n_0 ));
+        .I1(\d_reg_n_0_[22] ),
+        .O(\d[22]_i_5_n_0 ));
   LUT2 #(
     .INIT(4'h9)) 
-    \d[9]_i_3 
+    \d[26]_i_2 
        (.I0(p_0_in),
-        .I1(\d_reg_n_0_[11] ),
-        .O(\d[9]_i_3_n_0 ));
+        .I1(\d_reg_n_0_[27] ),
+        .O(\d[26]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
-    \d[9]_i_4 
+    \d[6]_i_2 
        (.I0(p_0_in),
         .I1(\d_reg_n_0_[9] ),
-        .O(\d[9]_i_4_n_0 ));
+        .O(\d[6]_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \d[6]_i_3 
+       (.I0(p_0_in),
+        .I1(\d_reg_n_0_[7] ),
+        .O(\d[6]_i_3_n_0 ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[10] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_6 ),
+        .D(\d_reg[10]_i_1_n_7 ),
         .Q(\d_reg_n_0_[10] ));
+  CARRY4 \d_reg[10]_i_1 
+       (.CI(\d_reg[6]_i_1_n_0 ),
+        .CO({\d_reg[10]_i_1_n_0 ,\d_reg[10]_i_1_n_1 ,\d_reg[10]_i_1_n_2 ,\d_reg[10]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({\d_reg_n_0_[13] ,1'b0,1'b0,\d_reg_n_0_[10] }),
+        .O({\d_reg[10]_i_1_n_4 ,\d_reg[10]_i_1_n_5 ,\d_reg[10]_i_1_n_6 ,\d_reg[10]_i_1_n_7 }),
+        .S({\d[10]_i_2_n_0 ,\d_reg_n_0_[12] ,\d_reg_n_0_[11] ,\d[10]_i_3_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[11] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_5 ),
+        .D(\d_reg[10]_i_1_n_6 ),
         .Q(\d_reg_n_0_[11] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40134,7 +40331,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_4 ),
+        .D(\d_reg[10]_i_1_n_5 ),
         .Q(\d_reg_n_0_[12] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40142,30 +40339,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_7 ),
+        .D(\d_reg[10]_i_1_n_4 ),
         .Q(\d_reg_n_0_[13] ));
-  CARRY4 \d_reg[13]_i_1 
-       (.CI(\d_reg[9]_i_1_n_0 ),
-        .CO({\d_reg[13]_i_1_n_0 ,\d_reg[13]_i_1_n_1 ,\d_reg[13]_i_1_n_2 ,\d_reg[13]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b1,p_0_in,1'b1,1'b0}),
-        .O({\d_reg[13]_i_1_n_4 ,\d_reg[13]_i_1_n_5 ,\d_reg[13]_i_1_n_6 ,\d_reg[13]_i_1_n_7 }),
-        .S({\d[13]_i_2_n_0 ,\d[13]_i_3_n_0 ,\d[13]_i_4_n_0 ,\d_reg_n_0_[13] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[14] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_6 ),
+        .D(\d_reg[14]_i_1_n_7 ),
         .Q(\d_reg_n_0_[14] ));
+  CARRY4 \d_reg[14]_i_1 
+       (.CI(\d_reg[10]_i_1_n_0 ),
+        .CO({\d_reg[14]_i_1_n_0 ,\d_reg[14]_i_1_n_1 ,\d_reg[14]_i_1_n_2 ,\d_reg[14]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b1,1'b1,p_0_in}),
+        .O({\d_reg[14]_i_1_n_4 ,\d_reg[14]_i_1_n_5 ,\d_reg[14]_i_1_n_6 ,\d_reg[14]_i_1_n_7 }),
+        .S({\d_reg_n_0_[17] ,\d[14]_i_2_n_0 ,\d[14]_i_3_n_0 ,\d[14]_i_4_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[15] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_5 ),
+        .D(\d_reg[14]_i_1_n_6 ),
         .Q(\d_reg_n_0_[15] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40173,7 +40370,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[13]_i_1_n_4 ),
+        .D(\d_reg[14]_i_1_n_5 ),
         .Q(\d_reg_n_0_[16] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40181,30 +40378,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_7 ),
+        .D(\d_reg[14]_i_1_n_4 ),
         .Q(\d_reg_n_0_[17] ));
-  CARRY4 \d_reg[17]_i_1 
-       (.CI(\d_reg[13]_i_1_n_0 ),
-        .CO({\d_reg[17]_i_1_n_0 ,\d_reg[17]_i_1_n_1 ,\d_reg[17]_i_1_n_2 ,\d_reg[17]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,\d_reg_n_0_[19] ,1'b0,1'b0}),
-        .O({\d_reg[17]_i_1_n_4 ,\d_reg[17]_i_1_n_5 ,\d_reg[17]_i_1_n_6 ,\d_reg[17]_i_1_n_7 }),
-        .S({\d_reg_n_0_[20] ,\d[17]_i_2_n_0 ,\d_reg_n_0_[18] ,\d_reg_n_0_[17] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[18] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_6 ),
+        .D(\d_reg[18]_i_1_n_7 ),
         .Q(\d_reg_n_0_[18] ));
+  CARRY4 \d_reg[18]_i_1 
+       (.CI(\d_reg[14]_i_1_n_0 ),
+        .CO({\d_reg[18]_i_1_n_0 ,\d_reg[18]_i_1_n_1 ,\d_reg[18]_i_1_n_2 ,\d_reg[18]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,\d_reg_n_0_[20] ,1'b0,\d_reg_n_0_[18] }),
+        .O({\d_reg[18]_i_1_n_4 ,\d_reg[18]_i_1_n_5 ,\d_reg[18]_i_1_n_6 ,\d_reg[18]_i_1_n_7 }),
+        .S({\d_reg_n_0_[21] ,\d[18]_i_2_n_0 ,\d_reg_n_0_[19] ,\d[18]_i_3_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[19] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_5 ),
+        .D(\d_reg[18]_i_1_n_6 ),
         .Q(\d_reg_n_0_[19] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40212,7 +40409,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[17]_i_1_n_4 ),
+        .D(\d_reg[18]_i_1_n_5 ),
         .Q(\d_reg_n_0_[20] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40220,30 +40417,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_7 ),
+        .D(\d_reg[18]_i_1_n_4 ),
         .Q(\d_reg_n_0_[21] ));
-  CARRY4 \d_reg[21]_i_1 
-       (.CI(\d_reg[17]_i_1_n_0 ),
-        .CO({\d_reg[21]_i_1_n_0 ,\d_reg[21]_i_1_n_1 ,\d_reg[21]_i_1_n_2 ,\d_reg[21]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\d_reg_n_0_[24] ,\d_reg_n_0_[23] ,1'b0,1'b0}),
-        .O({\d_reg[21]_i_1_n_4 ,\d_reg[21]_i_1_n_5 ,\d_reg[21]_i_1_n_6 ,\d_reg[21]_i_1_n_7 }),
-        .S({\d[21]_i_2_n_0 ,\d[21]_i_3_n_0 ,\d_reg_n_0_[22] ,\d_reg_n_0_[21] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[22] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_6 ),
+        .D(\d_reg[22]_i_1_n_7 ),
         .Q(\d_reg_n_0_[22] ));
+  CARRY4 \d_reg[22]_i_1 
+       (.CI(\d_reg[18]_i_1_n_0 ),
+        .CO({\d_reg[22]_i_1_n_0 ,\d_reg[22]_i_1_n_1 ,\d_reg[22]_i_1_n_2 ,\d_reg[22]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({\d_reg_n_0_[25] ,\d_reg_n_0_[24] ,\d_reg_n_0_[23] ,\d_reg_n_0_[22] }),
+        .O({\d_reg[22]_i_1_n_4 ,\d_reg[22]_i_1_n_5 ,\d_reg[22]_i_1_n_6 ,\d_reg[22]_i_1_n_7 }),
+        .S({\d[22]_i_2_n_0 ,\d[22]_i_3_n_0 ,\d[22]_i_4_n_0 ,\d[22]_i_5_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[23] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_5 ),
+        .D(\d_reg[22]_i_1_n_6 ),
         .Q(\d_reg_n_0_[23] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40251,7 +40448,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[21]_i_1_n_4 ),
+        .D(\d_reg[22]_i_1_n_5 ),
         .Q(\d_reg_n_0_[24] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40259,30 +40456,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_7 ),
+        .D(\d_reg[22]_i_1_n_4 ),
         .Q(\d_reg_n_0_[25] ));
-  CARRY4 \d_reg[25]_i_1 
-       (.CI(\d_reg[21]_i_1_n_0 ),
-        .CO({\NLW_d_reg[25]_i_1_CO_UNCONNECTED [3],\d_reg[25]_i_1_n_1 ,\d_reg[25]_i_1_n_2 ,\d_reg[25]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,\d_reg_n_0_[27] ,1'b0,\d_reg_n_0_[25] }),
-        .O({\d_reg[25]_i_1_n_4 ,\d_reg[25]_i_1_n_5 ,\d_reg[25]_i_1_n_6 ,\d_reg[25]_i_1_n_7 }),
-        .S({1'b1,\d[25]_i_2_n_0 ,\d_reg_n_0_[26] ,\d[25]_i_3_n_0 }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[26] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_6 ),
+        .D(\d_reg[26]_i_1_n_7 ),
         .Q(\d_reg_n_0_[26] ));
+  CARRY4 \d_reg[26]_i_1 
+       (.CI(\d_reg[22]_i_1_n_0 ),
+        .CO({\NLW_d_reg[26]_i_1_CO_UNCONNECTED [3:2],\d_reg[26]_i_1_n_2 ,\d_reg[26]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,\d_reg_n_0_[27] ,1'b0}),
+        .O({\NLW_d_reg[26]_i_1_O_UNCONNECTED [3],\d_reg[26]_i_1_n_5 ,\d_reg[26]_i_1_n_6 ,\d_reg[26]_i_1_n_7 }),
+        .S({1'b0,1'b1,\d[26]_i_2_n_0 ,\d_reg_n_0_[26] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[27] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_5 ),
+        .D(\d_reg[26]_i_1_n_6 ),
         .Q(\d_reg_n_0_[27] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40290,38 +40487,30 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[25]_i_1_n_4 ),
+        .D(\d_reg[26]_i_1_n_5 ),
         .Q(p_0_in));
-  FDCE #(
-    .IS_C_INVERTED(1'b1)) 
-    \d_reg[5] 
-       (.C(sysclk),
-        .CE(1'b1),
-        .CLR(rst),
-        .D(\d_reg[5]_i_1_n_7 ),
-        .Q(\d_reg_n_0_[5] ));
-  CARRY4 \d_reg[5]_i_1 
-       (.CI(1'b0),
-        .CO({\d_reg[5]_i_1_n_0 ,\d_reg[5]_i_1_n_1 ,\d_reg[5]_i_1_n_2 ,\d_reg[5]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\d_reg_n_0_[8] ,1'b0,\d_reg_n_0_[6] ,1'b0}),
-        .O({\d_reg[5]_i_1_n_4 ,\d_reg[5]_i_1_n_5 ,\d_reg[5]_i_1_n_6 ,\d_reg[5]_i_1_n_7 }),
-        .S({\d[5]_i_2_n_0 ,\d_reg_n_0_[7] ,\d[5]_i_3_n_0 ,\d_reg_n_0_[5] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[6] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[5]_i_1_n_6 ),
+        .D(\d_reg[6]_i_1_n_7 ),
         .Q(\d_reg_n_0_[6] ));
+  CARRY4 \d_reg[6]_i_1 
+       (.CI(1'b0),
+        .CO({\d_reg[6]_i_1_n_0 ,\d_reg[6]_i_1_n_1 ,\d_reg[6]_i_1_n_2 ,\d_reg[6]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({p_0_in,1'b0,\d_reg_n_0_[7] ,1'b0}),
+        .O({\d_reg[6]_i_1_n_4 ,\d_reg[6]_i_1_n_5 ,\d_reg[6]_i_1_n_6 ,\d_reg[6]_i_1_n_7 }),
+        .S({\d[6]_i_2_n_0 ,\d_reg_n_0_[8] ,\d[6]_i_3_n_0 ,\d_reg_n_0_[6] }));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
     \d_reg[7] 
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[5]_i_1_n_5 ),
+        .D(\d_reg[6]_i_1_n_6 ),
         .Q(\d_reg_n_0_[7] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40329,7 +40518,7 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[5]_i_1_n_4 ),
+        .D(\d_reg[6]_i_1_n_5 ),
         .Q(\d_reg_n_0_[8] ));
   FDCE #(
     .IS_C_INVERTED(1'b1)) 
@@ -40337,15 +40526,8 @@ module design_1_CPUTop_0_0_uart
        (.C(sysclk),
         .CE(1'b1),
         .CLR(rst),
-        .D(\d_reg[9]_i_1_n_7 ),
+        .D(\d_reg[6]_i_1_n_4 ),
         .Q(\d_reg_n_0_[9] ));
-  CARRY4 \d_reg[9]_i_1 
-       (.CI(\d_reg[5]_i_1_n_0 ),
-        .CO({\d_reg[9]_i_1_n_0 ,\d_reg[9]_i_1_n_1 ,\d_reg[9]_i_1_n_2 ,\d_reg[9]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\d_reg_n_0_[12] ,\d_reg_n_0_[11] ,1'b0,p_0_in}),
-        .O({\d_reg[9]_i_1_n_4 ,\d_reg[9]_i_1_n_5 ,\d_reg[9]_i_1_n_6 ,\d_reg[9]_i_1_n_7 }),
-        .S({\d[9]_i_2_n_0 ,\d[9]_i_3_n_0 ,\d_reg_n_0_[10] ,\d[9]_i_4_n_0 }));
   LUT6 #(
     .INIT(64'h5555555400000000)) 
     \shifter[0]_i_1 
@@ -40356,7 +40538,7 @@ module design_1_CPUTop_0_0_uart
         .I4(bitcount_reg[2]),
         .I5(\shifter_reg_n_0_[1] ),
         .O(p_0_in__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT4 #(
     .INIT(16'hB888)) 
     \shifter[1]_i_1 
@@ -40365,7 +40547,7 @@ module design_1_CPUTop_0_0_uart
         .I2(is_store_MA),
         .I3(Q[0]),
         .O(p_0_in__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT4 #(
     .INIT(16'hB888)) 
     \shifter[2]_i_1 
@@ -40424,7 +40606,7 @@ module design_1_CPUTop_0_0_uart
         .I4(bitcount_reg[2]),
         .I5(uart_we__23),
         .O(shifter));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \shifter[8]_i_10 
@@ -40451,7 +40633,7 @@ module design_1_CPUTop_0_0_uart
         .I4(alu_result[16]),
         .I5(alu_result[17]),
         .O(\alu_result_MA_reg[18] ));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'hEA)) 
     \shifter[8]_i_2 
@@ -40608,7 +40790,7 @@ module design_1_CPUTop_0_0_uart
         .I1(uart_tx0),
         .I2(uart_tx),
         .O(uart_tx_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT5 #(
     .INIT(32'h0000FFFE)) 
     uart_tx_i_3

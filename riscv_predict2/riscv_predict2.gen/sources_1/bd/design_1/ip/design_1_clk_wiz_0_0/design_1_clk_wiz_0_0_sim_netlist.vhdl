@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Sat Nov 18 15:59:54 2023
+-- Date        : Mon Nov 20 22:48:00 2023
 -- Host        : DJ00001 running 64-bit Ubuntu 20.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/denjo/b3exp/riscv_predict2/riscv_predict2.gen/sources_1/bd/design_1/ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0_sim_netlist.vhdl
@@ -78,13 +78,13 @@ clkout1_buf: unisim.vcomponents.BUFG
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 40.125000,
+      CLKFBOUT_MULT_F => 9.000000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 10.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 13.375000,
-      CLKOUT0_DUTY_CYCLE => 0.500000,
+      CLKOUT0_DIVIDE_F => 10.000000,
+      CLKOUT0_DUTY_CYCLE => 0.400000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
       CLKOUT1_DIVIDE => 1,
@@ -113,7 +113,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT6_PHASE => 0.000000,
       CLKOUT6_USE_FINE_PS => false,
       COMPENSATION => "ZHOLD",
-      DIVCLK_DIVIDE => 4,
+      DIVCLK_DIVIDE => 1,
       IS_CLKINSEL_INVERTED => '0',
       IS_PSEN_INVERTED => '0',
       IS_PSINCDEC_INVERTED => '0',
