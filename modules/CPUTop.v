@@ -220,7 +220,7 @@ module CPUTop (
     //乗除算器
     multiclockalu multiclockalu1(
         .clk(clk),
-        .is_multiclock_input(is_multiplier_input_EX),
+        .rst(is_multiplier_input_EX),
         .alucode(alucode_EX),
         .op1(oprl_EX),
         .op2(oprr_EX),

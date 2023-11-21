@@ -13,7 +13,7 @@ module multiclockalu (
     reg [63:0] op2_reg;
     reg [63:0] calc_result;
     reg [1:0] taken_sign;    //符号を取り出したか
-    always @(posedge clk or posedge rst) begin
+    always @(negedge clk or posedge rst) begin
         if(rst)begin
             //例外処理
             if((alucode==`ALU_DIV || alucode==`ALU_DIVU || alucode==`ALU_REM || alucode==`ALU_REMU) && op2==0)begin
