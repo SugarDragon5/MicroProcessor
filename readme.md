@@ -1,5 +1,32 @@
 # 後期実験「マイクロプロセッサの設計と実装」
 ## アーキテクチャ
+### バージョン4.0: RV32IM対応
+#### 更新内容
+- RV32I命令セットの実装
+32bitそれぞれを求めるのに1クロック、前処理後処理で1クロックずつかかるので、計34クロックかかる。
+#### パフォーマンス
+```
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 1299374444
+Total time (secs): 14
+Iterations/Sec   : 142
+Iterations       : 2000
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x4983
+Correct operation validated. See readme.txt for run and reporting rules.
+```
+
+## 歴代アーキテクチャ
+### バージョン3.1,2
+#### 更新内容
+RAMをposedge駆動に変更
 ### バージョン3.1.1: 
 #### 更新内容
 - ALU, NPC計算の並列化によるEXステージクリティカルパス改善
@@ -46,7 +73,6 @@ seedcrc          : 0xe9f5
 Correct operation validated. See readme.txt for run and reporting rules.
 ```
 
-## 歴代アーキテクチャ
 ### バージョン3.0: 分岐予測付き5サイクル・パイプライン
 #### 更新内容
 - 簡易なBranch Target Bufferを実装。PCの上6bitをtag, 下10-2=8bitをindexとするキャッシュを作成し、ヒットしたらNPCに採用
