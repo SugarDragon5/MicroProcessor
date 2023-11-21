@@ -223,14 +223,14 @@ module CPUTop (
     //posedgeでinputをうけ、negedgeでデータ入出力
     RAM ram1(
         .clk(clk),
-        .we(ram_we_MA),
-        .r_addr(mem_address_MA),
+        .we(is_store_EX),
+        .r_addr(alu_result_EX),
         .r_data(mem_load_value_MA),
-        .w_addr(mem_address_MA),
-        .w_data(mem_write_value_MA),
-        .write_mode(ram_write_size_MA),
-        .read_mode(ram_read_size_MA),
-        .read_signed(ram_read_signed_MA)
+        .w_addr(alu_result_EX),
+        .w_data(regdata2_EX),
+        .write_mode(ram_write_size_EX),
+        .read_mode(ram_read_size_EX),
+        .read_signed(ram_read_signed_EX)
     );
     //UArt
     wire [7:0] uart_IN_data;
