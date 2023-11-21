@@ -59,8 +59,11 @@ module CPUTop (
     //ALU出力
     wire [31:0] alu_result_EX;
     wire br_taken_EX;
-    //NPCGen入力
-    reg [31:0] regdata1_EX;
+    //NPCGen入力候補
+    wire [31:0] npc_default_EX;
+    wire [31:0] npc_branch_EX;
+    wire [31:0] npc_jalr_EX;
+    
     //NPCGen出力
     wire [31:0] npc_EX;
     //その他 ID-> EX で受け取るデータ
@@ -68,7 +71,11 @@ module CPUTop (
     reg reg_we_EX,is_load_EX,is_store_EX,is_halt_EX;
     reg [1:0] ram_read_size_EX,ram_write_size_EX;
     reg ram_read_signed_EX;
+    reg [31:0] regdata1_EX;
     reg [31:0] regdata2_EX;   
+    assign npc_default_EX=pc_EX+4;
+    assign npc_branch_EX=pc_EX+imm_EX;
+    assign npc_jalr_EX=regdata1_EX+imm_EX;
 
 //MAステージ
     reg [31:0] pc_MA;
@@ -206,8 +213,9 @@ module CPUTop (
     NPCGenerator NPCGen1(
         .pc(pc_EX),
         .alucode(alucode_EX),
-        .imm(imm_EX),
-        .reg1dat(regdata1_EX),
+        .npc_default(npc_default_EX),
+        .npc_branch(npc_branch_EX),
+        .npc_jalr(npc_jalr_EX),
         .br_taken(br_taken_EX),
         .npc(npc_EX)
     );
