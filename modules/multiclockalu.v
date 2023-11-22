@@ -98,19 +98,19 @@ module multiclockalu (
                     //2bitずつ商を求める
                     if((op2m3<<(32-stage*2))<=op1_reg)begin
                         //商'b11
-                        calc_result<=calc_result|(64'b11<<(32-stage*2));
+                        calc_result[33-stage*2:32-stage*2]<='b11;
                         op1_reg<=op1_reg-(op2m3<<(32-stage*2));
                     end else if(op2_reg<<(33-stage*2)<=op1_reg)begin
                         //商'b10
-                        calc_result<=calc_result|(64'b10<<(32-stage*2));
+                        calc_result[33-stage*2:32-stage*2]<='b10;
                         op1_reg<=op1_reg-(op2_reg<<(33-stage*2));
                     end else if((op2_reg<<(32-stage*2))<=op1_reg)begin
                         //商'b01
-                        calc_result<=calc_result|(64'b01<<(32-stage*2));
+                        calc_result[33-stage*2:32-stage*2]<='b01;
                         op1_reg<=op1_reg-(op2_reg<<(32-stage*2));
                     end else begin
                         //商'b00
-                        calc_result<=calc_result|(64'b00<<(32-stage*2));
+                        calc_result[33-stage*2:32-stage*2]<='b00;
                     end
                 end
                 stage<=stage+1;
