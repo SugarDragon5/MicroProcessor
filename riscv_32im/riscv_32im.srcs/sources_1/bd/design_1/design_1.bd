@@ -15,6 +15,9 @@
       "CPUTop_0": ""
     },
     "ports": {
+      "cpu_resetn": {
+        "direction": "I"
+      },
       "sysclk": {
         "type": "clk",
         "direction": "I",
@@ -40,9 +43,6 @@
           }
         }
       },
-      "cpu_resetn": {
-        "direction": "I"
-      },
       "uart_rx_out": {
         "direction": "O"
       }
@@ -51,29 +51,50 @@
       "clk_wiz_0": {
         "vlnv": "xilinx.com:ip:clk_wiz:6.0",
         "xci_name": "design_1_clk_wiz_0_0",
-        "xci_path": "ip/design_1_clk_wiz_0_0/design_1_clk_wiz_0_0.xci",
+        "xci_path": "ip/design_1_clk_wiz_0_0_1/design_1_clk_wiz_0_0.xci",
         "inst_hier_path": "clk_wiz_0",
         "parameters": {
           "CLKOUT1_JITTER": {
-            "value": "247.412"
+            "value": "140.709"
           },
           "CLKOUT1_PHASE_ERROR": {
-            "value": "296.868"
+            "value": "105.461"
+          },
+          "CLKOUT1_REQUESTED_DUTY_CYCLE": {
+            "value": "60"
           },
           "CLKOUT1_REQUESTED_OUT_FREQ": {
             "value": "90"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "236.953"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "248.814"
+          },
+          "CLKOUT2_USED": {
+            "value": "false"
           },
           "CLK_IN1_BOARD_INTERFACE": {
             "value": "sys_clock"
           },
           "MMCM_CLKFBOUT_MULT_F": {
-            "value": "49.500"
+            "value": "9.000"
           },
           "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "11.000"
+            "value": "10.000"
+          },
+          "MMCM_CLKOUT0_DUTY_CYCLE": {
+            "value": "0.600"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "1"
           },
           "MMCM_DIVCLK_DIVIDE": {
-            "value": "5"
+            "value": "1"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "1"
           },
           "USE_LOCKED": {
             "value": "false"
@@ -85,8 +106,8 @@
       },
       "CPUTop_0": {
         "vlnv": "xilinx.com:module_ref:CPUTop:1.0",
-        "xci_name": "design_1_CPUTop_0_0",
-        "xci_path": "ip/design_1_CPUTop_0_0/design_1_CPUTop_0_0.xci",
+        "xci_name": "design_1_CPUTop_0_2",
+        "xci_path": "ip/design_1_CPUTop_0_2_1/design_1_CPUTop_0_2.xci",
         "inst_hier_path": "CPUTop_0",
         "reference_info": {
           "ref_type": "hdl",
@@ -121,16 +142,16 @@
       }
     },
     "nets": {
-      "clk_wiz_0_clk_out1": {
-        "ports": [
-          "clk_wiz_0/clk_out1",
-          "CPUTop_0/sysclk"
-        ]
-      },
       "sysclk_1": {
         "ports": [
           "sysclk",
           "clk_wiz_0/clk_in1"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "CPUTop_0/sysclk"
         ]
       },
       "cpu_resetn_1": {

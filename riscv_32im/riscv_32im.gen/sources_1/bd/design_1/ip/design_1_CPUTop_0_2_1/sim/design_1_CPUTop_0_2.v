@@ -50,12 +50,11 @@
 // IP VLNV: xilinx.com:module_ref:CPUTop:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "CPUTop,Vivado 2020.2" *)
-(* CHECK_LICENSE_TYPE = "design_1_CPUTop_0_0,CPUTop,{}" *)
-(* CORE_GENERATION_INFO = "design_1_CPUTop_0_0,CPUTop,{x_ipProduct=Vivado 2020.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=CPUTop,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+`timescale 1ns/1ps
+
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module design_1_CPUTop_0_0 (
+module design_1_CPUTop_0_2 (
   sysclk,
   nrst,
   uart_tx

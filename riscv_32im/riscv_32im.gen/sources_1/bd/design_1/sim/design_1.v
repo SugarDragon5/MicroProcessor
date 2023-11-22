@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Tue Nov 21 23:21:47 2023
+//Date        : Wed Nov 22 11:33:39 2023
 //Host        : DJ00001 running 64-bit Ubuntu 20.04.6 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -26,7 +26,7 @@ module design_1
   assign cpu_resetn_1 = cpu_resetn;
   assign sysclk_1 = sysclk;
   assign uart_rx_out = CPUTop_0_uart_tx;
-  design_1_CPUTop_0_0 CPUTop_0
+  design_1_CPUTop_0_2 CPUTop_0
        (.nrst(cpu_resetn_1),
         .sysclk(clk_wiz_0_clk_out1),
         .uart_tx(CPUTop_0_uart_tx));
