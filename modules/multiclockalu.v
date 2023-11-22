@@ -12,8 +12,9 @@ module multiclockalu (
     reg [63:0] op1_reg;
     reg [63:0] op2_reg;
     reg [63:0] calc_result;
+    reg [63:0] mulreg[0:7];
     reg [1:0] taken_sign;    //符号を取り出したか
-    always @(negedge clk or posedge rst) begin
+    always @(negedge clk) begin
         if(rst)begin
             //例外処理
             if((alucode==`ALU_DIV || alucode==`ALU_DIVU || alucode==`ALU_REM || alucode==`ALU_REMU) && op2==0)begin
@@ -38,6 +39,9 @@ module multiclockalu (
                 stage<=0;
                 alucode_reg<=alucode;
                 calc_result<=0;
+                for(i=0;i<8;i++)begin
+                    mulreg[i]<=0;
+                end
                 done<=0;
                 if((alucode==`ALU_MUL || alucode==`ALU_MULH||alucode==`ALU_MULHSU || alucode==`ALU_DIV || alucode==`ALU_REM) && op1[31])begin
                     //op1を負→正にする必要あり
@@ -56,18 +60,36 @@ module multiclockalu (
                     taken_sign[1]<=0;
                 end
             end
-        end else if(0<=stage&&stage<32)begin
+        end else if(stage<32)begin
             if(alucode==`ALU_MUL || alucode==`ALU_MULH || alucode==`ALU_MULHSU || alucode==`ALU_MULHU)begin
-                if(op2_reg[stage])begin
-                    calc_result<=calc_result+(op1_reg<<(stage));
+                if(stage<4)begin
+                    for(i=0;i<8;i++)begin
+                        if(op2_reg[stage*8+i])begin
+                            mulreg[i]<=mulreg[i]+(op1_reg<<(stage*8+i));
+                        end
+                    end
+                    stage<=stage+1;
+                end else if(stage==4)begin
+                    mulreg[0]<=mulreg[0]+mulreg[4];
+                    mulreg[1]<=mulreg[1]+mulreg[5];
+                    mulreg[2]<=mulreg[2]+mulreg[6];
+                    mulreg[3]<=mulreg[3]+mulreg[7];
+                    stage<=5;
+                end else if(stage==5)begin
+                    mulreg[0]<=mulreg[0]+mulreg[2];
+                    mulreg[1]<=mulreg[1]+mulreg[3];
+                    stage<=6;
+                end else if(stage==6)begin
+                    calc_result<=mulreg[0]+mulreg[1];
+                    stage<=32;
                 end
             end else if(alucode==`ALU_DIV || alucode==`ALU_DIVU || alucode==`ALU_REM || alucode==`ALU_REMU)begin
-                if((op2_reg<<(31-stage))<=op1_reg)begin
-                    calc_result[31-stage]<=1;
-                    op1_reg<=op1_reg-(op2_reg<<(31-stage));
-                end
+                    if((op2_reg<<(31-stage))<=op1_reg)begin
+                        calc_result[31-stage]<=1;
+                        op1_reg<=op1_reg-(op2_reg<<(31-stage));
+                    end
+                stage<=stage+1;
             end
-            stage<=stage+1;
         end else if(stage==32)begin
             if(alucode==`ALU_REM)begin
                 //余りの符号を調整
