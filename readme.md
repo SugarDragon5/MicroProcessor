@@ -1,5 +1,27 @@
 # 後期実験「マイクロプロセッサの設計と実装」
 ## アーキテクチャ
+### バージョン4.1: 乗算高速化
+#### 更新内容
+- 乗算器の並列処理 34クロック→5クロック
+- すでに計算が終了していると判断できる場合打ち切る
+#### パフォーマンス
+```
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 1134633780
+Total time (secs): 12
+Iterations/Sec   : 250
+Iterations       : 3000
+Compiler version : GCC13.2.0
+Compiler flags   : 
+Memory location  : STACK
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0xcc42
+Correct operation validated. See readme.txt for run and reporting rules.
+```
 ### バージョン4.0: RV32IM対応
 #### 更新内容
 - RV32I命令セットの実装
