@@ -420,11 +420,7 @@ module CPUTop (
                 ram_write_size_EX<=ram_write_size_ID;
                 ram_read_signed_EX<=ram_read_signed_ID;
                 is_multiclock_EX<=is_multiclock_ID;
-                if(is_multiclock_ID)begin
-                    is_multiplier_input_EX<=1;
-                end else begin
-                    is_multiplier_input_EX<=0;
-                end
+                is_multiplier_input_EX<=is_multiclock_ID;
             end
             //MAステージ: 分岐の有無に無関係
             if(is_multiclock_EX)begin

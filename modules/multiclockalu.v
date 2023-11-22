@@ -7,6 +7,7 @@ module multiclockalu (
     output reg [31:0] result,
     output reg done
 );
+    integer i;
     reg [5:0] stage;
     reg [5:0] alucode_reg;
     reg [63:0] op1_reg;
@@ -39,7 +40,7 @@ module multiclockalu (
                 stage<=0;
                 alucode_reg<=alucode;
                 calc_result<=0;
-                for(i=0;i<8;i++)begin
+                for(i=0;i<8;i=i+1)begin
                     mulreg[i]<=0;
                 end
                 done<=0;
@@ -63,23 +64,27 @@ module multiclockalu (
         end else if(stage<32)begin
             if(alucode==`ALU_MUL || alucode==`ALU_MULH || alucode==`ALU_MULHSU || alucode==`ALU_MULHU)begin
                 if(stage<4)begin
-                    for(i=0;i<8;i++)begin
+                    for(i=0;i<8;i=i+1)begin
                         if(op2_reg[stage*8+i])begin
                             mulreg[i]<=mulreg[i]+(op1_reg<<(stage*8+i));
                         end
                     end
-                    stage<=stage+1;
+                    if(stage==0&&op2_reg[31:8]==0||stage==1&&op2_reg[31:16]==0||stage==2&&op2_reg[31:24]==0||stage==3)begin
+                        stage<=4;
+                    end else begin
+                        stage<=stage+1;
+                    end
                 end else if(stage==4)begin
-                    mulreg[0]<=mulreg[0]+mulreg[4];
-                    mulreg[1]<=mulreg[1]+mulreg[5];
-                    mulreg[2]<=mulreg[2]+mulreg[6];
-                    mulreg[3]<=mulreg[3]+mulreg[7];
+                    mulreg[0]<=mulreg[0]+mulreg[1]+mulreg[2]+mulreg[3];
+                    mulreg[1]<=mulreg[4]+mulreg[5]+mulreg[6]+mulreg[7];
+                    mulreg[2]<=0;
+                    mulreg[3]<=0;
+                    mulreg[4]<=0;
+                    mulreg[5]<=0;
+                    mulreg[6]<=0;
+                    mulreg[7]<=0;
                     stage<=5;
                 end else if(stage==5)begin
-                    mulreg[0]<=mulreg[0]+mulreg[2];
-                    mulreg[1]<=mulreg[1]+mulreg[3];
-                    stage<=6;
-                end else if(stage==6)begin
                     calc_result<=mulreg[0]+mulreg[1];
                     stage<=32;
                 end
