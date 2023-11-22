@@ -14,6 +14,7 @@ module multiclockalu (
     reg [63:0] op2_reg;
     reg [63:0] calc_result;
     reg [63:0] mulreg[0:7];
+    reg [63:0] op2m3;   //op2 * 3
     reg [1:0] taken_sign;    //符号を取り出したか
     always @(negedge clk) begin
         if(rst)begin
@@ -86,16 +87,35 @@ module multiclockalu (
                     stage<=5;
                 end else if(stage==5)begin
                     calc_result<=mulreg[0]+mulreg[1];
-                    stage<=32;
+                    stage<=17;
                 end
             end else if(alucode==`ALU_DIV || alucode==`ALU_DIVU || alucode==`ALU_REM || alucode==`ALU_REMU)begin
-                    if((op2_reg<<(31-stage))<=op1_reg)begin
-                        calc_result[31-stage]<=1;
-                        op1_reg<=op1_reg-(op2_reg<<(31-stage));
+                if(stage==0)begin
+                    //op2の3倍を前計算
+                    op2m3<=(op2_reg<<1)+op2_reg;
+                    stage<=1;
+                end else if(1<=stage&&stage<17)begin
+                    //2bitずつ商を求める
+                    if((op2m3<<(32-stage*2))<=op1_reg)begin
+                        //商'b11
+                        calc_result[33-stage*2:32-stage*2]<='b11;
+                        op1_reg<=op1_reg-(op2m3<<(32-stage*2));
+                    end else if(op2_reg<<(33-stage*2)<=op1_reg)begin
+                        //商'b10
+                        calc_result[33-stage*2:32-stage*2]<='b10;
+                        op1_reg<=op1_reg-(op2_reg<<(33-stage*2));
+                    end else if((op2_reg<<(32-stage*2))<=op1_reg)begin
+                        //商'b01
+                        calc_result[33-stage*2:32-stage*2]<='b01;
+                        op1_reg<=op1_reg-(op2_reg<<(32-stage*2));
+                    end else begin
+                        //商'b00
+                        calc_result[33-stage*2:32-stage*2]<='b00;
                     end
+                end
                 stage<=stage+1;
             end
-        end else if(stage==32)begin
+        end else if(stage==17)begin
             if(alucode==`ALU_REM)begin
                 //余りの符号を調整
                 if(taken_sign[0])begin
@@ -108,7 +128,7 @@ module multiclockalu (
                 end
             end
             stage<=stage+1;
-        end else if(stage==33)begin
+        end else if(stage==18)begin
             if(alucode==`ALU_MUL)begin
                 result<=calc_result[31:0];
             end else if(alucode==`ALU_MULH || alucode==`ALU_MULHSU || alucode==`ALU_MULHU)begin
