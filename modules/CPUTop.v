@@ -153,8 +153,11 @@ module CPUTop (
         .clk(clk),
         .rst(rst),
         .PC(pc_IF[15:0]),
+        .history(0),
         .NPC_predict(npc_predict_IF),
+        .is_taken_predict(is_taken_predict_IF),
         .PC_actual(pc_EX[15:0]),
+        .history_actual(0),
         .NPC_actual(npc_EX[15:0]),
         .is_taken_actual(br_taken_EX)
     );
