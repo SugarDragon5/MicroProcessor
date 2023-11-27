@@ -1,5 +1,5 @@
-`include "define.v"
-`include "testdata.v"
+//`include "define.v"
+//`include "testdata.v"
 
 module CPUTop (
     input wire sysclk,
@@ -21,24 +21,39 @@ module CPUTop (
     );
 
 //IFステージ
-    reg [31:0] pc_IF;
-    wire [31:0] iword_IF;
+    reg [31:0] pc_IF1;
+    wire [31:0] pc_IF2;
+    wire [31:0] iword_IF1;
+    wire [31:0] iword_IF2;
+    assign pc_IF2=pc_IF1+4;
     //BTB出力
     wire [31:0] npc_predict_IF;
 
 //IDステージ
-    reg [31:0] pc_ID;
-    //デコーダ入出力
-    reg [31:0] iword_ID;
-    wire [4:0] srcreg1_num_ID,srcreg2_num_ID,dstreg_num_ID;
-    wire [31:0] imm_ID;
-    wire [5:0] alucode_ID;
-    wire [1:0] aluop1_type_ID,aluop2_type_ID;
-    wire reg_we_ID,is_load_ID,is_store_ID,is_halt_ID;
-    wire [1:0] ram_read_size_ID,ram_write_size_ID;
-    wire ram_read_signed_ID;
+    //デコーダ入出力1
+    reg [31:0] pc_ID1;
+    reg [31:0] iword_ID1;
+    wire [4:0] srcreg1_num_ID1,srcreg2_num_ID1,dstreg_num_ID1;
+    wire [31:0] imm_ID1;
+    wire [5:0] alucode_ID1;
+    wire [1:0] aluop1_type_ID1,aluop2_type_ID1;
+    wire reg_we_ID1,is_load_ID1,is_store_ID1,is_halt_ID1;
+    wire [1:0] ram_read_size_ID1,ram_write_size_ID1;
+    wire ram_read_signed_ID1;
+    wire is_multiclock_ID1;
+    //デコーダ入出力2
+    reg [31:0] pc_ID2;
+    reg [31:0] iword_ID2;
+    wire [4:0] srcreg1_num_ID2,srcreg2_num_ID2,dstreg_num_ID2;
+    wire [31:0] imm_ID2;
+    wire [5:0] alucode_ID2;
+    wire [1:0] aluop1_type_ID2,aluop2_type_ID2;
+    wire reg_we_ID2,is_load_ID2,is_store_ID2,is_halt_ID2;
+    wire [1:0] ram_read_size_ID2,ram_write_size_ID2;
+    wire ram_read_signed_ID2;
+    wire is_multiclock_ID2;
     //レジスタ読み込み
-    wire [31:0] regdata1_ID,regdata2_ID;
+    wire [31:0] regdata1_ID1,regdata2_ID1;
     //オペランドスイッチャー
     wire [31:0] oprl_ID,oprr_ID;
     //フォワーディング
@@ -145,14 +160,16 @@ module CPUTop (
     //posedgeでaddrが代入され、negedgeでdataをfetch
     ROM rom1(
         .clk(clk),
-        .r_addr(pc_IF[15:2]),
-        .r_data(iword_IF)
+        .r1_addr(pc_IF1[15:2]),
+        .r2_addr(pc_IF2[15:2]),
+        .r1_data(iword_IF1),
+        .r2_data(iword_IF2)
     );
     //Predictor: IFステージ
     Predictor predictor1(
         .clk(clk),
         .rst(rst),
-        .PC(pc_IF[15:0]),
+        .PC(pc_IF1[15:0]),
         .NPC_predict(npc_predict_IF),
         .PC_actual(pc_EX[15:0]),
         .NPC_actual(npc_EX[15:0]),
@@ -161,22 +178,40 @@ module CPUTop (
     //Decoder: IDステージ
     //posedgeでiwordが代入され、そのまま計算が走る
     decoder decoder1(
-        .ir(iword_ID),
-        .srcreg1_num(srcreg1_num_ID),
-        .srcreg2_num(srcreg2_num_ID),
-        .dstreg_num(dstreg_num_ID),
-        .imm(imm_ID),
-        .alucode(alucode_ID),
-        .aluop1_type(aluop1_type_ID),
-        .aluop2_type(aluop2_type_ID),
-        .reg_we(reg_we_ID),
-        .is_load(is_load_ID),
-        .is_store(is_store_ID),
-        .is_halt(is_halt_ID),
-        .ram_read_size(ram_read_size_ID),
-        .is_multiclock(is_multiclock_ID),
-        .ram_write_size(ram_write_size_ID),
-        .ram_read_signed(ram_read_signed_ID)
+        .ir(iword_ID1),
+        .srcreg1_num(srcreg1_num_ID1),
+        .srcreg2_num(srcreg2_num_ID1),
+        .dstreg_num(dstreg_num_ID1),
+        .imm(imm_ID1),
+        .alucode(alucode_ID1),
+        .aluop1_type(aluop1_type_ID1),
+        .aluop2_type(aluop2_type_ID1),
+        .reg_we(reg_we_ID1),
+        .is_load(is_load_ID1),
+        .is_store(is_store_ID1),
+        .is_halt(is_halt_ID1),
+        .ram_read_size(ram_read_size_ID1),
+        .is_multiclock(is_multiclock_ID1),
+        .ram_write_size(ram_write_size_ID1),
+        .ram_read_signed(ram_read_signed_ID1)
+    );
+    decoder decoder2(
+        .ir(iword_ID2),
+        .srcreg1_num(srcreg1_num_ID2),
+        .srcreg2_num(srcreg2_num_ID2),
+        .dstreg_num(dstreg_num_ID2),
+        .imm(imm_ID2),
+        .alucode(alucode_ID2),
+        .aluop1_type(aluop1_type_ID2),
+        .aluop2_type(aluop2_type_ID2),
+        .reg_we(reg_we_ID2),
+        .is_load(is_load_ID2),
+        .is_store(is_store_ID2),
+        .is_halt(is_halt_ID2),
+        .ram_read_size(ram_read_size_ID2),
+        .is_multiclock(is_multiclock_ID2),
+        .ram_write_size(ram_write_size_ID2),
+        .ram_read_signed(ram_read_signed_ID2)
     );
     //RegisterFile: IDステージ, RWステージ
     //読み込みはリアルタイム。posedge→Decoder→RF
@@ -184,10 +219,10 @@ module CPUTop (
     RegisterFile register1(
         .clk(clk),
         //読み込み : IDステージ
-        .srcreg1_num(srcreg1_num_ID),
-        .srcreg2_num(srcreg2_num_ID),
-        .regdata1(regdata1_ID),
-        .regdata2(regdata2_ID),
+        .srcreg1_num(srcreg1_num_ID1),
+        .srcreg2_num(srcreg2_num_ID1),
+        .regdata1(regdata1_ID1),
+        .regdata2(regdata2_ID1),
         //書き込み : RWステージ
         .dstreg_num(dstreg_num_RW),
         .write_value(reg_write_value_RW),
@@ -196,12 +231,12 @@ module CPUTop (
     //OPSwitcher: IDステージ
     //Decoderで計算したデータを入力
     OperandSwitcher ops1(
-        .aluop1_type(aluop1_type_ID),
-        .aluop2_type(aluop2_type_ID),
-        .pc(pc_ID),
-        .regdata1(regdata1_ID),
-        .regdata2(regdata2_ID),
-        .imm(imm_ID),
+        .aluop1_type(aluop1_type_ID1),
+        .aluop2_type(aluop2_type_ID1),
+        .pc(pc_ID1),
+        .regdata1(regdata1_ID1),
+        .regdata2(regdata2_ID1),
+        .imm(imm_ID1),
         .oprl(oprl_ID),
         .oprr(oprr_ID)
     );
@@ -265,17 +300,17 @@ module CPUTop (
     );
 
     //ID -> EX でMA待ちストールを行うか
-    assign is_stall_DE=(is_load_EX&&(srcreg1_num_ID==dstreg_num_EX||srcreg2_num_ID==dstreg_num_EX));
+    assign is_stall_DE=(is_load_EX&&(srcreg1_num_ID1==dstreg_num_EX||srcreg2_num_ID1==dstreg_num_EX));
     //EX -> EX のフォワーディングを行うか
-    assign is_reg1_fwd_EE=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_EX);
-    assign is_reg2_fwd_EE=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_EX);
-    assign is_oprl_fwd_EE=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_EE);
-    assign is_oprr_fwd_EE=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_EE);
+    assign is_reg1_fwd_EE=(srcreg1_num_ID1!=0&&srcreg1_num_ID1==dstreg_num_EX);
+    assign is_reg2_fwd_EE=(srcreg2_num_ID1!=0&&srcreg2_num_ID1==dstreg_num_EX);
+    assign is_oprl_fwd_EE=(aluop1_type_ID1==`OP_TYPE_REG&&is_reg1_fwd_EE);
+    assign is_oprr_fwd_EE=(aluop2_type_ID1==`OP_TYPE_REG&&is_reg2_fwd_EE);
     //MA -> EX のフォワーディングを行うか
-    assign is_reg1_fwd_ME=(srcreg1_num_ID!=0&&srcreg1_num_ID==dstreg_num_MA);
-    assign is_reg2_fwd_ME=(srcreg2_num_ID!=0&&srcreg2_num_ID==dstreg_num_MA);
-    assign is_oprl_fwd_ME=(aluop1_type_ID==`OP_TYPE_REG&&is_reg1_fwd_ME);
-    assign is_oprr_fwd_ME=(aluop2_type_ID==`OP_TYPE_REG&&is_reg2_fwd_ME);
+    assign is_reg1_fwd_ME=(srcreg1_num_ID1!=0&&srcreg1_num_ID1==dstreg_num_MA);
+    assign is_reg2_fwd_ME=(srcreg2_num_ID1!=0&&srcreg2_num_ID1==dstreg_num_MA);
+    assign is_oprl_fwd_ME=(aluop1_type_ID1==`OP_TYPE_REG&&is_reg1_fwd_ME);
+    assign is_oprr_fwd_ME=(aluop2_type_ID1==`OP_TYPE_REG&&is_reg2_fwd_ME);
 
     // Memory Accessステージに以下のような記述を追加
     assign uart_IN_data = mem_write_value_MA[7:0];  // ストアするデータをモジュールへ入力
@@ -297,19 +332,22 @@ module CPUTop (
     //ステージ遷移
     always @(posedge clk) begin
         if(rst)begin
-            pc_IF<='h8000;
-            pc_ID<='h7FFC;
+            pc_IF1<='h8000;
+            pc_ID1<='h7FFC;
+            pc_ID2<='h7FFC;
             pc_EX<='h7FF8;
             pc_MA<='h0000;
             pc_RW<='h0000;
         end else begin
-            if(pc_EX!=0 && pc_ID!=0 && npc_EX!=pc_ID)begin
+            if(pc_EX!=0 && pc_ID1!=0 && npc_EX!=pc_ID1)begin
                 //分岐予測失敗 = ID, EXをnopに、IFに分岐先を代入
                 //IFステージ
-                pc_IF<=npc_EX;
+                pc_IF1<=npc_EX;
                 //IDステージ
-                pc_ID<=0;
-                iword_ID<=0;
+                pc_ID1<=0;
+                iword_ID1<=0;
+                pc_ID2<=0;
+                iword_ID2<=0;
                 //EXステージ
                 pc_EX<=0;
                 iword_EX<=0;
@@ -356,15 +394,15 @@ module CPUTop (
                 is_multiplier_input_EX<=0;
                 if(done_multiplier_EX)begin
                     //IFステージ
-                    pc_IF<=npc_predict_IF;
+                    pc_IF1<=npc_predict_IF;
                     //IDステージ
-                    pc_ID<=pc_IF;
-                    iword_ID<=iword_IF;
+                    pc_ID1<=pc_IF1;
+                    iword_ID1<=iword_IF1;
                     //EXステージ
-                    pc_EX<=pc_ID;
-                    iword_EX<=iword_ID;
-                    alucode_EX<=alucode_ID;
-                    imm_EX<=imm_ID;
+                    pc_EX<=pc_ID1;
+                    iword_EX<=iword_ID1;
+                    alucode_EX<=alucode_ID1;
+                    imm_EX<=imm_ID1;
                     if(is_oprl_fwd_EE)oprl_EX<=multi_result_EX;
                     else if(is_oprl_fwd_ME)oprl_EX<=reg_write_value_MA;
                     else oprl_EX<=oprl_ID;
@@ -373,32 +411,34 @@ module CPUTop (
                     else oprr_EX<=oprr_ID;
                     if(is_reg1_fwd_EE)regdata1_EX<=multi_result_EX;
                     else if(is_reg1_fwd_ME)regdata1_EX<=reg_write_value_MA;
-                    else regdata1_EX<=regdata1_ID;
+                    else regdata1_EX<=regdata1_ID1;
                     if(is_reg2_fwd_EE)regdata2_EX<=multi_result_EX;
                     else if(is_reg2_fwd_ME)regdata2_EX<=reg_write_value_MA;
-                    else regdata2_EX<=regdata2_ID;
-                    dstreg_num_EX<=dstreg_num_ID;
-                    reg_we_EX<=reg_we_ID;
-                    is_load_EX<=is_load_ID;
-                    is_store_EX<=is_store_ID;
-                    is_halt_EX<=is_halt_ID;
-                    ram_read_size_EX<=ram_read_size_ID;
-                    ram_write_size_EX<=ram_write_size_ID;
-                    ram_read_signed_EX<=ram_read_signed_ID;
-                    is_multiclock_EX<=is_multiclock_ID;
+                    else regdata2_EX<=regdata2_ID1;
+                    dstreg_num_EX<=dstreg_num_ID1;
+                    reg_we_EX<=reg_we_ID1;
+                    is_load_EX<=is_load_ID1;
+                    is_store_EX<=is_store_ID1;
+                    is_halt_EX<=is_halt_ID1;
+                    ram_read_size_EX<=ram_read_size_ID1;
+                    ram_write_size_EX<=ram_write_size_ID1;
+                    ram_read_signed_EX<=ram_read_signed_ID1;
+                    is_multiclock_EX<=is_multiclock_ID1;
                 end
             end else begin
                 //ストールなし。ステージを進める
                 //IFステージ
-                pc_IF<=npc_predict_IF;
+                pc_IF1<=npc_predict_IF;
                 //IDステージ
-                pc_ID<=pc_IF;
-                iword_ID<=iword_IF;
+                pc_ID1<=pc_IF1;
+                iword_ID1<=iword_IF1;
+                pc_ID2<=pc_IF2;
+                iword_ID2<=iword_IF2;
                 //EXステージ
-                pc_EX<=pc_ID;
-                iword_EX<=iword_ID;
-                alucode_EX<=alucode_ID;
-                imm_EX<=imm_ID;
+                pc_EX<=pc_ID1;
+                iword_EX<=iword_ID1;
+                alucode_EX<=alucode_ID1;
+                imm_EX<=imm_ID1;
                 if(is_oprl_fwd_EE)oprl_EX<=alu_result_EX;
                 else if(is_oprl_fwd_ME)oprl_EX<=reg_write_value_MA;
                 else oprl_EX<=oprl_ID;
@@ -407,20 +447,20 @@ module CPUTop (
                 else oprr_EX<=oprr_ID;
                 if(is_reg1_fwd_EE)regdata1_EX<=alu_result_EX;
                 else if(is_reg1_fwd_ME)regdata1_EX<=reg_write_value_MA;
-                else regdata1_EX<=regdata1_ID;
+                else regdata1_EX<=regdata1_ID1;
                 if(is_reg2_fwd_EE)regdata2_EX<=alu_result_EX;
                 else if(is_reg2_fwd_ME)regdata2_EX<=reg_write_value_MA;
-                else regdata2_EX<=regdata2_ID;
-                dstreg_num_EX<=dstreg_num_ID;
-                reg_we_EX<=reg_we_ID;
-                is_load_EX<=is_load_ID;
-                is_store_EX<=is_store_ID;
-                is_halt_EX<=is_halt_ID;
-                ram_read_size_EX<=ram_read_size_ID;
-                ram_write_size_EX<=ram_write_size_ID;
-                ram_read_signed_EX<=ram_read_signed_ID;
-                is_multiclock_EX<=is_multiclock_ID;
-                is_multiplier_input_EX<=is_multiclock_ID;
+                else regdata2_EX<=regdata2_ID1;
+                dstreg_num_EX<=dstreg_num_ID1;
+                reg_we_EX<=reg_we_ID1;
+                is_load_EX<=is_load_ID1;
+                is_store_EX<=is_store_ID1;
+                is_halt_EX<=is_halt_ID1;
+                ram_read_size_EX<=ram_read_size_ID1;
+                ram_write_size_EX<=ram_write_size_ID1;
+                ram_read_signed_EX<=ram_read_signed_ID1;
+                is_multiclock_EX<=is_multiclock_ID1;
+                is_multiplier_input_EX<=is_multiclock_ID1;
             end
             //MAステージ: 分岐の有無に無関係
             if(is_multiclock_EX)begin

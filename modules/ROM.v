@@ -1,8 +1,11 @@
-module ROM(clk, r_addr, r_data);
+module ROM(
+    input wire clk,
+    input wire [13:0] r1_addr,
+    input wire [13:0] r2_addr,
+    output reg [31:0] r1_data,
+    output reg [31:0] r2_data
+);
     //64Kib = 32bit * 16384 (アドレス: 14bit)
-    input clk;
-    input  [13:0] r_addr;
-    output reg [31:0] r_data;
     (* ram_style = "block" *) reg [31:0] mem[0:32767];
 
     initial begin
@@ -10,7 +13,8 @@ module ROM(clk, r_addr, r_data);
     end
     
     always @(negedge clk) begin
-        r_data <= mem[r_addr];
+        r1_data <= mem[r1_addr];
+        r2_data <= mem[r2_addr];
     end
 
 endmodule
