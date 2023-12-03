@@ -83,3 +83,10 @@ xvlog.*
 ## checkpoint files
 *.dcp
 
+## LaTeX
+*.aux
+*.dvi
+*.bbl
+*.blg
+*.log
+*.pdf

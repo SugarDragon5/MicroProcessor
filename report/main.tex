@@ -1,0 +1,91 @@
+\documentclass[dvipdfmx,10pt,a4paper,titlepage]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ascmac}
+\usepackage{amsmath}
+\usepackage{fancybox}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{listings,jvlisting}
+\usepackage{color}
+\usepackage{url}
+\definecolor{OliveGreen}{rgb}{0.0,0.6,0.0}
+\definecolor{Orenge}{rgb}{0.89,0.55,0}
+\definecolor{SkyBlue}{rgb}{0.28,0.28,0.95}
+\lstset{
+  language=C,
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\small\itshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex,
+  keepspaces=true,
+  keywordstyle={\color{SkyBlue}},
+  commentstyle={\color{OliveGreen}},
+  stringstyle=\color{Orenge},
+  showstringspaces=false
+}
+\title{マイクロプロセッサの設計と実装 最終レポート}
+\author{
+    東京大学電子情報工学科3年\\
+    03230422 佐藤 龍吾
+}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \section{設計方針・実験日程}
+    本実験では、10日間でRISC-VのマイクロプロセッサをVerilogで記述し、FPGA上でテスト、CoreMarkを用いたベンチマークを行った。
+    表~\ref{tab:day}のスケジュールで実験を行った。実装過程はGitLab\footnote{\url{https://exp.mtl.t.u-tokyo.ac.jp/SugarDragon5/b3exp}}で管理した。
+
+    本実験での開発目標を「CoreMarkスコア3桁」とし、効率的な開発のために以下の点に意識した。
+    \begin{itemize}
+        \item 各モジュールの仕様や、モジュール間のやり取りのフロー・タイミングを実装前に極力明確にし、実装時はその通り書くだけで済むまで考察した。
+        \item 必要なモジュールや機能をissueに切り出して管理することで、進捗の把握を容易にし、次に実装するべき機能を明確にした。
+        \item 各テストやCoreMarkの実装が最低限のコマンドで済むよう、コンパイルから実行までをシェルスクリプトでまとめた。
+        \item 終盤まで細かいチューニングは行わず、新規機能の実装に集中した。
+        ただし、直前の実装に比べ大幅に周波数が下がらないよう最低限のチューニングは行った。
+        \item GitHub Copilotを駆使し、ALU, Decoderのような単純作業の繰り返しを半自動・高速に行った。
+        AIの補完を利用した部分はバグになりがちなので、Copilotの提案内容はすべて一言一句確認し、自分の想定したプログラムと違わないかを確認した。
+    \end{itemize}
+    \begin{table}[h]
+        \begin{center}
+            \caption{実験日程}\label{tab:day}
+            \begin{tabular}{l|l}
+                日付 & 実装内容 \\ \hline
+                Day 1(10/31) & ALUの実装 \\
+                Day 2(11/2)  & シングルサイクルプロセッサの実装 \\
+                Day 3(11/6)  & 5ステージ化・シミュレーションテスト \\
+                Day 4(11/7)  & CoreMarkデバッグ \\
+                Day 5(11/9)  & CoreMark完動 \\
+                Day 6(11/13) & パイプライン化実装 \\
+                Day 7(11/14) & パイプライン化実装・完動 \\
+                Day 8(11/16) & 分岐予測実装 \\
+                Day 9(11/20) & 周波数チューニング \\
+                Day 10(11/27)& RV32M命令実装・発表
+            \end{tabular}
+        \end{center}
+    \end{table}
+    \section{実装内容・アーキテクチャ}
+    Day 5に完成したv1.0から、Day 10に完成したv4.1まで、計7つのバージョンを作成した。
+    バージョンごとに、実装内容とアーキテクチャ、工夫した部分やアルゴリズムについてまとめる。
+    \subsection{v1.0}
+    \subsection{v2.2}
+    \subsection{v3.0}
+    \subsection{v3.1}
+    \subsection{v3.2}
+    \subsection{v4.0}
+    \subsection{v4.1}
+    
+\end{document}
