@@ -143,6 +143,8 @@ seedcrc          : 0xe9f5
 [0]crcfinal      : 0x33ff
 Correct operation validated. See readme.txt for run and reporting rules.
 ```
+branch_success=   85739280, branch_fail=   14260720
+success_rate=85.73%
 
 ### バージョン2.1
 分散RAM→Block RAM
