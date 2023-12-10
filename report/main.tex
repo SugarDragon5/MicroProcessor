@@ -13,7 +13,6 @@
 \definecolor{Orenge}{rgb}{0.89,0.55,0}
 \definecolor{SkyBlue}{rgb}{0.28,0.28,0.95}
 \lstset{
-  language=C,
   basicstyle={\ttfamily},
   identifierstyle={\small},
   commentstyle={\small\itshape},
@@ -80,6 +79,8 @@
     \section{実装内容・アーキテクチャ}
     Day 5に完成したv1.0から、Day 10に完成したv4.1まで、計7つのバージョンを作成した。
     バージョンごとに、実装内容とアーキテクチャ、工夫した部分やアルゴリズムについてまとめる。
+
+    また、各バージョンに対応するCommitはGitLab上でタグを付けてある。\url{https://exp.mtl.t.u-tokyo.ac.jp/SugarDragon5/b3exp/-/tags}
     \subsection{v1.0}
     \subsubsection{実装内容}
     v1.0では、RV32I対応の最小限のプロセッサを実装した。
@@ -148,7 +149,7 @@
     \end{table}
     パイプライン化により1クロックあたり1命令の処理が可能であり、理想的な命令列の場合のIPCは1となる。
     分岐が失敗するたびに図~\ref{fig:predictfail}のように2命令・10ステージ分の無駄が発生し、IPCが低下する。
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=9cm]{figure/predict_fail.png}
         \caption{パイプラインで分岐が失敗したときの挙動}\label{fig:predictfail}
@@ -166,7 +167,7 @@
     タグが一致しなかった場合、BTBには分岐先PCが格納されていないと判断し、その命令は分岐分岐命令ではないと判断する。
     
     BTBの書き込みは、EXステージでALUの演算結果として分岐が発生することが判明した際に行う。
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=12cm]{figure/btb.png}
         \caption{BTBの構造}\label{fig:btb}
@@ -208,7 +209,7 @@
     \end{itemize}
     とする。
     PHTへの書き込みは、BTBと異なり分岐命令以外に対しても行う。
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=12cm]{figure/pht.png}
         \caption{PHTの構造}\label{fig:pht}
@@ -237,7 +238,7 @@
     \end{enumerate}
     というように、ALU、NPC Generatorが順番に動作していた。加算器が二つ直列になっており、ここがクリティカルパスとなっていた。
     そこで図~\ref{fig:NPC}右のように、NPC Generatorを加算を行うNPC Calculatorと、それらから分岐先PCを選択するNPC Selectorに分けた。
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=7.5cm]{figure/NPC1.png}
         \includegraphics[width=7.5cm]{figure/NPC2.png}
@@ -248,7 +249,7 @@
     v3.1のアーキテクチャでは、クロックの立ち上がりでEXステージからMAステージにデータを渡し、RAMの読み書きがあればクロックの立ち下がりで行う。
     立ち下がりの処理は重く、次のクロックの立ち上がりまでに計算しなければいけないため、クリティカルパスとなっていた。
     そこで図~\ref{fig:clkduty}のように、クロックのDuty比をVivado上で5:5から4:6に変更し、RAMの読み書きに使える時間を増やすことで解消を試みた。
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=12cm]{figure/clock_duty.png}
         \caption{クロックのDuty比}\label{fig:clkduty}
@@ -271,16 +272,25 @@
     当初の目標であるCoreMarkスコア3桁を達成した。
     \subsection{v4.0}
     \subsubsection{実装内容}
-    v3.2までのプロセッサでは原理上IPCが1までしか上がり得ない。CoreMarkスコアを大きく向上させるためには命令レベル並列処理を行うか、対応する命令を増やす必要がある。
-    したがって、v4台ではRV32M命令を実装した。
-    RV32M命令は乗算・除算・剰余を行う命令であるが、乗除算はRV32Iで実装した命令に比べて非常に重い。
+    v3.2までのプロセッサでは原理上IPCが1までしか上がり得ず、
+    ここまでの実験結果から$F[\mathrm{MHz}] \times \mathrm{IPC}\times 1.4$付近がCoreMarkスコアの上限であると予想した。
+    これ以上CoreMarkスコアを大きく向上させるためには命令レベル並列処理を行うか、対応する命令を増やす必要がある。v4台ではRV32M命令を実装した。
+
+    CoreMarkのIterationには``list\_join'', ``matrix'', ``state''の3つがあり、うち``matrix''は行列演算のタスクで、たくさんの積和演算からなる。
+    RV32Iでは乗算を行う命令がないため、Listing~\ref{lst:matrix}のようにビット演算と加算の組み合わせで32bitの積を計算している。
+    \lstinputlisting[caption=CoreMarkの積の実装,label=lst:matrix]{code/mul.asm}
+    これは最悪ケースで約200クロックを消費するうえ、中で行う分岐は乗数の値によって変化するため、分岐予測が難しい。
+    また、乗数・被乗数のレジスタが$\mathrm{a0}, \mathrm{a1}$で固定されており、いちいちmv命令でレジスタを移動する必要がある。
+
+    この部分をRV32M命令の乗算命令に置き換えることで無駄を省くことができ、計算の大幅な高速化が可能であると考えた。
+
     これらを1クロックで計算しようとするとクロック周波数が大幅に下がってしまうため、複数クロックで計算する乗除算器を実装した。
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=7cm]{figure/mul.png}
         \caption{乗算の計算方法}\label{fig:multiplier}
     \end{figure}
-    \begin{figure}
+    \begin{figure}[h]
         \centering
         \includegraphics[width=10cm]{figure/divrem.png}
         \caption{除算の計算方法}\label{fig:divrem}
@@ -288,6 +298,8 @@
     乗算器は図~\ref{fig:multiplier}、除算器は図~\ref{fig:divrem}のように、2進数の筆算を行うように実装した。
     1クロックに付き1bitずつ計算を行う。
     前処理として1クロックで符号なしへの変換と、最上位ビットの符号拡張を行い、後処理として1クロックで符号付きへの変換を行うので、計34クロックで乗算・除算が完了する。
+
+    EXステージで処理している命令が乗算・除算命令の場合、ALUの代わりに乗除算器を使い、その間他のステージの処理はストールさせる。
     \subsubsection{パフォーマンス}
     Vivadoを用いて合成したところ、最大クロック周波数は$90\mathrm{MHz}$付近となった。
     FPGA上で$90\mathrm{MHz}$でCoreMarkを動作した結果は表~\ref{tab:v4.0}の通りである。
@@ -302,18 +314,31 @@
             \end{tabular}
         \end{center}
     \end{table}
+    CoreMarkスコア、分岐予測率の向上が見られた。
     \subsection{v4.1}
-    \subsubsection{実装内容}
+    \subsubsection{実装内容}\label{sec:v4.1}
     v4.1では、v4.0の乗算器を改良した。
     $A\times B$を計算するとき、Bをいくつかに分割してそれぞれ積を求め、それらの積を足し合わせることで計算しても良い。
     そこで、図~\ref{fig:multiplier2}のようにBを4bitずつ8個に分割し、それぞれを同時に処理する(4クロック)
     これら8つの和を2クロックかけて足し合わせることで$A\times B$を計算する。
     これにより、乗算器の処理時間を34クロックから8クロックに短縮した。
-    \begin{figure}
+    さらに、Bの8分割は連続する4bitずつに分ける必要はないので、
+    \begin{itemize}
+        \item 1クロック目: B[7:0]を処理
+        \item 2クロック目: B[15:8]を処理
+        \item 3クロック目: B[23:16]を処理
+        \item 4クロック目: B[31:24]を処理
+    \end{itemize}
+    というように分けることで、乗数が小さい場合は更に短いクロックで計算を切り上げられるようにした。
+    \begin{figure}[h]
         \centering
         \includegraphics[width=12cm]{figure/mul_split.png}
         \caption{乗算の並列化}\label{fig:multiplier2}
     \end{figure}
+
+    除算・剰余に対しても1クロックに数桁分まとめて処理することで高速化することができるが、CoreMarkのIterationでは除算・剰余の計算が少なく
+    パフォーマンスにはあまり影響しなかったため、実装しなかった。
+
     \subsubsection{パフォーマンス}
     Vivadoを用いて合成したところ、最大クロック周波数は$90\mathrm{MHz}$付近となった。
     FPGA上で$90\mathrm{MHz}$でCoreMarkを動作した結果は表~\ref{tab:v4.1}の通りである。
@@ -328,4 +353,54 @@
             \end{tabular}
         \end{center}
     \end{table}
+
+    \section{まとめ}
+    \subsection{取り組んだこと・取り組まなかったこと}
+    本実験では、最終的にCoreMarkスコア250を達成した。
+    最終的なアーキテクチャで実装した機能は以下の通りである。
+    \begin{itemize}
+        \item RV32I命令セット
+        \item 5ステージパイプライン
+        \item 分岐予測器(BTB, PHT)
+        \item RV32M命令セット(および乗算の高速化)
+    \end{itemize}
+    また、最終的なアーキテクチャで実装しなかった機能は以下の通りである。
+    \begin{itemize}
+        \item 高度な分岐予測:
+        2bitのPHTでは、for文の終了判定などの分岐を正しく予測できない。ローカル履歴やグローバル履歴を用いた分岐予測器を実装することで、分岐予測率を向上させることができる。
+        グローバル履歴を用いた分岐予測器としてgshareがある。PHTのインデックスにPCの下位ビットを用いるのではなく、PCの下位ビットと過去の分岐履歴をXORした値をインデックスとするもので、
+        分岐履歴を考慮した分岐予測が可能である。
+        今回gshareを実装したものの、CoreMarkパフォーマンスは向上しなかった。
+        理由として、CoreMarkでは単純な分岐が多く既に十分な精度が出ていたこと、PHTのインデックスが256と小さく、むしろインデックスの衝突が増えてしまったことが考えられる\footnote{\url{https://lpha-z.hatenablog.com/entry/2020/03/08/231500}}。
+        \item DSPを用いた乗算の高速化:
+        今回用いたFPGA上にはDSPと呼ばれる乗算器があり、これを用いることで乗算を高速化することができる。
+        Vivadoには、DSPを用いて乗算をパイプライン化\footnote{\url{https://docs.xilinx.com/r/ja-JP/ug901-vivado-synthesis}}
+        する機能があり、これは自力で実装するよりも高速に動作するはずである。
+        \item 除算の高速化: 
+        \ref{sec:v4.1}で述べたように、除算も乗算と同様に高速化することができるが、CoreMarkスコアに影響がなかったため実装しなかった。
+        \item スーパスカラ: 
+        今回のプロセッサは1クロックに1命令しか実行できないが、1クロックに複数命令を実行できるスーパスカラプロセッサを実装することで、IPCを向上させることができる。
+        しかしながら、考慮しなければいけない命令の依存関係が爆発的に増加する。もっとも初歩的なスーパースカラとして、PC+4の命令をフェッチ・デコードし、
+        PC, PC+4ともにOP命令で、RAW依存関係がない場合に限り実行するものを検討した。しかしながら、このケースであっても
+        一個前のEXステージ・MAステージからフォワーディングの可能性があり、
+        フォワーディング元(EX1, EX2, MA)、フォワーディング先(EX1のoprl, oprr, EX2のoprl, oprr)で12パターンの依存関係を考慮しなければいけない。
+        これを実装するには各ステージの機能がカプセル化されていて、それらの結合が簡潔に記述されていないと難しいと考え、実装を断念した。
+    \end{itemize}
+    \subsection{CoreMarkスコア推移}
+    実験開始からの経過日数とCoreMarkスコアの推移を図~\ref{fig:score}に示す。
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=12cm]{figure/coremark_plot.png}
+        \caption{CoreMarkスコアの推移}\label{fig:score}
+    \end{figure}
+    全体を通してクロック周波数は大きく変化していないため、IPCの向上がCoreMarkスコアに直結した。
+    効果が大きかったのは、パイプライン化(IPC最大5倍)と乗算器の高速化(乗算・20倍以上)であった。
+    分岐予測も効果はあったが、予測率の向上はたかだか数割なのでCoreMarkスコアが劇的に向上することはなかった。RV32M命令よりも先に実装していて良かったと思う。
+    \subsection{感想}
+    今回の実験はかなり楽しく、実験時間外でもかなりの時間を費やした。
+    ちょっと記法や構造を変えるだけでパフォーマンスが大きく変わり、試行錯誤しがいがあった。
+    また、同じ機能を実装しても人によって実装・動作周波数・スコアが大きく異なるため、色々な人と議論や情報共有をしながら進めることができるのもよかった。
+
+    最後にスーパースカラを実装できなかったことが残念である。モジュールの整理・全体のリファクタリングが不十分だったように思う。
+    しかし、当初掲げていた目標であるCoreMarkスコア3桁を達成でき、開発自体はとても順調だったので、満足している。
 \end{document}
